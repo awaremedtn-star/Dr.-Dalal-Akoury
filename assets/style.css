@@ -144,8 +144,8 @@ html[dir="rtl"] .nav-cta{font-family:var(--font-ar)}
 .on-dark{background:var(--lapis-deep);color:rgba(255,255,255,.86)}
 .sec-head{max-width:740px;margin-bottom:56px}
 .sec-head.center{margin:0 auto 56px;text-align:center}
-.sec-head h2{font-size:var(--fs-h2)}
-.on-dark .sec-head h2{color:#fff}
+.sec-head h1,.sec-head h2{font-size:var(--fs-h2)}
+.on-dark .sec-head h1,.on-dark .sec-head h2{color:#fff}
 .sec-head .lead{font-size:var(--fs-lead);color:var(--muted);margin-top:18px;font-weight:300;line-height:1.7;max-width:var(--measure)}
 .sec-head.center .lead{margin-left:auto;margin-right:auto}
 .on-dark .sec-head .lead{color:rgba(255,255,255,.72)}
@@ -252,11 +252,11 @@ html[dir="rtl"] .m-row{padding:36px 0 36px 32px}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:46px;padding-top:24px;font-size:var(--fs-caption);color:rgba(255,255,255,.5);line-height:1.75;max-width:var(--measure)}
 
 /* ---------- responsive nav collapse ----------
-   Raised from 900px to 1080px: the caption-tier bump (13px, up from
-   the old ~11.5px ad-hoc value) needs a little more room for the
-   longest nav (5 links + "Request Investor Discussion") to stay on
-   one line without wrapping or overflowing between 900–1080px. */
-@media(max-width:1080px){
+   Raised from 900px to 1180px: the caption-tier bump (13px, up from
+   the old ~11.5px ad-hoc value) needs more room for the longest nav
+   (investment.html's 6 links + "Request Investor Discussion") to
+   stay on one line without wrapping or overflowing. */
+@media(max-width:1180px){
   .nav-links,.nav-cta.desk{display:none}
   .burger{display:flex}
 }
@@ -436,3 +436,14 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
   outline-offset:3px;
   border-radius:2px;
 }
+
+/* ---------- media / interviews video grid ---------- */
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:900px){.video-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.video-grid{grid-template-columns:1fr}}
+.video-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.video-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.video-frame{position:relative;width:100%;aspect-ratio:16/9;background:var(--lapis-deep)}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-card .cap{padding:18px 20px;font-size:var(--fs-body);color:var(--ink);font-weight:500}
+html[dir="rtl"] .video-card .cap{line-height:1.6}
