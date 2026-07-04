@@ -400,6 +400,7 @@ html[dir="rtl"] .cine .cite{font-family:var(--font-ar);letter-spacing:0}
 }
 .chapter.in .bg img{clip-path:inset(0 0 0 0)}
 .chapter .bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,24,48,.8),rgba(10,24,48,.92)),radial-gradient(ellipse at 50% 45%,rgba(191,154,84,.10),transparent 60%)}
+.chapter.books-bg .bg::after{background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.4)),radial-gradient(ellipse at 50% 45%,rgba(191,154,84,.10),transparent 60%)}
 .chapter .inner{position:relative;z-index:2;max-width:880px}
 .chapter .kick{font-size:var(--fs-caption);letter-spacing:.28em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:32px;opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 html[dir="rtl"] .chapter .kick{letter-spacing:.05em}
