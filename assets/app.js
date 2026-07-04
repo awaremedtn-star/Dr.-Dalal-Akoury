@@ -26,6 +26,58 @@
     });
   }, { threshold: .4 });
 
+  // parallax on chapter background photos (coming-home.html only)
+  function initParallax(){
+    var chapters = Array.prototype.slice.call(document.querySelectorAll('.chapter')).map(function(ch){
+      return { el: ch, img: ch.querySelector('.bg img') };
+    }).filter(function(c){ return c.img; });
+    if(!chapters.length) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    addEventListener('scroll', function(){
+      chapters.forEach(function(c){
+        var r = c.el.getBoundingClientRect();
+        c.img.style.setProperty('--parallax-offset', (r.top * 0.15) + 'px');
+      });
+    }, { passive: true });
+  }
+
+  // fixed gold progress rail with one dot per chapter (coming-home.html only)
+  function initStoryRail(){
+    var chapters = Array.prototype.slice.call(document.querySelectorAll('.chapter'));
+    var rail = document.querySelector('.story-rail');
+    if(!rail || !chapters.length) return;
+    var dotsWrap = rail.querySelector('.story-rail-dots');
+    chapters.forEach(function(_, i){
+      var d = document.createElement('div');
+      d.className = 'dot';
+      d.style.top = (i / (chapters.length - 1) * 100) + '%';
+      dotsWrap.appendChild(d);
+    });
+    var dots = Array.prototype.slice.call(dotsWrap.children);
+    var fill = rail.querySelector('.story-rail-fill');
+    addEventListener('scroll', function(){
+      var doc = document.documentElement;
+      var pct = scrollY / (doc.scrollHeight - innerHeight);
+      fill.style.height = Math.min(100, Math.max(0, pct * 100)) + '%';
+      var activeIdx = chapters.findIndex(function(ch){
+        var r = ch.getBoundingClientRect();
+        return r.top < innerHeight * 0.5 && r.bottom > innerHeight * 0.5;
+      });
+      dots.forEach(function(d, i){ d.classList.toggle('active', i === activeIdx); });
+    }, { passive: true });
+  }
+
+  // word-by-word stagger reveal on chapter lines; re-run after every setLang() swap
+  function splitLinesIntoWords(){
+    document.querySelectorAll('.chapter .line').forEach(function(line){
+      var html = line.innerHTML;
+      line.innerHTML = html.replace(/(<[^>]+>)|([^\s<]+)/g, function(m, tag, word){
+        return tag ? tag : '<span class="word">' + word + '</span> ';
+      });
+      line.querySelectorAll('.word').forEach(function(w, i){ w.style.transitionDelay = (i * 30) + 'ms'; });
+    });
+  }
+
   var EN = null;
   function cacheEN(){
     EN = {};
@@ -47,12 +99,16 @@
       return b.getAttribute('onclick') === "setLang('" + l + "')";
     });
     if(active) active.classList.add('on');
+    splitLinesIntoWords();
   };
 
   addEventListener('DOMContentLoaded', function(){
     cacheEN();
     document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
     document.querySelectorAll('.chapter').forEach(function(el){ chapterIO.observe(el); });
+    splitLinesIntoWords();
+    initParallax();
+    initStoryRail();
     var p = new URLSearchParams(location.search).get('lang');
     if(p && ['ar','fr','es','en'].includes(p)) setLang(p);
   });
