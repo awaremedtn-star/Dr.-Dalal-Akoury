@@ -113,7 +113,7 @@ html[dir="rtl"] .btn{letter-spacing:0;font-family:var(--font-ar);font-weight:700
 .langsw button:hover,.langsw button.on{background:var(--gold);color:var(--lapis-deep);border-color:var(--gold)}
 
 /* ---------- primary nav ---------- */
-.nav{position:sticky;top:0;z-index:100;background:rgba(12,27,51,0);transition:background .3s var(--ease),box-shadow .3s var(--ease);padding:18px 0}
+.nav{position:sticky;top:0;z-index:100;background:rgba(12,27,51,.92);backdrop-filter:blur(10px);transition:background .3s var(--ease),box-shadow .3s var(--ease);padding:18px 0;box-shadow:0 2px 20px rgba(10,24,48,.18)}
 .nav.solid{background:var(--lapis-deep);box-shadow:0 2px 30px rgba(10,24,48,.4)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px}
 .nav-logo{display:flex;align-items:center}
