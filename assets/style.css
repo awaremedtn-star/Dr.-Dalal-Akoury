@@ -117,8 +117,8 @@ html[dir="rtl"] .btn{letter-spacing:0;font-family:var(--font-ar);font-weight:700
 .nav.solid{background:var(--lapis-deep);box-shadow:0 2px 30px rgba(10,24,48,.4)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px}
 .nav-logo{display:flex;align-items:center}
-.nav-logo img{height:120px;width:auto;display:block}
-@media(max-width:760px){.nav-logo img{height:72px}}
+.nav-logo img{height:88px;width:auto;display:block}
+@media(max-width:760px){.nav-logo img{height:56px}}
 /* utility: force a flat white silhouette — for single-color placeholder marks only, not the brand logo */
 .icon-invert{filter:brightness(0) invert(1);opacity:.96}
 .nav-links{display:flex;gap:0;align-items:center}
