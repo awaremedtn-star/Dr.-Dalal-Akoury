@@ -78,6 +78,38 @@
     });
   }
 
+  // click-to-enlarge lightbox for the press photo gallery (media.html only)
+  function initLightbox(){
+    var tiles = Array.prototype.slice.call(document.querySelectorAll('.press-tile'));
+    if(!tiles.length) return;
+    var overlay = document.createElement('div');
+    overlay.className = 'lightbox';
+    overlay.innerHTML = '<button class="lightbox-close" aria-label="Close">&times;</button><img alt=""/><div class="lightbox-cap"></div>';
+    document.body.appendChild(overlay);
+    var img = overlay.querySelector('img');
+    var cap = overlay.querySelector('.lightbox-cap');
+    function open(src, caption){
+      img.src = src;
+      cap.textContent = caption || '';
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function close(){
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    tiles.forEach(function(t){
+      t.addEventListener('click', function(){
+        var im = t.querySelector('img');
+        var capSpan = t.querySelector('figcaption span');
+        open(im.currentSrc || im.src, capSpan ? capSpan.textContent : im.alt);
+      });
+    });
+    overlay.addEventListener('click', function(e){ if(e.target === overlay) close(); });
+    overlay.querySelector('.lightbox-close').addEventListener('click', close);
+    addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+  }
+
   var EN = null;
   function cacheEN(){
     EN = {};
@@ -109,6 +141,7 @@
     splitLinesIntoWords();
     initParallax();
     initStoryRail();
+    initLightbox();
     var p = new URLSearchParams(location.search).get('lang');
     if(p && ['ar','fr','es','en'].includes(p)) setLang(p);
   });
