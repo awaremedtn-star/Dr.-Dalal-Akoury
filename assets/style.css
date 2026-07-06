@@ -117,8 +117,11 @@ html[dir="rtl"] .btn{letter-spacing:0;font-family:var(--font-ar);font-weight:700
 .nav.solid{background:var(--lapis-deep);box-shadow:0 2px 30px rgba(10,24,48,.4)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px}
 .nav-logo{display:flex;align-items:center;gap:12px}
-.nav-logo img{height:42px;filter:brightness(0) invert(1);opacity:.96}
+.nav-logo-mark{display:flex;align-items:center;justify-content:center;background:var(--lapis-deep);border:1px solid rgba(191,154,84,.5);border-radius:8px;padding:5px 7px;line-height:0}
+.nav-logo-mark img{height:50px;width:auto;display:block;border-radius:2px}
 .nav-logo .word{font-family:var(--font-d);color:#fff;font-size:1.05rem;letter-spacing:.02em;white-space:nowrap}
+/* utility: force a flat white silhouette — for single-color placeholder marks only, not the brand logo */
+.icon-invert{filter:brightness(0) invert(1);opacity:.96}
 .nav-links{display:flex;gap:0;align-items:center}
 .nav-links a{font-size:var(--fs-caption);font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.8);padding:9px 8px;white-space:nowrap;transition:color .15s var(--ease);position:relative}
 .nav-links a.current{color:var(--gold-lt)}
@@ -244,6 +247,7 @@ html[dir="rtl"] .m-row{padding:36px 0 36px 32px}
 .footer .wrap{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:48px}
 @media(max-width:760px){.footer .wrap{grid-template-columns:1fr;gap:32px}}
 .footer h4{font-family:var(--font-d);color:#fff;font-size:var(--fs-h3);font-weight:600;margin-bottom:16px}
+.footer-logo{height:68px;width:auto;display:block;margin-bottom:20px}
 .footer a{color:rgba(255,255,255,.6);font-size:var(--fs-body);display:block;padding:5px 0;transition:color .15s var(--ease)}
 .footer a:hover{color:var(--gold-lt)}
 .footer .about{font-size:var(--fs-body);color:rgba(255,255,255,.55);max-width:38ch;font-weight:300;line-height:1.75}
