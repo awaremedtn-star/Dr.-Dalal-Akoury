@@ -136,6 +136,30 @@ html[dir="rtl"] .nav-cta{font-family:var(--font-ar)}
 .mnav.open{display:block}
 .mnav a{display:block;color:rgba(255,255,255,.85);padding:13px 0;font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.08)}
 
+/* ---------- nav dropdown (desktop "Media" merges Interviews + Press & Photos) ---------- */
+.nav-drop{position:relative}
+.nav-drop-trigger{background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8);padding:9px 13px;transition:color .15s var(--ease)}
+.nav-drop-trigger:hover,.nav-drop.open .nav-drop-trigger,.nav-drop-trigger.current{color:var(--gold-lt)}
+.nav-drop .chev{transition:transform .2s var(--ease)}
+.nav-drop.open .chev{transform:rotate(180deg)}
+.nav-drop-menu{position:absolute;top:100%;left:0;margin-top:6px;min-width:190px;background:var(--lapis-deep);border:1px solid rgba(255,255,255,.12);border-radius:8px;box-shadow:var(--shadow-lg);padding:6px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s var(--ease),transform .18s var(--ease),visibility .18s;z-index:110}
+.nav-drop.open .nav-drop-menu{opacity:1;visibility:visible;transform:none}
+.nav-drop-menu li a{display:block;padding:10px 14px;border-radius:6px;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:none;color:rgba(255,255,255,.82);transition:background .15s var(--ease),color .15s var(--ease)}
+.nav-drop-menu li a:hover,.nav-drop-menu li a.current{background:rgba(191,154,84,.12);color:var(--gold-lt)}
+html[dir="rtl"] .nav-drop-menu{left:auto;right:0}
+html[dir="rtl"] .nav-drop-trigger{letter-spacing:0}
+html[dir="rtl"] .nav-drop-menu li a{letter-spacing:0}
+
+/* ---------- mobile menu accordion group (same Media merge) ---------- */
+.mnav-group-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;background:none;border:none;color:rgba(255,255,255,.85);font:inherit;padding:13px 0;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer}
+.mnav-group-trigger .chev{transition:transform .2s var(--ease)}
+.mnav-group.open .chev{transform:rotate(180deg)}
+.mnav-submenu{display:none;padding-left:16px}
+.mnav-group.open .mnav-submenu{display:block}
+.mnav-submenu a{padding:11px 0;font-size:.78rem;text-transform:none;letter-spacing:.02em}
+.mnav-submenu a.current,.mnav-group-trigger.current{color:var(--gold-lt)}
+html[dir="rtl"] .mnav-submenu{padding-left:0;padding-right:16px}
+
 /* ---------- section rhythm ---------- */
 .section{padding:108px 0}
 .section.tight{padding:88px 0}
@@ -274,11 +298,12 @@ html[dir="rtl"] .m-row{padding:36px 0 36px 32px}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:46px;padding-top:24px;font-size:var(--fs-caption);color:rgba(255,255,255,.5);line-height:1.75;max-width:var(--measure)}
 
 /* ---------- responsive nav collapse ----------
-   Raised from 900px to 1180px to 1300px: each nav item added since
-   (Legacy, then JT Foxx & Dr. Akoury) needs more room for the longest
-   nav (8 links + a CTA button) to stay on one line without wrapping or
-   overflowing. */
-@media(max-width:1300px){
+   Raised from 900px to 1180px to 1300px to 1340px: each nav item added
+   since (Legacy, then JT Foxx & Dr. Akoury) needs more room for the
+   longest nav (8 links + a CTA button) to stay on one line without
+   wrapping or overflowing — investment.html's longer "Request Investor
+   Discussion" CTA needed a few more px than the other pages. */
+@media(max-width:1340px){
   .nav-links,.nav-cta.desk{display:none}
   .burger{display:flex}
 }

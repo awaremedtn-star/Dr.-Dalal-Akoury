@@ -110,6 +110,45 @@
     addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
   }
 
+  // click/tap-driven nav dropdown ("Media" merges Interviews + Press & Photos)
+  function initNavDropdowns(){
+    document.querySelectorAll('.nav-drop').forEach(function(drop){
+      var trigger = drop.querySelector('.nav-drop-trigger');
+      trigger.addEventListener('click', function(e){
+        e.stopPropagation();
+        var isOpen = drop.classList.contains('open');
+        document.querySelectorAll('.nav-drop.open').forEach(function(d){
+          d.classList.remove('open');
+          d.querySelector('.nav-drop-trigger').setAttribute('aria-expanded', 'false');
+        });
+        if(!isOpen){ drop.classList.add('open'); trigger.setAttribute('aria-expanded', 'true'); }
+      });
+    });
+    document.addEventListener('click', function(){
+      document.querySelectorAll('.nav-drop.open').forEach(function(d){
+        d.classList.remove('open');
+        d.querySelector('.nav-drop-trigger').setAttribute('aria-expanded', 'false');
+      });
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){
+        document.querySelectorAll('.nav-drop.open').forEach(function(d){
+          d.classList.remove('open');
+          d.querySelector('.nav-drop-trigger').setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+    // mobile accordion group, same open/close pattern
+    document.querySelectorAll('.mnav-group').forEach(function(group){
+      var trigger = group.querySelector('.mnav-group-trigger');
+      trigger.addEventListener('click', function(){
+        var isOpen = group.classList.contains('open');
+        group.classList.toggle('open', !isOpen);
+        trigger.setAttribute('aria-expanded', String(!isOpen));
+      });
+    });
+  }
+
   var EN = null;
   function cacheEN(){
     EN = {};
@@ -142,6 +181,7 @@
     initParallax();
     initStoryRail();
     initLightbox();
+    initNavDropdowns();
     var p = new URLSearchParams(location.search).get('lang');
     if(p && ['ar','fr','es','en'].includes(p)) setLang(p);
   });
