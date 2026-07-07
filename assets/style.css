@@ -274,11 +274,11 @@ html[dir="rtl"] .m-row{padding:36px 0 36px 32px}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:46px;padding-top:24px;font-size:var(--fs-caption);color:rgba(255,255,255,.5);line-height:1.75;max-width:var(--measure)}
 
 /* ---------- responsive nav collapse ----------
-   Raised from 900px to 1180px: the caption-tier bump (13px, up from
-   the old ~11.5px ad-hoc value) needs more room for the longest nav
-   (investment.html's 6 links + "Request Investor Discussion") to
-   stay on one line without wrapping or overflowing. */
-@media(max-width:1180px){
+   Raised from 900px to 1180px to 1300px: each nav item added since
+   (Legacy, then JT Foxx & Dr. Akoury) needs more room for the longest
+   nav (8 links + a CTA button) to stay on one line without wrapping or
+   overflowing. */
+@media(max-width:1300px){
   .nav-links,.nav-cta.desk{display:none}
   .burger{display:flex}
 }
