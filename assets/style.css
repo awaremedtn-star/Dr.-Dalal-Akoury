@@ -300,14 +300,23 @@ html[dir="rtl"] .m-row{padding:36px 0 36px 32px}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:46px;padding-top:24px;font-size:var(--fs-caption);color:rgba(255,255,255,.5);line-height:1.75;max-width:var(--measure)}
 
 /* ---------- responsive nav collapse ----------
-   Raised from 900px to 1180px to 1300px to 1340px to 1560px: each nav
-   item added since (Legacy, then JT Foxx & Dr. Akoury, then VIP Evening)
-   needs more room for the longest nav (9 links + a CTA button) to stay
-   on one line without wrapping or overflowing — investment.html's longer
-   "Request Investor Discussion" CTA needed the most room of any page,
-   overflowing up to ~1546px once the 9th link (VIP Evening) was added. */
-@media(max-width:1560px){
-  .nav-links,.nav-cta.desk{display:none}
+   Split into two independent breakpoints so the nav TABS stay visible
+   on ordinary laptop widths (1300-1760px) even when the desktop CTA
+   button no longer fits next to 9 links. Previously both were tied to
+   one breakpoint that had to be raised to 1560px to stop investment.html's
+   long "Request Investor Discussion" CTA from overflowing — but that
+   hid the tabs themselves on very common 1366/1440/1536px screens,
+   which is the regression this split fixes. The CTA-only breakpoint is
+   1760px because investment.html's Spanish CTA ("Solicitar conversación
+   con inversores") is the widest of any page/language and doesn't clear
+   the row until ~1732px. Below 1300px there isn't room for the links
+   either, so both collapse into the burger menu (which already
+   duplicates the CTA). */
+@media(max-width:1760px){
+  .nav-cta.desk{display:none}
+}
+@media(max-width:1300px){
+  .nav-links{display:none}
   .burger{display:flex}
 }
 
