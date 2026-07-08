@@ -70,7 +70,16 @@
     <li><a href="#model" data-i18n="nav.model">The Model</a></li>
     <li><a href="#structures" data-i18n="nav.structures">Structures</a></li>
     <li><a href="jt-foxx.html" data-i18n="nav.jtfoxx">JT Foxx &amp; Dr. Akoury</a></li>
-    <li><a href="vip-event.html" data-i18n="nav.vipevent">Events</a></li>
+    <li class="nav-drop">
+      <button class="nav-drop-trigger" aria-haspopup="true" aria-expanded="false">
+        <span data-i18n="nav.events">Events</span>
+        <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <ul class="nav-drop-menu">
+        <li><a href="vip-event.html" data-i18n="nav.vip.evening">VIP Evening</a></li>
+        <li><a href="vip-dinner.html" data-i18n="nav.vip.dinner">Private Dinner</a></li>
+      </ul>
+    </li>
     <li><a href="legacy.html" data-i18n="nav.legacy">Legacy</a></li>
   </ul>
   <a href="#contact" class="nav-cta desk" data-i18n="nav.cta">Request Investor Discussion</a>
@@ -93,7 +102,16 @@
   <a href="#model" data-i18n="nav.model">The Model</a>
   <a href="#structures" data-i18n="nav.structures">Structures</a>
   <a href="jt-foxx.html" data-i18n="nav.jtfoxx">JT Foxx &amp; Dr. Akoury</a>
-  <a href="vip-event.html" data-i18n="nav.vipevent">Events</a>
+  <div class="mnav-group">
+    <button class="mnav-group-trigger" aria-expanded="false">
+      <span data-i18n="nav.events">Events</span>
+      <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="mnav-submenu">
+      <a href="vip-event.html" data-i18n="nav.vip.evening">VIP Evening</a>
+      <a href="vip-dinner.html" data-i18n="nav.vip.dinner">Private Dinner</a>
+    </div>
+  </div>
   <a href="legacy.html" data-i18n="nav.legacy">Legacy</a>
   <a href="#contact" style="color:var(--gold-lt)" data-i18n="nav.cta">Request Investor Discussion</a>
 </div>
@@ -290,7 +308,8 @@
       <a href="#model" data-i18n="nav.model">The Model</a>
       <a href="#structures" data-i18n="nav.structures">Structures</a>
       <a href="jt-foxx.html" data-i18n="nav.jtfoxx">JT Foxx &amp; Dr. Akoury</a>
-      <a href="vip-event.html" data-i18n="nav.vipevent">Events</a>
+      <a href="vip-event.html" data-i18n="nav.vip.evening">VIP Evening</a>
+      <a href="vip-dinner.html" data-i18n="nav.vip.dinner">Private Dinner</a>
       <a href="legacy.html" data-i18n="nav.legacy">Legacy</a>
     </div>
     <div>
@@ -311,7 +330,7 @@ I18N.ar={
   "ftc.strong":"لأغراض النقاش الاستراتيجي فقط.",
   "ftc.rest":" لا تُشكّل هذه الصفحة عرضاً أو دعوة للاستثمار. جميع النماذج المعروضة توضيحية ولأغراض النقاش فحسب. خدمات AWAREmed مكمّلة، لا بديلة، عن الرعاية الطبية التقليدية.",
   "langbar.badge":"نتحدث العربية والإنجليزية والفرنسية والإسبانية",
-  "nav.home":"الرئيسية","nav.why":"العودة إلى الوطن","nav.interviews":"المقابلات","nav.media":"الإعلام","nav.press":"الصحافة والصور","nav.thesis":"الأطروحة","nav.model":"النموذج","nav.structures":"الهياكل","nav.jtfoxx":"جيه تي فوكس ود. عاقوري","nav.vipevent":"الفعاليات","nav.legacy":"الإرث","nav.contact":"تواصل","nav.cta":"اطلب محادثة استثمار",
+  "nav.home":"الرئيسية","nav.why":"العودة إلى الوطن","nav.interviews":"المقابلات","nav.media":"الإعلام","nav.press":"الصحافة والصور","nav.thesis":"الأطروحة","nav.model":"النموذج","nav.structures":"الهياكل","nav.jtfoxx":"جيه تي فوكس ود. عاقوري","nav.events":"الفعاليات","nav.vip.evening":"أمسية VIP","nav.vip.dinner":"عشاء خاص","nav.legacy":"الإرث","nav.contact":"تواصل","nav.cta":"اطلب محادثة استثمار",
   "hero.eyebrow":"AWAREmed · استثمار الرعاية الصحية",
   "hero.h1":"نموذج متحقَّق منه.<br/><span class=\"gold\">جاهز للنشر الإقليمي.</span>",
   "hero.sub":"ليس مفهوماً يدخل السوق — بل نظام تشغيلي مُختبَر يبحث عن شريك إقليمي.",
@@ -369,7 +388,7 @@ I18N.fr={
   "ftc.strong":"Pour discussion stratégique uniquement.",
   "ftc.rest":" Cette page ne constitue ni une offre ni une sollicitation d'investissement. Tous les modèles présentés sont illustratifs et à des fins de discussion. Les services AWAREmed complètent, sans les remplacer, les soins médicaux conventionnels.",
   "langbar.badge":"Nous parlons arabe, français, espagnol et anglais",
-  "nav.home":"Accueil","nav.why":"Le retour","nav.interviews":"Interviews","nav.media":"Médias","nav.press":"Presse &amp; Photos","nav.thesis":"La thèse","nav.model":"Le modèle","nav.structures":"Structures","nav.jtfoxx":"JT Foxx &amp; Dre Akoury","nav.vipevent":"Événements","nav.legacy":"Héritage","nav.contact":"Contact","nav.cta":"Demander un échange investisseur",
+  "nav.home":"Accueil","nav.why":"Le retour","nav.interviews":"Interviews","nav.media":"Médias","nav.press":"Presse &amp; Photos","nav.thesis":"La thèse","nav.model":"Le modèle","nav.structures":"Structures","nav.jtfoxx":"JT Foxx &amp; Dre Akoury","nav.events":"Événements","nav.vip.evening":"Soirée VIP","nav.vip.dinner":"Dîner Privé","nav.legacy":"Héritage","nav.contact":"Contact","nav.cta":"Demander un échange investisseur",
   "hero.eyebrow":"AWAREmed · Investissement en santé",
   "hero.h1":"Un système éprouvé.<br/><span class=\"gold\">Prêt au déploiement régional.</span>",
   "hero.sub":"Non pas un concept qui entre sur le marché — un système d'exploitation éprouvé en quête d'un partenaire régional.",
@@ -427,7 +446,7 @@ I18N.es={
   "ftc.strong":"Solo para discusión estratégica.",
   "ftc.rest":" Esta página no constituye una oferta ni una solicitud de inversión. Todos los modelos mostrados son ilustrativos y para fines de discusión. Los servicios de AWAREmed complementan, y no reemplazan, la atención médica convencional.",
   "langbar.badge":"Hablamos árabe, francés, español e inglés",
-  "nav.home":"Inicio","nav.why":"El regreso","nav.interviews":"Entrevistas","nav.media":"Medios","nav.press":"Prensa y Fotos","nav.thesis":"La tesis","nav.model":"El modelo","nav.structures":"Estructuras","nav.jtfoxx":"JT Foxx y Dra. Akoury","nav.vipevent":"Eventos","nav.legacy":"Legado","nav.contact":"Contacto","nav.cta":"Solicitar conversación con inversores",
+  "nav.home":"Inicio","nav.why":"El regreso","nav.interviews":"Entrevistas","nav.media":"Medios","nav.press":"Prensa y Fotos","nav.thesis":"La tesis","nav.model":"El modelo","nav.structures":"Estructuras","nav.jtfoxx":"JT Foxx y Dra. Akoury","nav.events":"Eventos","nav.vip.evening":"Velada VIP","nav.vip.dinner":"Cena Privada","nav.legacy":"Legado","nav.contact":"Contacto","nav.cta":"Solicitar conversación con inversores",
   "hero.eyebrow":"AWAREmed · Inversión en salud",
   "hero.h1":"Un sistema probado.<br/><span class=\"gold\">Listo para el despliegue regional.</span>",
   "hero.sub":"No un concepto que entra al mercado — un sistema operativo probado que busca un socio regional.",

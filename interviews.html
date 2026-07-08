@@ -68,7 +68,16 @@
     </li>
     <li><a href="investment.html" data-i18n="nav.invest">Investment</a></li>
     <li><a href="jt-foxx.html" data-i18n="nav.jtfoxx">JT Foxx &amp; Dr. Akoury</a></li>
-    <li><a href="vip-event.html" data-i18n="nav.vipevent">Events</a></li>
+    <li class="nav-drop">
+      <button class="nav-drop-trigger" aria-haspopup="true" aria-expanded="false">
+        <span data-i18n="nav.events">Events</span>
+        <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <ul class="nav-drop-menu">
+        <li><a href="vip-event.html" data-i18n="nav.vip.evening">VIP Evening</a></li>
+        <li><a href="vip-dinner.html" data-i18n="nav.vip.dinner">Private Dinner</a></li>
+      </ul>
+    </li>
     <li><a href="legacy.html" data-i18n="nav.legacy">Legacy</a></li>
   </ul>
   <a href="#contact" class="nav-cta desk" data-i18n="iv.cta.eyebrow">Media Inquiries</a>
@@ -90,7 +99,16 @@
   </div>
   <a href="investment.html" data-i18n="nav.invest">Investment</a>
   <a href="jt-foxx.html" data-i18n="nav.jtfoxx">JT Foxx &amp; Dr. Akoury</a>
-  <a href="vip-event.html" data-i18n="nav.vipevent">Events</a>
+  <div class="mnav-group">
+    <button class="mnav-group-trigger" aria-expanded="false">
+      <span data-i18n="nav.events">Events</span>
+      <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="mnav-submenu">
+      <a href="vip-event.html" data-i18n="nav.vip.evening">VIP Evening</a>
+      <a href="vip-dinner.html" data-i18n="nav.vip.dinner">Private Dinner</a>
+    </div>
+  </div>
   <a href="legacy.html" data-i18n="nav.legacy">Legacy</a>
   <a href="#contact" style="color:var(--gold-lt)" data-i18n="iv.cta.eyebrow">Media Inquiries</a>
 </div>
@@ -167,7 +185,8 @@
       <a href="media.html" data-i18n="nav.media">Media</a>
       <a href="investment.html" data-i18n="nav.invest">Investment</a>
       <a href="jt-foxx.html" data-i18n="nav.jtfoxx">JT Foxx &amp; Dr. Akoury</a>
-      <a href="vip-event.html" data-i18n="nav.vipevent">Events</a>
+      <a href="vip-event.html" data-i18n="nav.vip.evening">VIP Evening</a>
+      <a href="vip-dinner.html" data-i18n="nav.vip.dinner">Private Dinner</a>
       <a href="legacy.html" data-i18n="nav.legacy">Legacy</a>
     </div>
     <div>
@@ -187,7 +206,7 @@ window.I18N={ar:{},fr:{},es:{}};
 I18N.ar={
   "ftc.b":"محتوى تثقيفي فقط. ليس استشارة طبية.","ftc.r":"خدمات AWAREmed مكمّلة — لا بديلة — عن الرعاية التقليدية. المواد لأغراض النقاش الاستراتيجي ولا تُشكّل عرضاً أو دعوة للاستثمار.",
   "langbar":"نتحدث العربية والإنجليزية والفرنسية والإسبانية",
-  "nav.home":"الرئيسية","nav.meet":"د. دلال","nav.why":"العودة إلى الوطن","nav.interviews":"المقابلات","nav.media":"الإعلام","nav.press":"الصحافة والصور","nav.invest":"الاستثمار","nav.jtfoxx":"جيه تي فوكس ود. عاقوري","nav.vipevent":"الفعاليات","nav.legacy":"الإرث",
+  "nav.home":"الرئيسية","nav.meet":"د. دلال","nav.why":"العودة إلى الوطن","nav.interviews":"المقابلات","nav.media":"الإعلام","nav.press":"الصحافة والصور","nav.invest":"الاستثمار","nav.jtfoxx":"جيه تي فوكس ود. عاقوري","nav.events":"الفعاليات","nav.vip.evening":"أمسية VIP","nav.vip.dinner":"عشاء خاص","nav.legacy":"الإرث",
   "iv.eyebrow":"الحضور الإعلامي",
   "iv.h1":"صوتٌ تثق به وسائل الإعلام الوطنية والعالمية",
   "iv.sub":"الفلسفة التكاملية ذاتها التي تُشكّل عملها السريري — رعاية الإنسان بكليّته لا التشخيص فحسب — تنتقل إلى الشاشة.",
@@ -202,7 +221,7 @@ I18N.ar={
 I18N.fr={
   "ftc.b":"Contenu éducatif uniquement. Pas un avis médical.","ftc.r":"Les services AWAREmed complètent — sans les remplacer — les soins conventionnels. Ces documents servent la discussion stratégique et ne constituent ni offre ni sollicitation d'investissement.",
   "langbar":"Nous parlons arabe, français, espagnol et anglais",
-  "nav.home":"Accueil","nav.meet":"Dre Dalal","nav.why":"Le retour","nav.interviews":"Interviews","nav.media":"Médias","nav.press":"Presse &amp; Photos","nav.invest":"Investissement","nav.jtfoxx":"JT Foxx &amp; Dre Akoury","nav.vipevent":"Événements","nav.legacy":"Héritage",
+  "nav.home":"Accueil","nav.meet":"Dre Dalal","nav.why":"Le retour","nav.interviews":"Interviews","nav.media":"Médias","nav.press":"Presse &amp; Photos","nav.invest":"Investissement","nav.jtfoxx":"JT Foxx &amp; Dre Akoury","nav.events":"Événements","nav.vip.evening":"Soirée VIP","nav.vip.dinner":"Dîner Privé","nav.legacy":"Héritage",
   "iv.eyebrow":"Voix publique et médiatique",
   "iv.h1":"Une voix de confiance pour les médias nationaux et internationaux",
   "iv.sub":"La même philosophie intégrative qui façonne sa pratique clinique — soigner la personne entière, pas seulement le diagnostic — portée à l'écran.",
@@ -217,7 +236,7 @@ I18N.fr={
 I18N.es={
   "ftc.b":"Contenido educativo únicamente. No es asesoramiento médico.","ftc.r":"Los servicios de AWAREmed complementan — no reemplazan — la atención convencional. Los materiales sirven a la discusión estratégica y no constituyen oferta ni solicitud de inversión.",
   "langbar":"Hablamos árabe, francés, español e inglés",
-  "nav.home":"Inicio","nav.meet":"Dra. Dalal","nav.why":"El regreso","nav.interviews":"Entrevistas","nav.media":"Medios","nav.press":"Prensa y Fotos","nav.invest":"Inversión","nav.jtfoxx":"JT Foxx y Dra. Akoury","nav.vipevent":"Eventos","nav.legacy":"Legado",
+  "nav.home":"Inicio","nav.meet":"Dra. Dalal","nav.why":"El regreso","nav.interviews":"Entrevistas","nav.media":"Medios","nav.press":"Prensa y Fotos","nav.invest":"Inversión","nav.jtfoxx":"JT Foxx y Dra. Akoury","nav.events":"Eventos","nav.vip.evening":"Velada VIP","nav.vip.dinner":"Cena Privada","nav.legacy":"Legado",
   "iv.eyebrow":"Voz pública y mediática",
   "iv.h1":"Una voz de confianza para los medios nacionales e internacionales",
   "iv.sub":"La misma filosofía integrativa que guía su práctica clínica — cuidar a la persona completa, no solo el diagnóstico — llevada a la pantalla.",

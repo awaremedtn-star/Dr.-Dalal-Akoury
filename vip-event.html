@@ -83,7 +83,16 @@
     </li>
     <li><a href="investment.html" data-i18n="nav.invest">Investment</a></li>
     <li><a href="jt-foxx.html" data-i18n="nav.jtfoxx">JT Foxx &amp; Dr. Akoury</a></li>
-    <li><a href="vip-event.html" class="current" data-i18n="nav.vipevent">Events</a></li>
+    <li class="nav-drop">
+      <button class="nav-drop-trigger current" aria-haspopup="true" aria-expanded="false">
+        <span data-i18n="nav.events">Events</span>
+        <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <ul class="nav-drop-menu">
+        <li><a href="vip-event.html" class="current" data-i18n="nav.vip.evening">VIP Evening</a></li>
+        <li><a href="vip-dinner.html" data-i18n="nav.vip.dinner">Private Dinner</a></li>
+      </ul>
+    </li>
     <li><a href="legacy.html" data-i18n="nav.legacy">Legacy</a></li>
   </ul>
   <a href="#connect" class="nav-cta desk" data-i18n="vip.btn.request">Request an Invitation</a>
@@ -105,7 +114,16 @@
   </div>
   <a href="investment.html" data-i18n="nav.invest">Investment</a>
   <a href="jt-foxx.html" data-i18n="nav.jtfoxx">JT Foxx &amp; Dr. Akoury</a>
-  <a href="vip-event.html" data-i18n="nav.vipevent">Events</a>
+  <div class="mnav-group">
+    <button class="mnav-group-trigger current" aria-expanded="false">
+      <span data-i18n="nav.events">Events</span>
+      <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="mnav-submenu">
+      <a href="vip-event.html" class="current" data-i18n="nav.vip.evening">VIP Evening</a>
+      <a href="vip-dinner.html" data-i18n="nav.vip.dinner">Private Dinner</a>
+    </div>
+  </div>
   <a href="legacy.html" data-i18n="nav.legacy">Legacy</a>
   <a href="#connect" style="color:var(--gold-lt)" data-i18n="vip.btn.request">Request an Invitation</a>
 </div>
@@ -293,7 +311,8 @@
       <a href="media.html" data-i18n="nav.media">Media</a>
       <a href="investment.html" data-i18n="nav.invest">Investment</a>
       <a href="jt-foxx.html" data-i18n="nav.jtfoxx">JT Foxx &amp; Dr. Akoury</a>
-      <a href="vip-event.html" data-i18n="nav.vipevent">Events</a>
+      <a href="vip-event.html" data-i18n="nav.vip.evening">VIP Evening</a>
+      <a href="vip-dinner.html" data-i18n="nav.vip.dinner">Private Dinner</a>
       <a href="legacy.html" data-i18n="nav.legacy">Legacy</a>
     </div>
     <div>
@@ -313,7 +332,7 @@
 window.I18N={ar:{},fr:{},es:{}};
 I18N.ar={
   "langbar":"نتحدث العربية والإنجليزية والفرنسية والإسبانية",
-  "nav.home":"الرئيسية","nav.meet":"د. دلال","nav.why":"العودة إلى الوطن","nav.interviews":"المقابلات","nav.media":"الإعلام","nav.press":"الصحافة والصور","nav.invest":"الاستثمار","nav.jtfoxx":"جيه تي فوكس ود. عاقوري","nav.vipevent":"الفعاليات","nav.legacy":"الإرث",
+  "nav.home":"الرئيسية","nav.meet":"د. دلال","nav.why":"العودة إلى الوطن","nav.interviews":"المقابلات","nav.media":"الإعلام","nav.press":"الصحافة والصور","nav.invest":"الاستثمار","nav.jtfoxx":"جيه تي فوكس ود. عاقوري","nav.events":"الفعاليات","nav.vip.evening":"أمسية VIP","nav.vip.dinner":"عشاء خاص","nav.legacy":"الإرث",
   "vip.compliance":"تصف هذه الصفحة فعالية خاصة للتواصل المهني بالدعوة فقط. وهي لأغراض إعلامية فقط ولا تُعدّ استشارة طبية أو مالية أو استثمارية، ولا دعوة للاستثمار.",
   "vip.compliance.link":"الإفصاحات الكاملة",
   "vip.brand.sub":"أمسية VIP · بالدعوة",
@@ -373,7 +392,7 @@ I18N.ar={
 };
 I18N.fr={
   "langbar":"Nous parlons arabe, français, espagnol et anglais",
-  "nav.home":"Accueil","nav.meet":"Dre Dalal","nav.why":"Le retour","nav.interviews":"Interviews","nav.media":"Médias","nav.press":"Presse &amp; Photos","nav.invest":"Investissement","nav.jtfoxx":"JT Foxx &amp; Dre Akoury","nav.vipevent":"Événements","nav.legacy":"Héritage",
+  "nav.home":"Accueil","nav.meet":"Dre Dalal","nav.why":"Le retour","nav.interviews":"Interviews","nav.media":"Médias","nav.press":"Presse &amp; Photos","nav.invest":"Investissement","nav.jtfoxx":"JT Foxx &amp; Dre Akoury","nav.events":"Événements","nav.vip.evening":"Soirée VIP","nav.vip.dinner":"Dîner Privé","nav.legacy":"Héritage",
   "vip.compliance":"Cette page décrit un événement privé de mise en relation professionnelle, sur invitation uniquement. Elle est purement informative et ne constitue ni un conseil médical, financier ou d'investissement, ni une sollicitation.",
   "vip.compliance.link":"Mentions complètes",
   "vip.brand.sub":"Une Soirée VIP · Sur Invitation",
@@ -433,7 +452,7 @@ I18N.fr={
 };
 I18N.es={
   "langbar":"Hablamos árabe, francés, español e inglés",
-  "nav.home":"Inicio","nav.meet":"Dra. Dalal","nav.why":"El regreso","nav.interviews":"Entrevistas","nav.media":"Medios","nav.press":"Prensa y Fotos","nav.invest":"Inversión","nav.jtfoxx":"JT Foxx y Dra. Akoury","nav.vipevent":"Eventos","nav.legacy":"Legado",
+  "nav.home":"Inicio","nav.meet":"Dra. Dalal","nav.why":"El regreso","nav.interviews":"Entrevistas","nav.media":"Medios","nav.press":"Prensa y Fotos","nav.invest":"Inversión","nav.jtfoxx":"JT Foxx y Dra. Akoury","nav.events":"Eventos","nav.vip.evening":"Velada VIP","nav.vip.dinner":"Cena Privada","nav.legacy":"Legado",
   "vip.compliance":"Esta página describe un evento privado de contactos profesionales, solo por invitación. Es únicamente informativa y no constituye asesoramiento médico, financiero o de inversión, ni una solicitud.",
   "vip.compliance.link":"Divulgaciones completas",
   "vip.brand.sub":"Una Velada VIP · Por Invitación",
