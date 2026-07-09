@@ -563,29 +563,6 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
 .legacy-feature img{width:100%;height:auto;display:block;border:1px solid rgba(191,154,84,.35);border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
 
 /* ============================================================
-   HERO — bold cutout-portrait treatment (Home page)
-   A large cleanly-cropped photo bleeds into the headline composition
-   from the bottom-right instead of sitting in its own framed box.
-   Built on the same --lapis-deep ground / --gold accents as the rest
-   of the hero family; only the image treatment and overlap changes.
-   ============================================================ */
-.hero-cutout{overflow:visible}
-.hero-cutout .wrap{position:relative;z-index:2}
-.hero-cutout-portrait{position:absolute;z-index:1;right:0;bottom:0;height:104%;max-width:56%;object-fit:contain;object-position:bottom right;filter:drop-shadow(-24px 24px 60px rgba(0,0,0,.45));pointer-events:none}
-.hero-cutout .hero-inner{position:relative;z-index:2;max-width:600px}
-.hero-cutout .floating-badge{position:static;display:inline-flex;align-items:baseline;gap:10px;margin-top:32px;max-width:none;background:rgba(255,255,255,.06);border-color:rgba(191,154,84,.35)}
-.hero-cutout .floating-badge .n{color:var(--gold-lt)}
-.hero-cutout .floating-badge .l{max-width:220px;color:rgba(255,255,255,.72)}
-/* RTL: the text block flips to the right edge (normal block-flow behavior under
-   dir="rtl"), so the portrait must mirror to the left edge too, or the two would
-   collide on the same side and the photo would sit directly over the headline. */
-html[dir="rtl"] .hero-cutout-portrait{right:auto;left:0;object-position:bottom left;filter:drop-shadow(24px 24px 60px rgba(0,0,0,.45))}
-@media(max-width:900px){
-  .hero-cutout-portrait{position:relative;height:auto;max-width:78%;margin:8px auto 0;display:block;right:auto;bottom:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.4))}
-  .hero-cutout .hero-inner{max-width:none}
-}
-
-/* ============================================================
    STRUCTURAL RESKIN — components adapted from the executive-brand
    reference layout, rebuilt entirely on this file's existing tokens
    (lapis/gold/papyrus + Cormorant Garamond/Manrope/Amiri). No color
