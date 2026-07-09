@@ -587,6 +587,9 @@ html[dir="rtl"] .floating-badge .l{letter-spacing:0}
 /* ---------- meta-card stat tiles (bordered tile variant of .stat) ---------- */
 .meta-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 @media(max-width:540px){.meta-row{grid-template-columns:1fr 1fr}}
+.meta-row.cols-5{grid-template-columns:repeat(5,1fr)}
+@media(max-width:900px){.meta-row.cols-5{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:540px){.meta-row.cols-5{grid-template-columns:1fr 1fr}}
 .meta-card{border:1px solid var(--border);border-radius:var(--radius);background:rgba(255,255,255,.6);padding:20px 18px}
 .on-dark .meta-card{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.16)}
 .meta-card strong{display:block;font-family:var(--font-d);font-size:1.9rem;font-weight:600;color:var(--gold);line-height:1;margin-bottom:6px}
