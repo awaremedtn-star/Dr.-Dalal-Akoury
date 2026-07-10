@@ -91,6 +91,15 @@
 .celeb-slot-label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
 .celeb-name-slot{padding:14px 16px 2px;font-weight:700;color:var(--muted);font-style:italic}
 .celeb-role-slot{padding:0 16px 14px;font-size:.85rem;color:var(--muted);font-style:italic}
+/* filled-in treatment for cards with real, confirmed photos — solid
+   border, no dashes, no italics, so these read as finished content
+   rather than a pending placeholder */
+.celeb-card--filled{border:1px solid var(--border);background:var(--white)}
+.celeb-photo{aspect-ratio:1/1;overflow:hidden}
+.celeb-photo img{width:100%;height:100%;object-fit:cover;transition:transform .4s var(--ease)}
+.celeb-card--filled:hover .celeb-photo img{transform:scale(1.05)}
+.celeb-name{padding:14px 16px 2px;font-weight:700;color:var(--ink);font-style:normal}
+.celeb-role{padding:0 16px 14px;font-size:.85rem;color:var(--muted);font-style:normal}
 </style>
 </head>
 <body>
@@ -250,53 +259,47 @@
     <div class="celeb-category reveal">
       <div class="celeb-label" data-i18n="celeb.billionaires">The Billionaires</div>
       <div class="celeb-grid">
-        <div class="celeb-card">
-          <div class="celeb-photo-slot" aria-label="Photo placeholder">
-            <span class="celeb-plus">+</span>
-            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+        <div class="celeb-card celeb-card--filled">
+          <div class="celeb-photo">
+            <img src="assets/images/jt-foxx/billionaires-01.jpg" alt="JT Foxx with John Catsimatidis" loading="lazy"/>
           </div>
-          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
-          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+          <div class="celeb-name">John Catsimatidis</div>
+          <div class="celeb-role">Red Apple Group</div>
         </div>
-        <div class="celeb-card">
-          <div class="celeb-photo-slot" aria-label="Photo placeholder">
-            <span class="celeb-plus">+</span>
-            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+        <div class="celeb-card celeb-card--filled">
+          <div class="celeb-photo">
+            <img src="assets/images/jt-foxx/billionaires-02.jpg" alt="JT Foxx with Tommy Hilfiger" loading="lazy"/>
           </div>
-          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
-          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+          <div class="celeb-name">Tommy Hilfiger</div>
+          <div class="celeb-role">Tommy Hilfiger</div>
         </div>
-        <div class="celeb-card">
-          <div class="celeb-photo-slot" aria-label="Photo placeholder">
-            <span class="celeb-plus">+</span>
-            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+        <div class="celeb-card celeb-card--filled">
+          <div class="celeb-photo">
+            <img src="assets/images/jt-foxx/billionaires-03.jpg" alt="JT Foxx with Alec Gores" loading="lazy"/>
           </div>
-          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
-          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+          <div class="celeb-name">Alec Gores</div>
+          <div class="celeb-role">The Gores Group</div>
         </div>
-        <div class="celeb-card">
-          <div class="celeb-photo-slot" aria-label="Photo placeholder">
-            <span class="celeb-plus">+</span>
-            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+        <div class="celeb-card celeb-card--filled">
+          <div class="celeb-photo">
+            <img src="assets/images/jt-foxx/billionaires-04.jpg" alt="JT Foxx with Jack Cowin" loading="lazy"/>
           </div>
-          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
-          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+          <div class="celeb-name">Jack Cowin</div>
+          <div class="celeb-role">Competitive Foods Australia</div>
         </div>
-        <div class="celeb-card">
-          <div class="celeb-photo-slot" aria-label="Photo placeholder">
-            <span class="celeb-plus">+</span>
-            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+        <div class="celeb-card celeb-card--filled">
+          <div class="celeb-photo">
+            <img src="assets/images/jt-foxx/billionaires-05.jpg" alt="JT Foxx with Howard Schultz" loading="lazy"/>
           </div>
-          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
-          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+          <div class="celeb-name">Howard Schultz</div>
+          <div class="celeb-role">Starbucks</div>
         </div>
-        <div class="celeb-card">
-          <div class="celeb-photo-slot" aria-label="Photo placeholder">
-            <span class="celeb-plus">+</span>
-            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+        <div class="celeb-card celeb-card--filled">
+          <div class="celeb-photo">
+            <img src="assets/images/jt-foxx/billionaires-06.jpg" alt="JT Foxx with Oprah Winfrey" loading="lazy"/>
           </div>
-          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
-          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+          <div class="celeb-name">Oprah Winfrey</div>
+          <div class="celeb-role">Harpo Productions / OWN</div>
         </div>
       </div>
     </div>
