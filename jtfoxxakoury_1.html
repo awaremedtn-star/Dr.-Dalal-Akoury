@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Connector & The Vision — JT Foxx × Dr. Dalal Akoury</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=Amiri:wght@400;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0f1b33;--navy-2:#0b1428;--cream:#f0ece1;--gold:#c9a55c;--gold-soft:#e0c489;
+    --steel:#8ea3c4;--ink-on-cream:#243049;--body-cream:#d9dae0;--muted:#7d8aa3;
+    --line:rgba(201,165,92,.30);--line-cream:rgba(36,48,73,.16);
+    --serif:'Cormorant Garamond',serif;--display:'Playfair Display',serif;
+    --body:'Inter',sans-serif;--arabic:'Amiri',serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--navy);color:var(--body-cream);font-family:var(--body);font-weight:300;
+    line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body[dir="rtl"]{font-family:var(--arabic)}
+  body[dir="rtl"] p,body[dir="rtl"] .lede,body[dir="rtl"] .kicker,body[dir="rtl"] .eyebrow{font-family:var(--arabic)}
+
+  nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+    padding:14px clamp(18px,5vw,56px);background:var(--navy);border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:center;gap:13px}
+  .mark{width:44px;height:44px;border-radius:11px;border:1px solid var(--line);background:var(--navy-2);
+    display:flex;align-items:center;justify-content:center}
+  .brand .name{font-family:var(--display);font-size:18px;letter-spacing:.02em;color:var(--cream)}
+  .langs{display:flex;gap:5px}
+  .langs button{font-family:var(--body);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);background:transparent;border:1px solid transparent;padding:7px 11px;
+    border-radius:999px;cursor:pointer;transition:.25s}
+  .langs button:hover{color:var(--cream)}
+  .langs button.active{color:var(--navy);background:var(--gold);border-color:var(--gold)}
+
+  header.hero{padding:clamp(64px,13vh,150px) clamp(20px,6vw,80px);
+    background:radial-gradient(1100px 520px at 78% -8%,rgba(201,165,92,.14),transparent 60%),var(--navy)}
+  .kicker{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);
+    margin-bottom:26px;display:flex;align-items:center;gap:14px}
+  .kicker::before{content:"";width:44px;height:1px;background:var(--gold)}
+  body[dir="rtl"] .kicker{letter-spacing:0}
+  h1{font-family:var(--display);font-weight:500;font-size:clamp(36px,6.6vw,80px);line-height:1.05;
+    letter-spacing:-.01em;color:var(--cream);max-width:18ch;margin-bottom:28px}
+  body[dir="rtl"] h1{font-family:var(--arabic);line-height:1.35}
+  h1 em{font-style:italic;color:var(--gold-soft)}
+  .lede{font-family:var(--serif);font-size:clamp(20px,2.4vw,27px);font-weight:400;color:var(--cream);
+    max-width:56ch;line-height:1.55;opacity:.9}
+  body[dir="rtl"] .lede{font-family:var(--arabic);font-size:clamp(18px,2vw,23px)}
+
+  section{padding:clamp(58px,9vh,112px) clamp(20px,6vw,80px)}
+  .cream{background:var(--cream);color:var(--ink-on-cream)}
+  .cream p{color:#41506b}
+  .eyebrow{font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);
+    margin-bottom:20px;display:flex;align-items:center;gap:12px}
+  .eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
+  body[dir="rtl"] .eyebrow{letter-spacing:.05em}
+  h2{font-family:var(--display);font-weight:500;font-size:clamp(27px,4.3vw,46px);line-height:1.14;
+    color:var(--cream);max-width:24ch;margin-bottom:24px}
+  .cream h2{color:var(--ink-on-cream)}
+  body[dir="rtl"] h2{font-family:var(--arabic);line-height:1.4}
+  section p{font-size:clamp(15.5px,1.5vw,18px);max-width:64ch;margin-bottom:18px}
+  p.big{font-family:var(--serif);font-size:clamp(19px,2.1vw,25px);max-width:58ch}
+  body[dir="rtl"] p.big{font-family:var(--arabic)}
+
+  /* two-name lockup */
+  .pairing{display:flex;align-items:center;gap:clamp(18px,4vw,44px);margin-top:44px;flex-wrap:wrap;justify-content:center}
+  .who{text-align:center;flex:1;min-width:210px}
+  .who .role{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  .who .n{font-family:var(--serif);font-weight:600;font-size:clamp(24px,3vw,32px);color:var(--cream)}
+  .cream .who .n{color:var(--ink-on-cream)}
+  .who .d{font-size:14px;color:var(--body-cream);opacity:.8;margin-top:8px}
+  .cream .who .d{color:#54627c}
+  .amp{font-family:var(--display);font-size:clamp(28px,4vw,44px);color:var(--gold);opacity:.8}
+
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:26px;margin-top:44px}
+  .stat .n{font-family:var(--display);font-size:clamp(32px,5vw,50px);color:var(--gold);line-height:1}
+  .stat .l{font-size:13px;letter-spacing:.04em;color:var(--body-cream);margin-top:10px;max-width:26ch}
+  .cream .stat .l{color:#54627c}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-top:44px}
+  .card{border:1px solid var(--line);border-radius:14px;padding:32px 28px;
+    background:linear-gradient(160deg,rgba(201,165,92,.07),rgba(201,165,92,0));transition:.35s}
+  .card:hover{border-color:rgba(201,165,92,.55);transform:translateY(-4px)}
+  .card .num{font-family:var(--display);font-size:14px;color:var(--gold);letter-spacing:.1em;margin-bottom:14px}
+  .card h3{font-family:var(--serif);font-weight:600;font-size:23px;color:var(--cream);margin-bottom:10px}
+  body[dir="rtl"] .card h3{font-family:var(--arabic)}
+  .card p{font-size:15px;margin:0;color:var(--body-cream);opacity:.82}
+  .cream .card{background:#fff;border-color:var(--line-cream)}
+  .cream .card h3{color:var(--ink-on-cream)}.cream .card p{color:#46556f;opacity:1}
+
+  .steps{margin-top:40px;border-top:1px solid var(--line)}
+  .cream .steps{border-color:var(--line-cream)}
+  .step{display:flex;gap:24px;padding:26px 0;border-bottom:1px solid var(--line);align-items:baseline}
+  .cream .step{border-color:var(--line-cream)}
+  .step .k{font-family:var(--display);font-size:22px;color:var(--gold);min-width:44px}
+  .step .b h4{font-family:var(--serif);font-weight:600;font-size:20px;color:var(--cream);margin-bottom:5px}
+  .cream .step .b h4{color:var(--ink-on-cream)}
+  .step .b p{margin:0;font-size:15.5px}
+
+  .quote{text-align:center}
+  .quote blockquote{font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:clamp(25px,4vw,44px);line-height:1.3;color:var(--gold-soft);max-width:22ch;margin:0 auto}
+  body[dir="rtl"] .quote blockquote{font-family:var(--arabic);font-style:normal;line-height:1.5}
+  .quote cite{display:block;margin-top:26px;font-style:normal;font-size:12.5px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--muted)}
+
+  .cta{text-align:center}.cta h2{margin:0 auto 20px}.cta p{margin:0 auto 8px}
+  .btn{display:inline-block;margin-top:32px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--navy);background:var(--gold);padding:17px 40px;border-radius:999px;text-decoration:none;
+    transition:.3s;border:1px solid var(--gold)}
+  .btn:hover{background:var(--gold-soft);border-color:var(--gold-soft);box-shadow:0 12px 40px rgba(201,165,92,.3)}
+  .btn.ghost{background:transparent;color:var(--gold-soft);margin-inline-start:12px}
+  .cream .btn.ghost{color:var(--gold)}
+  .btn.ghost:hover{background:rgba(201,165,92,.1);box-shadow:none}
+
+  .disclaimer{margin-top:40px;font-size:12px;line-height:1.6;color:var(--muted);max-width:72ch;
+    margin-inline:auto;opacity:.85}
+
+  footer{padding:36px clamp(20px,6vw,80px);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;
+    gap:12px;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+  footer a{color:var(--gold);text-decoration:none}
+
+  .fade{opacity:0;transform:translateY(24px);transition:.9s cubic-bezier(.2,.7,.2,1)}
+  .fade.in{opacity:1;transform:none}
+  [data-lang]{display:none}[data-lang].show{display:block}
+  .langslot{display:contents}
+</style>
+</head>
+<body dir="ltr">
+
+<nav>
+  <div class="brand">
+    <div class="mark">
+      <svg width="30" height="30" viewBox="0 0 100 100" style="color:var(--gold)">
+        <path d="M50 42 L83 87 L17 87 Z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/>
+        <path d="M50 42 L50 87" stroke="currentColor" stroke-width="1" opacity=".35"/>
+        <g transform="translate(50 78) scale(1.1)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M-9 -1 Q-2 -6.5 6 -2"/><path d="M-9 -1 Q-3 3.5 6 -2"/>
+          <circle cx="-1.5" cy="-1.5" r="2.3" fill="currentColor" stroke="none"/>
+          <path d="M6 -2 Q11.5 -2 12.5 3.5"/><path d="M-3 2.2 Q-4 8.5 -9.5 9.5"/></g>
+        <g transform="translate(50 27) scale(1.1)" fill="currentColor" stroke="none">
+          <path d="M0 -7 q-3 0 -3 3.6 q0 2.6 1 4 q1 1.4 2 2.4 q1 -1 2 -2.4 q1 -1.4 1 -4 q0 -3.6 -3 -3.6 Z"/>
+          <path d="M0 1.5 q-2.4 4 0 9.5 q2.4 -5.5 0 -9.5 Z"/>
+          <path d="M-2 -2 Q-9 -7 -15 -8 L-13 -3.5 Q-8 -3.5 -3 -1 Z"/><path d="M-3 0.5 Q-11 -3 -18 -3 L-15 1 Q-9 0.5 -4 2 Z"/><path d="M-3.5 3 Q-11 1.5 -17 4 L-13 6.5 Q-8 5 -4 4.5 Z"/>
+          <path d="M2 -2 Q9 -7 15 -8 L13 -3.5 Q8 -3.5 3 -1 Z"/><path d="M3 0.5 Q11 -3 18 -3 L15 1 Q9 0.5 4 2 Z"/><path d="M3.5 3 Q11 1.5 17 4 L13 6.5 Q8 5 4 4.5 Z"/></g>
+      </svg>
+    </div>
+    <div class="name">Dr. Dalal Akoury</div>
+  </div>
+  <div class="langs">
+    <button data-set="en" class="active">EN</button>
+    <button data-set="ar">عربى</button>
+    <button data-set="fr">FR</button>
+    <button data-set="es">ES</button>
+  </div>
+</nav>
+
+<!-- ================= ENGLISH ================= -->
+<div class="langslot" data-lang="en">
+  <header class="hero">
+    <div class="kicker fade">The Connector & The Vision</div>
+    <h1 class="fade">A global dealmaker, an Egyptian vision, and a <em>conversation worth having</em>.</h1>
+    <p class="lede fade">Dr. Dalal Akoury's vision for Egypt calls for a rare kind of partner — someone whose network crosses continents and whose business is opening doors. JT Foxx is one of the world's most connected entrepreneurs. This page explains who he is, what he does, and why a collaboration could matter for Egyptian enterprise.</p>
+  </header>
+
+  <section class="cream fade">
+    <div class="eyebrow">The Two Names</div>
+    <h2>Vision needs a connector.</h2>
+    <div class="pairing">
+      <div class="who"><div class="role">The Vision</div><div class="n">Dr. Dalal Akoury</div><div class="d">Physician and founder, building a healthcare and legacy vision rooted in Egypt.</div></div>
+      <div class="amp">×</div>
+      <div class="who"><div class="role">The Connector</div><div class="n">JT Foxx</div><div class="d">Global entrepreneur, investor and dealmaker operating across dozens of countries.</div></div>
+    </div>
+    <p style="margin-top:40px">Great ideas rarely fail for lack of ambition. They fail for lack of the right people in the room. Dr. Akoury brings a vision for Egypt — in healthcare, development and legacy. A connector like JT Foxx represents the kind of global reach that can carry that vision to partners, capital and platforms far beyond Egypt's borders.</p>
+  </section>
+
+  <section class="fade">
+    <div class="eyebrow">Who Is JT Foxx</div>
+    <h2>What he does, in his own public terms.</h2>
+    <p class="big">JT Foxx describes himself as the world's #1 wealth and business coach — a global entrepreneur, investor and dealmaker who does business across dozens of countries and owns or partners with a large portfolio of companies spanning AI, technology, real estate, hospitality and entertainment.</p>
+    <p>Publicly, he is best known for three things: <strong style="color:var(--gold-soft);font-weight:500">connection</strong> — his events, among them Mega Success and Mega One, are described as gatherings of billionaires, investors and internationally recognized figures; <strong style="color:var(--gold-soft);font-weight:500">dealmaking</strong> — he built a mergers-and-acquisitions approach he calls the M7A model, focused on scaling and partnering with companies; and <strong style="color:var(--gold-soft);font-weight:500">capital</strong> — he publicly promotes co-investing in and funding deals. More recently he has focused on artificial intelligence for business.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">50+</div><div class="l">Countries where he reports doing business</div></div>
+      <div class="stat"><div class="n">80+</div><div class="l">Companies he reports owning or partnering with</div></div>
+      <div class="stat"><div class="n">Mega</div><div class="l">Flagship events convening global entrepreneurs & investors</div></div>
+      <div class="stat"><div class="n">M7A</div><div class="l">His signature partnership & acquisitions model</div></div>
+    </div>
+  </section>
+
+  <section class="cream fade">
+    <div class="eyebrow">Why It Matters for Egypt</div>
+    <h2>What a global connector can bring to Egyptian enterprise.</h2>
+    <p class="big">Egypt has world-class opportunity and a proven base of home-grown enterprise. What global connectors add is reach — access to international capital, partners and platforms that turn national opportunity into global scale.</p>
+    <div class="grid">
+      <div class="card"><div class="num">01</div><h3>Access to Capital</h3><p>Introductions to international investors and funding structures that complement Egypt's own capital.</p></div>
+      <div class="card"><div class="num">02</div><h3>Global Partners</h3><p>Relationships across dozens of markets — the kind that open doors for Egyptian ventures abroad.</p></div>
+      <div class="card"><div class="num">03</div><h3>Deal Structuring</h3><p>Experience scaling, partnering and acquiring — turning promising ventures into larger enterprises.</p></div>
+      <div class="card"><div class="num">04</div><h3>Global Stage</h3><p>Platforms and events that put Egyptian opportunity in front of an international audience.</p></div>
+    </div>
+    <p style="margin-top:34px">The benefit is to Egyptian enterprise broadly — its entrepreneurs, its investors, and the opportunities its economy now offers to the world. This is about widening the circle, not any single arrangement.</p>
+  </section>
+
+  <section class="fade">
+    <div class="eyebrow">Where Things Stand</div>
+    <h2>An honest word on this collaboration.</h2>
+    <div class="steps">
+      <div class="step"><div class="k">01</div><div class="b"><h4>A shared vision</h4><p>Both believe global connection can accelerate opportunity — for Egypt, and for those who build with it.</p></div></div>
+      <div class="step"><div class="k">02</div><div class="b"><h4>An open conversation</h4><p>Dr. Akoury and JT Foxx's teams are in early, exploratory discussion. Nothing here represents a finalized agreement.</p></div></div>
+      <div class="step"><div class="k">03</div><div class="b"><h4>An invitation</h4><p>Partners, investors and institutions who share the vision are invited to a private conversation about what could be built.</p></div></div>
+    </div>
+  </section>
+
+  <section class="quote fade">
+    <blockquote>"Information doesn't build wealth. People do. Relationships do."</blockquote>
+    <cite>A theme of JT Foxx's public message</cite>
+  </section>
+
+  <section class="cream cta fade">
+    <div class="eyebrow" style="justify-content:center">The Next Step</div>
+    <h2>Start the conversation.</h2>
+    <p>If Egypt's opportunity and a global network belong in the same room, so do we. Reach out — privately and seriously.</p>
+    <a class="btn" href="mailto:legacy@dalalakourymd.com?subject=JT%20Foxx%20%C3%97%20Akoury%20%E2%80%94%20A%20Conversation">Request a Meeting</a>
+    <a class="btn ghost" href="egypt-builders-circle.html">Meet Egypt's Builders</a>
+    <p class="disclaimer">JT Foxx is described here using publicly available information from his own websites and public materials. This page reflects an exploratory discussion only; it does not represent a finalized partnership, agreement, or endorsement, and figures cited (countries, companies, events) are as publicly stated by JT Foxx. References to Egyptian enterprise and investment are general and do not imply the involvement or endorsement of any specific individual or company.</p>
+  </section>
+</div>
+
+<!-- ================= ARABIC ================= -->
+<div class="langslot" data-lang="ar">
+  <header class="hero">
+    <div class="kicker fade">حلقة الوصل والرؤية</div>
+    <h1 class="fade">عاقد صفقاتٍ عالمي، ورؤيةٌ مصرية، و<em>حوارٌ يستحق أن يُخاض</em>.</h1>
+    <p class="lede fade">تستدعي رؤية الدكتورة دلال عاقوري لمصر شريكًا نادرًا؛ شخصًا تعبر شبكته القارات وعمله فتح الأبواب. وجيه تي فوكس من أكثر رواد الأعمال ارتباطًا بالعالم. تشرح هذه الصفحة من هو، وما الذي يفعله، ولماذا قد يكون التعاون مهمًا للمشاريع المصرية.</p>
+  </header>
+
+  <section class="cream fade">
+    <div class="eyebrow">الاسمان</div>
+    <h2>الرؤية تحتاج إلى حلقة وصل.</h2>
+    <div class="pairing">
+      <div class="who"><div class="role">الرؤية</div><div class="n">د. دلال عاقوري</div><div class="d">طبيبة ومؤسِّسة، تبني رؤيةً في الرعاية الصحية والإرث متجذّرة في مصر.</div></div>
+      <div class="amp">×</div>
+      <div class="who"><div class="role">حلقة الوصل</div><div class="n">جيه تي فوكس</div><div class="d">رائد أعمالٍ ومستثمرٌ وعاقد صفقاتٍ عالمي يعمل عبر عشرات الدول.</div></div>
+    </div>
+    <p style="margin-top:40px">نادرًا ما تفشل الأفكار العظيمة لنقص الطموح، بل تفشل لغياب الأشخاص المناسبين في الغرفة. تحمل الدكتورة عاقوري رؤيةً لمصر في الصحة والتعمير والإرث. وحلقة وصلٍ مثل جيه تي فوكس تمثّل نوع الامتداد العالمي القادر على حمل تلك الرؤية إلى شركاء ورؤوس أموالٍ ومنصّاتٍ تتجاوز حدود مصر.</p>
+  </section>
+
+  <section class="fade">
+    <div class="eyebrow">من هو جيه تي فوكس</div>
+    <h2>ما الذي يفعله، بحسب وصفه العلني.</h2>
+    <p class="big">يصف جيه تي فوكس نفسه بأنه مدرّب الثروة والأعمال الأول في العالم؛ رائد أعمالٍ ومستثمرٌ وعاقد صفقاتٍ عالمي يعمل عبر عشرات الدول، ويملك أو يشارك في حافظةٍ كبيرة من الشركات تمتد في الذكاء الاصطناعي والتكنولوجيا والعقارات والضيافة والترفيه.</p>
+    <p>يُعرف علنًا بثلاثة أمور: <strong style="color:var(--gold-soft);font-weight:500">الربط</strong>؛ إذ تُوصف فعالياته، ومنها Mega Success وMega One، بأنها تجمعاتٌ لمليارديرات ومستثمرين وشخصياتٍ معروفة عالميًا. و<strong style="color:var(--gold-soft);font-weight:500">عقد الصفقات</strong>؛ فقد طوّر نهجًا للاندماج والاستحواذ يسمّيه نموذج M7A، يركّز على تنمية الشركات والشراكة معها. و<strong style="color:var(--gold-soft);font-weight:500">رأس المال</strong>؛ إذ يروّج علنًا للاستثمار المشترك وتمويل الصفقات. وقد ركّز مؤخرًا على الذكاء الاصطناعي للأعمال.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">+٥٠</div><div class="l">دولة يقول إنه يعمل فيها</div></div>
+      <div class="stat"><div class="n">+٨٠</div><div class="l">شركة يقول إنه يملكها أو يشارك فيها</div></div>
+      <div class="stat"><div class="n">Mega</div><div class="l">فعالياته الكبرى التي تجمع رواد أعمال ومستثمرين عالميين</div></div>
+      <div class="stat"><div class="n">M7A</div><div class="l">نموذجه المميّز للشراكة والاستحواذ</div></div>
+    </div>
+  </section>
+
+  <section class="cream fade">
+    <div class="eyebrow">لماذا يهمّ ذلك مصر</div>
+    <h2>ما الذي تجلبه حلقة وصلٍ عالمية للمشاريع المصرية.</h2>
+    <p class="big">تملك مصر فرصًا من الطراز الأول وقاعدةً راسخة من المشاريع المحلية. وما تضيفه حلقات الوصل العالمية هو الامتداد؛ الوصول إلى رأس المال والشركاء والمنصّات الدولية التي تحوّل الفرصة الوطنية إلى نطاقٍ عالمي.</p>
+    <div class="grid">
+      <div class="card"><div class="num">٠١</div><h3>الوصول إلى رأس المال</h3><p>تعريفٌ بمستثمرين دوليين وبِنى تمويلٍ تكمّل رأس مال مصر نفسه.</p></div>
+      <div class="card"><div class="num">٠٢</div><h3>شركاء عالميون</h3><p>علاقاتٌ عبر عشرات الأسواق، من النوع الذي يفتح أبوابًا للمشاريع المصرية في الخارج.</p></div>
+      <div class="card"><div class="num">٠٣</div><h3>هيكلة الصفقات</h3><p>خبرةٌ في التنمية والشراكة والاستحواذ، تحوّل المشاريع الواعدة إلى كياناتٍ أكبر.</p></div>
+      <div class="card"><div class="num">٠٤</div><h3>منصّة عالمية</h3><p>منصّاتٌ وفعالياتٌ تضع الفرصة المصرية أمام جمهورٍ دولي.</p></div>
+    </div>
+    <p style="margin-top:34px">المنفعة للمشاريع المصرية على اتساعها؛ لروّادها ومستثمريها وللفرص التي يقدّمها اقتصادها اليوم للعالم. الأمر يتعلق بتوسيع الدائرة، لا بأي ترتيبٍ بعينه.</p>
+  </section>
+
+  <section class="fade">
+    <div class="eyebrow">أين تقف الأمور</div>
+    <h2>كلمةٌ صادقة عن هذا التعاون.</h2>
+    <div class="steps">
+      <div class="step"><div class="k">٠١</div><div class="b"><h4>رؤيةٌ مشتركة</h4><p>كلاهما يؤمن بأن الربط العالمي يمكن أن يسرّع الفرصة، لمصر ولمن يبني معها.</p></div></div>
+      <div class="step"><div class="k">٠٢</div><div class="b"><h4>حوارٌ مفتوح</h4><p>فريقا الدكتورة عاقوري وجيه تي فوكس في مرحلة نقاشٍ أوّلي استكشافي. ولا شيء هنا يمثّل اتفاقًا نهائيًا.</p></div></div>
+      <div class="step"><div class="k">٠٣</div><div class="b"><h4>دعوة</h4><p>الشركاء والمستثمرون والمؤسسات ممن يشاركون الرؤية مدعوّون إلى حوارٍ خاص حول ما يمكن بناؤه.</p></div></div>
+    </div>
+  </section>
+
+  <section class="quote fade">
+    <blockquote>«المعلومات لا تبني الثروة. الناس يبنونها. والعلاقات تبنيها.»</blockquote>
+    <cite>من موضوعات خطاب جيه تي فوكس العلني</cite>
+  </section>
+
+  <section class="cream cta fade">
+    <div class="eyebrow" style="justify-content:center">الخطوة التالية</div>
+    <h2>ابدأ الحوار.</h2>
+    <p>إن كانت فرصة مصر وشبكةٌ عالمية تنتميان إلى الغرفة نفسها، فنحن كذلك. تواصل معنا، بخصوصيةٍ وجدية.</p>
+    <a class="btn" href="mailto:legacy@dalalakourymd.com?subject=JT%20Foxx%20%C3%97%20Akoury">اطلب لقاءً</a>
+    <a class="btn ghost" href="egypt-builders-circle.html">تعرّف على بُناة مصر</a>
+    <p class="disclaimer">وُصف جيه تي فوكس هنا بالاعتماد على معلوماتٍ متاحة علنًا من مواقعه ومواده العامة. تعكس هذه الصفحة نقاشًا استكشافيًا فقط، ولا تمثّل شراكةً نهائية أو اتفاقًا أو تأييدًا، والأرقام المذكورة (الدول والشركات والفعاليات) هي كما يذكرها جيه تي فوكس علنًا. والإشارات إلى المشاريع والاستثمار في مصر عامةٌ ولا تعني مشاركة أو تأييد أي فردٍ أو شركةٍ بعينها.</p>
+  </section>
+</div>
+
+<!-- ================= FRENCH ================= -->
+<div class="langslot" data-lang="fr">
+  <header class="hero">
+    <div class="kicker fade">Le Connecteur & la Vision</div>
+    <h1 class="fade">Un négociateur mondial, une vision égyptienne, et une <em>conversation qui vaut la peine</em>.</h1>
+    <p class="lede fade">La vision de la Dre Dalal Akoury pour l'Égypte appelle un partenaire rare — quelqu'un dont le réseau traverse les continents et dont le métier est d'ouvrir des portes. JT Foxx est l'un des entrepreneurs les plus connectés au monde. Cette page explique qui il est, ce qu'il fait, et pourquoi une collaboration pourrait compter pour l'entreprise égyptienne.</p>
+  </header>
+
+  <section class="cream fade">
+    <div class="eyebrow">Les Deux Noms</div>
+    <h2>La vision a besoin d'un connecteur.</h2>
+    <div class="pairing">
+      <div class="who"><div class="role">La Vision</div><div class="n">Dre Dalal Akoury</div><div class="d">Médecin et fondatrice, bâtissant une vision de santé et d'héritage enracinée en Égypte.</div></div>
+      <div class="amp">×</div>
+      <div class="who"><div class="role">Le Connecteur</div><div class="n">JT Foxx</div><div class="d">Entrepreneur, investisseur et négociateur mondial actif dans des dizaines de pays.</div></div>
+    </div>
+    <p style="margin-top:40px">Les grandes idées échouent rarement par manque d'ambition. Elles échouent par manque des bonnes personnes dans la pièce. La Dre Akoury porte une vision pour l'Égypte — santé, développement, héritage. Un connecteur comme JT Foxx représente le type de portée mondiale capable de porter cette vision vers des partenaires, des capitaux et des plateformes bien au-delà des frontières de l'Égypte.</p>
+  </section>
+
+  <section class="fade">
+    <div class="eyebrow">Qui Est JT Foxx</div>
+    <h2>Ce qu'il fait, selon ses propres termes publics.</h2>
+    <p class="big">JT Foxx se présente comme le coach en richesse et en affaires n°1 au monde — un entrepreneur, investisseur et négociateur mondial actif dans des dizaines de pays, qui possède ou s'associe à un large portefeuille d'entreprises couvrant l'IA, la technologie, l'immobilier, l'hôtellerie et le divertissement.</p>
+    <p>Publiquement, il est surtout connu pour trois choses : la <strong style="color:var(--gold-soft);font-weight:500">connexion</strong> — ses événements, dont Mega Success et Mega One, sont décrits comme des rassemblements de milliardaires, d'investisseurs et de figures reconnues ; le <strong style="color:var(--gold-soft);font-weight:500">montage de transactions</strong> — il a bâti une approche de fusions-acquisitions qu'il appelle le modèle M7A ; et le <strong style="color:var(--gold-soft);font-weight:500">capital</strong> — il promeut publiquement le co-investissement et le financement d'opérations. Plus récemment, il s'est concentré sur l'intelligence artificielle pour les entreprises.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">50+</div><div class="l">Pays où il déclare faire des affaires</div></div>
+      <div class="stat"><div class="n">80+</div><div class="l">Entreprises qu'il déclare posséder ou avec lesquelles il s'associe</div></div>
+      <div class="stat"><div class="n">Mega</div><div class="l">Événements phares réunissant entrepreneurs et investisseurs mondiaux</div></div>
+      <div class="stat"><div class="n">M7A</div><div class="l">Son modèle signature de partenariat et d'acquisitions</div></div>
+    </div>
+  </section>
+
+  <section class="cream fade">
+    <div class="eyebrow">Pourquoi Cela Compte pour l'Égypte</div>
+    <h2>Ce qu'un connecteur mondial apporte à l'entreprise égyptienne.</h2>
+    <p class="big">L'Égypte offre des opportunités de classe mondiale et une base éprouvée d'entreprises locales. Ce que les connecteurs mondiaux ajoutent, c'est la portée — l'accès à des capitaux, des partenaires et des plateformes internationales qui transforment l'opportunité nationale en échelle mondiale.</p>
+    <div class="grid">
+      <div class="card"><div class="num">01</div><h3>Accès aux Capitaux</h3><p>Des introductions à des investisseurs internationaux et à des structures de financement qui complètent les capitaux propres de l'Égypte.</p></div>
+      <div class="card"><div class="num">02</div><h3>Partenaires Mondiaux</h3><p>Des relations sur des dizaines de marchés — de celles qui ouvrent des portes aux entreprises égyptiennes à l'étranger.</p></div>
+      <div class="card"><div class="num">03</div><h3>Montage d'Opérations</h3><p>Une expérience de croissance, de partenariat et d'acquisition — pour transformer des projets prometteurs en entreprises plus vastes.</p></div>
+      <div class="card"><div class="num">04</div><h3>Scène Mondiale</h3><p>Des plateformes et des événements qui placent l'opportunité égyptienne devant un public international.</p></div>
+    </div>
+    <p style="margin-top:34px">Le bénéfice va à l'entreprise égyptienne au sens large — ses entrepreneurs, ses investisseurs et les opportunités que son économie offre désormais au monde. Il s'agit d'élargir le cercle, non d'un quelconque arrangement particulier.</p>
+  </section>
+
+  <section class="fade">
+    <div class="eyebrow">Où en Sont les Choses</div>
+    <h2>Un mot honnête sur cette collaboration.</h2>
+    <div class="steps">
+      <div class="step"><div class="k">01</div><div class="b"><h4>Une vision partagée</h4><p>Tous deux croient que la connexion mondiale peut accélérer l'opportunité — pour l'Égypte et pour ceux qui bâtissent avec elle.</p></div></div>
+      <div class="step"><div class="k">02</div><div class="b"><h4>Une conversation ouverte</h4><p>Les équipes de la Dre Akoury et de JT Foxx sont en discussion préliminaire et exploratoire. Rien ici ne représente un accord finalisé.</p></div></div>
+      <div class="step"><div class="k">03</div><div class="b"><h4>Une invitation</h4><p>Les partenaires, investisseurs et institutions qui partagent la vision sont invités à une conversation privée sur ce qui pourrait être bâti.</p></div></div>
+    </div>
+  </section>
+
+  <section class="quote fade">
+    <blockquote>« L'information ne bâtit pas la richesse. Les gens le font. Les relations le font. »</blockquote>
+    <cite>Un thème du message public de JT Foxx</cite>
+  </section>
+
+  <section class="cream cta fade">
+    <div class="eyebrow" style="justify-content:center">La Prochaine Étape</div>
+    <h2>Entamer la conversation.</h2>
+    <p>Si l'opportunité de l'Égypte et un réseau mondial ont leur place dans la même pièce, nous aussi. Écrivez-nous — en privé et sérieusement.</p>
+    <a class="btn" href="mailto:legacy@dalalakourymd.com?subject=JT%20Foxx%20%C3%97%20Akoury">Demander une Rencontre</a>
+    <a class="btn ghost" href="egypt-builders-circle.html">Rencontrer les Bâtisseurs d'Égypte</a>
+    <p class="disclaimer">JT Foxx est décrit ici à partir d'informations publiquement disponibles issues de ses propres sites et documents publics. Cette page reflète une discussion exploratoire uniquement ; elle ne représente pas un partenariat finalisé, un accord ou une approbation, et les chiffres cités (pays, entreprises, événements) sont ceux déclarés publiquement par JT Foxx. Les références à l'entreprise et à l'investissement égyptiens sont générales et n'impliquent la participation ou l'approbation d'aucun individu ni d'aucune société en particulier.</p>
+  </section>
+</div>
+
+<!-- ================= SPANISH ================= -->
+<div class="langslot" data-lang="es">
+  <header class="hero">
+    <div class="kicker fade">El Conector y la Visión</div>
+    <h1 class="fade">Un negociador global, una visión egipcia, y una <em>conversación que vale la pena</em>.</h1>
+    <p class="lede fade">La visión de la Dra. Dalal Akoury para Egipto exige un socio poco común — alguien cuya red cruza continentes y cuyo oficio es abrir puertas. JT Foxx es uno de los emprendedores más conectados del mundo. Esta página explica quién es, qué hace y por qué una colaboración podría importar para la empresa egipcia.</p>
+  </header>
+
+  <section class="cream fade">
+    <div class="eyebrow">Los Dos Nombres</div>
+    <h2>La visión necesita un conector.</h2>
+    <div class="pairing">
+      <div class="who"><div class="role">La Visión</div><div class="n">Dra. Dalal Akoury</div><div class="d">Médica y fundadora, construyendo una visión de salud y legado arraigada en Egipto.</div></div>
+      <div class="amp">×</div>
+      <div class="who"><div class="role">El Conector</div><div class="n">JT Foxx</div><div class="d">Emprendedor, inversor y negociador global que opera en decenas de países.</div></div>
+    </div>
+    <p style="margin-top:40px">Las grandes ideas rara vez fracasan por falta de ambición. Fracasan por falta de las personas adecuadas en la sala. La Dra. Akoury aporta una visión para Egipto — salud, desarrollo y legado. Un conector como JT Foxx representa el tipo de alcance global capaz de llevar esa visión a socios, capital y plataformas mucho más allá de las fronteras de Egipto.</p>
+  </section>
+
+  <section class="fade">
+    <div class="eyebrow">Quién Es JT Foxx</div>
+    <h2>Lo que hace, en sus propios términos públicos.</h2>
+    <p class="big">JT Foxx se describe como el coach de riqueza y negocios n.º 1 del mundo — un emprendedor, inversor y negociador global que hace negocios en decenas de países y posee o se asocia con una amplia cartera de empresas que abarca IA, tecnología, bienes raíces, hostelería y entretenimiento.</p>
+    <p>Públicamente se le conoce sobre todo por tres cosas: <strong style="color:var(--gold-soft);font-weight:500">conexión</strong> — sus eventos, entre ellos Mega Success y Mega One, se describen como encuentros de multimillonarios, inversores y figuras reconocidas internacionalmente; <strong style="color:var(--gold-soft);font-weight:500">cierre de acuerdos</strong> — desarrolló un enfoque de fusiones y adquisiciones que llama el modelo M7A; y <strong style="color:var(--gold-soft);font-weight:500">capital</strong> — promueve públicamente la coinversión y la financiación de operaciones. Más recientemente se ha centrado en la inteligencia artificial para los negocios.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">50+</div><div class="l">Países donde declara hacer negocios</div></div>
+      <div class="stat"><div class="n">80+</div><div class="l">Empresas que declara poseer o con las que se asocia</div></div>
+      <div class="stat"><div class="n">Mega</div><div class="l">Eventos insignia que reúnen a emprendedores e inversores globales</div></div>
+      <div class="stat"><div class="n">M7A</div><div class="l">Su modelo característico de asociación y adquisiciones</div></div>
+    </div>
+  </section>
+
+  <section class="cream fade">
+    <div class="eyebrow">Por Qué Importa para Egipto</div>
+    <h2>Lo que un conector global aporta a la empresa egipcia.</h2>
+    <p class="big">Egipto ofrece oportunidades de primer nivel y una base probada de empresa local. Lo que añaden los conectores globales es alcance — acceso a capital, socios y plataformas internacionales que convierten la oportunidad nacional en escala global.</p>
+    <div class="grid">
+      <div class="card"><div class="num">01</div><h3>Acceso a Capital</h3><p>Presentaciones a inversores internacionales y estructuras de financiación que complementan el capital propio de Egipto.</p></div>
+      <div class="card"><div class="num">02</div><h3>Socios Globales</h3><p>Relaciones en decenas de mercados — de las que abren puertas a los proyectos egipcios en el extranjero.</p></div>
+      <div class="card"><div class="num">03</div><h3>Estructuración de Acuerdos</h3><p>Experiencia en crecer, asociarse y adquirir — para convertir proyectos prometedores en empresas mayores.</p></div>
+      <div class="card"><div class="num">04</div><h3>Escenario Global</h3><p>Plataformas y eventos que sitúan la oportunidad egipcia ante un público internacional.</p></div>
+    </div>
+    <p style="margin-top:34px">El beneficio es para la empresa egipcia en general — sus emprendedores, sus inversores y las oportunidades que su economía ofrece ahora al mundo. Se trata de ampliar el círculo, no de ningún acuerdo particular.</p>
+  </section>
+
+  <section class="fade">
+    <div class="eyebrow">Cómo Están las Cosas</div>
+    <h2>Una palabra honesta sobre esta colaboración.</h2>
+    <div class="steps">
+      <div class="step"><div class="k">01</div><div class="b"><h4>Una visión compartida</h4><p>Ambos creen que la conexión global puede acelerar la oportunidad — para Egipto y para quienes construyen con él.</p></div></div>
+      <div class="step"><div class="k">02</div><div class="b"><h4>Una conversación abierta</h4><p>Los equipos de la Dra. Akoury y de JT Foxx están en conversaciones preliminares y exploratorias. Nada aquí representa un acuerdo cerrado.</p></div></div>
+      <div class="step"><div class="k">03</div><div class="b"><h4>Una invitación</h4><p>Los socios, inversores e instituciones que comparten la visión están invitados a una conversación privada sobre lo que podría construirse.</p></div></div>
+    </div>
+  </section>
+
+  <section class="quote fade">
+    <blockquote>«La información no construye riqueza. La construyen las personas. Las relaciones.»</blockquote>
+    <cite>Un tema del mensaje público de JT Foxx</cite>
+  </section>
+
+  <section class="cream cta fade">
+    <div class="eyebrow" style="justify-content:center">El Siguiente Paso</div>
+    <h2>Iniciar la conversación.</h2>
+    <p>Si la oportunidad de Egipto y una red global pertenecen a la misma sala, nosotros también. Escríbanos — en privado y con seriedad.</p>
+    <a class="btn" href="mailto:legacy@dalalakourymd.com?subject=JT%20Foxx%20%C3%97%20Akoury">Solicitar una Reunión</a>
+    <a class="btn ghost" href="egypt-builders-circle.html">Conocer a los Constructores de Egipto</a>
+    <p class="disclaimer">JT Foxx se describe aquí a partir de información disponible públicamente de sus propios sitios y materiales públicos. Esta página refleja únicamente una conversación exploratoria; no representa una asociación cerrada, un acuerdo ni un respaldo, y las cifras citadas (países, empresas, eventos) son las declaradas públicamente por JT Foxx. Las referencias a la empresa y la inversión egipcias son generales y no implican la participación ni el respaldo de ningún individuo o compañía en particular.</p>
+  </section>
+</div>
+
+<footer>
+  <div>Dr. Dalal Akoury · Egypt Vision · <span id="fyear"></span></div>
+  <div>Part of the <a href="https://dalalakourymd.netlify.app">Egypt Vision</a> ecosystem</div>
+</footer>
+
+<script>
+  const dirMap={en:'ltr',ar:'rtl',fr:'ltr',es:'ltr'};
+  const buttons=document.querySelectorAll('.langs button');
+  const slots=document.querySelectorAll('[data-lang]');
+  let io;
+  function observeFades(){
+    if(io)io.disconnect();
+    io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+    document.querySelectorAll('[data-lang].show .fade').forEach(el=>{el.classList.remove('in');io.observe(el)});
+  }
+  function setLang(code){
+    document.documentElement.lang=code;document.body.dir=dirMap[code];
+    slots.forEach(s=>s.classList.toggle('show',s.dataset.lang===code));
+    buttons.forEach(b=>b.classList.toggle('active',b.dataset.set===code));
+    window.scrollTo({top:0,behavior:'instant'});observeFades();
+  }
+  buttons.forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.set)));
+  document.getElementById('fyear').textContent=new Date().getFullYear();
+  setLang('en');
+</script>
+</body>
+</html>
