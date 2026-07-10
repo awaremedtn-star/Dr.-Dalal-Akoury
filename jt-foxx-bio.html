@@ -47,6 +47,14 @@
 .jt-foxx-hero .sec-head .eyebrow,
 .jt-foxx-hero .sec-head h1,
 .jt-foxx-hero .sec-head .lead{text-shadow:0 2px 12px rgba(10,24,48,.6)}
+/* bolder, higher-contrast stat labels — stat numbers untouched */
+.jtb-stats .stat .l{
+  color:var(--ink);
+  font-weight:600;
+  font-size:.92rem;
+  line-height:1.45;
+  letter-spacing:.01em;
+}
 </style>
 </head>
 <body>
@@ -168,7 +176,7 @@
 </header>
 
 <!-- STATS (self-reported) -->
-<section class="section tight bg-limestone">
+<section class="section tight bg-limestone jtb-stats">
   <div class="wrap">
     <div class="stats-row reveal">
       <div class="stat"><div class="n" data-i18n="jtb.s1">104</div><div class="l" data-i18n="jtb.s1l">Countries with clients</div></div>
