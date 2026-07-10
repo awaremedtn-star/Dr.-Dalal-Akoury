@@ -375,6 +375,10 @@ html[dir="rtl"] .manifesto .link{font-family:var(--font-ar);letter-spacing:0;fon
 .opp-row .idx{font-family:var(--font-d);font-size:var(--fs-h3);font-weight:600;color:var(--gold);margin-bottom:12px}
 .opp-row h3{font-size:var(--fs-h3);font-weight:600;margin-bottom:8px}
 .opp-row p{font-size:var(--fs-body);color:var(--muted);font-weight:300;line-height:1.7}
+/* bolder, higher-contrast body copy for the Home page's Vision section
+   only (#opp) — jt-foxx.html's dark "Where Things Stand" section reuses
+   .opp-row too and keeps the lighter treatment above */
+#opp .opp-row p{color:var(--ink);font-weight:500;font-size:1rem;line-height:1.7}
 
 /* run-of-show vertical timeline (vip-event.html) — adapts .opp-row's idx/h3/p
    typography into a flex row instead of the native 3-col grid, since a
