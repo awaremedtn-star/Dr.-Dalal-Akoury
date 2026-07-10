@@ -47,13 +47,20 @@
 .jt-foxx-hero .sec-head .eyebrow,
 .jt-foxx-hero .sec-head h1,
 .jt-foxx-hero .sec-head .lead{text-shadow:0 2px 12px rgba(10,24,48,.6)}
-/* bolder, higher-contrast stat labels — stat numbers untouched */
+/* bolder, higher-contrast stat labels */
 .jtb-stats .stat .l{
   color:var(--ink);
   font-weight:600;
   font-size:.92rem;
   line-height:1.45;
   letter-spacing:.01em;
+}
+/* bolder stat numbers with lining figures instead of old-style descenders;
+   color/size otherwise unchanged from the shared .stat .n rule */
+.jtb-stats .stat .n{
+  font-weight:700;
+  font-variant-numeric:lining-nums;
+  letter-spacing:-.01em;
 }
 </style>
 </head>
