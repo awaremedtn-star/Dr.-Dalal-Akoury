@@ -68,6 +68,29 @@
 .about-jtfoxx-split .two-col{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:center}
 @media(max-width:900px){.about-jtfoxx-split .two-col{grid-template-columns:1fr;text-align:center}}
 .about-jtfoxx-split .col-photo img{width:100%;max-width:420px;border-radius:50%;aspect-ratio:1/1;object-fit:cover;box-shadow:var(--shadow-lg);margin:0 auto;display:block}
+/* Celebrity Moments — empty placeholder gallery; dashed borders and
+   italic muted text are intentional so these read as unfilled slots,
+   not a finished design, until real rights-cleared photos are supplied */
+.celebrity-moments{padding:100px 0}
+.celeb-category{margin-top:56px}
+.celeb-category:first-of-type{margin-top:40px}
+.celeb-label{
+  display:inline-block;background:var(--gold);color:var(--lapis-deep);
+  font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:8px 18px;border-radius:4px;margin-bottom:24px;
+}
+.celeb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:900px){.celeb-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.celeb-grid{grid-template-columns:1fr}}
+.celeb-card{border:1px dashed var(--border);border-radius:var(--radius);overflow:hidden;background:var(--limestone)}
+.celeb-photo-slot{
+  aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  background:var(--marble);color:var(--muted);
+}
+.celeb-plus{font-family:var(--font-d);font-size:2.4rem;line-height:1;color:var(--gold)}
+.celeb-slot-label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.celeb-name-slot{padding:14px 16px 2px;font-weight:700;color:var(--muted);font-style:italic}
+.celeb-role-slot{padding:0 16px 14px;font-size:.85rem;color:var(--muted);font-style:italic}
 </style>
 </head>
 <body>
@@ -216,13 +239,173 @@
   </div>
 </section>
 
-<!-- BUILDING AN EMPIRE -->
-<section class="section bg-papyrus">
+<!-- CELEBRITY MOMENTS (placeholder gallery — no real individuals depicted yet) -->
+<section class="section bg-white celebrity-moments">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <h2 data-i18n="jtb.sec2.h">Building an Empire</h2>
+    <div class="sec-head center reveal">
+      <div class="eyebrow" style="justify-content:center" data-i18n="celeb.tag">Celebrity Moments</div>
+      <h2 data-i18n="celeb.h2">Notable Connections</h2>
+      <p class="lead" data-i18n="celeb.lead">Photos and moments will be added here as they're confirmed.</p>
     </div>
-    <p class="prose reveal" data-i18n="jtb.sec2.p">Foxx founded what became the JT Foxx Organization, offering business and wealth coaching along with mergers-and-acquisitions strategy he brands the "M7A model." His flagship event, Mega Success, grew out of a smaller real-estate-focused gathering into a large annual conference; he also runs related events under the Mega One and Mega Partnering names. Guest lists and testimonials associated with his events and platforms have publicly named a range of entrepreneurs, athletes, and entertainment figures over the years — these associations are as reported by JT Foxx's own organization and media appearances, not independently confirmed here.</p>
+    <div class="celeb-category reveal">
+      <div class="celeb-label" data-i18n="celeb.billionaires">The Billionaires</div>
+      <div class="celeb-grid">
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+      </div>
+    </div>
+    <div class="celeb-category reveal">
+      <div class="celeb-label" data-i18n="celeb.hollywood">Hollywood A-Listers</div>
+      <div class="celeb-grid">
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+      </div>
+    </div>
+    <div class="celeb-category reveal">
+      <div class="celeb-label" data-i18n="celeb.ceos">The CEOs</div>
+      <div class="celeb-grid">
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+        <div class="celeb-card">
+          <div class="celeb-photo-slot" aria-label="Photo placeholder">
+            <span class="celeb-plus">+</span>
+            <span class="celeb-slot-label" data-i18n="celeb.addphoto">Add Photo</span>
+          </div>
+          <div class="celeb-name-slot" data-i18n="celeb.addname">Name</div>
+          <div class="celeb-role-slot" data-i18n="celeb.addrole">Company / Role</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -307,8 +490,15 @@ I18N.ar={
   "jtabout.tag":"رائد أعمال في الذكاء الاصطناعي واستراتيجي أعمال",
   "jtabout.h2":"عن جيه تي فوكس",
   "jtabout.p":"أمضى جيه تي فوكس عقودًا في بناء الشركات وتوسيعها والشراكة معها عبر عشرات الدول، بصفته رائد أعمال ومستثمرًا وعاقد صفقات عالميًا. وفي السنوات الأخيرة، تحوّل تركيزه نحو الذكاء الاصطناعي، الذي يراه التحوّل الكبير القادم في طريقة تنافس الشركات. واستنادًا إلى خلفيته في استراتيجيات النمو والعلامات التجارية والاندماج والاستحواذ، أسّس AI Your Company لمساعدة الشركات على تبنّي بنية تحتية عملية للذكاء الاصطناعي بدلًا من التعامل معها كتجربة جانبية. كما طوّر نظامًا خاصًا واسع النطاق للذكاء الاصطناعي للتطبيقات التجارية، يُطلق عليه اسم \"9 Figure AI Brain\". ومؤخرًا، بدأ باستكشاف الروبوتات المدعومة بالذكاء الاصطناعي؛ إذ يجمع بين الأنظمة الآلية والعمليات المادية كخطوة إضافية في كيفية تزويد الشركات بالكوادر وتوسيع نطاقها مستقبلًا.",
-  "jtb.sec2.h":"بناء إمبراطورية",
-  "jtb.sec2.p":"أسّس فوكس ما أصبح لاحقًا منظمة JT Foxx، التي تقدّم تدريبًا في الأعمال والثروة إلى جانب استراتيجية اندماج واستحواذ يُطلق عليها اسم \"نموذج M7A\". نمت فعاليته الرئيسية، Mega Success، من تجمّعٍ أصغر مركّز على العقارات لتصبح مؤتمرًا سنويًا كبيرًا؛ كما يدير فعاليات مرتبطة تحت اسمي Mega One وMega Partnering. وقد تضمّنت قوائم الضيوف والشهادات المرتبطة بفعالياته ومنصّاته على مرّ السنين أسماء عدد من رواد الأعمال والرياضيين وشخصيات الترفيه — وهذه الارتباطات كما ذكرتها منظمة جيه تي فوكس نفسها وظهوراته الإعلامية، ولم يتم التحقق منها بشكل مستقل هنا.",
+  "celeb.tag":"لحظات مع شخصيات بارزة",
+  "celeb.h2":"علاقات بارزة",
+  "celeb.lead":"ستُضاف الصور واللحظات هنا فور تأكيدها.",
+  "celeb.billionaires":"أصحاب المليارات",
+  "celeb.hollywood":"نجوم هوليوود",
+  "celeb.ceos":"الرؤساء التنفيذيون",
+  "celeb.addphoto":"أضف صورة",
+  "celeb.addname":"الاسم",
+  "celeb.addrole":"الشركة / المنصب",
   "jtb.sec3.h":"الفصل التالي: الذكاء الاصطناعي",
   "jtb.sec3.p":"في السنوات الأخيرة، حوّل فوكس جزءًا كبيرًا من تركيزه العلني نحو الذكاء الاصطناعي للأعمال، فأطلق عرضًا لتطبيق الذكاء الاصطناعي يهدف إلى مساعدة الشركات على تبنّي أدوات الذكاء الاصطناعي للنمو والعلامة التجارية والتسويق. كما نشر سلسلة من كتب استراتيجية الأعمال تحت عنوان \"Business Is War\"، ويُذكر أن كتابين منها على الأقل حقّقا مرتبة الأكثر مبيعًا على أمازون.",
   "jtb.cta.h2":"تتساءل كيف يتّصل هذا برؤية مصر؟",
@@ -334,8 +524,15 @@ I18N.fr={
   "jtabout.tag":"Entrepreneur en IA &amp; Stratège d'Affaires",
   "jtabout.h2":"À Propos de JT Foxx",
   "jtabout.p":"JT Foxx a passé des décennies à bâtir, développer et s'associer avec des entreprises dans des dizaines de pays en tant qu'entrepreneur, investisseur et négociateur mondial. Ces dernières années, son attention s'est portée vers l'intelligence artificielle, qu'il considère comme le prochain grand tournant dans la manière dont les entreprises se disputent la concurrence. Fort de son expérience en stratégie de croissance, en image de marque et en fusions-acquisitions, il a fondé AI Your Company pour aider les entreprises à adopter une infrastructure d'IA concrète plutôt que de la traiter comme une expérimentation annexe. Il a également développé un système d'IA propriétaire à grande échelle pour les applications commerciales, qu'il appelle son « 9 Figure AI Brain ». Plus récemment, il a commencé à explorer la robotique pilotée par l'IA — associant systèmes automatisés et opérations physiques comme nouvelle étape dans la façon dont les entreprises pourraient recruter et se développer.",
-  "jtb.sec2.h":"Bâtir un Empire",
-  "jtb.sec2.p":"Foxx a fondé ce qui est devenu la JT Foxx Organization, proposant du coaching en affaires et en richesse ainsi qu'une stratégie de fusions-acquisitions qu'il nomme le « modèle M7A ». Son événement phare, Mega Success, est né d'un rassemblement plus modeste axé sur l'immobilier pour devenir une grande conférence annuelle ; il organise également des événements connexes sous les noms Mega One et Mega Partnering. Les listes d'invités et témoignages associés à ses événements et plateformes ont publiquement cité, au fil des ans, un éventail d'entrepreneurs, d'athlètes et de personnalités du divertissement — ces associations sont telles que rapportées par l'organisation de JT Foxx lui-même et ses apparitions médiatiques, et ne sont pas confirmées de manière indépendante ici.",
+  "celeb.tag":"Moments avec des Célébrités",
+  "celeb.h2":"Connexions Notables",
+  "celeb.lead":"Les photos et moments seront ajoutés ici au fur et à mesure de leur confirmation.",
+  "celeb.billionaires":"Les Milliardaires",
+  "celeb.hollywood":"Stars d'Hollywood",
+  "celeb.ceos":"Les PDG",
+  "celeb.addphoto":"Ajouter une Photo",
+  "celeb.addname":"Nom",
+  "celeb.addrole":"Entreprise / Rôle",
   "jtb.sec3.h":"Le Prochain Chapitre : l'IA",
   "jtb.sec3.p":"Ces dernières années, Foxx a réorienté une part importante de son attention publique vers l'intelligence artificielle appliquée aux entreprises, lançant une offre de mise en œuvre de l'IA destinée à aider les entreprises à adopter des outils d'IA pour la croissance, l'image de marque et le marketing. Il a également publié une série de livres de stratégie d'affaires sous le titre « Business Is War », dont au moins deux volumes auraient atteint le statut de best-seller sur Amazon.",
   "jtb.cta.h2":"Vous vous demandez comment cela se rattache à Egypt Vision ?",
@@ -361,8 +558,15 @@ I18N.es={
   "jtabout.tag":"Emprendedor en IA y Estratega de Negocios",
   "jtabout.h2":"Sobre JT Foxx",
   "jtabout.p":"JT Foxx ha pasado décadas construyendo, escalando y asociándose con empresas en decenas de países como emprendedor, inversor y negociador global. En los últimos años, su atención se ha dirigido hacia la inteligencia artificial, a la que considera el próximo gran cambio en la forma en que compiten las empresas. Basándose en su experiencia en estrategia de crecimiento, branding y fusiones y adquisiciones, fundó AI Your Company para ayudar a las empresas a adoptar una infraestructura de IA práctica en lugar de tratarla como un experimento secundario. También ha desarrollado un sistema de IA propietario a gran escala para aplicaciones comerciales, al que llama su \"9 Figure AI Brain\". Más recientemente, ha comenzado a explorar la robótica impulsada por IA — combinando sistemas automatizados con operaciones físicas como un paso más en cómo las empresas podrían dotar de personal y escalar.",
-  "jtb.sec2.h":"Construyendo un Imperio",
-  "jtb.sec2.p":"Foxx fundó lo que se convirtió en la JT Foxx Organization, que ofrece coaching de negocios y riqueza junto con una estrategia de fusiones y adquisiciones que él denomina el \"modelo M7A\". Su evento insignia, Mega Success, surgió de una reunión más pequeña centrada en bienes raíces hasta convertirse en una gran conferencia anual; también organiza eventos relacionados bajo los nombres Mega One y Mega Partnering. Las listas de invitados y testimonios asociados con sus eventos y plataformas han mencionado públicamente a lo largo de los años a una variedad de emprendedores, atletas y figuras del entretenimiento — estas asociaciones son según lo informado por la propia organización de JT Foxx y sus apariciones en medios, no confirmadas de forma independiente aquí.",
+  "celeb.tag":"Momentos con Celebridades",
+  "celeb.h2":"Conexiones Notables",
+  "celeb.lead":"Las fotos y momentos se añadirán aquí a medida que se confirmen.",
+  "celeb.billionaires":"Los Multimillonarios",
+  "celeb.hollywood":"Estrellas de Hollywood",
+  "celeb.ceos":"Los CEOs",
+  "celeb.addphoto":"Añadir Foto",
+  "celeb.addname":"Nombre",
+  "celeb.addrole":"Empresa / Cargo",
   "jtb.sec3.h":"El Próximo Capítulo: la IA",
   "jtb.sec3.p":"En los últimos años, Foxx ha trasladado una parte importante de su enfoque público hacia la inteligencia artificial para empresas, lanzando una oferta de implementación de IA dirigida a ayudar a las empresas a adoptar herramientas de IA para el crecimiento, la marca y el marketing. También ha publicado una serie de libros de estrategia empresarial bajo el título \"Business Is War\", de los cuales se informa que al menos dos alcanzaron el estatus de best-seller en Amazon.",
   "jtb.cta.h2":"¿Se pregunta cómo se conecta esto con Egypt Vision?",
