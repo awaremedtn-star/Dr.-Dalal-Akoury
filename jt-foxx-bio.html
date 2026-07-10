@@ -37,11 +37,16 @@
 <link rel="preload" as="image" href="assets/images/jt-foxx/hero-01.jpg"/>
 <link rel="stylesheet" href="assets/style.css"/>
 <style>
-/* hero-02 (bright convention-hall shot) needs a deeper scrim than the
-   other two darker stage shots for the header text to stay legible */
-.jt-foxx-hero .hero-scrim{background:
-  linear-gradient(115deg, var(--lapis-deep) 0%, rgba(12,27,51,.94) 45%, rgba(22,52,99,.72) 75%, rgba(191,154,84,.20) 100%),
-  radial-gradient(ellipse 55% 80% at 84% 22%, rgba(191,154,84,.20), transparent 60%)}
+/* lighter scrim so the rotating photos stay clearly visible; the header
+   text leans on a text-shadow instead of extra scrim darkness to stay
+   legible against the brighter/busier of the three photos */
+.jt-foxx-hero .hero-scrim{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(100deg, rgba(12,27,51,.72) 0%, rgba(12,27,51,.52) 45%, rgba(12,27,51,.30) 75%, rgba(191,154,84,.10) 100%)}
+.jt-foxx-hero .sec-head .eyebrow,
+.jt-foxx-hero .sec-head h1,
+.jt-foxx-hero .sec-head .lead{text-shadow:0 2px 12px rgba(10,24,48,.6)}
 </style>
 </head>
 <body>
