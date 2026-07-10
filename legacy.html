@@ -65,7 +65,16 @@
       </ul>
     </li>
     <li><a href="investment.html" data-i18n="nav.invest">Investment</a></li>
-    <li><a href="jt-foxx.html" data-i18n="nav.jtfoxx">JT Foxx &amp; Dr. Akoury</a></li>
+    <li class="nav-drop">
+      <button class="nav-drop-trigger" aria-haspopup="true" aria-expanded="false">
+        <span data-i18n="nav.jtfoxx">JT Foxx &amp; Dr. Akoury</span>
+        <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <ul class="nav-drop-menu">
+        <li><a href="jt-foxx.html" data-i18n="nav.foxx.partnership">The Partnership</a></li>
+        <li><a href="jt-foxx-bio.html" data-i18n="nav.foxx.bio">About JT Foxx</a></li>
+      </ul>
+    </li>
     <li class="nav-drop">
       <button class="nav-drop-trigger" aria-haspopup="true" aria-expanded="false">
         <span data-i18n="nav.events">Events</span>
@@ -96,7 +105,16 @@
     </div>
   </div>
   <a href="investment.html" data-i18n="nav.invest">Investment</a>
-  <a href="jt-foxx.html" data-i18n="nav.jtfoxx">JT Foxx &amp; Dr. Akoury</a>
+  <div class="mnav-group">
+    <button class="mnav-group-trigger" aria-expanded="false">
+      <span data-i18n="nav.jtfoxx">JT Foxx &amp; Dr. Akoury</span>
+      <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="mnav-submenu">
+      <a href="jt-foxx.html" data-i18n="nav.foxx.partnership">The Partnership</a>
+      <a href="jt-foxx-bio.html" data-i18n="nav.foxx.bio">About JT Foxx</a>
+    </div>
+  </div>
   <div class="mnav-group">
     <button class="mnav-group-trigger" aria-expanded="false">
       <span data-i18n="nav.events">Events</span>
@@ -244,6 +262,7 @@
       <a href="media.html" data-i18n="nav.media">Media</a>
       <a href="investment.html" data-i18n="nav.invest">Investment</a>
       <a href="jt-foxx.html" data-i18n="nav.jtfoxx">JT Foxx &amp; Dr. Akoury</a>
+      <a href="jt-foxx-bio.html" data-i18n="nav.foxx.bio">About JT Foxx</a>
       <a href="vip-event.html" data-i18n="nav.vip.evening">VIP Evening</a>
       <a href="vip-dinner.html" data-i18n="nav.vip.dinner">Private Dinner</a>
       <a href="legacy.html" data-i18n="nav.legacy">Legacy</a>
@@ -264,7 +283,7 @@
 window.I18N={ar:{},fr:{},es:{}};
 I18N.ar={
   "langbar":"نتحدث العربية والإنجليزية والفرنسية والإسبانية",
-  "nav.home":"الرئيسية","nav.meet":"د. دلال","nav.why":"العودة إلى الوطن","nav.interviews":"المقابلات","nav.media":"الإعلام","nav.press":"الصحافة والصور","nav.invest":"الاستثمار","nav.jtfoxx":"جيه تي فوكس ود. عاقوري","nav.events":"الفعاليات","nav.vip.evening":"أمسية VIP","nav.vip.dinner":"عشاء خاص","nav.legacy":"الإرث",
+  "nav.home":"الرئيسية","nav.meet":"د. دلال","nav.why":"العودة إلى الوطن","nav.interviews":"المقابلات","nav.media":"الإعلام","nav.press":"الصحافة والصور","nav.invest":"الاستثمار","nav.jtfoxx":"جيه تي فوكس ود. عاقوري","nav.foxx.partnership":"الشراكة","nav.foxx.bio":"عن جيه تي فوكس","nav.events":"الفعاليات","nav.vip.evening":"أمسية VIP","nav.vip.dinner":"عشاء خاص","nav.legacy":"الإرث",
   "legacy.kicker":"دائرة الرؤية · بالدعوة الخاصة",
   "legacy.h1":"حيث يلتقي أصحاب الرؤى العالميون بأعظم بُناة مصر — <span class=\"em\">لكتابة الفصل التالي من الحضارة</span>",
   "legacy.lede":"على مدى خمسة آلاف عام، كانت مصر المكان الذي قصده أصحاب الرؤى لبناء ما يبقى بعدهم. نحن نجمع دائرة صغيرة ممن لا يزالون يفكرون بمقاييس القرون، لنكتب معًا الفصل التالي من الإرث المصري.",
@@ -310,7 +329,7 @@ I18N.ar={
 };
 I18N.fr={
   "langbar":"Nous parlons arabe, français, espagnol et anglais",
-  "nav.home":"Accueil","nav.meet":"Dre Dalal","nav.why":"Le retour","nav.interviews":"Interviews","nav.media":"Médias","nav.press":"Presse &amp; Photos","nav.invest":"Investissement","nav.jtfoxx":"JT Foxx &amp; Dre Akoury","nav.events":"Événements","nav.vip.evening":"Soirée VIP","nav.vip.dinner":"Dîner Privé","nav.legacy":"Héritage",
+  "nav.home":"Accueil","nav.meet":"Dre Dalal","nav.why":"Le retour","nav.interviews":"Interviews","nav.media":"Médias","nav.press":"Presse &amp; Photos","nav.invest":"Investissement","nav.jtfoxx":"JT Foxx &amp; Dre Akoury","nav.foxx.partnership":"Le Partenariat","nav.foxx.bio":"À Propos de JT Foxx","nav.events":"Événements","nav.vip.evening":"Soirée VIP","nav.vip.dinner":"Dîner Privé","nav.legacy":"Héritage",
   "legacy.kicker":"Un Cercle de Vision · Sur Invitation",
   "legacy.h1":"Là où les grands visionnaires du monde rencontrent les plus grands bâtisseurs d'Égypte — <span class=\"em\">pour écrire le prochain chapitre de la civilisation.</span>",
   "legacy.lede":"Depuis cinq mille ans, l'Égypte est le lieu où les visionnaires sont venus bâtir ce qui leur survivrait. Nous réunissons un cercle restreint de ceux qui pensent encore en siècles, pour écrire ensemble le prochain chapitre de l'héritage égyptien.",
@@ -356,7 +375,7 @@ I18N.fr={
 };
 I18N.es={
   "langbar":"Hablamos árabe, francés, español e inglés",
-  "nav.home":"Inicio","nav.meet":"Dra. Dalal","nav.why":"El regreso","nav.interviews":"Entrevistas","nav.media":"Medios","nav.press":"Prensa y Fotos","nav.invest":"Inversión","nav.jtfoxx":"JT Foxx y Dra. Akoury","nav.events":"Eventos","nav.vip.evening":"Velada VIP","nav.vip.dinner":"Cena Privada","nav.legacy":"Legado",
+  "nav.home":"Inicio","nav.meet":"Dra. Dalal","nav.why":"El regreso","nav.interviews":"Entrevistas","nav.media":"Medios","nav.press":"Prensa y Fotos","nav.invest":"Inversión","nav.jtfoxx":"JT Foxx y Dra. Akoury","nav.foxx.partnership":"La Alianza","nav.foxx.bio":"Sobre JT Foxx","nav.events":"Eventos","nav.vip.evening":"Velada VIP","nav.vip.dinner":"Cena Privada","nav.legacy":"Legado",
   "legacy.kicker":"Un Círculo de Visión · Por Invitación",
   "legacy.h1":"Donde los grandes visionarios del mundo se encuentran con los mayores constructores de Egipto — <span class=\"em\">para escribir el próximo capítulo de la civilización.</span>",
   "legacy.lede":"Durante cinco mil años, Egipto ha sido el lugar donde los visionarios vinieron a construir aquello que los sobreviviría. Convocamos a un pequeño círculo de quienes aún piensan en siglos, para escribir juntos el próximo capítulo del legado egipcio.",
