@@ -353,6 +353,21 @@ html[dir="rtl"] .hero-sub{font-family:var(--font-ar);font-style:normal;line-heig
 @keyframes cue{0%,100%{opacity:.2}50%{opacity:1}}
 @media(prefers-reduced-motion:reduce){.scrollcue::after{animation:none}}
 
+/* credibility strip — slim italic banner directly under the hero */
+.cred-strip{background:var(--lapis-deep)}
+.cred-strip-in{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;padding:18px 28px;font-family:var(--font-d);font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.82);text-align:center}
+.cred-strip-in .dot{color:var(--gold-lt);font-style:normal}
+html[dir="rtl"] .cred-strip-in{font-family:var(--font-ar);font-style:normal}
+
+/* light-background pill row — venue tags, ecosystem chips, media outlets;
+   .eco-chips is dark-only, so this is the light-bg-safe equivalent used
+   across the home page's merged sections */
+.pill-row{display:flex;flex-wrap:wrap;gap:8px}
+.pill-row.center{justify-content:center}
+.pill-lt{display:inline-block;border:1px solid var(--border);background:var(--white);color:var(--muted);font-size:var(--fs-caption);font-weight:600;letter-spacing:.03em;padding:6px 14px;border-radius:20px}
+.on-dark .pill-lt{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.22);color:rgba(255,255,255,.78)}
+.hero .pill-lt{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.28);color:rgba(255,255,255,.88)}
+
 /* manifesto band (personal-voice statement) — cinematic display size,
    intentionally matched to --fs-h2 (its old clamp floor/ceiling were
    within ~2% of h3/h2 already, so it now shares that step exactly
