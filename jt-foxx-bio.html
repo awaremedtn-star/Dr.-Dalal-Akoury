@@ -62,6 +62,12 @@
   font-variant-numeric:lining-nums;
   letter-spacing:-.01em;
 }
+/* About JT Foxx — two-column split (text left, circular photo right);
+   grid auto-mirrors under dir="rtl" the same way .meet-split does
+   elsewhere on the site, so no explicit order override is needed */
+.about-jtfoxx-split .two-col{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:center}
+@media(max-width:900px){.about-jtfoxx-split .two-col{grid-template-columns:1fr;text-align:center}}
+.about-jtfoxx-split .col-photo img{width:100%;max-width:340px;border-radius:50%;aspect-ratio:1/1;object-fit:cover;box-shadow:var(--shadow-lg);margin:0 auto;display:block}
 </style>
 </head>
 <body>
@@ -194,13 +200,19 @@
   </div>
 </section>
 
-<!-- FROM STUTTER TO STAGE -->
-<section class="section on-dark">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <h2 style="color:#fff" data-i18n="jtb.sec1.h">From Stutter to Stage</h2>
+<!-- ABOUT JT FOXX -->
+<section class="section on-dark about-jtfoxx-split">
+  <div class="wrap two-col">
+    <div class="col-text">
+      <div class="sec-head reveal">
+        <div class="eyebrow light" data-i18n="jtabout.tag">AI Entrepreneur &amp; Business Strategist</div>
+        <h2 style="color:#fff" data-i18n="jtabout.h2">About JT Foxx</h2>
+      </div>
+      <p class="prose reveal" style="color:rgba(255,255,255,.78)" data-i18n="jtabout.p">JT Foxx has spent decades building, scaling, and partnering with companies across dozens of countries as a global entrepreneur, investor, and dealmaker. In recent years his focus has shifted toward artificial intelligence, which he sees as the next major shift in how businesses compete. Drawing on his background in growth strategy, branding, and mergers and acquisitions, he founded AI Your Company to help businesses adopt practical AI infrastructure rather than treat it as a side experiment. He has also developed a large-scale proprietary AI system for business applications, which he calls his "9 Figure AI Brain." More recently, he has begun exploring AI-driven robotics — pairing automated systems with physical operations as a further step in how companies might staff and scale.</p>
     </div>
-    <p class="prose reveal" style="color:rgba(255,255,255,.78)" data-i18n="jtb.sec1.p">He grew up in Canada with a pronounced stutter that made public speaking difficult, and has spoken publicly about turning that early struggle into the drive behind his career. He got his start in real estate investing, building a local following in the Chicago area partly through a radio show, and reports having made his first million by age 24. A speaking trip to South Africa marked an early turning point, broadening his focus from real estate alone toward business coaching more generally.</p>
+    <div class="col-photo reveal">
+      <img src="assets/images/jt-foxx/jt-circle.png" alt="JT Foxx" loading="lazy"/>
+    </div>
   </div>
 </section>
 
@@ -292,8 +304,9 @@ I18N.ar={
   "jtb.s2":"٥٦","jtb.s2l":"دولة لنشاطه التجاري",
   "jtb.s3":"+٨٠","jtb.s3l":"شركة يملكها أو يشارك فيها",
   "jtb.s4":"٢","jtb.s4l":"كتابان الأكثر مبيعًا في سلسلة \"Business Is War\"",
-  "jtb.sec1.h":"من التلعثم إلى المسرح",
-  "jtb.sec1.p":"نشأ في كندا وهو يعاني من تلعثمٍ واضح جعل الحديث أمام الجمهور أمرًا صعبًا، وقد تحدّث علنًا عن تحويل ذلك التحدي المبكر إلى الدافع الذي شكّل مسيرته المهنية. بدأ مسيرته في الاستثمار العقاري، وبنى قاعدة جمهور محلية في منطقة شيكاغو، جزئيًا من خلال برنامج إذاعي، ويذكر أنه حقق مليونه الأول في سنّ الرابعة والعشرين. شكّلت رحلة لإلقاء محاضرة في جنوب أفريقيا نقطة تحوّل مبكرة، إذ وسّعت تركيزه من العقارات وحدها نحو تدريب الأعمال بشكل أعم.",
+  "jtabout.tag":"رائد أعمال في الذكاء الاصطناعي واستراتيجي أعمال",
+  "jtabout.h2":"عن جيه تي فوكس",
+  "jtabout.p":"أمضى جيه تي فوكس عقودًا في بناء الشركات وتوسيعها والشراكة معها عبر عشرات الدول، بصفته رائد أعمال ومستثمرًا وعاقد صفقات عالميًا. وفي السنوات الأخيرة، تحوّل تركيزه نحو الذكاء الاصطناعي، الذي يراه التحوّل الكبير القادم في طريقة تنافس الشركات. واستنادًا إلى خلفيته في استراتيجيات النمو والعلامات التجارية والاندماج والاستحواذ، أسّس AI Your Company لمساعدة الشركات على تبنّي بنية تحتية عملية للذكاء الاصطناعي بدلًا من التعامل معها كتجربة جانبية. كما طوّر نظامًا خاصًا واسع النطاق للذكاء الاصطناعي للتطبيقات التجارية، يُطلق عليه اسم \"9 Figure AI Brain\". ومؤخرًا، بدأ باستكشاف الروبوتات المدعومة بالذكاء الاصطناعي؛ إذ يجمع بين الأنظمة الآلية والعمليات المادية كخطوة إضافية في كيفية تزويد الشركات بالكوادر وتوسيع نطاقها مستقبلًا.",
   "jtb.sec2.h":"بناء إمبراطورية",
   "jtb.sec2.p":"أسّس فوكس ما أصبح لاحقًا منظمة JT Foxx، التي تقدّم تدريبًا في الأعمال والثروة إلى جانب استراتيجية اندماج واستحواذ يُطلق عليها اسم \"نموذج M7A\". نمت فعاليته الرئيسية، Mega Success، من تجمّعٍ أصغر مركّز على العقارات لتصبح مؤتمرًا سنويًا كبيرًا؛ كما يدير فعاليات مرتبطة تحت اسمي Mega One وMega Partnering. وقد تضمّنت قوائم الضيوف والشهادات المرتبطة بفعالياته ومنصّاته على مرّ السنين أسماء عدد من رواد الأعمال والرياضيين وشخصيات الترفيه — وهذه الارتباطات كما ذكرتها منظمة جيه تي فوكس نفسها وظهوراته الإعلامية، ولم يتم التحقق منها بشكل مستقل هنا.",
   "jtb.sec3.h":"الفصل التالي: الذكاء الاصطناعي",
@@ -318,8 +331,9 @@ I18N.fr={
   "jtb.s2":"56","jtb.s2l":"Pays d'activité commerciale",
   "jtb.s3":"80+","jtb.s3l":"Entreprises détenues ou en partenariat",
   "jtb.s4":"2","jtb.s4l":"Livres best-sellers de sa série « Business Is War »",
-  "jtb.sec1.h":"Du Bégaiement à la Scène",
-  "jtb.sec1.p":"Il a grandi au Canada avec un bégaiement prononcé qui rendait la prise de parole en public difficile, et il a évoqué publiquement comment il a transformé cette difficulté initiale en moteur de sa carrière. Il a débuté dans l'investissement immobilier, se bâtissant un public local dans la région de Chicago, en partie grâce à une émission de radio, et déclare avoir réalisé son premier million à 24 ans. Un voyage de conférence en Afrique du Sud a marqué un tournant précoce, élargissant son champ d'action de l'immobilier seul vers le coaching d'affaires plus généralement.",
+  "jtabout.tag":"Entrepreneur en IA &amp; Stratège d'Affaires",
+  "jtabout.h2":"À Propos de JT Foxx",
+  "jtabout.p":"JT Foxx a passé des décennies à bâtir, développer et s'associer avec des entreprises dans des dizaines de pays en tant qu'entrepreneur, investisseur et négociateur mondial. Ces dernières années, son attention s'est portée vers l'intelligence artificielle, qu'il considère comme le prochain grand tournant dans la manière dont les entreprises se disputent la concurrence. Fort de son expérience en stratégie de croissance, en image de marque et en fusions-acquisitions, il a fondé AI Your Company pour aider les entreprises à adopter une infrastructure d'IA concrète plutôt que de la traiter comme une expérimentation annexe. Il a également développé un système d'IA propriétaire à grande échelle pour les applications commerciales, qu'il appelle son « 9 Figure AI Brain ». Plus récemment, il a commencé à explorer la robotique pilotée par l'IA — associant systèmes automatisés et opérations physiques comme nouvelle étape dans la façon dont les entreprises pourraient recruter et se développer.",
   "jtb.sec2.h":"Bâtir un Empire",
   "jtb.sec2.p":"Foxx a fondé ce qui est devenu la JT Foxx Organization, proposant du coaching en affaires et en richesse ainsi qu'une stratégie de fusions-acquisitions qu'il nomme le « modèle M7A ». Son événement phare, Mega Success, est né d'un rassemblement plus modeste axé sur l'immobilier pour devenir une grande conférence annuelle ; il organise également des événements connexes sous les noms Mega One et Mega Partnering. Les listes d'invités et témoignages associés à ses événements et plateformes ont publiquement cité, au fil des ans, un éventail d'entrepreneurs, d'athlètes et de personnalités du divertissement — ces associations sont telles que rapportées par l'organisation de JT Foxx lui-même et ses apparitions médiatiques, et ne sont pas confirmées de manière indépendante ici.",
   "jtb.sec3.h":"Le Prochain Chapitre : l'IA",
@@ -344,8 +358,9 @@ I18N.es={
   "jtb.s2":"56","jtb.s2l":"Países de actividad comercial",
   "jtb.s3":"80+","jtb.s3l":"Empresas propias o en sociedad",
   "jtb.s4":"2","jtb.s4l":"Libros best-seller de su serie \"Business Is War\"",
-  "jtb.sec1.h":"Del Tartamudeo al Escenario",
-  "jtb.sec1.p":"Creció en Canadá con un marcado tartamudeo que dificultaba hablar en público, y ha hablado abiertamente sobre cómo convirtió esa dificultad inicial en el motor de su carrera. Comenzó en la inversión inmobiliaria, construyendo un público local en el área de Chicago, en parte a través de un programa de radio, y declara haber logrado su primer millón a los 24 años. Un viaje para dar una conferencia en Sudáfrica marcó un punto de inflexión temprano, ampliando su enfoque desde el sector inmobiliario hacia el coaching de negocios en general.",
+  "jtabout.tag":"Emprendedor en IA y Estratega de Negocios",
+  "jtabout.h2":"Sobre JT Foxx",
+  "jtabout.p":"JT Foxx ha pasado décadas construyendo, escalando y asociándose con empresas en decenas de países como emprendedor, inversor y negociador global. En los últimos años, su atención se ha dirigido hacia la inteligencia artificial, a la que considera el próximo gran cambio en la forma en que compiten las empresas. Basándose en su experiencia en estrategia de crecimiento, branding y fusiones y adquisiciones, fundó AI Your Company para ayudar a las empresas a adoptar una infraestructura de IA práctica en lugar de tratarla como un experimento secundario. También ha desarrollado un sistema de IA propietario a gran escala para aplicaciones comerciales, al que llama su \"9 Figure AI Brain\". Más recientemente, ha comenzado a explorar la robótica impulsada por IA — combinando sistemas automatizados con operaciones físicas como un paso más en cómo las empresas podrían dotar de personal y escalar.",
   "jtb.sec2.h":"Construyendo un Imperio",
   "jtb.sec2.p":"Foxx fundó lo que se convirtió en la JT Foxx Organization, que ofrece coaching de negocios y riqueza junto con una estrategia de fusiones y adquisiciones que él denomina el \"modelo M7A\". Su evento insignia, Mega Success, surgió de una reunión más pequeña centrada en bienes raíces hasta convertirse en una gran conferencia anual; también organiza eventos relacionados bajo los nombres Mega One y Mega Partnering. Las listas de invitados y testimonios asociados con sus eventos y plataformas han mencionado públicamente a lo largo de los años a una variedad de emprendedores, atletas y figuras del entretenimiento — estas asociaciones son según lo informado por la propia organización de JT Foxx y sus apariciones en medios, no confirmadas de forma independiente aquí.",
   "jtb.sec3.h":"El Próximo Capítulo: la IA",
