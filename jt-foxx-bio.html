@@ -34,7 +34,15 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preload" as="image" href="assets/images/jt-foxx/hero-01.jpg"/>
 <link rel="stylesheet" href="assets/style.css"/>
+<style>
+/* hero-02 (bright convention-hall shot) needs a deeper scrim than the
+   other two darker stage shots for the header text to stay legible */
+.jt-foxx-hero .hero-scrim{background:
+  linear-gradient(115deg, var(--lapis-deep) 0%, rgba(12,27,51,.94) 45%, rgba(22,52,99,.72) 75%, rgba(191,154,84,.20) 100%),
+  radial-gradient(ellipse 55% 80% at 84% 22%, rgba(191,154,84,.20), transparent 60%)}
+</style>
 </head>
 <body>
 
@@ -135,8 +143,14 @@
 </nav>
 
 <!-- HERO -->
-<section class="section on-dark">
-  <div class="wrap">
+<header class="hero on-dark jt-foxx-hero">
+  <div class="hero-media" aria-hidden="true">
+    <img src="assets/images/jt-foxx/hero-01.jpg" alt="" onerror="this.style.display='none'"/>
+    <img src="assets/images/jt-foxx/hero-02.jpg" alt="" onerror="this.style.display='none'"/>
+    <img src="assets/images/jt-foxx/hero-03.jpg" alt="" onerror="this.style.display='none'"/>
+  </div>
+  <div class="hero-scrim"></div>
+  <div class="wrap"><div class="hero-inner">
     <div class="sec-head reveal">
       <div class="eyebrow light" data-i18n="jtb.hero.eyebrow">Global Entrepreneur · Investor · Egypt Vision Strategic Partner</div>
       <h1 data-i18n="jtb.hero.h1">The Dealmaker Bringing Global Capital to Egypt's Healthcare Future</h1>
@@ -145,8 +159,8 @@
     <div class="reveal" style="margin-top:8px">
       <a href="jt-foxx.html" class="btn btn-gold" data-i18n="jtb.hero.btn">See the Partnership with Dr. Akoury</a>
     </div>
-  </div>
-</section>
+  </div></div>
+</header>
 
 <!-- STATS (self-reported) -->
 <section class="section tight bg-limestone">
