@@ -34,6 +34,37 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="assets/style.css"/>
+<style>
+/* hero background swapped to a new photo; shared Ken Burns zoom/pan
+   removed for this single-image hero and replaced with a gentle
+   fade-in on load, a lighter scrim so the photo stays visible, and
+   bolder/higher-contrast hero text */
+.investment-hero .hero-media img{
+  animation:invHeroFade 1.8s ease-out forwards;
+  opacity:0;
+}
+@keyframes invHeroFade{
+  from{opacity:0}
+  to{opacity:1}
+}
+@media(prefers-reduced-motion:reduce){
+  .investment-hero .hero-media img{animation:none;opacity:1}
+}
+.investment-hero .hero-scrim{
+  background:
+    linear-gradient(115deg, rgba(12,27,51,.46) 0%, rgba(12,27,51,.40) 45%, rgba(12,27,51,.30) 75%, rgba(191,154,84,.14) 100%);
+}
+.investment-hero h1{font-weight:700;text-shadow:0 2px 18px rgba(10,24,48,.55)}
+.investment-hero .hero-sub{text-shadow:0 1px 10px rgba(10,24,48,.4)}
+.investment-hero .hero-bio{
+  font-weight:400;
+  font-size:1.08rem;
+  color:rgba(255,255,255,.94);
+  text-shadow:0 1px 10px rgba(10,24,48,.45);
+}
+.investment-hero .stat .n{color:var(--gold-lt)}
+.investment-hero .stat .l{color:rgba(255,255,255,.78)}
+</style>
 </head>
 <body>
 
@@ -138,9 +169,9 @@
 </nav>
 
 <!-- HERO -->
-<header class="hero">
+<header class="hero investment-hero">
   <div class="hero-media" aria-hidden="true">
-    <img src="images/hero-investment.jpg" alt="" onerror="this.onerror=null;this.src='https://assets.cdn.filesafe.space/VICaX0SdHaI41cp5dwWa/media/696a90397f301bde2a82dd54.jpeg'"/>
+    <img src="images/Investor-Dr.Dalal-Akoury-Awaremed.jpg" alt="" loading="eager"/>
   </div>
   <div class="hero-scrim"></div>
   <div class="wrap"><div class="hero-inner">
