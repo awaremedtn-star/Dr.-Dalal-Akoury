@@ -553,8 +553,8 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
 .press-strip{padding:56px 0}
 .press-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px;list-style:none;margin-top:28px}
 .press-row li{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:14px 22px;display:flex;align-items:center;justify-content:center;height:64px;width:150px}
-.press-row img{max-height:32px;max-width:110px;object-fit:contain;filter:grayscale(1) opacity(.7);transition:filter .25s var(--ease),opacity .25s var(--ease)}
-.press-row li:hover img{filter:grayscale(0) opacity(1)}
+.press-row img{max-height:32px;max-width:110px;object-fit:contain;opacity:.92;transition:opacity .25s var(--ease),transform .25s var(--ease)}
+.press-row li:hover img{opacity:1;transform:translateY(-2px)}
 @media(max-width:640px){.press-row li{width:calc(50% - 14px);height:58px}}
 
 /* ---------- press photo gallery + lightbox (media.html) ---------- */
