@@ -182,6 +182,14 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 @media(max-width:880px){.about-grid{grid-template-columns:1fr;gap:36px}.about-grid .imgwrap img{height:440px}}
 
 /* ---- Audience paths ---- */
+#paths.bg-photo{
+  position:relative;
+  background-image:linear-gradient(135deg,rgba(10,20,37,.90) 0%,rgba(10,20,37,.78) 45%,rgba(10,20,37,.62) 100%),url('images/Dalal-Akoury-on-stage-1.jpg');
+  background-size:cover;
+  background-position:center 35%;
+  background-repeat:no-repeat;
+  background-attachment:scroll;
+}
 .paths{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
 .path-card{background:var(--white);border:1px solid var(--border);border-top:2px solid var(--gold);padding:40px 34px;display:flex;flex-direction:column;transition:all .3s}
 .path-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
@@ -191,6 +199,25 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 .path-card .plink{margin-top:22px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:gap .3s}
 .path-card:hover .plink{gap:14px}
 @media(max-width:880px){.paths{grid-template-columns:1fr}}
+
+/* Glassmorphism variant for path-cards sitting on the #paths photo background.
+   Solid navy fallback first (devices/browsers without backdrop-filter support),
+   then the translucent+blurred glass treatment layers on top where supported. */
+#paths.bg-photo .path-card{background:rgba(10,20,37,.80);border-color:rgba(201,165,92,.35)}
+#paths.bg-photo .path-card .pn{color:var(--gold-light)}
+#paths.bg-photo .path-card h3{color:var(--white)}
+#paths.bg-photo .path-card p{color:rgba(255,255,255,.82)}
+#paths.bg-photo .path-card .plink{color:var(--gold-light)}
+@supports (backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px)){
+  #paths.bg-photo .path-card{
+    background:rgba(255,255,255,.16);
+    backdrop-filter:blur(16px) saturate(1.2);
+    -webkit-backdrop-filter:blur(16px) saturate(1.2);
+  }
+}
+@media(max-width:640px){
+  #paths.bg-photo{background-position:center 28%}
+}
 
 /* ---- Pillars ---- */
 .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:52px;background:var(--border)}
@@ -602,7 +629,7 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 </section>
 
 <!-- AUDIENCE PATHS -->
-<section class="block" id="paths">
+<section class="block bg-navy bg-photo" id="paths">
   <div class="container">
     <div class="center">
       <div class="section-label">A Living Body of Work</div>
