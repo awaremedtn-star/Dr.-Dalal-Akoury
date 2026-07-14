@@ -68,11 +68,27 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .nav-cta:hover{background:var(--gold);color:var(--navy-deep)!important}
 .burger{display:none;flex-direction:column;gap:5px;padding:6px}
 .burger span{width:24px;height:2px;background:var(--gold-light);display:block}
+
+/* ---- Nav dropdown ---- */
+.nav-dropdown{position:relative}
+.nav-dropdown-toggle{display:inline-flex;align-items:center;gap:7px}
+.nav-caret{width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .25s ease;flex-shrink:0}
+.nav-dropdown.open .nav-caret,.nav-dropdown:hover .nav-caret{transform:rotate(-135deg)}
+.nav-dropdown-menu{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(-8px);min-width:200px;background:var(--navy);border:1px solid rgba(201,165,92,.28);border-radius:3px;box-shadow:var(--shadow-lg);padding:8px 0;display:flex;flex-direction:column;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,transform .25s ease,visibility .25s;z-index:75}
+.nav-dropdown-menu a{padding:11px 22px;opacity:.85}
+.nav-dropdown-menu a:hover{background:rgba(201,165,92,.08)}
+.nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown.open .nav-dropdown-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
 @media(max-width:960px){
-  .nav{position:fixed;inset:0 0 0 auto;width:78%;max-width:320px;background:var(--navy);flex-direction:column;align-items:flex-start;justify-content:center;padding:40px;gap:22px;transform:translateX(100%);transition:transform .35s ease;z-index:70}
+  .nav{position:fixed;inset:0 0 0 auto;height:100vh;width:78%;max-width:320px;background:var(--navy);flex-direction:column;align-items:flex-start;justify-content:center;padding:40px;gap:22px;transform:translateX(100%);transition:transform .35s ease;z-index:70;overflow-y:auto}
   .nav.open{transform:none}
   .nav a{font-size:14px}
   .burger{display:flex;z-index:80}
+  .nav-dropdown{width:100%}
+  .nav-dropdown-toggle{width:100%;justify-content:space-between}
+  .nav-dropdown-menu{position:static;transform:none;min-width:0;width:100%;background:transparent;border:0;box-shadow:none;padding:0;margin-top:4px;max-height:0;opacity:1;visibility:visible;pointer-events:auto;overflow:hidden;transition:max-height .35s ease,margin-top .35s ease}
+  .nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown.open .nav-dropdown-menu{transform:none;max-height:0;margin-top:0}
+  .nav-dropdown.open .nav-dropdown-menu{max-height:400px;margin-top:4px}
+  .nav-dropdown-menu a{padding:9px 0 9px 18px}
 }
 
 /* ---- Buttons ---- */
@@ -373,12 +389,20 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
       </div>
     </a>
     <nav class="nav" id="nav">
-      <a href="#why">The Story</a>
-      <a href="#questions">Questions</a>
-      <a href="#philosophy">Philosophy</a>
-      <a href="#journey">The Journey</a>
-      <a href="#scholarship">Scholarship</a>
-      <a href="#legacy">Legacy</a>
+      <div class="nav-dropdown" id="navDropdown">
+        <a href="#top" class="nav-dropdown-toggle" id="navDropdownToggle" aria-haspopup="true" aria-expanded="false">
+          Home
+          <span class="nav-caret" aria-hidden="true"></span>
+        </a>
+        <div class="nav-dropdown-menu" id="navDropdownMenu">
+          <a href="#why">The Story</a>
+          <a href="#questions">Questions</a>
+          <a href="#philosophy">Philosophy</a>
+          <a href="#journey">The Journey</a>
+          <a href="#scholarship">Scholarship</a>
+          <a href="#legacy">Legacy</a>
+        </div>
+      </div>
       <a href="#connect" class="nav-cta">Connect</a>
     </nav>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -884,7 +908,41 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
   // Mobile nav
   const burger = document.getElementById('burger'), nav = document.getElementById('nav');
   burger.addEventListener('click', () => nav.classList.toggle('open'));
-  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  // Home dropdown
+  const navDropdown = document.getElementById('navDropdown');
+  const navDropdownToggle = document.getElementById('navDropdownToggle');
+  const closeNavDropdown = () => {
+    navDropdown.classList.remove('open');
+    navDropdownToggle.setAttribute('aria-expanded', 'false');
+  };
+  const openNavDropdown = () => {
+    navDropdown.classList.add('open');
+    navDropdownToggle.setAttribute('aria-expanded', 'true');
+  };
+  navDropdownToggle.addEventListener('click', (e) => {
+    if (!navDropdown.classList.contains('open')) {
+      e.preventDefault();
+      openNavDropdown();
+    } else {
+      closeNavDropdown();
+      nav.classList.remove('open');
+    }
+  });
+  document.addEventListener('click', (e) => {
+    if (!navDropdown.contains(e.target)) closeNavDropdown();
+  });
+  navDropdown.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeNavDropdown();
+      navDropdownToggle.focus();
+    }
+  });
+
+  nav.querySelectorAll('a:not(#navDropdownToggle)').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    closeNavDropdown();
+  }));
   // Scroll reveal
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
