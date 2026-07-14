@@ -53,8 +53,17 @@
     <img src="assets/images/logo-full.jpg" alt="Dr. Dalal Akoury, MD"/>
   </a>
   <ul class="nav-links desk">
-    <li><a href="index.html" data-i18n="nav.home">Home</a></li>
-    <li><a href="index.html#meet" data-i18n="nav.meet">Dr. Dalal</a></li>
+    <li class="nav-drop">
+      <button class="nav-drop-trigger" aria-haspopup="true" aria-expanded="false">
+        <span data-i18n="nav.home.group">Home</span>
+        <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <ul class="nav-drop-menu">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="index.html#meet" data-i18n="nav.meet">Dr. Dalal</a></li>
+        <li><a href="index.html#eco" data-i18n="nav.eco">Ecosystem</a></li>
+      </ul>
+    </li>
     <li class="nav-drop">
       <button class="nav-drop-trigger" aria-haspopup="true" aria-expanded="false">
         <span data-i18n="nav.media">Media</span>
@@ -94,8 +103,17 @@
   <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div>
 <div class="mnav" id="mnav">
-  <a href="index.html" data-i18n="nav.home">Home</a>
-  <a href="index.html#meet" data-i18n="nav.meet">Dr. Dalal</a>
+  <div class="mnav-group">
+    <button class="mnav-group-trigger" aria-expanded="false">
+      <span data-i18n="nav.home.group">Home</span>
+      <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="mnav-submenu">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="index.html#meet" data-i18n="nav.meet">Dr. Dalal</a>
+      <a href="index.html#eco" data-i18n="nav.eco">Ecosystem</a>
+    </div>
+  </div>
   <div class="mnav-group">
     <button class="mnav-group-trigger" aria-expanded="false">
       <span data-i18n="nav.media">Media</span>
@@ -289,7 +307,7 @@
 window.I18N={ar:{},fr:{},es:{}};
 I18N.ar={
   "langbar":"نتحدث العربية والإنجليزية والفرنسية والإسبانية",
-  "nav.home":"الرئيسية","nav.meet":"د. دلال","nav.why":"العودة إلى الوطن","nav.interviews":"المقابلات","nav.media":"الإعلام","nav.press":"الصحافة والصور","nav.invest":"الاستثمار","nav.jtfoxx":"مصر تعود","nav.foxx.partnership":"الشراكة","nav.foxx.bio":"عن جيه تي فوكس","nav.foxx.akoury":"عن الدكتورة عاقوري","nav.events":"الفعاليات","nav.vip.evening":"أمسية VIP","nav.vip.dinner":"عشاء خاص","nav.legacy":"الإرث",
+  "nav.home":"الرئيسية","nav.home.group":"الرئيسية","nav.meet":"د. دلال","nav.eco":"المنظومة","nav.why":"العودة إلى الوطن","nav.interviews":"المقابلات","nav.media":"الإعلام","nav.press":"الصحافة والصور","nav.invest":"الاستثمار","nav.jtfoxx":"مصر تعود","nav.foxx.partnership":"الشراكة","nav.foxx.bio":"عن جيه تي فوكس","nav.foxx.akoury":"عن الدكتورة عاقوري","nav.events":"الفعاليات","nav.vip.evening":"أمسية VIP","nav.vip.dinner":"عشاء خاص","nav.legacy":"الإرث",
   "jt.hero.kicker":"حلقة الوصل والرؤية",
   "jt.hero.h1":"عاقد صفقاتٍ عالمي، ورؤيةٌ مصرية، و<span class=\"em\" style=\"font-style:normal\">حوارٌ يستحق أن يُخاض</span>.",
   "jt.hero.lede":"تستدعي رؤية الدكتورة دلال عاقوري لمصر شريكًا نادرًا؛ شخصًا تعبر شبكته القارات وعمله فتح الأبواب. وجيه تي فوكس من أكثر رواد الأعمال ارتباطًا بالعالم. تشرح هذه الصفحة من هو، وما الذي يفعله، ولماذا قد يكون التعاون مهمًا للمشاريع المصرية.",
@@ -334,7 +352,7 @@ I18N.ar={
 };
 I18N.fr={
   "langbar":"Nous parlons arabe, français, espagnol et anglais",
-  "nav.home":"Accueil","nav.meet":"Dre Dalal","nav.why":"Le retour","nav.interviews":"Interviews","nav.media":"Médias","nav.press":"Presse &amp; Photos","nav.invest":"Investissement","nav.jtfoxx":"Le Retour de l'Égypte","nav.foxx.partnership":"Le Partenariat","nav.foxx.bio":"À Propos de JT Foxx","nav.foxx.akoury":"À Propos de la Dre Akoury","nav.events":"Événements","nav.vip.evening":"Soirée VIP","nav.vip.dinner":"Dîner Privé","nav.legacy":"Héritage",
+  "nav.home":"Accueil","nav.home.group":"Accueil","nav.meet":"Dre Dalal","nav.eco":"Écosystème","nav.why":"Le retour","nav.interviews":"Interviews","nav.media":"Médias","nav.press":"Presse &amp; Photos","nav.invest":"Investissement","nav.jtfoxx":"Le Retour de l'Égypte","nav.foxx.partnership":"Le Partenariat","nav.foxx.bio":"À Propos de JT Foxx","nav.foxx.akoury":"À Propos de la Dre Akoury","nav.events":"Événements","nav.vip.evening":"Soirée VIP","nav.vip.dinner":"Dîner Privé","nav.legacy":"Héritage",
   "jt.hero.kicker":"Le Connecteur &amp; la Vision",
   "jt.hero.h1":"Un négociateur mondial, une vision égyptienne, et une <span class=\"em\">conversation qui vaut la peine</span>.",
   "jt.hero.lede":"La vision de la Dre Dalal Akoury pour l'Égypte appelle un partenaire rare — quelqu'un dont le réseau traverse les continents et dont le métier est d'ouvrir des portes. JT Foxx est l'un des entrepreneurs les plus connectés au monde. Cette page explique qui il est, ce qu'il fait, et pourquoi une collaboration pourrait compter pour l'entreprise égyptienne.",
@@ -379,7 +397,7 @@ I18N.fr={
 };
 I18N.es={
   "langbar":"Hablamos árabe, francés, español e inglés",
-  "nav.home":"Inicio","nav.meet":"Dra. Dalal","nav.why":"El regreso","nav.interviews":"Entrevistas","nav.media":"Medios","nav.press":"Prensa y Fotos","nav.invest":"Inversión","nav.jtfoxx":"El Regreso de Egipto","nav.foxx.partnership":"La Alianza","nav.foxx.bio":"Sobre JT Foxx","nav.foxx.akoury":"Sobre la Dra. Akoury","nav.events":"Eventos","nav.vip.evening":"Velada VIP","nav.vip.dinner":"Cena Privada","nav.legacy":"Legado",
+  "nav.home":"Inicio","nav.home.group":"Inicio","nav.meet":"Dra. Dalal","nav.eco":"Ecosistema","nav.why":"El regreso","nav.interviews":"Entrevistas","nav.media":"Medios","nav.press":"Prensa y Fotos","nav.invest":"Inversión","nav.jtfoxx":"El Regreso de Egipto","nav.foxx.partnership":"La Alianza","nav.foxx.bio":"Sobre JT Foxx","nav.foxx.akoury":"Sobre la Dra. Akoury","nav.events":"Eventos","nav.vip.evening":"Velada VIP","nav.vip.dinner":"Cena Privada","nav.legacy":"Legado",
   "jt.hero.kicker":"El Conector y la Visión",
   "jt.hero.h1":"Un negociador global, una visión egipcia, y una <span class=\"em\">conversación que vale la pena</span>.",
   "jt.hero.lede":"La visión de la Dra. Dalal Akoury para Egipto exige un socio poco común — alguien cuya red cruza continentes y cuyo oficio es abrir puertas. JT Foxx es uno de los emprendedores más conectados del mundo. Esta página explica quién es, qué hace y por qué una colaboración podría importar para la empresa egipcia.",
