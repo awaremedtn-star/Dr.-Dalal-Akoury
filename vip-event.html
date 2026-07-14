@@ -68,11 +68,13 @@
     <span style="font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-lt);line-height:1.35;max-width:130px" data-i18n="vip.brand.sub">A VIP Evening · By Invitation</span>
   </a>
   <ul class="nav-links desk">
-    <li class="nav-drop">
-      <button class="nav-drop-trigger" aria-haspopup="true" aria-expanded="false">
-        <span data-i18n="nav.home.group">Home</span>
-        <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
+    <li class="nav-drop nav-drop-home">
+      <span class="nav-drop-trigger">
+        <a href="index.html" class="nav-drop-label" data-i18n="nav.home.group">Home</a>
+        <button class="nav-drop-caret" aria-haspopup="true" aria-expanded="false" aria-label="Toggle Home menu">
+          <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </span>
       <ul class="nav-drop-menu">
         <li><a href="index.html" data-i18n="nav.home">Home</a></li>
         <li><a href="index.html#meet" data-i18n="nav.meet">Dr. Dalal</a></li>
@@ -119,10 +121,12 @@
 </div>
 <div class="mnav" id="mnav">
   <div class="mnav-group">
-    <button class="mnav-group-trigger" aria-expanded="false">
-      <span data-i18n="nav.home.group">Home</span>
-      <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
+    <span class="mnav-group-trigger">
+      <a href="index.html" class="mnav-group-label" data-i18n="nav.home.group">Home</a>
+      <button class="mnav-group-caret" aria-expanded="false" aria-label="Toggle Home menu">
+        <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </span>
     <div class="mnav-submenu">
       <a href="index.html" data-i18n="nav.home">Home</a>
       <a href="index.html#meet" data-i18n="nav.meet">Dr. Dalal</a>

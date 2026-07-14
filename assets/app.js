@@ -110,41 +110,47 @@
     addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
   }
 
-  // click/tap-driven nav dropdown ("Media" merges Interviews + Press & Photos)
+  // click/tap-driven nav dropdown ("Media" merges Interviews + Press & Photos).
+  // Most triggers are a single <button class="nav-drop-trigger">. The Home
+  // trigger instead splits into a <a class="nav-drop-label"> (navigates to
+  // index.html normally) plus a separate <button class="nav-drop-caret">
+  // that owns aria-haspopup/aria-expanded and toggles the menu — so the
+  // label click isn't hijacked into a toggle. Fall back to the trigger
+  // itself wherever no dedicated caret exists.
   function initNavDropdowns(){
     document.querySelectorAll('.nav-drop').forEach(function(drop){
-      var trigger = drop.querySelector('.nav-drop-trigger');
-      trigger.addEventListener('click', function(e){
+      var toggle = drop.querySelector('.nav-drop-caret') || drop.querySelector('.nav-drop-trigger');
+      toggle.addEventListener('click', function(e){
         e.stopPropagation();
         var isOpen = drop.classList.contains('open');
         document.querySelectorAll('.nav-drop.open').forEach(function(d){
           d.classList.remove('open');
-          d.querySelector('.nav-drop-trigger').setAttribute('aria-expanded', 'false');
+          (d.querySelector('.nav-drop-caret') || d.querySelector('.nav-drop-trigger')).setAttribute('aria-expanded', 'false');
         });
-        if(!isOpen){ drop.classList.add('open'); trigger.setAttribute('aria-expanded', 'true'); }
+        if(!isOpen){ drop.classList.add('open'); toggle.setAttribute('aria-expanded', 'true'); }
       });
     });
     document.addEventListener('click', function(){
       document.querySelectorAll('.nav-drop.open').forEach(function(d){
         d.classList.remove('open');
-        d.querySelector('.nav-drop-trigger').setAttribute('aria-expanded', 'false');
+        (d.querySelector('.nav-drop-caret') || d.querySelector('.nav-drop-trigger')).setAttribute('aria-expanded', 'false');
       });
     });
     document.addEventListener('keydown', function(e){
       if(e.key === 'Escape'){
         document.querySelectorAll('.nav-drop.open').forEach(function(d){
           d.classList.remove('open');
-          d.querySelector('.nav-drop-trigger').setAttribute('aria-expanded', 'false');
+          (d.querySelector('.nav-drop-caret') || d.querySelector('.nav-drop-trigger')).setAttribute('aria-expanded', 'false');
         });
       }
     });
-    // mobile accordion group, same open/close pattern
+    // mobile accordion group, same open/close pattern, same label/caret split for Home
     document.querySelectorAll('.mnav-group').forEach(function(group){
-      var trigger = group.querySelector('.mnav-group-trigger');
-      trigger.addEventListener('click', function(){
+      var toggle = group.querySelector('.mnav-group-caret') || group.querySelector('.mnav-group-trigger');
+      toggle.addEventListener('click', function(){
         var isOpen = group.classList.contains('open');
         group.classList.toggle('open', !isOpen);
-        trigger.setAttribute('aria-expanded', String(!isOpen));
+        toggle.setAttribute('aria-expanded', String(!isOpen));
       });
     });
   }
