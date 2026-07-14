@@ -82,17 +82,28 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .mnav.open{display:block}
 .mnav a{display:block;color:rgba(255,255,255,.85);padding:13px 0;font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.08)}
 .nav-drop{position:relative}
-.nav-drop-trigger{background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8);padding:9px 13px;transition:color .15s var(--ease)}
+.nav-drop-trigger{display:inline-flex;align-items:center;gap:2px;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8);transition:color .15s var(--ease)}
+button.nav-drop-trigger{background:none;border:none;cursor:pointer;font:inherit;padding:9px 13px}
 .nav-drop-trigger:hover,.nav-drop.open .nav-drop-trigger,.nav-drop-trigger.current{color:var(--gold-light)}
 .nav-drop .chev{transition:transform .2s var(--ease)}
 .nav-drop.open .chev{transform:rotate(180deg)}
+/* Home trigger splits into a label (navigates to index.html) + a separate caret (toggles the menu) */
+.nav-drop-label{color:inherit;padding:9px 4px 9px 13px;cursor:pointer}
+.nav-drop-label.current{color:var(--gold-light)}
+.nav-drop-caret{background:none;border:none;cursor:pointer;color:inherit;font:inherit;display:inline-flex;align-items:center;padding:9px 13px 9px 4px}
+.nav-drop-home:hover .nav-drop-menu{opacity:1;visibility:visible;transform:none}
+.nav-drop-home:hover .chev{transform:rotate(180deg)}
 .nav-drop-menu{position:absolute;top:100%;left:0;margin-top:6px;min-width:190px;background:var(--lapis-deep);border:1px solid rgba(255,255,255,.12);border-radius:8px;box-shadow:var(--shadow-lg);padding:6px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s var(--ease),transform .18s var(--ease),visibility .18s;z-index:110}
 .nav-drop.open .nav-drop-menu{opacity:1;visibility:visible;transform:none}
 .nav-drop-menu li a{display:block;padding:10px 14px;border-radius:6px;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:none;color:rgba(255,255,255,.82);transition:background .15s var(--ease),color .15s var(--ease)}
 .nav-drop-menu li a:hover,.nav-drop-menu li a.current{background:rgba(191,154,84,.12);color:var(--gold-light)}
-.mnav-group-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;background:none;border:none;color:rgba(255,255,255,.85);font:inherit;padding:13px 0;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer}
+.mnav-group-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;color:rgba(255,255,255,.85);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.08)}
+button.mnav-group-trigger{background:none;border:none;font:inherit;padding:13px 0;cursor:pointer}
 .mnav-group-trigger .chev{transition:transform .2s var(--ease)}
 .mnav-group.open .chev{transform:rotate(180deg)}
+.mnav-group-label{flex:1;color:inherit;padding:13px 0;cursor:pointer}
+.mnav-group-label.current{color:var(--gold-light)}
+.mnav-group-caret{background:none;border:none;color:inherit;font:inherit;cursor:pointer;display:inline-flex;align-items:center;padding:13px 0 13px 12px}
 .mnav-submenu{display:none;padding-left:16px}
 .mnav-group.open .mnav-submenu{display:block}
 .mnav-submenu a{padding:11px 0;font-size:.78rem;text-transform:none;letter-spacing:.02em}
@@ -404,11 +415,13 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
     <img src="assets/images/logo-full.jpg" alt="Dr. Dalal Akoury, MD"/>
   </a>
   <ul class="nav-links desk">
-    <li class="nav-drop">
-      <button class="nav-drop-trigger" aria-haspopup="true" aria-expanded="false">
-        <span>Home</span>
-        <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
+    <li class="nav-drop nav-drop-home">
+      <span class="nav-drop-trigger">
+        <a href="index.html" class="nav-drop-label current">Home</a>
+        <button class="nav-drop-caret" aria-haspopup="true" aria-expanded="false" aria-label="Toggle Home menu">
+          <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </span>
       <ul class="nav-drop-menu">
         <li><a href="index.html" class="current">Home</a></li>
         <li><a href="index.html#about">Dr. Dalal</a></li>
@@ -455,10 +468,12 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 </div>
 <div class="mnav" id="mnav">
   <div class="mnav-group">
-    <button class="mnav-group-trigger" aria-expanded="false">
-      <span>Home</span>
-      <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
+    <span class="mnav-group-trigger">
+      <a href="index.html" class="mnav-group-label current">Home</a>
+      <button class="mnav-group-caret" aria-expanded="false" aria-label="Toggle Home menu">
+        <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </span>
     <div class="mnav-submenu">
       <a href="index.html" class="current">Home</a>
       <a href="index.html#about">Dr. Dalal</a>
