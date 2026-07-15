@@ -321,16 +321,16 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 .media-item:hover{border-color:var(--gold);background:var(--navy);color:var(--gold-light)}
 @media(max-width:700px){.media-row{grid-template-columns:1fr 1fr}}
 
-/* ---- Photo Journal — bento gallery (placeholder — no real photos yet) ----
-   Once real photos replace these slots, swap each .bento-ph placeholder
-   for an <img> (object-fit:cover, filling .bento-tile) and drop the
-   placeholder icon/label — the .bento-cap overlay is already the same
-   gradient-caption pattern as .gitem/.goverlay above, so it carries over
-   unchanged. */
+/* ---- Photo Journal — bento gallery ----
+   .bento-ph (placeholder icon/label) is kept below in case a future
+   tile needs a placeholder again, but the 11 tiles now render real
+   <img> photos (.bento-tile img) instead. */
 .bento-gallery{padding:128px 0}
 .bento-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;grid-auto-flow:dense;gap:18px;margin-top:52px}
 .bento-tile{position:relative;border-radius:6px;overflow:hidden;background:rgba(201,165,92,.07);border:1px solid rgba(201,165,92,.22);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
 .bento-tile:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.bento-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
+.bento-tile:hover img{transform:scale(1.05)}
 .bento-xl{grid-column:span 2;grid-row:span 2}
 .bento-lg{grid-column:span 2;grid-row:span 1}
 .bento-md{grid-column:span 1;grid-row:span 2}
@@ -1064,48 +1064,48 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
     </div>
     <div class="bento-grid">
       <div class="bento-tile bento-xl">
-        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
+        <img src="assets/images/oxford-stage.jpg" alt="Oxford University" loading="lazy">
         <div class="bento-cap">Oxford University</div>
       </div>
       <div class="bento-tile bento-md">
-        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
-        <div class="bento-cap">Cambridge · Churchill College</div>
+        <img src="assets/images/cambridge-stage.jpg" alt="Cambridge — Churchill College" loading="lazy">
+        <div class="bento-cap">Cambridge — Churchill College</div>
       </div>
       <div class="bento-tile bento-sm">
-        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
+        <img src="assets/images/houston-international.jpg" alt="Houston International" loading="lazy">
+        <div class="bento-cap">Houston International</div>
+      </div>
+      <div class="bento-tile bento-sm">
+        <img src="assets/images/space-center-houston.jpg" alt="Space Center Houston" loading="lazy">
+        <div class="bento-cap">Space Center Houston</div>
+      </div>
+      <div class="bento-tile bento-lg">
+        <img src="assets/images/rsm-stage.jpg" alt="Royal Society of Medicine" loading="lazy">
+        <div class="bento-cap">Royal Society of Medicine</div>
+      </div>
+      <div class="bento-tile bento-sm">
+        <img src="assets/images/a4m-conference.jpg" alt="A4M Conference" loading="lazy">
         <div class="bento-cap">A4M Conference</div>
       </div>
       <div class="bento-tile bento-sm">
-        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
-        <div class="bento-cap">IOICP Symposium</div>
+        <img src="assets/images/on-stage-3.jpg" alt="On Stage" loading="lazy">
+        <div class="bento-cap">On Stage</div>
       </div>
       <div class="bento-tile bento-lg">
-        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
-        <div class="bento-cap">World Cancer Congress — Shanghai</div>
-      </div>
-      <div class="bento-tile bento-sm">
-        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
-        <div class="bento-cap">BSAAM London</div>
-      </div>
-      <div class="bento-tile bento-sm">
-        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
-        <div class="bento-cap">Royal Society of Medicine</div>
+        <img src="assets/images/london-speaker.jpg" alt="London — Speaker" loading="lazy">
+        <div class="bento-cap">London — Speaker</div>
       </div>
       <div class="bento-tile bento-lg">
-        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
-        <div class="bento-cap">New York Academy of Medicine</div>
-      </div>
-      <div class="bento-tile bento-lg">
-        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
-        <div class="bento-cap">London Stock Exchange</div>
+        <img src="assets/images/on-stage-4.jpg" alt="On Stage" loading="lazy">
+        <div class="bento-cap">On Stage</div>
       </div>
       <div class="bento-tile bento-xl">
-        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
-        <div class="bento-cap">HealPreneur Magazine</div>
+        <img src="images/Dr.Dalal-Akoury-podium-5.jpg" alt="Podium Address" loading="lazy">
+        <div class="bento-cap">Podium Address</div>
       </div>
       <div class="bento-tile bento-xl">
-        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
-        <div class="bento-cap">Best Answer for Cancer — Board</div>
+        <img src="images/Dr.DalalAkoury-Speaker-Functional-Medicine.jpg" alt="Speaker — Functional Medicine" loading="lazy">
+        <div class="bento-cap">Speaker — Functional Medicine</div>
       </div>
     </div>
   </div>
