@@ -468,6 +468,33 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 .taught-item:last-child{border-bottom:0}
 .taught-item p{font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(1.4rem,2.7vw,2rem);line-height:1.4;color:var(--navy);margin:0}
 .taught-item p em{color:var(--gold-deep);font-style:italic}
+
+/* #taught only (the "students" section below reuses .taught/.taught-item and
+   must not be affected). The quote text stays var(--navy)/var(--gold-deep) -
+   unchanged, per the brief - so the glass panel here is a light/white tint
+   rather than the navy tint used on the other photo sections, and the whole
+   block is wrapped as one panel (not per-row) since the existing design is
+   already one seamless hairline-divided block rather than boxed cards. */
+#taught.bg-photo{
+  position:relative;
+  background-image:radial-gradient(ellipse 72% 78% at 50% 42%,rgba(247,243,234,.92) 0%,rgba(242,233,211,.82) 45%,rgba(235,223,199,.62) 100%),url('images/A-Pretty-Pic-of-DA.jpg');
+  background-size:cover;
+  background-position:center 32%;
+  background-repeat:no-repeat;
+  background-attachment:scroll;
+}
+#taught.bg-photo .taught{background:rgba(255,255,255,.55);border:1px solid rgba(201,165,92,.4);border-radius:8px;padding:14px 48px}
+@supports (backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px)){
+  #taught.bg-photo .taught{
+    background:rgba(255,255,255,.35);
+    backdrop-filter:blur(18px) saturate(1.1);
+    -webkit-backdrop-filter:blur(18px) saturate(1.1);
+  }
+}
+@media(max-width:640px){
+  #taught.bg-photo{background-position:center 25%}
+  #taught.bg-photo .taught{padding:10px 26px}
+}
 </style>
 </head>
 <body>
@@ -893,7 +920,7 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 </section>
 
 <!-- THINGS MY PATIENTS HAVE TAUGHT ME -->
-<section class="block bg-cream" id="taught">
+<section class="block bg-cream bg-photo" id="taught">
   <div class="container">
     <div class="center">
       <div class="section-label">Things My Patients Have Taught Me</div>
