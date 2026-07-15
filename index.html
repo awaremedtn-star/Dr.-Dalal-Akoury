@@ -481,6 +481,13 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 #remember .fb-line,#remember .fb-sub{text-shadow:0 2px 20px rgba(247,243,234,.8),0 1px 4px rgba(247,243,234,.9)}
 @media(max-width:640px){#remember .fb-in{max-width:30ch}}
 
+/* "Some of my greatest teachers..." — scoped override only, so the other
+   .fullband quote sections are untouched. Shared fb-in max-width:22ch is
+   too narrow for this quote at the shared clamp() font-size, forcing a
+   near-one-word-per-line wrap; widen it so it wraps as normal balanced,
+   multi-word lines instead. */
+#teachers .fb-in{max-width:44ch}
+
 /* ---- Patients taught (humanity) ---- */
 .taught{max-width:760px;margin:46px auto 0}
 .taught-item{padding:30px 0;border-bottom:1px solid var(--border)}
@@ -847,8 +854,8 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 </section>
 
 <!-- MOMENT: SIX YEARS OLD -->
-<section class="fullband">
-  <img src="images/Dr.Dalal-Akoury-Speaker-Awaremed.jpg" alt="">
+<section class="fullband" id="teachers">
+  <img src="assets/images/oxford-stage.jpg" alt="">
   <div class="fb-in">
     <div class="fb-line">Some of my greatest teachers were <em>six years old.</em></div>
   </div>
