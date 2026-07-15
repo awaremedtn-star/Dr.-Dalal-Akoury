@@ -415,6 +415,9 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 .jmedia img{width:100%;height:480px;object-fit:cover;border-radius:3px;box-shadow:var(--shadow-md);filter:grayscale(.12)}
 .jmedia .jnum{position:absolute;top:-26px;left:-14px;font-family:var(--display);font-size:6rem;font-weight:300;color:rgba(184,150,90,.22);line-height:1;z-index:2}
 .jchap.alt .jmedia .jnum{left:auto;right:-14px}
+/* Chapter 01 only - source photo has the subject off-center-right, so bias
+   the cover-crop toward her rather than the shared rule's default center */
+.jmedia-calling img{object-position:75% 35%}
 .jphase{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:14px}
 .jchap h3{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.15;color:var(--navy);margin-bottom:16px}
 .jchap p{font-size:14.5px;line-height:1.95;color:var(--text);margin-bottom:20px}
@@ -862,7 +865,7 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
     <div class="journey">
 
       <div class="jchap reveal">
-        <div class="jmedia"><div class="jnum">01</div><img src="images/Dr_Dalal_Akoury_johnsoncity_TN_USA_Integrative_Medicine_Board-Certified_Physician.jpg" alt="Dr. Dalal Akoury, physician"></div>
+        <div class="jmedia jmedia-calling"><div class="jnum">01</div><img src="images/Dr.Dalal-Akoury-interview.jpg" alt="Dr. Dalal Akoury speaking during a panel interview"></div>
         <div>
           <div class="jphase">A Calling to Medicine</div>
           <h3>The decision to spend a life in service</h3>
