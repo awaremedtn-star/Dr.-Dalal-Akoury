@@ -448,6 +448,20 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 .fullband.light .fb-line em{color:var(--gold-deep)}
 .fullband.light .fb-sub{color:var(--gold-deep)}
 
+/* "If you remember only one thing" — scoped overrides only, so the other two
+   .fullband(.light) quote sections elsewhere on the page are untouched.
+   fb-in's shared max-width:22ch is far too narrow for this particular
+   (longer) quote at the shared clamp() font-size, which is what was causing
+   the ragged near-one-word-per-line wrap; widening it here lets the same
+   text wrap naturally into a handful of balanced lines instead. The new
+   background photo is also considerably more visible than the 16% default,
+   so the scrim's center opacity is raised to compensate and keep the dark
+   navy text (unchanged, per the brief) readable over it. */
+#remember .fb-in{max-width:62ch}
+#remember img{opacity:.42;filter:grayscale(.25)}
+#remember::after{background:radial-gradient(ellipse 68% 70% at 50% 50%,rgba(247,243,234,.88) 0%,rgba(242,233,211,.78) 45%,rgba(235,223,199,.6) 100%)}
+@media(max-width:640px){#remember .fb-in{max-width:30ch}}
+
 /* ---- Patients taught (humanity) ---- */
 .taught{max-width:760px;margin:46px auto 0}
 .taught-item{padding:30px 0;border-bottom:1px solid var(--border)}
@@ -757,8 +771,8 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 </section>
 
 <!-- MOMENT: REMEMBER ONE THING -->
-<section class="fullband light">
-  <img src="images/Dr_Dalal_Akoury_johnsoncity_TN_USA_Integrative_Medicine_Board-Certified_Physician.jpg" alt="">
+<section class="fullband light" id="remember">
+  <img src="images/Dr.Akoury-with-people.jpg" alt="">
   <div class="fb-in">
     <div class="fb-sub">If you remember only one thing</div>
     <div class="fb-line">Healing begins long before treatment. It begins when someone is finally <em>seen, heard, and understood.</em></div>
