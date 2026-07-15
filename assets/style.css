@@ -109,8 +109,8 @@ html[dir="rtl"] .btn{letter-spacing:0;font-family:var(--font-ar);font-weight:700
 .langbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
 .ar-badge{font-family:var(--font-ar);color:var(--gold-lt);font-weight:700}
 .langsw{display:flex;gap:4px}
-.langsw button{font-family:var(--font-b);font-size:var(--fs-caption);font-weight:700;letter-spacing:.06em;padding:4px 11px;border-radius:2px;cursor:pointer;border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.7);background:transparent;transition:background .15s var(--ease),color .15s var(--ease),border-color .15s var(--ease)}
-.langsw button:hover,.langsw button.on{background:var(--gold);color:var(--lapis-deep);border-color:var(--gold)}
+.langsw button,.langsw a{font-family:var(--font-b);font-size:var(--fs-caption);font-weight:700;letter-spacing:.06em;padding:4px 11px;border-radius:2px;cursor:pointer;border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.7);background:transparent;transition:background .15s var(--ease),color .15s var(--ease),border-color .15s var(--ease);text-decoration:none;display:inline-block}
+.langsw button:hover,.langsw button.on,.langsw a:hover,.langsw a.on{background:var(--gold);color:var(--lapis-deep);border-color:var(--gold)}
 
 /* ---------- primary nav ---------- */
 .nav{position:sticky;top:0;z-index:100;background:rgba(12,27,51,.92);backdrop-filter:blur(10px);transition:background .3s var(--ease),box-shadow .3s var(--ease);padding:18px 0;box-shadow:0 2px 20px rgba(10,24,48,.18)}
