@@ -191,8 +191,8 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
   background-attachment:scroll;
 }
 .paths{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
-.path-card{background:var(--white);border:1px solid var(--border);border-top:2px solid var(--gold);padding:40px 34px;display:flex;flex-direction:column;transition:all .3s}
-.path-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
+.path-card{background:var(--white);border:1px solid var(--border);border-top:2px solid var(--gold);padding:40px 34px;display:flex;flex-direction:column;transition:all .3s ease}
+.path-card:hover,.path-card:focus-within{transform:translateY(-6px);box-shadow:var(--shadow-md),0 0 30px 4px rgba(201,165,92,.4)}
 .path-card .pn{font-family:var(--display);font-size:1.1rem;color:var(--gold-deep);letter-spacing:.1em;margin-bottom:22px}
 .path-card h3{font-family:var(--display);font-size:1.7rem;font-weight:500;color:var(--navy);line-height:1.2;margin-bottom:12px}
 .path-card p{font-size:13.5px;color:var(--text);line-height:1.8;flex:1}
@@ -439,7 +439,8 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 
 /* ---- Research & Scholarship ---- */
 .rsch{display:grid;grid-template-columns:repeat(12,1fr);gap:2px;margin-top:52px;background:var(--border);border:1px solid var(--border)}
-.rsch-cell{background:var(--white);padding:40px 36px}
+.rsch-cell{background:var(--white);padding:40px 36px;position:relative;transition:box-shadow .25s ease;outline:none}
+.rsch-cell:hover,.rsch-cell:focus,.rsch-cell:focus-within{box-shadow:0 0 30px 4px rgba(201,165,92,.4);z-index:1}
 .rsch-cell .ri{font-family:var(--display);font-style:italic;font-size:1.1rem;color:var(--gold);margin-bottom:14px}
 .rsch-cell h3{font-family:var(--display);font-weight:500;font-size:1.5rem;color:var(--navy);margin-bottom:10px}
 .rsch-cell p{font-size:13px;line-height:1.8;color:var(--text)}
@@ -450,27 +451,29 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
    photo background. .rsch/.rsch-cell are not shared with the visually
    similar #questions .qgrid/.qcard pattern elsewhere on the page (confirmed
    distinct class names), so this is fully scoped to this section already;
-   #scholarship.bg-photo is still used for extra safety/clarity. Headings
-   and body copy stay var(--navy)/var(--text) per the brief, so - as with
-   the "Things My Patients Have Taught Me" section - the glass tint here is
-   light/white rather than navy. Blur is applied per-cell (not one wrapped
-   panel), per the brief. Solid fallback first for browsers/devices without
-   backdrop-filter support. */
+   #scholarship.bg-photo is still used for extra safety/clarity. Overlay
+   darkness, card background/blur, border, and text colors are matched
+   value-for-value to #paths.bg-photo's reference treatment below, per the
+   brief - dark navy scrim + navy/white-glass card + light text, replacing
+   the previous lighter cream/navy-text version. */
 #scholarship.bg-photo{
   position:relative;
-  background-image:linear-gradient(135deg,rgba(247,243,234,.92) 0%,rgba(242,233,211,.8) 45%,rgba(235,223,199,.6) 100%),url('images/Houston-International.jpg');
+  background-image:linear-gradient(135deg,rgba(10,20,37,.90) 0%,rgba(10,20,37,.78) 45%,rgba(10,20,37,.62) 100%),url('images/Houston-International.jpg');
   background-size:cover;
   background-position:center 32%;
   background-repeat:no-repeat;
   background-attachment:scroll;
 }
-#scholarship.bg-photo .rsch{background:rgba(201,165,92,.18);border-color:rgba(201,165,92,.35)}
-#scholarship.bg-photo .rsch-cell{background:rgba(255,255,255,.55)}
+#scholarship.bg-photo .rsch{background:rgba(201,165,92,.35);border-color:rgba(201,165,92,.35)}
+#scholarship.bg-photo .rsch-cell{background:rgba(10,20,37,.80)}
+#scholarship.bg-photo .rsch-cell .ri{color:var(--gold-light)}
+#scholarship.bg-photo .rsch-cell h3{color:var(--white)}
+#scholarship.bg-photo .rsch-cell p{color:rgba(255,255,255,.82)}
 @supports (backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px)){
   #scholarship.bg-photo .rsch-cell{
-    background:rgba(255,255,255,.35);
-    backdrop-filter:blur(16px) saturate(1.1);
-    -webkit-backdrop-filter:blur(16px) saturate(1.1);
+    background:rgba(255,255,255,.16);
+    backdrop-filter:blur(16px) saturate(1.2);
+    -webkit-backdrop-filter:blur(16px) saturate(1.2);
   }
 }
 @media(max-width:640px){
@@ -1007,7 +1010,7 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 </section>
 
 <!-- RESEARCH & SCHOLARSHIP -->
-<section class="block bg-photo" id="scholarship">
+<section class="block bg-navy bg-photo" id="scholarship">
   <div class="container">
     <div class="center">
       <div class="section-label">Research &amp; Scholarship</div>
@@ -1015,11 +1018,11 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
       <p class="lead-p">Scholarship has never been the record of a finished career — for Dr. Akoury it remains an active practice. Her work as researcher, author, and educator continues today.</p>
     </div>
     <div class="rsch">
-      <div class="rsch-cell rc-wide reveal"><div class="ri">i.</div><h3>Peer-Reviewed Publications</h3><p>Scientific work spanning oncology, molecular biology, and the physiology of chronic and complex disease — the research foundation beneath four decades of practice.</p></div>
-      <div class="rsch-cell rc-half reveal"><div class="ri">ii.</div><h3>Books &amp; Public Scholarship</h3><p>A ten-time internationally published author, translating complex medicine into books, chapters, and patient education for a global readership.</p></div>
-      <div class="rsch-cell rc-third reveal"><div class="ri">iii.</div><h3>A Metabolic Oncology Textbook</h3><p>A forthcoming textbook drawing a lifetime of clinical and scientific work into a single rigorous reference for physicians.</p></div>
-      <div class="rsch-cell rc-third reveal"><div class="ri">iv.</div><h3>Scientific Lectures</h3><p>Ongoing teaching before academic societies and international congresses across five continents.</p></div>
-      <div class="rsch-cell rc-third reveal"><div class="ri">v.</div><h3>Research Interests</h3><p>Cancer metabolism, cellular and mitochondrial health, regeneration, and precision, individualized medicine.</p></div>
+      <div class="rsch-cell rc-wide reveal" tabindex="0"><div class="ri">i.</div><h3>Peer-Reviewed Publications</h3><p>Scientific work spanning oncology, molecular biology, and the physiology of chronic and complex disease — the research foundation beneath four decades of practice.</p></div>
+      <div class="rsch-cell rc-half reveal" tabindex="0"><div class="ri">ii.</div><h3>Books &amp; Public Scholarship</h3><p>A ten-time internationally published author, translating complex medicine into books, chapters, and patient education for a global readership.</p></div>
+      <div class="rsch-cell rc-third reveal" tabindex="0"><div class="ri">iii.</div><h3>A Metabolic Oncology Textbook</h3><p>A forthcoming textbook drawing a lifetime of clinical and scientific work into a single rigorous reference for physicians.</p></div>
+      <div class="rsch-cell rc-third reveal" tabindex="0"><div class="ri">iv.</div><h3>Scientific Lectures</h3><p>Ongoing teaching before academic societies and international congresses across five continents.</p></div>
+      <div class="rsch-cell rc-third reveal" tabindex="0"><div class="ri">v.</div><h3>Research Interests</h3><p>Cancer metabolism, cellular and mitochondrial health, regeneration, and precision, individualized medicine.</p></div>
     </div>
   </div>
 </section>
