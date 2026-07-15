@@ -437,6 +437,37 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 .rc-wide{grid-column:span 6}.rc-half{grid-column:span 6}.rc-third{grid-column:span 4}
 @media(max-width:820px){.rc-wide,.rc-half,.rc-third{grid-column:span 12}}
 
+/* Glassmorphism variant for #scholarship's cards sitting on the section's
+   photo background. .rsch/.rsch-cell are not shared with the visually
+   similar #questions .qgrid/.qcard pattern elsewhere on the page (confirmed
+   distinct class names), so this is fully scoped to this section already;
+   #scholarship.bg-photo is still used for extra safety/clarity. Headings
+   and body copy stay var(--navy)/var(--text) per the brief, so - as with
+   the "Things My Patients Have Taught Me" section - the glass tint here is
+   light/white rather than navy. Blur is applied per-cell (not one wrapped
+   panel), per the brief. Solid fallback first for browsers/devices without
+   backdrop-filter support. */
+#scholarship.bg-photo{
+  position:relative;
+  background-image:linear-gradient(135deg,rgba(247,243,234,.92) 0%,rgba(242,233,211,.8) 45%,rgba(235,223,199,.6) 100%),url('images/Houston-International.jpg');
+  background-size:cover;
+  background-position:center 32%;
+  background-repeat:no-repeat;
+  background-attachment:scroll;
+}
+#scholarship.bg-photo .rsch{background:rgba(201,165,92,.18);border-color:rgba(201,165,92,.35)}
+#scholarship.bg-photo .rsch-cell{background:rgba(255,255,255,.55)}
+@supports (backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px)){
+  #scholarship.bg-photo .rsch-cell{
+    background:rgba(255,255,255,.35);
+    backdrop-filter:blur(16px) saturate(1.1);
+    -webkit-backdrop-filter:blur(16px) saturate(1.1);
+  }
+}
+@media(max-width:640px){
+  #scholarship.bg-photo{background-position:center 26%}
+}
+
 /* ---- Legacy ---- */
 .legacy{background:linear-gradient(135deg,#0a1425,#16264a);color:var(--white);text-align:center;position:relative;overflow:hidden}
 .legacy::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 50% 30%,rgba(201,165,92,.16),transparent 60%);pointer-events:none}
@@ -958,7 +989,7 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 </section>
 
 <!-- RESEARCH & SCHOLARSHIP -->
-<section class="block" id="scholarship">
+<section class="block bg-photo" id="scholarship">
   <div class="container">
     <div class="center">
       <div class="section-label">Research &amp; Scholarship</div>
