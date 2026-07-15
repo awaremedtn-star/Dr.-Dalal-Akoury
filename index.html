@@ -431,6 +431,12 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 .jmile b{font-family:var(--display);font-style:italic;font-weight:400;font-size:1.15rem;color:var(--navy)}
 @media(max-width:900px){.jchap{grid-template-columns:1fr;gap:32px;padding:44px 0}.jchap.alt .jmedia{order:0}.jmedia img{height:400px}.jmedia .jnum{font-size:4rem;top:-18px}}
 
+/* #research reuses the shared Oxford stage photo (also used as the #why
+   background) — object-position only, so the shared file itself and the
+   #why section stay untouched. Panned as far left as object-fit:cover
+   allows, to favor Dr. Akoury at the podium over the projector screen. */
+#research .jmedia img{object-position:0% 48%}
+
 /* ---- Research & Scholarship ---- */
 .rsch{display:grid;grid-template-columns:repeat(12,1fr);gap:2px;margin-top:52px;background:var(--border);border:1px solid var(--border)}
 .rsch-cell{background:var(--white);padding:40px 36px}
@@ -900,8 +906,8 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
         </div>
       </div>
 
-      <div class="jchap reveal">
-        <div class="jmedia"><div class="jnum">03</div><img src="images/Dr.DalalAkoury-Speaker-Functional-Medicine.jpg" alt="Dr. Dalal Akoury presenting research"></div>
+      <div class="jchap reveal" id="research">
+        <div class="jmedia"><div class="jnum">03</div><img src="assets/images/oxford-stage.jpg" alt="Dr. Dalal Akoury speaking on stage at Oxford" loading="lazy"></div>
         <div>
           <div class="jphase">Research &amp; Discovery</div>
           <h3>Asking what lies beneath the disease</h3>
