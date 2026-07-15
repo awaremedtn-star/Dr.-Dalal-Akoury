@@ -321,6 +321,24 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 .media-item:hover{border-color:var(--gold);background:var(--navy);color:var(--gold-light)}
 @media(max-width:700px){.media-row{grid-template-columns:1fr 1fr}}
 
+/* ---- Teaching gallery (placeholder — no real photos yet) ----
+   Once real photos replace these slots, swap .gal-photo-slot's hover
+   treatment for the .gitem/.goverlay populated-gallery pattern used by
+   the "Moments Along the Way" gallery above (image zoom + gradient
+   caption overlay) instead of keeping this placeholder-specific animation. */
+.teaching-gallery{padding:100px 0}
+.gallery-grid-10{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+@media(max-width:1024px){.gallery-grid-10{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){.gallery-grid-10{grid-template-columns:repeat(2,1fr)}}
+.gal-card{position:relative;border:1px dashed var(--border);border-radius:6px;overflow:hidden;background:var(--white);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.gal-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.gal-photo-slot{aspect-ratio:4/5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--cream);color:var(--text-muted);transition:background .3s var(--ease)}
+.gal-card:hover .gal-photo-slot{background:var(--gold-pale)}
+.gal-plus{font-family:var(--display);font-size:2rem;line-height:1;color:var(--gold);transition:transform .3s var(--ease)}
+.gal-card:hover .gal-plus{transform:scale(1.15) rotate(45deg)}
+.gal-slot-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--text-muted)}
+.gal-caption-slot{padding:12px 14px;font-family:var(--display);font-style:italic;font-size:12.5px;color:var(--text-muted);text-align:center;border-top:1px dashed var(--border)}
+
 /* ---- Video section ---- */
 .videos{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
 .vcard{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:16/10;background:var(--navy);border:1px solid rgba(201,165,92,.25)}
@@ -1038,6 +1056,84 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
       <div class="media-item">ABC</div>
       <div class="media-item">WABC Radio</div>
       <div class="media-item">National Broadcasts</div>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHING GALLERY (placeholder — no real photos yet) -->
+<section class="block teaching-gallery">
+  <div class="container">
+    <div class="gallery-grid-10">
+      <div class="gal-card">
+        <div class="gal-photo-slot" aria-label="Photo placeholder">
+          <span class="gal-plus">+</span>
+          <span class="gal-slot-label">Add Photo</span>
+        </div>
+        <div class="gal-caption-slot">Caption</div>
+      </div>
+      <div class="gal-card">
+        <div class="gal-photo-slot" aria-label="Photo placeholder">
+          <span class="gal-plus">+</span>
+          <span class="gal-slot-label">Add Photo</span>
+        </div>
+        <div class="gal-caption-slot">Caption</div>
+      </div>
+      <div class="gal-card">
+        <div class="gal-photo-slot" aria-label="Photo placeholder">
+          <span class="gal-plus">+</span>
+          <span class="gal-slot-label">Add Photo</span>
+        </div>
+        <div class="gal-caption-slot">Caption</div>
+      </div>
+      <div class="gal-card">
+        <div class="gal-photo-slot" aria-label="Photo placeholder">
+          <span class="gal-plus">+</span>
+          <span class="gal-slot-label">Add Photo</span>
+        </div>
+        <div class="gal-caption-slot">Caption</div>
+      </div>
+      <div class="gal-card">
+        <div class="gal-photo-slot" aria-label="Photo placeholder">
+          <span class="gal-plus">+</span>
+          <span class="gal-slot-label">Add Photo</span>
+        </div>
+        <div class="gal-caption-slot">Caption</div>
+      </div>
+      <div class="gal-card">
+        <div class="gal-photo-slot" aria-label="Photo placeholder">
+          <span class="gal-plus">+</span>
+          <span class="gal-slot-label">Add Photo</span>
+        </div>
+        <div class="gal-caption-slot">Caption</div>
+      </div>
+      <div class="gal-card">
+        <div class="gal-photo-slot" aria-label="Photo placeholder">
+          <span class="gal-plus">+</span>
+          <span class="gal-slot-label">Add Photo</span>
+        </div>
+        <div class="gal-caption-slot">Caption</div>
+      </div>
+      <div class="gal-card">
+        <div class="gal-photo-slot" aria-label="Photo placeholder">
+          <span class="gal-plus">+</span>
+          <span class="gal-slot-label">Add Photo</span>
+        </div>
+        <div class="gal-caption-slot">Caption</div>
+      </div>
+      <div class="gal-card">
+        <div class="gal-photo-slot" aria-label="Photo placeholder">
+          <span class="gal-plus">+</span>
+          <span class="gal-slot-label">Add Photo</span>
+        </div>
+        <div class="gal-caption-slot">Caption</div>
+      </div>
+      <div class="gal-card">
+        <div class="gal-photo-slot" aria-label="Photo placeholder">
+          <span class="gal-plus">+</span>
+          <span class="gal-slot-label">Add Photo</span>
+        </div>
+        <div class="gal-caption-slot">Caption</div>
+      </div>
     </div>
   </div>
 </section>
