@@ -76,6 +76,8 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .nav-cta{font-size:var(--fs-caption);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lapis-deep);background:var(--gold);padding:11px 16px;border-radius:var(--radius-btn);transition:background .2s var(--ease),transform .15s var(--ease);white-space:nowrap}
 .nav-cta:hover{background:var(--gold-light)}
 .nav-cta:active{transform:scale(.97)}
+html[dir="rtl"] .nav-links a{letter-spacing:0;font-family:var(--font-ar)}
+html[dir="rtl"] .nav-cta{font-family:var(--font-ar)}
 .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
 .burger span{width:23px;height:2px;background:#fff;border-radius:2px}
 .mnav{display:none;background:var(--lapis-deep);padding:8px 32px 26px}
@@ -97,6 +99,9 @@ button.nav-drop-trigger{background:none;border:none;cursor:pointer;font:inherit;
 .nav-drop.open .nav-drop-menu{opacity:1;visibility:visible;transform:none}
 .nav-drop-menu li a{display:block;padding:10px 14px;border-radius:6px;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:none;color:rgba(255,255,255,.82);transition:background .15s var(--ease),color .15s var(--ease)}
 .nav-drop-menu li a:hover,.nav-drop-menu li a.current{background:rgba(191,154,84,.12);color:var(--gold-light)}
+html[dir="rtl"] .nav-drop-trigger{letter-spacing:0}
+html[dir="rtl"] .nav-drop-menu{left:auto;right:0}
+html[dir="rtl"] .nav-drop-menu li a{letter-spacing:0}
 .mnav-group-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;color:rgba(255,255,255,.85);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.08)}
 button.mnav-group-trigger{background:none;border:none;font:inherit;padding:13px 0;cursor:pointer}
 .mnav-group-trigger .chev{transition:transform .2s var(--ease)}
@@ -108,6 +113,8 @@ button.mnav-group-trigger{background:none;border:none;font:inherit;padding:13px 
 .mnav-group.open .mnav-submenu{display:block}
 .mnav-submenu a{padding:11px 0;font-size:.78rem;text-transform:none;letter-spacing:.02em}
 .mnav-submenu a.current,.mnav-group-trigger.current{color:var(--gold-light)}
+html[dir="rtl"] .mnav-submenu{padding-left:0;padding-right:16px}
+html[dir="rtl"] .mnav-group-label,html[dir="rtl"] .mnav-group-caret{letter-spacing:0}
 @media(max-width:1760px){.nav-cta.desk{display:none}}
 @media(max-width:1300px){.nav-links{display:none}.burger{display:flex}}
 
@@ -670,17 +677,6 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
     </li>
     <li class="nav-drop">
       <button class="nav-drop-trigger" aria-haspopup="true" aria-expanded="false">
-        <span>Media</span>
-        <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <ul class="nav-drop-menu">
-        <li><a href="interviews.html">Interviews</a></li>
-        <li><a href="media.html">Press &amp; Photos</a></li>
-      </ul>
-    </li>
-    <li><a href="investment.html">Investment</a></li>
-    <li class="nav-drop">
-      <button class="nav-drop-trigger" aria-haspopup="true" aria-expanded="false">
         <span>Egypt Coming Back</span>
         <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
@@ -689,6 +685,7 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
         <li><a href="jt-foxx-egypt.html">About JT Foxx</a></li>
         <li><a href="dr-akoury-bio.html">About Dr. Akoury</a></li>
         <li><a href="coming-home.html">Coming Home</a></li>
+        <li><a href="investment.html">Investment</a></li>
       </ul>
     </li>
     <li class="nav-drop">
@@ -726,17 +723,6 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
   </div>
   <div class="mnav-group">
     <button class="mnav-group-trigger" aria-expanded="false">
-      <span>Media</span>
-      <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-    <div class="mnav-submenu">
-      <a href="interviews.html">Interviews</a>
-      <a href="media.html">Press &amp; Photos</a>
-    </div>
-  </div>
-  <a href="investment.html">Investment</a>
-  <div class="mnav-group">
-    <button class="mnav-group-trigger" aria-expanded="false">
       <span>Egypt Coming Back</span>
       <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
@@ -745,6 +731,7 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
       <a href="jt-foxx-egypt.html">About JT Foxx</a>
       <a href="dr-akoury-bio.html">About Dr. Akoury</a>
       <a href="coming-home.html">Coming Home</a>
+      <a href="investment.html">Investment</a>
     </div>
   </div>
   <div class="mnav-group">
