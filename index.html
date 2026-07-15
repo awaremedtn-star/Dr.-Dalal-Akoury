@@ -324,23 +324,27 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 .press-row li:hover img{opacity:1;transform:translateY(-2px)}
 @media(max-width:640px){.press-row li{width:calc(50% - 14px);height:58px}}
 
-/* ---- Teaching gallery (placeholder — no real photos yet) ----
-   Once real photos replace these slots, swap .gal-photo-slot's hover
-   treatment for the .gitem/.goverlay populated-gallery pattern used by
-   the "Moments Along the Way" gallery above (image zoom + gradient
-   caption overlay) instead of keeping this placeholder-specific animation. */
-.teaching-gallery{padding:100px 0}
-.gallery-grid-10{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
-@media(max-width:1024px){.gallery-grid-10{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:640px){.gallery-grid-10{grid-template-columns:repeat(2,1fr)}}
-.gal-card{position:relative;border:1px dashed var(--border);border-radius:6px;overflow:hidden;background:var(--white);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
-.gal-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
-.gal-photo-slot{aspect-ratio:4/5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--cream);color:var(--text-muted);transition:background .3s var(--ease)}
-.gal-card:hover .gal-photo-slot{background:var(--gold-pale)}
-.gal-plus{font-family:var(--display);font-size:2rem;line-height:1;color:var(--gold);transition:transform .3s var(--ease)}
-.gal-card:hover .gal-plus{transform:scale(1.15) rotate(45deg)}
-.gal-slot-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--text-muted)}
-.gal-caption-slot{padding:12px 14px;font-family:var(--display);font-style:italic;font-size:12.5px;color:var(--text-muted);text-align:center;border-top:1px dashed var(--border)}
+/* ---- Photo Journal — bento gallery (placeholder — no real photos yet) ----
+   Once real photos replace these slots, swap each .bento-ph placeholder
+   for an <img> (object-fit:cover, filling .bento-tile) and drop the
+   placeholder icon/label — the .bento-cap overlay is already the same
+   gradient-caption pattern as .gitem/.goverlay above, so it carries over
+   unchanged. */
+.bento-gallery{padding:128px 0}
+.bento-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;grid-auto-flow:dense;gap:18px;margin-top:52px}
+.bento-tile{position:relative;border-radius:6px;overflow:hidden;background:rgba(201,165,92,.07);border:1px solid rgba(201,165,92,.22);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.bento-tile:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.bento-xl{grid-column:span 2;grid-row:span 2}
+.bento-lg{grid-column:span 2;grid-row:span 1}
+.bento-md{grid-column:span 1;grid-row:span 2}
+.bento-sm{grid-column:span 1;grid-row:span 1}
+.bento-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:rgba(201,165,92,.55)}
+.bento-ph svg{width:32px;height:32px}
+.bento-xl .bento-ph svg,.bento-lg .bento-ph svg{width:44px;height:44px}
+.bento-ph span{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+.bento-cap{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;background:linear-gradient(0deg,rgba(10,20,37,.88) 0%,rgba(10,20,37,0) 100%);font-size:11.5px;letter-spacing:.06em;color:var(--gold-pale)}
+@media(max-width:980px){.bento-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.bento-grid{grid-template-columns:1fr;grid-auto-rows:240px}.bento-tile{grid-column:1!important;grid-row:span 1!important}}
 
 /* ---- Video section ---- */
 .videos{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
@@ -1089,7 +1093,66 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
         <span class="venue">HealPreneur Magazine — Founder</span>
       </div>
     </div>
-    <div class="center" style="margin-top:70px">
+  </div>
+</section>
+
+<!-- PHOTO JOURNAL (bento placeholder gallery — no real photos yet) -->
+<section class="block bg-navy bento-gallery" id="photo-journal">
+  <div class="container">
+    <div class="center">
+      <div class="section-label">Photo Journal</div>
+      <h2 class="sh">Moments from the <em>Journey</em></h2>
+      <p class="lead-p">A visual record of four decades on the world's medical stages — photographs to be added here as they're archived.</p>
+    </div>
+    <div class="bento-grid">
+      <div class="bento-tile bento-xl">
+        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
+        <div class="bento-cap">Oxford University</div>
+      </div>
+      <div class="bento-tile bento-md">
+        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
+        <div class="bento-cap">Cambridge · Churchill College</div>
+      </div>
+      <div class="bento-tile bento-sm">
+        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
+        <div class="bento-cap">A4M Conference</div>
+      </div>
+      <div class="bento-tile bento-sm">
+        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
+        <div class="bento-cap">IOICP Symposium</div>
+      </div>
+      <div class="bento-tile bento-lg">
+        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
+        <div class="bento-cap">World Cancer Congress — Shanghai</div>
+      </div>
+      <div class="bento-tile bento-sm">
+        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
+        <div class="bento-cap">BSAAM London</div>
+      </div>
+      <div class="bento-tile bento-sm">
+        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
+        <div class="bento-cap">Royal Society of Medicine</div>
+      </div>
+      <div class="bento-tile bento-lg">
+        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
+        <div class="bento-cap">New York Academy of Medicine</div>
+      </div>
+      <div class="bento-tile bento-lg">
+        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
+        <div class="bento-cap">London Stock Exchange</div>
+      </div>
+      <div class="bento-tile bento-xl">
+        <div class="bento-ph" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg><span>Image</span></div>
+        <div class="bento-cap">HealPreneur Magazine</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NATIONAL MEDIA -->
+<section class="block bg-cream" id="seen-heard">
+  <div class="container">
+    <div class="center">
       <div class="section-label">Trusted Voice in National Media</div>
       <h2 class="sh">Seen &amp; <em>Heard</em></h2>
     </div>
@@ -1107,84 +1170,6 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
       <li><img src="assets/images/press/press-ksla12.jpg" alt="KSLA 12 News" loading="lazy" onerror="this.parentElement.style.display='none'"/></li>
       <li><img src="assets/images/press/press-abc7.jpg" alt="ABC 7 News" loading="lazy" onerror="this.parentElement.style.display='none'"/></li>
     </ul>
-  </div>
-</section>
-
-<!-- TEACHING GALLERY (placeholder — no real photos yet) -->
-<section class="block teaching-gallery">
-  <div class="container">
-    <div class="gallery-grid-10">
-      <div class="gal-card">
-        <div class="gal-photo-slot" aria-label="Photo placeholder">
-          <span class="gal-plus">+</span>
-          <span class="gal-slot-label">Add Photo</span>
-        </div>
-        <div class="gal-caption-slot">Caption</div>
-      </div>
-      <div class="gal-card">
-        <div class="gal-photo-slot" aria-label="Photo placeholder">
-          <span class="gal-plus">+</span>
-          <span class="gal-slot-label">Add Photo</span>
-        </div>
-        <div class="gal-caption-slot">Caption</div>
-      </div>
-      <div class="gal-card">
-        <div class="gal-photo-slot" aria-label="Photo placeholder">
-          <span class="gal-plus">+</span>
-          <span class="gal-slot-label">Add Photo</span>
-        </div>
-        <div class="gal-caption-slot">Caption</div>
-      </div>
-      <div class="gal-card">
-        <div class="gal-photo-slot" aria-label="Photo placeholder">
-          <span class="gal-plus">+</span>
-          <span class="gal-slot-label">Add Photo</span>
-        </div>
-        <div class="gal-caption-slot">Caption</div>
-      </div>
-      <div class="gal-card">
-        <div class="gal-photo-slot" aria-label="Photo placeholder">
-          <span class="gal-plus">+</span>
-          <span class="gal-slot-label">Add Photo</span>
-        </div>
-        <div class="gal-caption-slot">Caption</div>
-      </div>
-      <div class="gal-card">
-        <div class="gal-photo-slot" aria-label="Photo placeholder">
-          <span class="gal-plus">+</span>
-          <span class="gal-slot-label">Add Photo</span>
-        </div>
-        <div class="gal-caption-slot">Caption</div>
-      </div>
-      <div class="gal-card">
-        <div class="gal-photo-slot" aria-label="Photo placeholder">
-          <span class="gal-plus">+</span>
-          <span class="gal-slot-label">Add Photo</span>
-        </div>
-        <div class="gal-caption-slot">Caption</div>
-      </div>
-      <div class="gal-card">
-        <div class="gal-photo-slot" aria-label="Photo placeholder">
-          <span class="gal-plus">+</span>
-          <span class="gal-slot-label">Add Photo</span>
-        </div>
-        <div class="gal-caption-slot">Caption</div>
-      </div>
-      <div class="gal-card">
-        <div class="gal-photo-slot" aria-label="Photo placeholder">
-          <span class="gal-plus">+</span>
-          <span class="gal-slot-label">Add Photo</span>
-        </div>
-        <div class="gal-caption-slot">Caption</div>
-      </div>
-      <div class="gal-card">
-        <div class="gal-photo-slot" aria-label="Photo placeholder">
-          <span class="gal-plus">+</span>
-          <span class="gal-slot-label">Add Photo</span>
-        </div>
-        <div class="gal-caption-slot">Caption</div>
-      </div>
-    </div>
   </div>
 </section>
 
