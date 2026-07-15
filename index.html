@@ -1333,12 +1333,12 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
   // from the neutral placeholder state to a real YouTube thumbnail; no
   // other code needs to change.
   const WATCH_VIDEOS = [
-    { id: 'PLACEHOLDER_1',  tag: 'Keynote',      title: 'Video Title Placeholder' },
+    { id: '3NX4SkULAF0',    tag: 'Keynote',      title: 'Video Title Placeholder' },
     { id: 'PLACEHOLDER_2',  tag: 'Interview',    title: 'Video Title Placeholder' },
     { id: 'PLACEHOLDER_3',  tag: 'Conversation', title: 'Video Title Placeholder' },
     { id: 'PLACEHOLDER_4',  tag: 'Lecture',      title: 'Video Title Placeholder' },
     { id: 'PLACEHOLDER_5',  tag: 'Interview',    title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_6',  tag: 'Keynote',      title: 'Video Title Placeholder' },
+    { id: '8XU0aCKmZ0o', start: 15, tag: 'Keynote', title: 'Video Title Placeholder' },
     { id: 'PLACEHOLDER_7',  tag: 'Conversation', title: 'Video Title Placeholder' },
     { id: 'PLACEHOLDER_8',  tag: 'Lecture',      title: 'Video Title Placeholder' },
     { id: 'PLACEHOLDER_9',  tag: 'Interview',    title: 'Video Title Placeholder' },
@@ -1370,7 +1370,7 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
       tile.className = 'b-tile reveal' + (i % 5 === 0 ? ' b-feature' : '');
       tile.setAttribute('aria-label', 'Play video: ' + v.title);
       tile.innerHTML =
-        (isReal(v.id) ? '<img src="https://img.youtube.com/vi/' + v.id + '/hqdefault.jpg" alt="" loading="lazy">' : '') +
+        (isReal(v.id) ? '<img src="https://img.youtube.com/vi/' + v.id + '/maxresdefault.jpg" alt="" loading="lazy">' : '') +
         '<span class="b-play" aria-hidden="true"></span>' +
         '<span class="b-meta"><span class="b-tag">' + v.tag + '</span><span class="b-title">' + v.title + '</span></span>';
       tile.addEventListener('click', () => openVideo(v));
@@ -1378,8 +1378,9 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
     });
 
     function openVideo(v){
+      const src = 'https://www.youtube.com/embed/' + v.id + '?autoplay=1' + (v.start ? '&start=' + v.start : '');
       modalInner.innerHTML = isReal(v.id)
-        ? '<iframe src="https://www.youtube.com/embed/' + v.id + '?autoplay=1" title="' + v.title + '" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>'
+        ? '<iframe src="' + src + '" title="' + v.title + '" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>'
         : '<div class="vmodal-soon">' + v.title + '<span>Video coming soon</span></div>';
       modal.classList.add('open');
       modal.setAttribute('aria-hidden', 'false');
