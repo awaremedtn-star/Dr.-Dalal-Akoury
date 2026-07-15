@@ -380,6 +380,23 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 .qcard .qlink::before{content:'';width:22px;height:1px;background:var(--gold)}
 @media(max-width:820px){.qgrid{grid-template-columns:1fr}}
 
+/* Scoped slide-in stagger for the Questions cards only. Cards already carry
+   the site-wide .reveal class (fade+translateY, single-trigger via the
+   shared IntersectionObserver in assets/app.js) - this only overrides the
+   pre-animation offset, duration and easing for this section's cards
+   specifically (higher specificity via #questions, so .reveal itself and
+   every other section using it elsewhere on the page are untouched), and
+   adds a same-row stagger between the left/right card in each pair. */
+#questions .qcard.reveal{
+  transform:translateY(34px);
+  transition:opacity .6s cubic-bezier(.16,.8,.24,1),transform .6s cubic-bezier(.16,.8,.24,1);
+}
+#questions .qcard.reveal.in{transform:none}
+#questions .qcard.reveal:nth-child(even){transition-delay:.1s}
+@media(prefers-reduced-motion:reduce){
+  #questions .qcard.reveal{opacity:1;transform:none;transition:none}
+}
+
 /* ---- Principles (My Philosophy) ---- */
 .principles{max-width:860px;margin:56px auto 0;display:grid;gap:2px;background:rgba(240,228,196,.5);border:1px solid var(--border)}
 .principle{background:rgba(255,255,255,.6);padding:34px 40px;display:grid;grid-template-columns:64px 1fr;gap:22px;align-items:baseline;transition:background .35s}
