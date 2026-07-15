@@ -229,6 +229,14 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 @media(max-width:860px){.pillars{grid-template-columns:1fr}}
 
 /* ---- Framework ---- */
+#framework.bg-photo{
+  position:relative;
+  background-image:linear-gradient(90deg,rgba(10,20,37,.95) 0%,rgba(10,20,37,.88) 45%,rgba(10,20,37,.78) 100%),url('images/Day5-RSM-on-stage-8.jpg');
+  background-size:cover;
+  background-position:center 38%;
+  background-repeat:no-repeat;
+  background-attachment:scroll;
+}
 .fw-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;margin-top:52px;align-items:start}
 .fw-intro p{font-size:14.5px;line-height:1.95;color:var(--text);margin-bottom:18px}
 .fw-intro p strong{color:var(--ink);font-weight:600}
@@ -239,6 +247,34 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 .fw-item h3{font-family:var(--display);font-size:1.4rem;font-weight:500;color:var(--navy);margin-bottom:5px}
 .fw-item p{font-size:12.5px;color:var(--text);line-height:1.7}
 @media(max-width:880px){.fw-grid{grid-template-columns:1fr;gap:36px}}
+
+/* Glassmorphism variant for the framework list sitting on the #framework photo
+   background. Blur is applied per-row (keeps the existing hover-per-row
+   mechanic untouched); the 2px grid-gap divider lines just get recolored to a
+   translucent gold so they stay legible against the photo. The source photo
+   is a busy, brightly-colored packed audience, so the glass tint here is
+   navy (not white) and pushed to higher opacity + a wider blur than a plainer
+   background would need, to fully mute the crowd behind the text. Solid navy
+   fallback first for browsers/devices without backdrop-filter support. */
+#framework.bg-photo .fw-intro p{color:rgba(255,255,255,.88)}
+#framework.bg-photo .fw-intro p strong{color:var(--white)}
+#framework.bg-photo .fw-list{background:rgba(201,165,92,.16);border-color:rgba(201,165,92,.4)}
+#framework.bg-photo .fw-item{background:rgba(8,16,30,.88)}
+#framework.bg-photo .fw-item:hover{background:rgba(8,16,30,.94)}
+#framework.bg-photo .fw-item b{color:var(--gold-light)}
+#framework.bg-photo .fw-item h3{color:var(--white)}
+#framework.bg-photo .fw-item p{color:rgba(255,255,255,.85)}
+@supports (backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px)){
+  #framework.bg-photo .fw-item{
+    background:rgba(8,16,30,.62);
+    backdrop-filter:blur(22px) saturate(1.05);
+    -webkit-backdrop-filter:blur(22px) saturate(1.05);
+  }
+  #framework.bg-photo .fw-item:hover{background:rgba(8,16,30,.72)}
+}
+@media(max-width:640px){
+  #framework.bg-photo{background-position:center 32%}
+}
 
 /* ---- Gallery (moments) ---- */
 .gallery{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:200px;gap:12px;margin-top:52px}
@@ -680,7 +716,7 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 </section>
 
 <!-- CLINICAL FRAMEWORK -->
-<section class="block" id="framework">
+<section class="block bg-navy bg-photo" id="framework">
   <div class="container">
     <div class="center">
       <div class="section-label">The Clinical Philosophy</div>
