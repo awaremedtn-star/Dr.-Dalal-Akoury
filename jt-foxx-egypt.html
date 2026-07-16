@@ -168,13 +168,49 @@
   .netintro .label{color:var(--gold-soft)}
   .netintro h2{color:#fff;font-size:clamp(28px,4.2vw,52px);max-width:24ch;margin:0 auto 20px}
   .netintro p{color:#c9d3e2;max-width:58ch;margin:0 auto;font-family:var(--sans);font-weight:300;font-size:17px}
-  .scene{position:relative;min-height:78vh;display:flex;align-items:flex-end;background:#000 center/cover no-repeat}
+  /* center/cover's default 50% vertical position crops straight through
+     both subjects' faces on a min-height:78vh band (the source photos
+     are close-up portraits with both faces in the upper half, not
+     evenly distributed top-to-bottom) - biasing toward the top keeps
+     faces in frame instead. */
+  .scene{position:relative;min-height:78vh;display:flex;align-items:flex-end;background:#000 center 18%/cover no-repeat}
   .scene::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(4,9,20,.93),rgba(4,9,20,.12) 58%,rgba(4,9,20,.4))}
   .scene .cap{position:relative;z-index:2;padding:clamp(32px,6vw,88px);max-width:940px}
   .scene .cap .who{font-family:var(--sans);text-transform:uppercase;letter-spacing:.22em;font-size:12.5px;color:var(--gold-soft);font-weight:600;margin-bottom:14px}
   .scene .cap .line{font-family:var(--serif);font-weight:600;font-size:clamp(24px,3.4vw,46px);color:#fff;line-height:1.2;max-width:20ch}
   .scene .cap .sub{font-family:var(--sans);font-weight:300;color:#d7dfe9;margin-top:14px;font-size:16px;max-width:44ch}
   .scene .cap .sub b{color:var(--gold-soft);font-weight:500}
+
+  /* ---- Featured network moment (Howard Schultz) ----
+     Was previously the first of three full-bleed .scene bands, using
+     billionaires-05.jpg - a 250x200px thumbnail (confirmed no larger
+     version exists anywhere in this repo or its source branch). At that
+     resolution, cover-fitting it into a min-height:78vh full-width band
+     meant an ~8x upscale on top of a crop severe enough to cut through
+     both subjects' foreheads - which is the "blown up/cropped awkwardly"
+     problem. A CSS position fix alone can't solve this: the source is
+     both too low-resolution AND the wrong aspect ratio (roughly 5:4,
+     portrait-ish) for a wide cinematic band regardless of positioning.
+     So this one moment is a smaller, contained image+copy pairing
+     instead - matching this page's own .card/.imgwrap framing language
+     (small border-radius, overflow:hidden) and index.html's "Moments
+     Along the Way" gallery shadow/corner treatment - rather than forcing
+     an inadequate source into the same full-bleed treatment as the
+     other two (still-full-bleed) scenes, which have real resolution
+     (1000px) to support it. The media panel's aspect-ratio is set to
+     the source's own 5:4 exactly, so object-fit:cover crops nothing at
+     all: the complete, uncropped photo is shown, just scaled to a size
+     (~380px) where the resulting ~1.5x upscale reads as intentionally
+     soft rather than broken. */
+  .netfeature{background:var(--navy);padding:44px 26px 76px}
+  .netfeature-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,380px) 1fr;gap:52px;align-items:center}
+  .netfeature-media{aspect-ratio:5/4;border-radius:6px;overflow:hidden;box-shadow:0 24px 54px rgba(0,0,0,.4)}
+  .netfeature-media img{width:100%;height:100%;object-fit:cover;display:block}
+  .netfeature-copy .who{font-family:var(--sans);text-transform:uppercase;letter-spacing:.22em;font-size:12.5px;color:var(--gold-soft);font-weight:600;margin-bottom:14px}
+  .netfeature-copy .line{font-family:var(--serif);font-weight:600;font-size:clamp(22px,2.6vw,32px);color:#fff;line-height:1.25}
+  .netfeature-copy .sub{font-family:var(--sans);font-weight:300;color:#d7dfe9;margin-top:14px;font-size:16px;max-width:44ch}
+  .netfeature-copy .sub b{color:var(--gold-soft);font-weight:500}
+  @media(max-width:760px){.netfeature-grid{grid-template-columns:1fr;gap:26px}.netfeature-media{max-width:340px;margin:0 auto}}
 
   /* compact evidence */
   .more{background:var(--navy);padding:64px 0 100px}
@@ -434,13 +470,23 @@
   <p class="reveal d1">Each relationship below was earned over decades. Point that access at one country, and doors that usually take years to reach open in a single conversation.</p>
 </div>
 
-<section class="scene" style="background-image:url('https://drdalalakoury.com/assets/images/jt-foxx/billionaires-05.jpg')" aria-label="JT Foxx and Howard Schultz">
-  <div class="cap reveal"><div class="who">With Howard Schultz · Starbucks</div><div class="line">The people who build global brands take his call.</div><div class="sub">Evidence of a network built over decades — <b>the kind of access that opens conversations for Egypt.</b></div></div>
-</section>
-<section class="scene" style="background-image:url('https://drdalalakoury.com/assets/images/jt-foxx/ceos-04.jpg')" aria-label="JT Foxx and Mark Cuban">
+<div class="netfeature">
+  <div class="netfeature-grid reveal">
+    <div class="netfeature-media">
+      <img src="assets/images/jt-foxx/billionaires-05.jpg" alt="JT Foxx and Howard Schultz">
+    </div>
+    <div class="netfeature-copy">
+      <div class="who">With Howard Schultz · Starbucks</div>
+      <div class="line">The people who build global brands take his call.</div>
+      <div class="sub">Evidence of a network built over decades — <b>the kind of access that opens conversations for Egypt.</b></div>
+    </div>
+  </div>
+</div>
+
+<section class="scene" style="background-image:url('assets/images/jt-foxx/ceos-04.jpg')" aria-label="JT Foxx and Mark Cuban">
   <div class="cap reveal"><div class="who">With Mark Cuban · Investor</div><div class="line">The investors who back the future return his messages.</div><div class="sub">Relationships like these are <b>the doors that global capital usually waits behind.</b></div></div>
 </section>
-<section class="scene" style="background-image:url('https://drdalalakoury.com/assets/images/jt-foxx/billionaires-06.jpg')" aria-label="JT Foxx and Oprah Winfrey">
+<section class="scene" style="background-image:url('assets/images/jt-foxx/billionaires-06.jpg')" aria-label="JT Foxx and Oprah Winfrey">
   <div class="cap reveal"><div class="who">With Oprah Winfrey · Harpo / OWN</div><div class="line">Real influence is simply trust, multiplied.</div><div class="sub">A network earned over a lifetime — <b>and a reputation that opens doors on Egypt's behalf.</b></div></div>
 </section>
 
