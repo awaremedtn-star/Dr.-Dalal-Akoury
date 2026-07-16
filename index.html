@@ -373,10 +373,41 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
    assets/style.css's .press-row/.press-strip; that file isn't linked from
    this page, so the rules are copied in verbatim rather than reworked). */
 .press-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px;list-style:none;margin-top:28px}
-.press-row li{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:14px 22px;display:flex;align-items:center;justify-content:center;height:64px;width:150px}
+.press-row li{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:14px 22px;display:flex;align-items:center;justify-content:center;height:64px;width:150px;position:relative;z-index:1;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.press-row li:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(15,27,51,.14)}
 .press-row img{max-height:32px;max-width:110px;object-fit:contain;opacity:.92;transition:opacity .25s var(--ease),transform .25s var(--ease)}
 .press-row li:hover img{opacity:1;transform:translateY(-2px)}
 @media(max-width:640px){.press-row li{width:calc(50% - 14px);height:58px}}
+
+/* ---- Seen & Heard parallax background ----
+   .shp-bg is taller than the section (inset -90px top/bottom) and its own
+   translateY is nudged by scroll position via JS (initParallaxSection
+   below, shared with #students further down), rather than
+   background-attachment:fixed, which doesn't work on
+   mobile Safari. The overlay is a translucent *cream* wash (not a dark
+   scrim) since this section's heading/label are dark navy/gold-deep,
+   styled for the light bg-cream sections elsewhere on the page - a dark
+   overlay would fight the text color instead of protecting it. Logo
+   cards stay solid white/opaque per the brief's recommended default.
+
+   The gradient stays fully opaque (pure cream, no photo showing through)
+   through the label+heading block specifically, rather than a uniform
+   wash: .section-label's gold-deep-on-cream is only ~3.6:1 contrast even
+   at 100% cream - already the site's existing baseline for this label
+   everywhere else it's used, not something this section can improve on
+   its own, but any photo bleeding through drops it well below that. A
+   uniform ~70-85% wash measured out to as low as ~2:1 behind the text
+   (confirmed by sampling rendered pixels), so instead the top ~50% (the
+   text block's own footprint, confirmed via boundingBox) stays fully
+   opaque, then fades down to .4-.5 through the logo grid, where the
+   cards themselves - solid white, unaffected by what's behind them -
+   are what's actually protecting legibility, freeing that zone to show
+   the photo clearly. */
+.shp{position:relative;overflow:hidden}
+.shp-bg{position:absolute;left:0;right:0;top:-90px;bottom:-90px;background-size:cover;background-position:center;will-change:transform}
+.shp-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(247,243,234,1) 0%,rgba(247,243,234,1) 50%,rgba(247,243,234,.4) 70%,rgba(247,243,234,.5) 100%);z-index:1}
+.shp .container{position:relative;z-index:2}
+@media(prefers-reduced-motion:reduce){.shp-bg{top:0;bottom:0}}
 
 /* ---- Watch bento grid ---- */
 /* Reuses the previous .vcard component's exact visual language (dark card,
@@ -713,6 +744,63 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 @media(max-width:640px){
   #taught.bg-photo{background-position:center 25%}
   #taught.bg-photo .taught{padding:10px 26px}
+}
+
+/* ---- Students section: parallax photo + glass panel ----
+   Reuses two existing patterns rather than inventing new ones:
+   1) the .shp/.shp-bg/.shp-overlay scroll-parallax mechanics built for
+      #seen-heard (see that section's own comment above) - #students
+      gets the .shp marker class too, and initParallaxSection() in the
+      tail script is called a second time for it.
+   2) #taught.bg-photo's own cream-radial-gradient + glass-panel
+      treatment (same section, just above) - the same rgba/border/blur
+      values are reused verbatim here via #students.bg-photo so the
+      two "photo behind a quote block" sections on this page read as
+      one consistent design language, not two different ones. Quote
+      text stays var(--navy)/var(--gold-deep), unchanged, so - same as
+      #taught - the panel is a light/white tint, not the navy tint
+      .shp-overlay defaults to for #seen-heard's white-card design;
+      overridden here with the exact #taught.bg-photo gradient. */
+#students.bg-photo .shp-overlay{background:radial-gradient(ellipse 72% 78% at 50% 42%,rgba(247,243,234,.92) 0%,rgba(242,233,211,.82) 45%,rgba(235,223,199,.62) 100%)}
+#students.bg-photo .shp-bg{background-position:center 38%}
+#students.bg-photo .taught{background:rgba(255,255,255,.55);border:1px solid rgba(201,165,92,.4);border-radius:8px;padding:14px 48px}
+@supports (backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px)){
+  #students.bg-photo .taught{
+    background:rgba(255,255,255,.35);
+    backdrop-filter:blur(18px) saturate(1.1);
+    -webkit-backdrop-filter:blur(18px) saturate(1.1);
+  }
+}
+@media(max-width:640px){
+  #students.bg-photo .shp-bg{background-position:center 30%}
+  #students.bg-photo .taught{padding:10px 26px}
+}
+
+/* Scoped stagger for #students only, reusing the exact #questions
+   .qcard.reveal technique above (higher-specificity override of the
+   pre-animation offset/duration/easing, plus a per-row transition-delay)
+   rather than a new pattern - #taught (same .taught-item markup, a
+   different section) is untouched since these rules are ID-scoped. */
+#students .taught-item.reveal{
+  transform:translateY(34px);
+  transition:opacity .6s cubic-bezier(.16,.8,.24,1),transform .6s cubic-bezier(.16,.8,.24,1);
+}
+#students .taught-item.reveal.in{transform:none}
+#students .taught-item.reveal:nth-child(2){transition-delay:.12s}
+#students .taught-item.reveal:nth-child(3){transition-delay:.24s}
+
+/* Golden Thread under each row's gold key phrase, reusing the
+   .principle .prn-thread technique (a short absolutely-positioned line
+   that grows to the element's own width via a width transition) - here
+   triggered by the row's own scroll-reveal ("draws in gently on
+   scroll") via ::after so no extra markup is needed inside the
+   existing <em> tags. */
+#students .taught-item p em{position:relative;display:inline-block}
+#students .taught-item p em::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--gold);transition:width .6s ease-out .3s}
+#students .taught-item.reveal.in p em::after{width:100%}
+@media(prefers-reduced-motion:reduce){
+  #students .taught-item.reveal{opacity:1;transform:none;transition:none}
+  #students .taught-item p em::after{width:100%;transition:none}
 }
 </style>
 </head>
@@ -1264,7 +1352,9 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 </section>
 
 <!-- NATIONAL MEDIA -->
-<section class="block bg-cream" id="seen-heard">
+<section class="block bg-cream shp" id="seen-heard">
+  <div class="shp-bg" id="shpBg" data-bg="images/media-interview-studio.jpg" aria-hidden="true"></div>
+  <div class="shp-overlay" aria-hidden="true"></div>
   <div class="container">
     <div class="center">
       <div class="section-label">Trusted Voice in National Media</div>
@@ -1325,7 +1415,9 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 </section>
 
 <!-- WHAT I HOPE MY STUDENTS REMEMBER -->
-<section class="block" id="students">
+<section class="block bg-photo shp" id="students">
+  <div class="shp-bg" id="studentsBg" data-bg="images/for-students-london.jpg" aria-hidden="true"></div>
+  <div class="shp-overlay" aria-hidden="true"></div>
   <div class="container">
     <div class="center">
       <div class="section-label">What I Hope My Students Remember</div>
@@ -1570,6 +1662,53 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
       ensureLoaded(current, function(){ show(current); });
     }, DISPLAY_MS);
   })();
+
+  // Shared by every .shp (scroll-parallax) section - originally written
+  // just for #seen-heard, now reused for #students too rather than
+  // duplicating the same ~30 lines. Behavior is unchanged from the
+  // original: background photo is lazy-loaded via IntersectionObserver
+  // (800px rootMargin) rather than fetched on initial page load, then
+  // (unless prefers-reduced-motion) nudged via a clamped, rAF-throttled
+  // translateY as the section scrolls - clamped to MAX_OFFSET so it
+  // never exceeds .shp-bg's own -90px/-90px overscan and reveals a gap
+  // at the section's top/bottom edge, even scrolled far past.
+  function initParallaxSection(sectionId, bgId){
+    const section = document.getElementById(sectionId);
+    const bg = document.getElementById(bgId);
+    if (!section || !bg) return;
+
+    const src = bg.getAttribute('data-bg');
+    function load(){ if (src) bg.style.backgroundImage = "url('" + src + "')"; }
+    if ('IntersectionObserver' in window && src) {
+      const io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting) { load(); io.disconnect(); }
+        });
+      }, { rootMargin: '800px 0px' });
+      io.observe(section);
+    } else {
+      load();
+    }
+
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const MAX_OFFSET = 70;
+    let ticking = false;
+    function update(){
+      const r = section.getBoundingClientRect();
+      const raw = r.top * 0.3;
+      const offset = Math.max(-MAX_OFFSET, Math.min(MAX_OFFSET, raw));
+      bg.style.transform = 'translateY(' + offset + 'px)';
+      ticking = false;
+    }
+    function onScroll(){
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }
+    addEventListener('scroll', onScroll, { passive: true });
+    update();
+  }
+  initParallaxSection('seen-heard', 'shpBg');
+  initParallaxSection('students', 'studentsBg');
 </script>
 </body>
 </html>
