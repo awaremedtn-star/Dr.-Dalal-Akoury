@@ -1334,25 +1334,25 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
   // other code needs to change.
   const WATCH_VIDEOS = [
     { id: '3NX4SkULAF0',    tag: 'Keynote',      title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_2',  tag: 'Interview',    title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_3',  tag: 'Conversation', title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_4',  tag: 'Lecture',      title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_5',  tag: 'Interview',    title: 'Video Title Placeholder' },
+    { id: 'WNagrj1hkC8',  tag: 'Interview',    title: 'Video Title Placeholder' },
+    { id: '-nIXq9mgY7M',  tag: 'Conversation', title: 'Video Title Placeholder' },
+    { id: 'C3hGYeuOwUk',  tag: 'Lecture',      title: 'Video Title Placeholder' },
+    { id: 'iDxc_wHAHKc',  tag: 'Interview',    title: 'Video Title Placeholder' },
     { id: '8XU0aCKmZ0o', start: 15, tag: 'Keynote', title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_7',  tag: 'Conversation', title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_8',  tag: 'Lecture',      title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_9',  tag: 'Interview',    title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_10', tag: 'Keynote',      title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_11', tag: 'Conversation', title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_12', tag: 'Lecture',      title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_13', tag: 'Interview',    title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_14', tag: 'Keynote',      title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_15', tag: 'Conversation', title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_16', tag: 'Lecture',      title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_17', tag: 'Interview',    title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_18', tag: 'Keynote',      title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_19', tag: 'Conversation', title: 'Video Title Placeholder' },
-    { id: 'PLACEHOLDER_20', tag: 'Lecture',      title: 'Video Title Placeholder' }
+    { id: 'RZnWLxgEomU',  tag: 'Conversation', title: 'Video Title Placeholder' },
+    { id: 'IEDrK0e--2s',  tag: 'Lecture',      title: 'Video Title Placeholder' },
+    { id: '4FvtvPVe7Vc',  tag: 'Interview',    title: 'Video Title Placeholder' },
+    { id: 'WmjcMW398TA', tag: 'Keynote',      title: 'Video Title Placeholder' },
+    { id: 'TgKH26LrwUg', tag: 'Conversation', title: 'Video Title Placeholder' },
+    { id: '05Cnelq0Iq0', tag: 'Lecture',      title: 'Video Title Placeholder' },
+    { id: 'yIUfS5mW7E8', tag: 'Interview',    title: 'Video Title Placeholder' },
+    { id: '5bsE35lw2Vw', tag: 'Keynote',      title: 'Video Title Placeholder' },
+    { id: 'dswh2oINmVg', tag: 'Conversation', title: 'Video Title Placeholder' },
+    { id: 'xaC5X8C_uSw', tag: 'Lecture',      title: 'Video Title Placeholder' },
+    { id: 'FifV2lrDFmo', tag: 'Interview',    title: 'Video Title Placeholder' },
+    { id: 'Frmf-fs5zKE', tag: 'Keynote',      title: 'Video Title Placeholder' },
+    { id: 'dvsjsSVFURQ', tag: 'Conversation', title: 'Video Title Placeholder' },
+    { id: '4vMthy7bxWQ', tag: 'Lecture',      title: 'Video Title Placeholder' }
   ];
 
   (function initWatchBento(){
@@ -1370,7 +1370,7 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
       tile.className = 'b-tile reveal' + (i % 5 === 0 ? ' b-feature' : '');
       tile.setAttribute('aria-label', 'Play video: ' + v.title);
       tile.innerHTML =
-        (isReal(v.id) ? '<img src="https://img.youtube.com/vi/' + v.id + '/maxresdefault.jpg" alt="" loading="lazy">' : '') +
+        (isReal(v.id) ? '<img src="https://img.youtube.com/vi/' + v.id + '/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src=\'https://img.youtube.com/vi/' + v.id + '/hqdefault.jpg\'">' : '') +
         '<span class="b-play" aria-hidden="true"></span>' +
         '<span class="b-meta"><span class="b-tag">' + v.tag + '</span><span class="b-title">' + v.title + '</span></span>';
       tile.addEventListener('click', () => openVideo(v));
