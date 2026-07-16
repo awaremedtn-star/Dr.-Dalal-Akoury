@@ -316,6 +316,31 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 .venues{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
 .venue{border:1px solid var(--border);background:var(--white);padding:10px 18px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text);transition:all .3s;border-radius:2px}
 .venue:hover{border-color:var(--gold);color:var(--gold-deep);background:var(--gold-pale)}
+
+/* #media background photo + parallax — scoped to this section only.
+   Scrim is a top-heavy fade (not a full-section wash) so the photo reads
+   clearly: strongest directly behind the eyebrow/heading/paragraph, fading
+   to almost nothing by the time it reaches the venue pills, which already
+   sit on opaque white and don't need help. Parallax is a JS transform on
+   .media-bg (not background-attachment:fixed, which is unreliable on iOS
+   Safari); the -15% inset gives enough bleed that the translateY range
+   used in the script below never reveals an edge. prefers-reduced-motion
+   skips the script entirely, leaving a plain static photo. */
+#media.media-parallax{position:relative;overflow:hidden}
+#media .media-bg{
+  position:absolute;inset:-15% 0;
+  background-image:linear-gradient(180deg,rgba(247,243,234,.68) 0%,rgba(247,243,234,.56) 38%,rgba(247,243,234,.2) 68%,rgba(247,243,234,.03) 100%),url('images/Newyork-academy-medicine.jpg');
+  background-size:cover;
+  background-position:center 22%;
+  background-repeat:no-repeat;
+  z-index:0;
+}
+#media.media-parallax .container{position:relative;z-index:1}
+#media.media-parallax .section-label,
+#media.media-parallax h2.sh,
+#media.media-parallax .lead-p{text-shadow:0 2px 20px rgba(247,243,234,.85),0 1px 4px rgba(247,243,234,.95)}
+@media(prefers-reduced-motion:reduce){#media .media-bg{transform:none!important}}
+@media(max-width:640px){#media .media-bg{background-position:center 15%}}
 .media-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px}
 .media-item{background:var(--navy-deep);border:1px solid rgba(201,165,92,.2);border-radius:4px;padding:30px 20px;text-align:center;font-family:var(--display);font-size:1.4rem;color:var(--gold-pale);letter-spacing:.04em;transition:all .3s}
 .media-item:hover{border-color:var(--gold);background:var(--navy);color:var(--gold-light)}
@@ -1031,7 +1056,8 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 </section>
 
 <!-- SPEAKING + MEDIA -->
-<section class="block bg-cream" id="media">
+<section class="block bg-cream media-parallax" id="media">
+  <div class="media-bg" aria-hidden="true"></div>
   <div class="container">
     <div class="center">
       <div class="section-label">Teaching Around the World</div>
@@ -1255,6 +1281,31 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
   const revealHero = () => { if (!heroShown) { hero.classList.add('hero-reveal'); heroShown = true; } };
   window.addEventListener('scroll', () => { if (window.scrollY > 40) revealHero(); }, { passive: true });
   setTimeout(revealHero, 2600);
+
+  // "Sharing What I've Learned" background parallax — translateY on .media-bg,
+  // clamped to a small range so it never outruns the CSS bleed (-15% inset).
+  // Skipped entirely under prefers-reduced-motion, leaving a static photo.
+  const mediaSection = document.querySelector('#media.media-parallax');
+  const mediaBg = mediaSection && mediaSection.querySelector('.media-bg');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (mediaSection && mediaBg && !reduceMotion) {
+    let ticking = false;
+    let inView = false;
+    new IntersectionObserver((entries) => { inView = entries[0].isIntersecting; }, { rootMargin: '20% 0px' }).observe(mediaSection);
+    const applyParallax = () => {
+      ticking = false;
+      if (!inView) return;
+      const rect = mediaSection.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const center = rect.top + rect.height / 2 - vh / 2;
+      const offset = Math.max(-60, Math.min(60, center * -0.15));
+      mediaBg.style.transform = `translateY(${offset}px)`;
+    };
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(applyParallax); }
+    }, { passive: true });
+    applyParallax();
+  }
 </script>
 </body>
 </html>
