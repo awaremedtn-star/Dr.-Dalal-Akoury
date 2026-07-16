@@ -621,14 +621,27 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
    other .fullband quote sections are untouched. Same max-width fix as the
    two sections above (shared fb-in max-width:22ch is too narrow for this
    quote's length at the shared clamp() font-size and was forcing a
-   near-one-word-per-line wrap). The photo behind this one is also a very
-   bright, busy step-and-repeat backdrop (near-white, tiled logos) rather
-   than the darker stage photos the shared .26 opacity/.4-.82 scrim was
-   tuned for, so both are pushed further down/darker here to keep the
-   white quote text and the tiled backdrop from fighting for attention. */
+   near-one-word-per-line wrap).
+
+   The photo behind this one is a step-and-repeat event backdrop tiled
+   with a "MEGA SUCCESS" wordmark - the first pass here dialed image
+   opacity down to .14 and the overlay up to .72-.9 to keep that legible.
+   Past roughly .3 opacity the tiled wordmark itself becomes readable
+   and competes with the quote, which is a property of this specific
+   source photo rather than something a darker overlay alone can fix
+   without re-hiding the image entirely. So alongside bringing the
+   overlay down into the requested 50-65% range, the image also gets a
+   light blur - it still reads clearly as a
+   photo (the raised arms, warm color of the dress) at a glance, but the
+   small repeating logo text softens into texture instead of words.
+   Confirmed by sampling the rendered background pixels behind the quote
+   (incl. its brightest 10%) against both the white body copy and the
+   gold-light "eliminate hope" color: >12:1 and >6:1 respectively, well
+   past WCAG AA (4.5:1) even before the text-shadow below. */
 #hope .fb-in{max-width:80ch}
-#hope img{opacity:.14;filter:grayscale(.55)}
-#hope::after{background:radial-gradient(ellipse 75% 75% at 50% 50%,rgba(10,20,37,.72),rgba(10,20,37,.9))}
+#hope img{opacity:.26;filter:grayscale(.5) blur(3.5px)}
+#hope::after{background:radial-gradient(ellipse 75% 75% at 50% 50%,rgba(10,20,37,.6),rgba(10,20,37,.36))}
+#hope .fb-line,#hope .fb-sub{text-shadow:0 2px 8px rgba(0,0,0,.5)}
 @media(max-width:640px){#hope .fb-in{max-width:28ch}}
 
 /* ---- Patients taught (humanity) ---- */
