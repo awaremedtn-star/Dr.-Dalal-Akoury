@@ -353,10 +353,9 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 .b-play::after{content:'';display:block;width:0;height:0;border-left:15px solid var(--gold-pale);border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px;transition:border-color .3s}
 .b-tile.b-feature .b-play::after{border-left-width:20px;border-top-width:12px;border-bottom-width:12px}
 .b-tile:hover .b-play::after{border-left-color:var(--navy-deep)}
-.b-meta{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;background:linear-gradient(0deg,rgba(10,20,37,.95),transparent);z-index:2}
-.b-tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);margin-bottom:4px;display:block}
-.b-title{font-family:var(--display);font-size:.95rem;color:var(--white);line-height:1.25;display:block}
-.b-tile.b-feature .b-title{font-size:1.3rem}
+.b-meta{position:absolute;left:0;right:0;bottom:0;padding:16px;background:linear-gradient(0deg,rgba(10,20,37,.85),transparent);z-index:2}
+.b-tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);display:block}
+.b-tile.b-feature .b-tag{font-size:10.5px}
 @media(max-width:900px){
   .bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
   .b-tile,.b-tile.b-feature{grid-column:span 1;grid-row:span 1}
@@ -1372,7 +1371,7 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
       tile.innerHTML =
         (isReal(v.id) ? '<img src="https://img.youtube.com/vi/' + v.id + '/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src=\'https://img.youtube.com/vi/' + v.id + '/hqdefault.jpg\'">' : '') +
         '<span class="b-play" aria-hidden="true"></span>' +
-        '<span class="b-meta"><span class="b-tag">' + v.tag + '</span><span class="b-title">' + v.title + '</span></span>';
+        '<span class="b-meta"><span class="b-tag">' + v.tag + '</span></span>';
       tile.addEventListener('click', () => openVideo(v));
       grid.appendChild(tile);
     });
