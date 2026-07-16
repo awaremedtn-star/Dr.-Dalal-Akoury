@@ -485,8 +485,15 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 .principles{max-width:860px;margin:56px auto 0;display:grid;gap:2px;background:rgba(240,228,196,.5);border:1px solid var(--border)}
 .principle{background:rgba(255,255,255,.6);padding:34px 40px;display:grid;grid-template-columns:64px 1fr;gap:22px;align-items:baseline;transition:background .35s}
 .principle:hover{background:var(--white)}
-.principle .prn{font-family:var(--display);font-size:2.2rem;font-weight:300;color:var(--gold);line-height:1}
-.principle p{font-family:var(--display);font-size:clamp(1.3rem,2.2vw,1.7rem);font-weight:400;line-height:1.4;color:var(--navy);margin:0}
+.principle .prn{position:relative;display:inline-block;justify-self:start;font-family:var(--display);font-size:2.2rem;font-weight:300;color:var(--gold);line-height:1}
+/* "Golden Thread": a short gold underline beneath the numeral that grows
+   to the numeral's own width on hover, matching the reference's
+   group-hover pattern - implemented with a plain :hover on .principle
+   since this is a hand-rolled CSS site, not Tailwind. */
+.principle .prn-thread{position:absolute;left:0;bottom:-6px;width:16px;height:1px;background:var(--gold);transition:width .5s ease-out}
+.principle:hover .prn-thread{width:100%}
+.principle p{font-family:var(--display);font-size:clamp(1.3rem,2.2vw,1.7rem);font-weight:400;line-height:1.4;color:var(--navy);margin:0;transition:color .3s ease}
+.principle:hover p{color:var(--navy-deep)}
 .principle p em{font-style:italic;color:var(--gold-deep)}
 @media(max-width:600px){.principle{grid-template-columns:1fr;gap:8px;padding:26px 28px}}
 
@@ -961,11 +968,11 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
       <p class="lead-p">They are not slogans. They are the convictions that have guided four decades of practice, research, and teaching.</p>
     </div>
     <div class="principles">
-      <div class="principle reveal"><div class="prn">I</div><p>Healing begins with <em>understanding the person</em> — not the diagnosis alone.</p></div>
-      <div class="principle reveal"><div class="prn">II</div><p>Science and compassion <em>belong together</em>; neither is complete without the other.</p></div>
-      <div class="principle reveal"><div class="prn">III</div><p>Education empowers healing — <em>what we teach outlives what we treat.</em></p></div>
-      <div class="principle reveal"><div class="prn">IV</div><p>Every patient deserves <em>dignity</em>, attention, and the whole of our care.</p></div>
-      <div class="principle reveal"><div class="prn">V</div><p>Hope and evidence are not opposites. The best medicine <em>holds both.</em></p></div>
+      <div class="principle reveal"><div class="prn">I<span class="prn-thread" aria-hidden="true"></span></div><p>Healing begins with <em>understanding the person</em> — not the diagnosis alone.</p></div>
+      <div class="principle reveal"><div class="prn">II<span class="prn-thread" aria-hidden="true"></span></div><p>Science and compassion <em>belong together</em>; neither is complete without the other.</p></div>
+      <div class="principle reveal"><div class="prn">III<span class="prn-thread" aria-hidden="true"></span></div><p>Education empowers healing — <em>what we teach outlives what we treat.</em></p></div>
+      <div class="principle reveal"><div class="prn">IV<span class="prn-thread" aria-hidden="true"></span></div><p>Every patient deserves <em>dignity</em>, attention, and the whole of our care.</p></div>
+      <div class="principle reveal"><div class="prn">V<span class="prn-thread" aria-hidden="true"></span></div><p>Hope and evidence are not opposites. The best medicine <em>holds both.</em></p></div>
     </div>
   </div>
 </section>
