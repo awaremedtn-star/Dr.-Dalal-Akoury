@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="images/hero-bg/speaker-functional-medicine.jpg">
 
 <style>
 :root{
@@ -130,8 +131,24 @@ html[dir="rtl"] .mnav-group-label,html[dir="rtl"] .mnav-group-caret{letter-spaci
 /* ---- HERO ---- */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;color:var(--white);overflow:hidden;background:var(--navy-deep)}
 .hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 16%;opacity:.55}
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,20,37,.94) 0%,rgba(10,20,37,.72) 46%,rgba(10,20,37,.4) 100%),linear-gradient(0deg,rgba(10,20,37,.9),transparent 42%)}
+/* Rotating Ken-Burns slideshow: 11 stacked, absolutely-positioned layers
+   (background-image rather than <img>, so cover/position/opacity all live
+   on one element) cross-fade via opacity, while the active layer alone
+   gets the slow scale+pan keyframe - alternating direction on odd/even
+   layers purely for a little visual variety across the loop. Opacity
+   (all layers, transform (only .active) so at most one layer is ever
+   mid-animation, keeping will-change scoped to a single element and the
+   crossfade itself is opacity-only so it isn't gated by
+   prefers-reduced-motion below - only the zoom/pan is. */
+.hero-bg-layer{position:absolute;inset:0;background-size:cover;background-position:center 16%;opacity:0;transition:opacity 1.4s ease}
+.hero-bg-layer.active{opacity:.55;z-index:1}
+@media(prefers-reduced-motion:no-preference){
+  .hero-bg-layer.active{animation:kenburns-a 7.4s ease-out forwards;will-change:transform}
+  .hero-bg-layer:nth-child(even).active{animation-name:kenburns-b}
+}
+@keyframes kenburns-a{from{transform:scale(1) translate(0,0)}to{transform:scale(1.12) translate(-2.2%,-1.4%)}}
+@keyframes kenburns-b{from{transform:scale(1) translate(0,0)}to{transform:scale(1.12) translate(2.2%,1.4%)}}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,20,37,.94) 0%,rgba(10,20,37,.72) 46%,rgba(10,20,37,.4) 100%),linear-gradient(0deg,rgba(10,20,37,.9),transparent 42%);z-index:2}
 .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);z-index:3}
 .hero-inner2{position:relative;z-index:2;max-width:var(--maxw);width:100%;margin:0 auto;padding:120px 28px}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-light);margin-bottom:26px}
@@ -764,8 +781,18 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 
 <!-- HERO -->
 <section class="hero" id="top">
-  <div class="hero-bg">
-    <img src="images/Dr.Dalal-Akoury-London-speaker.jpg" alt="Dr. Dalal Akoury lecturing on stage in London">
+  <div class="hero-bg" id="heroBg" aria-hidden="true">
+    <div class="hero-bg-layer active" style="background-image:url('images/hero-bg/speaker-functional-medicine.jpg')"></div>
+    <div class="hero-bg-layer" data-src="images/hero-bg/on-stage-4.jpg"></div>
+    <div class="hero-bg-layer" data-src="images/hero-bg/on-stage-3.jpg"></div>
+    <div class="hero-bg-layer" data-src="images/hero-bg/oxford-stage-6.jpg"></div>
+    <div class="hero-bg-layer" data-src="images/hero-bg/cambridge-stage-7.jpg"></div>
+    <div class="hero-bg-layer" data-src="images/hero-bg/rsm-stage-8.jpg"></div>
+    <div class="hero-bg-layer" data-src="images/hero-bg/houston-international.jpg"></div>
+    <div class="hero-bg-layer" data-src="images/hero-bg/space-houston.jpg"></div>
+    <div class="hero-bg-layer" data-src="images/hero-bg/london-speaker-5.jpg"></div>
+    <div class="hero-bg-layer" data-src="images/hero-bg/adsc-8692.jpg"></div>
+    <div class="hero-bg-layer" data-src="images/hero-bg/podium-5.jpg"></div>
   </div>
   <div class="hero-inner2">
     <div class="hero-eyebrow">Dr. Dalal Akoury, MD</div>
@@ -1416,6 +1443,56 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
     // (it's parsed inline, same as the rest of this tail script), so
     // app.js's own DOMContentLoaded handler still finds them - no extra
     // wiring needed here.
+  })();
+
+  (function initHeroSlideshow(){
+    const layers = [].slice.call(document.querySelectorAll('#heroBg .hero-bg-layer'));
+    if (layers.length < 2) return;
+    const DISPLAY_MS = 7000;
+    let current = 0;
+
+    // Loads a layer's background image the first time it's needed (layer 0
+    // already has its background-image set inline in the HTML so it paints
+    // immediately with no JS dependency). Preloading via a throwaway Image()
+    // first, then only swapping the div's own background once decoded, is
+    // what keeps the crossfade from ever showing a blank/half-loaded frame.
+    function ensureLoaded(i, cb){
+      const el = layers[i];
+      if (el.dataset.loaded) { if (cb) cb(); return; }
+      const src = el.getAttribute('data-src');
+      if (!src) { if (cb) cb(); return; }
+      const img = new Image();
+      img.onload = img.onerror = function(){
+        el.style.backgroundImage = "url('" + src + "')";
+        el.dataset.loaded = '1';
+        if (cb) cb();
+      };
+      img.src = src;
+    }
+
+    function show(i){
+      layers.forEach(function(el, idx){
+        if (idx === i) {
+          // Force a reflow between removing/re-adding "active" so the
+          // scale/pan keyframes restart from the beginning every lap
+          // through the loop, instead of only playing once ever.
+          el.classList.remove('active');
+          void el.offsetWidth;
+          el.classList.add('active');
+        } else {
+          el.classList.remove('active');
+        }
+      });
+      ensureLoaded((i + 1) % layers.length);
+    }
+
+    layers[0].dataset.loaded = '1';
+    ensureLoaded(1);
+
+    setInterval(function(){
+      current = (current + 1) % layers.length;
+      ensureLoaded(current, function(){ show(current); });
+    }, DISPLAY_MS);
   })();
 </script>
 </body>
