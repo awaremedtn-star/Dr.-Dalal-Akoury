@@ -260,16 +260,20 @@
      grayscale filter removed so the photos show their true color, and a
      gold-tinted lift/glow on hover in place of the old
      grayscale-to-color reveal (no longer meaningful once the base state
-     is already color). */
-  .netcards{display:grid;grid-template-columns:repeat(3,1fr);gap:48px 40px;max-width:1180px;margin:0 auto;padding:0 26px}
-  .netcard{text-align:center}
-  .netcard .imgwrap{aspect-ratio:1/1;border-radius:12px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,.38);transition:box-shadow .3s ease}
+     is already color). Name/title moved from a separate block below the
+     photo to an overlay caption on the photo itself (4:5 crop, gradient
+     scrim), matching the reference layout and reusing this page's own
+     .tile .cap treatment from the "Who This Is Really For" mosaic. */
+  .netcards{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1180px;margin:0 auto;padding:0 26px}
+  .netcard .imgwrap{position:relative;aspect-ratio:4/5;border-radius:12px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,.38);transition:box-shadow .3s ease}
   .netcard img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease,filter .3s ease}
   .netcard:hover .imgwrap{box-shadow:0 20px 50px rgba(0,0,0,.42),0 0 0 1px rgba(200,162,76,.4),0 12px 34px rgba(200,162,76,.24)}
   .netcard:hover img{transform:scale(1.045);filter:brightness(1.06) contrast(1.05)}
-  .netcard .name{font-family:var(--serif);font-weight:700;font-size:18px;margin-top:18px;color:#eaf0f7}
-  .netcard .role{font-family:var(--sans);font-size:12px;color:#8ea0b6;font-weight:300;margin-top:4px;letter-spacing:.02em}
-  @media(max-width:900px){.netcards{grid-template-columns:repeat(2,1fr);gap:40px 28px}}
+  .netcard .imgwrap::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(4,9,20,.88),transparent 55%);pointer-events:none}
+  .netcard .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:22px}
+  .netcard .name{font-family:var(--serif);font-weight:700;font-size:20px;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+  .netcard .role{font-family:var(--sans);font-size:13px;color:#dbe3ee;font-weight:300;margin-top:4px;letter-spacing:.02em}
+  @media(max-width:900px){.netcards{grid-template-columns:repeat(2,1fr);gap:28px}}
   @media(max-width:520px){.netcards{grid-template-columns:1fr;max-width:340px}}
   @media(prefers-reduced-motion:reduce){.netcard:hover img{transform:none}.netcard .imgwrap,.netcard img{transition:box-shadow .3s ease,filter .3s ease}}
 
@@ -563,12 +567,12 @@
 <div class="more">
   <div class="h reveal">And a lifetime of others — the network now within Egypt's reach</div>
   <div class="netcards reveal">
-    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/billionaires-01.jpg" alt="JT Foxx with John Catsimatidis of Red Apple Group"></div><div class="name">John Catsimatidis</div><div class="role">Red Apple Group</div></div>
-    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/billionaires-02.jpg" alt="JT Foxx with Tommy Hilfiger"></div><div class="name">Tommy Hilfiger</div><div class="role">Designer</div></div>
-    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/billionaires-03.jpg" alt="JT Foxx with Alec Gores of The Gores Group"></div><div class="name">Alec Gores</div><div class="role">The Gores Group</div></div>
-    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/ceos-05.jpeg" alt="JT Foxx with former Disney CEO Michael Eisner"></div><div class="name">Michael Eisner</div><div class="role">Former CEO, Disney</div></div>
-    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/ceos-06.jpeg" alt="JT Foxx with Apple co-founder Steve Wozniak"></div><div class="name">Steve Wozniak</div><div class="role">Co-founder, Apple</div></div>
-    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/hollywood-03.jpg" alt="JT Foxx with actor John Travolta"></div><div class="name">John Travolta</div><div class="role">Actor</div></div>
+    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/billionaires-01.jpg" alt="JT Foxx with John Catsimatidis of Red Apple Group"><div class="cap"><div class="name">John Catsimatidis</div><div class="role">Red Apple Group</div></div></div></div>
+    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/billionaires-02.jpg" alt="JT Foxx with Tommy Hilfiger"><div class="cap"><div class="name">Tommy Hilfiger</div><div class="role">Designer</div></div></div></div>
+    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/billionaires-03.jpg" alt="JT Foxx with Alec Gores of The Gores Group"><div class="cap"><div class="name">Alec Gores</div><div class="role">The Gores Group</div></div></div></div>
+    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/ceos-05.jpeg" alt="JT Foxx with former Disney CEO Michael Eisner"><div class="cap"><div class="name">Michael Eisner</div><div class="role">Former CEO, Disney</div></div></div></div>
+    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/ceos-06.jpeg" alt="JT Foxx with Apple co-founder Steve Wozniak"><div class="cap"><div class="name">Steve Wozniak</div><div class="role">Co-founder, Apple</div></div></div></div>
+    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/hollywood-03.jpg" alt="JT Foxx with actor John Travolta"><div class="cap"><div class="name">John Travolta</div><div class="role">Actor</div></div></div></div>
   </div>
 </div>
 
