@@ -168,58 +168,48 @@
   .netintro .label{color:var(--gold-soft)}
   .netintro h2{color:#fff;font-size:clamp(28px,4.2vw,52px);max-width:24ch;margin:0 auto 20px}
   .netintro p{color:#c9d3e2;max-width:58ch;margin:0 auto;font-family:var(--sans);font-weight:300;font-size:17px}
-  /* center/cover's default 50% vertical position crops straight through
-     both subjects' faces on a min-height:78vh band, since these source
-     photos are close-up portraits with both faces in the upper half,
-     not evenly distributed top-to-bottom - biasing toward the top
-     keeps faces in frame instead. (Now only the Oprah Winfrey scene
-     below still uses .scene's full-bleed treatment - see the
-     .netfeature comment further down for the other two.) */
-  .scene{position:relative;min-height:78vh;display:flex;align-items:flex-end;background:#000 center 18%/cover no-repeat}
-  .scene::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(4,9,20,.93),rgba(4,9,20,.12) 58%,rgba(4,9,20,.4))}
-  .scene .cap{position:relative;z-index:2;padding:clamp(32px,6vw,88px);max-width:940px}
-  .scene .cap .who{font-family:var(--sans);text-transform:uppercase;letter-spacing:.22em;font-size:12.5px;color:var(--gold-soft);font-weight:600;margin-bottom:14px}
-  .scene .cap .line{font-family:var(--serif);font-weight:600;font-size:clamp(24px,3.4vw,46px);color:#fff;line-height:1.2;max-width:20ch}
-  .scene .cap .sub{font-family:var(--sans);font-weight:300;color:#d7dfe9;margin-top:14px;font-size:16px;max-width:44ch}
-  .scene .cap .sub b{color:var(--gold-soft);font-weight:500}
 
-  /* ---- Featured network moments (Howard Schultz, Mark Cuban) ----
+  /* ---- Featured network moments (Howard Schultz, Mark Cuban, Oprah Winfrey) ----
      This "Network as Cinema" sequence was originally three full-bleed
-     .scene bands. The first, billionaires-05.jpg (Howard Schultz), is a
-     250x200px thumbnail (confirmed no larger version exists anywhere in
-     this repo or its source branch) - cover-fit into a min-height:78vh
-     band, that's an ~8x upscale on top of a crop severe enough to cut
-     through both subjects' foreheads, the original "blown up/cropped
-     awkwardly" bug. A position fix alone can't solve that: the source is
-     both too low-res and the wrong aspect (~5:4, portrait-ish) for a
-     wide cinematic band regardless of positioning.
+     bands (.scene: min-height:78vh, background-position:center cover -
+     since removed entirely, no longer used anywhere on this page).
 
-     The second, ceos-04.jpg (Mark Cuban), is real resolution (1000px)
-     and was left full-bleed with a position fix (.scene's shared
-     center 18% above) - which helped (faces are no longer cut through)
-     but the source is a tight close-up selfie with almost no headroom,
-     so even correctly positioned it still read as an oversized,
-     in-your-face crop rather than an intentional editorial choice, per
-     a second round of feedback with a screenshot of the still-live
-     page. Moved to the same contained treatment as Howard Schultz.
+     Howard Schultz (billionaires-05.jpg) is a 250x200px thumbnail
+     (confirmed no larger version exists anywhere in this repo or its
+     source branch) - cover-fit into a 78vh band, that's an ~8x upscale
+     on top of a crop severe enough to cut through both subjects'
+     foreheads, the original "blown up/cropped awkwardly" bug. No
+     position fix solves that: the source is both too low-res and the
+     wrong aspect (~5:4, portrait-ish) for a wide cinematic band
+     regardless of positioning - moved to a contained card instead.
 
-     The third (Oprah Winfrey, billionaires-06.jpg) keeps the full-bleed
-     .scene treatment - same resolution class as Cuban's photo, but
-     that shot has real headroom/breathing room around both subjects,
-     so the wide cinematic crop reads as intentional there, not cramped.
+     Mark Cuban (ceos-04.jpg) and Oprah Winfrey (billionaires-06.jpg)
+     are both real resolution (1000px) and were first left full-bleed
+     with a background-position fix (center 18%, biasing the crop
+     toward the top since these are close-ups with both faces in the
+     upper half) - which helped, faces were no longer cut through - but
+     both sources are tight, minimal-headroom shots, so even correctly
+     positioned they kept reading as an oversized, in-your-face crop
+     rather than an intentional editorial choice, confirmed across two
+     separate rounds of feedback each with a screenshot of the
+     still-live page (once for Cuban, once - after Cuban's fix - for
+     Oprah). Both moved to the same contained treatment as Howard
+     Schultz rather than continuing to tune position values on a
+     full-bleed treatment that this source material can't support.
 
-     Both contained moments use the same treatment: rounded corners,
+     All three now use the same treatment: rounded corners,
      overflow:hidden, matching this page's own .card/.imgwrap framing
      language (small border-radius) and index.html's "Moments Along the
-     Way" gallery shadow/corner treatment, with the second alternating
-     media/copy sides (.rev) so two stacked cards read as an intentional
-     pair rather than a repeated row. Howard Schultz's media
-     aspect-ratio matches the source's own 5:4 exactly (no cropping at
-     all); Mark Cuban's source is closer to 1:1, so a modest ~18% crop
-     is unavoidable to fit the same card shape - object-position biases
-     it toward the top, where both faces are. Both display at a size
-     (~380px) where the resulting upscale reads as intentionally soft
-     rather than broken, not as a resolution problem. */
+     Way" gallery shadow/corner treatment, alternating media/copy sides
+     (.rev on the 2nd of every pair) so the stacked cards read as a
+     designed sequence rather than repeated rows. Howard Schultz's media
+     aspect-ratio matches his source's own 5:4 exactly (no cropping at
+     all); Cuban's and Oprah's sources are closer to 1:1, so a modest
+     ~18% crop is unavoidable to fit the same card shape -
+     object-position biases it toward the top, where both faces are in
+     both photos. All three display at a size (~380px) where the
+     resulting upscale reads as intentionally soft rather than broken,
+     not as a resolution problem. */
   .netfeature{background:var(--navy);padding:44px 26px 76px}
   .netfeature-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,380px) 1fr;gap:52px;align-items:center}
   .netfeature-media{aspect-ratio:5/4;border-radius:6px;overflow:hidden;box-shadow:0 24px 54px rgba(0,0,0,.4)}
@@ -228,9 +218,9 @@
   .netfeature-copy .line{font-family:var(--serif);font-weight:600;font-size:clamp(22px,2.6vw,32px);color:#fff;line-height:1.25}
   .netfeature-copy .sub{font-family:var(--sans);font-weight:300;color:#d7dfe9;margin-top:14px;font-size:16px;max-width:44ch}
   .netfeature-copy .sub b{color:var(--gold-soft);font-weight:500}
-  /* .rev alternates the media/copy columns for the second card in the
-     pair, so two stacked .netfeature blocks read as an intentional
-     zigzag rather than two identical rows. */
+  /* .rev alternates the media/copy columns, applied to every other card
+     in the stacked sequence, so it reads as an intentional zigzag
+     rather than identical repeated rows. */
   .netfeature-grid.rev{grid-template-columns:1fr minmax(0,380px)}
   .netfeature-grid.rev .netfeature-media{grid-column:2;grid-row:1}
   .netfeature-grid.rev .netfeature-copy{grid-column:1;grid-row:1}
@@ -524,9 +514,18 @@
   </div>
 </div>
 
-<section class="scene" style="background-image:url('assets/images/jt-foxx/billionaires-06.jpg')" aria-label="JT Foxx and Oprah Winfrey">
-  <div class="cap reveal"><div class="who">With Oprah Winfrey · Harpo / OWN</div><div class="line">Real influence is simply trust, multiplied.</div><div class="sub">A network earned over a lifetime — <b>and a reputation that opens doors on Egypt's behalf.</b></div></div>
-</section>
+<div class="netfeature">
+  <div class="netfeature-grid reveal">
+    <div class="netfeature-media">
+      <img src="assets/images/jt-foxx/billionaires-06.jpg" alt="JT Foxx and Oprah Winfrey">
+    </div>
+    <div class="netfeature-copy">
+      <div class="who">With Oprah Winfrey · Harpo / OWN</div>
+      <div class="line">Real influence is simply trust, multiplied.</div>
+      <div class="sub">A network earned over a lifetime — <b>and a reputation that opens doors on Egypt's behalf.</b></div>
+    </div>
+  </div>
+</div>
 
 <div class="more">
   <div class="h reveal">And a lifetime of others — the network now within Egypt's reach</div>
