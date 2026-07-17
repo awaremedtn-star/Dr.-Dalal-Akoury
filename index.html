@@ -570,7 +570,7 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
   position:relative;
   max-width:860px;margin:56px auto 0;
   display:grid;gap:0;
-  padding:170px 60px;
+  padding:160px 60px 150px;
   background:
     url(images/papyrus-scroll-top.png) top center/100% auto no-repeat,
     url(images/papyrus-scroll-bottom.png) bottom center/100% auto no-repeat,
@@ -585,18 +585,18 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 .principle{position:relative;background:rgba(255,252,240,.14);padding:34px 40px;display:grid;grid-template-columns:64px 1fr;gap:22px;align-items:baseline;transition:background .35s;border-bottom:1px solid rgba(70,48,20,.16)}
 .principle:last-child{border-bottom:none}
 .principle:hover{background:rgba(255,252,240,.4)}
-.principle .prn{position:relative;display:inline-block;justify-self:start;font-family:var(--display);font-size:2.2rem;font-weight:300;color:var(--gold-deep);line-height:1;text-shadow:0 1px 1px rgba(255,255,255,.4)}
+.principle .prn{position:relative;display:inline-block;justify-self:start;font-family:var(--display);font-size:2.5rem;font-weight:500;color:var(--navy-deep);line-height:1;text-shadow:0 1px 1px rgba(255,255,255,.4)}
 /* "Golden Thread": a short gold underline beneath the numeral that grows
    to the numeral's own width on hover, matching the reference's
    group-hover pattern - implemented with a plain :hover on .principle
    since this is a hand-rolled CSS site, not Tailwind. */
 .principle .prn-thread{position:absolute;left:0;bottom:-6px;width:16px;height:1px;background:var(--gold-deep);transition:width .5s ease-out}
 .principle:hover .prn-thread{width:100%}
-.principle p{font-family:var(--display);font-size:clamp(1.3rem,2.2vw,1.7rem);font-weight:400;line-height:1.4;color:var(--navy-deep);margin:0;transition:color .3s ease;text-shadow:0 1px 1px rgba(255,255,255,.35)}
+.principle p{font-family:var(--display);font-size:clamp(1.5rem,2.6vw,2rem);font-weight:500;line-height:1.45;color:var(--navy-deep);margin:0;transition:color .3s ease;text-shadow:0 1px 1px rgba(255,255,255,.35)}
 .principle:hover p{color:#000}
-.principle p em{font-style:italic;color:var(--gold-deep)}
+.principle p em{font-style:italic;color:var(--navy-deep)}
 @media(max-width:600px){
-  .principles{padding:110px 26px}
+  .principles{padding:85px 26px 80px}
   .principle{grid-template-columns:1fr;gap:8px;padding:26px 0}
 }
 
