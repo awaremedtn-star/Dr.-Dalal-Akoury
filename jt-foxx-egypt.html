@@ -165,10 +165,24 @@
   .beat .big{font-size:clamp(26px,3.6vw,44px);display:block;margin:2px 0}
   .beat .name{color:var(--gold-deep);font-style:italic}
 
-  /* big statement */
-  .statement{background:radial-gradient(120% 120% at 50% 0%,#12294c,#0a1428 60%,#050b18 100%);color:#fff;text-align:center;padding:120px 26px}
-  .statement .txt{font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(28px,4.4vw,58px);line-height:1.24;max-width:20ch;margin:0 auto;color:#fff}
+  /* big statement — fast Ken Burns slideshow background: 14 photos, each
+     shown 2s with a quick zoom (scale 1 -> 1.09) + alternating left/right
+     pan, cross-faded (.35s) into the next. Only ticks while the section
+     is in view (IntersectionObserver), and the next image is preloaded
+     one slot ahead so nothing pops in at this fast a cadence. */
+  .statement{position:relative;overflow:hidden;color:#fff;text-align:center;padding:120px 26px;background:#0a1428}
+  .statement .kb-slide{position:absolute;inset:0;overflow:hidden;opacity:0;transition:opacity .35s ease}
+  .statement .kb-slide.active{opacity:1}
+  .statement .kb-slide img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1)}
+  .statement .kb-slide.active img{animation:kbZoomL 2.35s ease-out forwards}
+  .statement .kb-slide.active.kb-r img{animation-name:kbZoomR}
+  @keyframes kbZoomL{from{transform:scale(1) translateX(0)}to{transform:scale(1.09) translateX(-1.6%)}}
+  @keyframes kbZoomR{from{transform:scale(1) translateX(0)}to{transform:scale(1.09) translateX(1.6%)}}
+  .statement .kb-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,11,24,.8) 0%,rgba(5,11,24,.66) 45%,rgba(5,11,24,.82) 100%);z-index:1}
+  .statement .txt{position:relative;z-index:2;font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(28px,4.4vw,58px);line-height:1.24;max-width:20ch;margin:0 auto;color:#fff;text-shadow:0 3px 18px rgba(0,0,0,.6)}
   .statement .txt .g{color:var(--gold-soft)}
+  .statement>p{position:relative;z-index:2;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+  @media(prefers-reduced-motion:reduce){.statement .kb-slide{transition:opacity 1.2s ease}.statement .kb-slide.active img{animation:none;transform:scale(1.04)}}
 
   /* scenes */
   .netintro{text-align:center;padding:110px 26px 24px;background:var(--navy)}
@@ -910,7 +924,9 @@
 </section>
 
 <!-- ===== MOVIE-ENDING TRANSITION TO DR. DALAL ===== -->
-<section class="statement" aria-label="The one question that remained">
+<section class="statement" id="statement-kb" aria-label="The one question that remained">
+  <div class="kb-slides" id="kbSlides"></div>
+  <div class="kb-overlay"></div>
   <p class="txt reveal">
     He searched the world. He met thousands. He built companies and advised billionaires.<br>
     <span class="g">One question remained: who could actually build this?</span>
@@ -1023,6 +1039,89 @@
   }
   initParallaxSection('mega-egypt', 'megaBg');
   initParallaxSection('why-now', 'whyNowBg');
+
+  // "statement" section Ken Burns slideshow - 14 photos, one slot per 2s,
+  // alternating pan direction, cross-faded. Slide <img>s are built with
+  // an empty src and only pointed at their real file (data-src) right
+  // before their turn (plus one preloaded a slot ahead), so the fast
+  // 2s cadence never has to wait on a cold fetch. Ticks only while the
+  // section is on screen (IntersectionObserver) to save CPU/battery
+  // once scrolled past, and skips straight to a single static slide
+  // under prefers-reduced-motion instead of slow-cycling it.
+  (function(){
+    var section = document.getElementById('statement-kb');
+    var track = document.getElementById('kbSlides');
+    if(!section || !track) return;
+
+    var photos = [
+      { src: 'images/Dalal Akoury on stage 1.jpg', alt: 'Dr. Dalal Akoury on stage speaking to an audience' },
+      { src: 'images/Dalal Akoury-on stage 2.jpg', alt: 'Dr. Dalal Akoury presenting on stage' },
+      { src: 'images/Dr.Dalal-Akoury-Billionaires-3.jpg', alt: 'Dr. Dalal Akoury on stage with a fellow speaker' },
+      { src: 'images/Dr.Dalal-Akoury-London-speaker.jpg', alt: 'Dr. Dalal Akoury speaking at a London event' },
+      { src: 'images/Dr.Dalal-Akoury-Speaker-Awaremed.jpg', alt: 'Dr. Dalal Akoury speaking at an AWAREmed event' },
+      { src: 'images/Dr.Dalal-Akoury-interview.jpg', alt: 'Dr. Dalal Akoury being interviewed' },
+      { src: 'images/Dr.Dalal-Akoury-podium-5.jpg', alt: 'Dr. Dalal Akoury addressing an audience from the podium' },
+      { src: 'images/Dr.DalalAkoury-Speaker-Functional-Medicine.jpg', alt: 'Dr. Dalal Akoury speaking on functional medicine' },
+      { src: 'images/For students-london.jpg', alt: 'Dr. Dalal Akoury with students in London' },
+      { src: 'images/Houston International.jpg', alt: 'Dr. Dalal Akoury at an international event in Houston' },
+      { src: 'images/Media-interview 3.jpg', alt: 'Dr. Dalal Akoury giving a media interview' },
+      { src: 'images/Newyork-academy-medicine.jpg', alt: 'Dr. Dalal Akoury at the New York Academy of Medicine' },
+      { src: 'images/SpaceHouston.jpg', alt: 'Dr. Dalal Akoury at a space-industry event in Houston' },
+      { src: 'images/wimpole need on image 2.jpg', alt: 'Dr. Dalal Akoury speaking at a Wimpole Street event' }
+    ];
+
+    var slides = photos.map(function(p, i){
+      var div = document.createElement('div');
+      div.className = 'kb-slide' + (i % 2 ? ' kb-r' : '');
+      var img = document.createElement('img');
+      img.alt = p.alt;
+      img.loading = 'lazy';
+      div.appendChild(img);
+      track.appendChild(div);
+      return { el: div, img: img, src: encodeURI(p.src), loaded: false };
+    });
+
+    function ensureLoaded(i){
+      var s = slides[i];
+      if(!s.loaded){ s.img.src = s.src; s.loaded = true; }
+    }
+
+    var current = 0;
+    ensureLoaded(current);
+    slides[current].el.classList.add('active');
+    ensureLoaded((current + 1) % slides.length);
+
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+      return; // single static frame, no interval, no zoom/cross-fade
+    }
+
+    var DISPLAY_MS = 2000;
+    var timer = null;
+
+    function advance(){
+      slides[current].el.classList.remove('active');
+      current = (current + 1) % slides.length;
+      ensureLoaded(current);
+      // force reflow so the zoom keyframes restart from scratch on reuse
+      void slides[current].img.offsetWidth;
+      slides[current].el.classList.add('active');
+      ensureLoaded((current + 1) % slides.length);
+    }
+
+    function start(){ if(!timer) timer = setInterval(advance, DISPLAY_MS); }
+    function stop(){ if(timer){ clearInterval(timer); timer = null; } }
+
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting) start(); else stop();
+        });
+      }, { threshold: .2 });
+      io.observe(section);
+    } else {
+      start();
+    }
+  })();
 </script>
 <script src="assets/app.js"></script>
 
