@@ -466,9 +466,18 @@
   @media(max-width:520px){.pillars{grid-template-columns:1fr}}
 
   /* ending */
-  .ending{background:#000;color:#fff;text-align:center;padding:150px 26px}
+  .ending{position:relative;background:#000 url(assets/images/legacy/investor-feature.jpg) center/cover no-repeat;color:#fff;text-align:center;padding:150px 26px;overflow:hidden}
+  .ending::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 65% 65% at 50% 50%,rgba(0,0,0,.55) 0%,rgba(0,0,0,.72) 55%,rgba(0,0,0,.82) 100%)}
+  .ending .lines,.ending .btn{position:relative;z-index:1}
   .ending .lines{font-family:var(--serif);font-size:clamp(22px,3vw,38px);line-height:1.4;font-weight:500;max-width:820px;margin:0 auto}
-  .ending .lines span{display:block;margin:3px 0;color:#e7edf5}
+  /* Each span is its own independent hover target (own block-level box,
+     no overlap) rather than one glow for the whole paragraph, so
+     hovering the punch line doesn't also light up the two lines above
+     it - transition covers both text-shadow and color since the plain
+     white lines shift toward the same warm gold tint the italic line
+     already uses, tying all four together on interaction. */
+  .ending .lines span{display:block;margin:3px 0;color:#e7edf5;transition:text-shadow .3s ease,color .3s ease}
+  .ending .lines span:hover{text-shadow:0 0 8px rgba(212,175,122,.8),0 0 20px rgba(212,175,122,.5);color:#f4e4bc}
   .ending .lines .g{color:var(--gold-soft);font-style:italic}
   .ending .lines .punch{font-weight:700;font-size:clamp(26px,3.6vw,48px);margin:28px auto 0;color:#fff;max-width:18ch}
   .ending .btn{margin-top:50px}
