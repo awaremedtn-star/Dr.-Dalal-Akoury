@@ -217,11 +217,15 @@
      both photos. All three display at a size (~380px) where the
      resulting upscale reads as intentionally soft rather than broken,
      not as a resolution problem. */
-  .netfeature{background:var(--navy);padding:44px 26px 76px}
+  .netfeature{background:var(--navy);padding:64px 26px 96px}
   .netfeature:last-of-type{padding-bottom:24px}
-  .netfeature-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,380px) 1fr;gap:52px;align-items:center}
-  .netfeature-media{aspect-ratio:5/4;border-radius:6px;overflow:hidden;box-shadow:0 24px 54px rgba(0,0,0,.4)}
-  .netfeature-media img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
+  .netfeature-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
+  .netfeature-media{position:relative;aspect-ratio:5/4;border-radius:14px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.32);border:1px solid rgba(220,193,137,.35);transition:box-shadow .4s cubic-bezier(.2,.7,.2,1)}
+  .netfeature-media img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  .netfeature-media:hover{box-shadow:0 28px 56px rgba(0,0,0,.42),0 0 0 1px rgba(220,193,137,.5)}
+  .netfeature-media:hover img{transform:scale(1.045)}
+  @media(prefers-reduced-motion:reduce){.netfeature-media:hover img{transform:none}}
+  .netfeature-copy{max-width:560px}
   .netfeature-copy .who{font-family:var(--sans);text-transform:uppercase;letter-spacing:.22em;font-size:12.5px;color:var(--gold-soft);font-weight:600;margin-bottom:14px}
   .netfeature-copy .line{font-family:var(--serif);font-weight:600;font-size:clamp(22px,2.6vw,32px);color:#fff;line-height:1.25}
   .netfeature-copy .sub{font-family:var(--sans);font-weight:300;color:#d7dfe9;margin-top:14px;font-size:16px;max-width:44ch}
@@ -229,13 +233,14 @@
   /* .rev alternates the media/copy columns, applied to every other card
      in the stacked sequence, so it reads as an intentional zigzag
      rather than identical repeated rows. */
-  .netfeature-grid.rev{grid-template-columns:1fr minmax(0,380px)}
+  .netfeature-grid.rev{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .netfeature-grid.rev .netfeature-media{grid-column:2;grid-row:1}
   .netfeature-grid.rev .netfeature-copy{grid-column:1;grid-row:1}
   @media(max-width:760px){
     .netfeature-grid,.netfeature-grid.rev{grid-template-columns:1fr;gap:26px}
     .netfeature-grid.rev .netfeature-media,.netfeature-grid.rev .netfeature-copy{grid-column:1;grid-row:auto}
-    .netfeature-media{max-width:340px;margin:0 auto}
+    .netfeature-media{max-width:420px;margin:0 auto}
+    .netfeature-copy{max-width:none}
   }
 
   /* compact evidence
@@ -554,11 +559,11 @@
 </div>
 
 <div class="netfeature">
-  <div class="netfeature-grid reveal">
-    <div class="netfeature-media">
-      <img src="assets/images/jt-foxx/billionaires-05.jpg" alt="JT Foxx and Howard Schultz">
+  <div class="netfeature-grid">
+    <div class="netfeature-media reveal">
+      <img src="assets/images/jt-foxx/billionaires-05.jpg" alt="JT Foxx and Howard Schultz" loading="lazy">
     </div>
-    <div class="netfeature-copy">
+    <div class="netfeature-copy reveal d1">
       <div class="who">With Howard Schultz · Starbucks</div>
       <div class="line">The people who build global brands take his call.</div>
       <div class="sub">Evidence of a network built over decades — <b>the kind of access that opens conversations for Egypt.</b></div>
@@ -567,11 +572,11 @@
 </div>
 
 <div class="netfeature">
-  <div class="netfeature-grid rev reveal">
-    <div class="netfeature-media">
-      <img src="assets/images/jt-foxx/ceos-04.jpg" alt="JT Foxx and Mark Cuban">
+  <div class="netfeature-grid rev">
+    <div class="netfeature-media reveal">
+      <img src="assets/images/jt-foxx/ceos-04.jpg" alt="JT Foxx and Mark Cuban" loading="lazy">
     </div>
-    <div class="netfeature-copy">
+    <div class="netfeature-copy reveal d1">
       <div class="who">With Mark Cuban · Investor</div>
       <div class="line">The investors who back the future return his messages.</div>
       <div class="sub">Relationships like these are <b>the doors that global capital usually waits behind.</b></div>
@@ -580,11 +585,11 @@
 </div>
 
 <div class="netfeature">
-  <div class="netfeature-grid reveal">
-    <div class="netfeature-media">
-      <img src="assets/images/jt-foxx/billionaires-06.jpg" alt="JT Foxx and Oprah Winfrey">
+  <div class="netfeature-grid">
+    <div class="netfeature-media reveal">
+      <img src="assets/images/jt-foxx/billionaires-06.jpg" alt="JT Foxx and Oprah Winfrey" loading="lazy">
     </div>
-    <div class="netfeature-copy">
+    <div class="netfeature-copy reveal d1">
       <div class="who">With Oprah Winfrey · Harpo / OWN</div>
       <div class="line">Real influence is simply trust, multiplied.</div>
       <div class="sub">A network earned over a lifetime — <b>and a reputation that opens doors on Egypt's behalf.</b></div>
