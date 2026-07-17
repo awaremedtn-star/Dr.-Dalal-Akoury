@@ -184,8 +184,16 @@
   .statement>p{position:relative;z-index:2;text-shadow:0 2px 14px rgba(0,0,0,.6)}
   @media(prefers-reduced-motion:reduce){.statement .kb-slide{transition:opacity 1.2s ease}.statement .kb-slide.active img{animation:none;transform:scale(1.04)}}
 
-  /* scenes */
-  .netintro{text-align:center;padding:110px 26px 24px;background:var(--navy)}
+  /* scenes
+     .network-seq wraps .netintro and all nine .netfeature pairs so the
+     stone-block photo (and its scrim) is one continuous background
+     painted once behind the whole sequence, rather than each pair
+     tiling its own copy - .netintro/.netfeature themselves go
+     transparent below so the shared background shows through evenly. */
+  .network-seq{position:relative;background:#0a1628 url(images/blocks-egyptian-DalalAkoury-Homecoming.jpg) center/cover no-repeat}
+  .network-seq::before{content:"";position:absolute;inset:0;background:rgba(10,22,40,.82);pointer-events:none}
+  .network-seq>.netintro,.network-seq>.netfeature{position:relative;z-index:1}
+  .netintro{text-align:center;padding:110px 26px 24px;background:transparent}
   .netintro .label{color:var(--gold-soft)}
   .netintro h2{color:#fff;font-size:clamp(28px,4.2vw,52px);max-width:24ch;margin:0 auto 20px}
   .netintro p{color:#c9d3e2;max-width:58ch;margin:0 auto;font-family:var(--sans);font-weight:300;font-size:17px}
@@ -231,10 +239,10 @@
      both photos. All three display at a size (~380px) where the
      resulting upscale reads as intentionally soft rather than broken,
      not as a resolution problem. */
-  .netfeature{background:var(--navy);padding:64px 26px 96px}
+  .netfeature{background:transparent;padding:64px 26px 96px}
   .netfeature:last-of-type{padding-bottom:24px}
   .netfeature-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
-  .netfeature-media{position:relative;aspect-ratio:5/4;border-radius:14px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.32);border:1px solid rgba(220,193,137,.35);transition:box-shadow .4s cubic-bezier(.2,.7,.2,1)}
+  .netfeature-media{position:relative;aspect-ratio:5/4;border-radius:14px;overflow:hidden;box-shadow:0 26px 54px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.25);border:1px solid rgba(220,193,137,.35);transition:box-shadow .4s cubic-bezier(.2,.7,.2,1)}
   .netfeature-media img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
   .netfeature-media:hover{box-shadow:0 28px 56px rgba(0,0,0,.42),0 0 0 1px rgba(220,193,137,.5)}
   .netfeature-media:hover img{transform:scale(1.045)}
@@ -651,6 +659,7 @@
 </section>
 
 <!-- ===== NETWORK AS CINEMA (each returns to Egypt) ===== -->
+<div class="network-seq">
 <div class="netintro">
   <div class="label reveal">The Network — And What It Opens</div>
   <h2 class="reveal">These Aren't Famous Faces. They're Open Doors.</h2>
@@ -772,6 +781,7 @@
       <div class="sub">A network that spans entertainment's inner circle — <b>doors that turn Egypt into more than a headline.</b></div>
     </div>
   </div>
+</div>
 </div>
 
 <div class="more">
