@@ -185,15 +185,21 @@
   @media(prefers-reduced-motion:reduce){.statement .kb-slide{transition:opacity 1.2s ease}.statement .kb-slide.active img{animation:none;transform:scale(1.04)}}
 
   /* scenes
-     .network-seq wraps .netintro and all nine .netfeature pairs so the
-     stone-block photo (and its scrim) is one continuous background
-     painted once behind the whole sequence, rather than each pair
-     tiling its own copy - .netintro/.netfeature themselves go
-     transparent below so the shared background shows through evenly. */
-  .network-seq{position:relative;background:#0a1628 url(images/blocks-egyptian-DalalAkoury-Homecoming.jpg) center/cover no-repeat}
-  .network-seq::before{content:"";position:absolute;inset:0;background:rgba(10,22,40,.82);pointer-events:none}
-  .network-seq>.netintro,.network-seq>.netfeature{position:relative;z-index:1}
-  .netintro{text-align:center;padding:110px 26px 24px;background:transparent}
+     .network-seq wraps .netintro and all nine .netfeature pairs so
+     they read as one sequence, but the stone-block photo is applied
+     to each one individually rather than stretched once across the
+     whole ~5800px-tall wrapper: that single-stretch approach forced
+     roughly a 5-6x upscale of a 1672x941 source and read as visibly
+     pixelated. Applying it per section instead means each copy only
+     ever needs to cover that section's own ~500-900px height, close
+     to the source's native resolution, so it stays sharp - since it's
+     the same photo every time (not a tiling texture), repeating it
+     doesn't read as a seam, just as continuous stone. */
+  .network-seq{position:relative}
+  .netintro,.netfeature{position:relative;background:#0a1628 url(images/blocks-egyptian-DalalAkoury-Homecoming.jpg) center/cover no-repeat}
+  .netintro::before,.netfeature::before{content:"";position:absolute;inset:0;background:rgba(10,22,40,.82);pointer-events:none}
+  .netintro>*,.netfeature>*{position:relative;z-index:1}
+  .netintro{text-align:center;padding:110px 26px 24px}
   .netintro .label{color:var(--gold-soft)}
   .netintro h2{color:#fff;font-size:clamp(28px,4.2vw,52px);max-width:24ch;margin:0 auto 20px}
   .netintro p{color:#c9d3e2;max-width:58ch;margin:0 auto;font-family:var(--sans);font-weight:300;font-size:17px}
@@ -239,7 +245,7 @@
      both photos. All three display at a size (~380px) where the
      resulting upscale reads as intentionally soft rather than broken,
      not as a resolution problem. */
-  .netfeature{background:transparent;padding:64px 26px 96px}
+  .netfeature{padding:64px 26px 96px}
   .netfeature:last-of-type{padding-bottom:24px}
   .netfeature-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
   .netfeature-media{position:relative;aspect-ratio:5/4;border-radius:14px;overflow:hidden;box-shadow:0 26px 54px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.25);border:1px solid rgba(220,193,137,.35);transition:box-shadow .4s cubic-bezier(.2,.7,.2,1)}
