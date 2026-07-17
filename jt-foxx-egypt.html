@@ -441,9 +441,9 @@
   #pillars h2{color:#fff;text-shadow:0 3px 18px rgba(0,0,0,.6)}
   #pillars>.narrow p{color:#dbe3ee;text-shadow:0 2px 12px rgba(0,0,0,.55)}
   .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-  .pillar{position:relative;background:rgba(8,17,35,.55);border-radius:12px;padding:34px 26px;transition:background .35s,transform .35s;backdrop-filter:blur(14px) saturate(1.15);-webkit-backdrop-filter:blur(14px) saturate(1.15)}
+  .pillar{position:relative;background:rgba(8,17,35,.55);border-radius:12px;padding:34px 26px;transition:background .35s,transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s cubic-bezier(.2,.7,.2,1);backdrop-filter:blur(14px) saturate(1.15);-webkit-backdrop-filter:blur(14px) saturate(1.15)}
   @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.pillar{background:rgba(8,17,35,.86)}}
-  .pillar:hover{background:rgba(8,17,35,.7);transform:translateY(-4px)}
+  .pillar:hover{background:rgba(8,17,35,.7);transform:translateY(-8px) scale(1.02);box-shadow:0 20px 40px rgba(0,0,0,.4)}
   .pillar .no{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--gold-soft);font-weight:600}
   .pillar h3{font-size:20px;color:#fff;margin:12px 0 8px;line-height:1.15}
   /* #-scoped (not just .pillar p) because section.chap p{color:#2c261d}
@@ -451,14 +451,17 @@
      class+element selector and would otherwise silently win here - the
      same trap already hit and fixed once before on this page (#who-for). */
   #pillars .pillar p{font-family:var(--sans);font-weight:300;font-size:14.5px;color:#c9d3e2;margin:0;line-height:1.5}
-  /* Animated gold "moving thread" border: an oversized conic-gradient
-     pseudo-element clipped down to a thin ring via mask (content-box
-     excluded from border-box), then rotated with transform - cheaper than
-     animating the gradient's own angle, since transform is compositor-only
-     and doesn't force a background repaint every frame. */
-  .pillar::before{content:"";position:absolute;inset:-2px;border-radius:14px;padding:2px;background:conic-gradient(from 0deg,transparent 0deg,var(--gold-soft) 35deg,var(--gold) 65deg,transparent 120deg,transparent 360deg);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:pillarBorderSpin 7s linear infinite;pointer-events:none}
-  @keyframes pillarBorderSpin{to{transform:rotate(360deg)}}
-  @media(prefers-reduced-motion:reduce){.pillar::before{animation:none;background:conic-gradient(var(--gold-soft),var(--gold),var(--gold-soft),var(--gold),var(--gold-soft))}.pillar:hover{transform:none}}
+  /* Gold gradient border, hover-only: the same oversized-pseudo-element
+     + mask technique as before (content-box excluded from border-box
+     via mask-composite, so only a thin ring shows), but the constant
+     7s spin - competing with the cards for attention at rest - is
+     replaced with an opacity fade tied to :hover, alongside the
+     float/lift below. -webkit-mask-composite:xor is the older WebKit
+     equivalent of mask-composite:exclude and is what makes this render
+     correctly in Safari; both are kept side by side. */
+  .pillar::before{content:"";position:absolute;inset:-2px;border-radius:14px;padding:2px;background:linear-gradient(135deg,#d4af7a,#f4e4bc,#d4af7a);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s ease;pointer-events:none}
+  .pillar:hover::before{opacity:1}
+  @media(prefers-reduced-motion:reduce){.pillar:hover{transform:none}}
   @media(max-width:900px){.pillars{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:520px){.pillars{grid-template-columns:1fr}}
 
