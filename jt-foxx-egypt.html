@@ -312,9 +312,30 @@
   .blackout .after{font-family:var(--sans);font-weight:300;color:#8ea0b6;margin-top:38px;letter-spacing:.06em;font-size:15px}
 
   /* mega */
-  .megawrap{background:#fff;border-top:1px solid var(--line);padding:56px 0 8px;overflow:hidden}
-  .mega{font-family:var(--serif);font-weight:900;font-size:clamp(90px,26vw,360px);line-height:.82;letter-spacing:-.02em;text-align:center;color:var(--navy);margin:0}
-  .megasub{text-align:center;font-family:var(--sans);text-transform:uppercase;letter-spacing:.36em;font-size:13px;color:var(--gold-deep);font-weight:600;margin-top:16px;padding-bottom:36px}
+  /* mega — pyramid parallax background, reusing index.html's .shp/.shp-bg/
+     .shp-overlay scroll-parallax mechanics rather than inventing a new
+     pattern (see that page's #seen-heard comment for the full
+     rationale: a JS translateY tied to scroll via requestAnimationFrame,
+     clamped and lazy-loaded via IntersectionObserver, instead of
+     background-attachment:fixed, which mobile Safari doesn't support).
+     EGYPT itself becomes a stroke-only "cutout" - transparent fill, a
+     gold-soft outline - so the pyramids/sunset show straight through
+     the huge letterforms; browsers without text-stroke support (and
+     print) fall back to a solid cream fill instead. The overlay stays
+     at a moderate .4 navy wash even through its "lighter" middle band
+     (not fully transparent) since the source photo's brightest point -
+     the sun between the pyramids - sits almost exactly behind the
+     wordmark's center and would otherwise wash out the stroke. */
+  .megawrap{position:relative;overflow:hidden;padding:56px 0 8px;background:var(--navy2)}
+  .megawrap .shp-bg{position:absolute;left:0;right:0;top:-90px;bottom:-90px;background-size:cover;background-position:center 42%;will-change:transform}
+  .megawrap .shp-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,11,24,.86) 0%,rgba(5,11,24,.4) 25%,rgba(5,11,24,.4) 75%,rgba(5,11,24,.86) 100%);z-index:1}
+  .megawrap .wrap{position:relative;z-index:2}
+  .mega{font-family:var(--serif);font-weight:900;font-size:clamp(90px,26vw,360px);line-height:.82;letter-spacing:-.02em;text-align:center;margin:0;color:transparent;-webkit-text-stroke:2px var(--gold-soft);text-shadow:0 2px 0 rgba(5,11,24,.5),0 30px 70px rgba(0,0,0,.55)}
+  @supports not (-webkit-text-stroke:1px){.mega{color:var(--paper);-webkit-text-stroke:0}}
+  .megasub{text-align:center;font-family:var(--sans);text-transform:uppercase;letter-spacing:.36em;font-size:13px;color:var(--gold-soft);font-weight:600;margin-top:16px;padding-bottom:36px;text-shadow:0 2px 14px rgba(0,0,0,.7)}
+  .mega.reveal{transform:translateY(28px) scale(.94)}
+  .mega.reveal.in{transform:none}
+  @media(prefers-reduced-motion:reduce){.megawrap .shp-bg{top:0;bottom:0}.mega.reveal{transform:none}}
 
   /* split */
   .split{display:grid;grid-template-columns:1fr 1fr;align-items:center}
@@ -625,9 +646,13 @@
 </section>
 
 <!-- ===== MEGA EGYPT ===== -->
-<div class="megawrap">
-  <p class="mega reveal">EGYPT</p>
-  <div class="megasub reveal d1">He could have chosen anywhere. He chose here.</div>
+<div class="megawrap" id="mega-egypt">
+  <div class="shp-bg" id="megaBg" data-bg="images/Pyramid-DalalAkoury-Homecoming.jpg"></div>
+  <div class="shp-overlay"></div>
+  <div class="wrap">
+    <p class="mega reveal">EGYPT</p>
+    <div class="megasub reveal d1">He could have chosen anywhere. He chose here.</div>
+  </div>
 </div>
 
 <!-- ===== PROOF OF EGYPT ===== -->
@@ -774,6 +799,48 @@
       entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
     },{threshold:.14});
     els.forEach(function(e){io.observe(e);});
+  })();
+
+  // "MEGA EGYPT" pyramid background parallax - same mechanics as
+  // index.html's initParallaxSection (#seen-heard / #students): the
+  // photo is lazy-loaded via IntersectionObserver, then (unless
+  // prefers-reduced-motion) nudged with a clamped, rAF-throttled
+  // translateY tied to scroll position, rather than
+  // background-attachment:fixed, which mobile Safari doesn't support.
+  (function(){
+    var section=document.getElementById('mega-egypt');
+    var bg=document.getElementById('megaBg');
+    if(!section||!bg) return;
+
+    var src=bg.getAttribute('data-bg');
+    function load(){ if(src) bg.style.backgroundImage="url('"+src+"')"; }
+    if('IntersectionObserver' in window && src){
+      var io=new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ load(); io.disconnect(); }
+        });
+      },{rootMargin:'800px 0px'});
+      io.observe(section);
+    } else {
+      load();
+    }
+
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var MAX_OFFSET=70;
+    var ticking=false;
+    function update(){
+      var r=section.getBoundingClientRect();
+      var raw=r.top*0.3;
+      var offset=Math.max(-MAX_OFFSET, Math.min(MAX_OFFSET, raw));
+      bg.style.transform='translateY('+offset+'px)';
+      ticking=false;
+    }
+    function onScroll(){
+      if(!ticking){ requestAnimationFrame(update); ticking=true; }
+    }
+    addEventListener('scroll', onScroll, {passive:true});
+    update();
   })();
 </script>
 <script src="assets/app.js"></script>
