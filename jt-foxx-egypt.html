@@ -422,18 +422,43 @@
   .megaquote p .g{color:var(--gold-deep);font-style:italic}
   .megaquote .by{font-family:var(--sans);text-transform:uppercase;letter-spacing:.3em;font-size:12px;color:var(--gold-deep);font-weight:600;margin-top:36px}
 
-  /* pillars */
-  .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-  .pillar{background:var(--paper);padding:34px 26px;transition:background .35s,transform .35s}
-  .pillar:hover{background:#fff;transform:translateY(-3px)}
-  .pillar .no{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--gold-deep);font-weight:600}
-  .pillar h3{font-size:20px;color:var(--navy);margin:12px 0 8px;line-height:1.15}
-  .pillar p{font-family:var(--sans);font-weight:300;font-size:14.5px;color:#3a342a;margin:0;line-height:1.5}
-  .pillar.foundation{background:var(--navy);}
-  .pillar.foundation .no{color:var(--gold-soft)}
-  .pillar.foundation h3{color:#fff}
-  .pillar.foundation p{color:#c9d3e2}
-  .pillar.foundation:hover{background:var(--navy3)}
+  /* pillars — hieroglyph-block photo background behind the whole section,
+     replacing the old plain cream fill. #pillars ::before is a navy scrim
+     (kept fairly uniform since the source texture's own brightness is
+     fairly even, unlike a scenic photo with hot spots) and the section's
+     own text (eyebrow/heading/intro) flips to the light/gold palette used
+     elsewhere on this page's dark sections, with a text-shadow safety net.
+     All 8 cards (only 01 previously had a background at all - 02-08 sat
+     directly on the old cream fill) now share one glass-panel treatment:
+     card 01's former navy-solid look is what became the new shared base,
+     rather than inventing a third look, so nothing about the numbering,
+     "· The Foundation" subtitle, gold numeral, or heading/description
+     typography changes - only the container each of them sits in. */
+  #pillars{position:relative;overflow:hidden;background:var(--navy2) url(images/blocks-egyptian-DalalAkoury-Homecoming.jpg) center/cover}
+  #pillars::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,15,31,.84) 0%,rgba(7,15,31,.74) 40%,rgba(7,15,31,.8) 100%)}
+  #pillars>.narrow,#pillars>.wrap{position:relative}
+  #pillars .label{color:var(--gold-soft);text-shadow:0 2px 10px rgba(0,0,0,.6)}
+  #pillars h2{color:#fff;text-shadow:0 3px 18px rgba(0,0,0,.6)}
+  #pillars>.narrow p{color:#dbe3ee;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .pillar{position:relative;background:rgba(8,17,35,.55);border-radius:12px;padding:34px 26px;transition:background .35s,transform .35s;backdrop-filter:blur(14px) saturate(1.15);-webkit-backdrop-filter:blur(14px) saturate(1.15)}
+  @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.pillar{background:rgba(8,17,35,.86)}}
+  .pillar:hover{background:rgba(8,17,35,.7);transform:translateY(-4px)}
+  .pillar .no{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--gold-soft);font-weight:600}
+  .pillar h3{font-size:20px;color:#fff;margin:12px 0 8px;line-height:1.15}
+  /* #-scoped (not just .pillar p) because section.chap p{color:#2c261d}
+     (shared by every .chap section) has higher specificity than a plain
+     class+element selector and would otherwise silently win here - the
+     same trap already hit and fixed once before on this page (#who-for). */
+  #pillars .pillar p{font-family:var(--sans);font-weight:300;font-size:14.5px;color:#c9d3e2;margin:0;line-height:1.5}
+  /* Animated gold "moving thread" border: an oversized conic-gradient
+     pseudo-element clipped down to a thin ring via mask (content-box
+     excluded from border-box), then rotated with transform - cheaper than
+     animating the gradient's own angle, since transform is compositor-only
+     and doesn't force a background repaint every frame. */
+  .pillar::before{content:"";position:absolute;inset:-2px;border-radius:14px;padding:2px;background:conic-gradient(from 0deg,transparent 0deg,var(--gold-soft) 35deg,var(--gold) 65deg,transparent 120deg,transparent 360deg);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:pillarBorderSpin 7s linear infinite;pointer-events:none}
+  @keyframes pillarBorderSpin{to{transform:rotate(360deg)}}
+  @media(prefers-reduced-motion:reduce){.pillar::before{animation:none;background:conic-gradient(var(--gold-soft),var(--gold),var(--gold-soft),var(--gold),var(--gold-soft))}.pillar:hover{transform:none}}
   @media(max-width:900px){.pillars{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:520px){.pillars{grid-template-columns:1fr}}
 
