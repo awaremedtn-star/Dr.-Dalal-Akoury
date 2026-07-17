@@ -376,15 +376,33 @@
   .split .copy{padding:clamp(40px,6vw,84px)}
   @media(max-width:860px){.split{grid-template-columns:1fr}.split .media{min-height:340px;order:-1}}
 
-  /* why now */
-  .whynow{background:radial-gradient(120% 120% at 50% 0%,#12294c,#0a1428 60%,#050b18 100%);color:#fff;text-align:center;padding:120px 26px}
-  .whynow .k{font-family:var(--sans);text-transform:uppercase;letter-spacing:.34em;font-size:12px;color:var(--gold);font-weight:600;margin-bottom:28px}
-  .whynow h2{color:#fff;font-size:clamp(30px,4.6vw,58px);margin-bottom:22px}
-  .whynow p{font-family:var(--serif);font-weight:500;font-size:clamp(19px,2.1vw,26px);line-height:1.45;color:#dbe3ee;max-width:24ch;margin:0 auto}
+  /* why now — Cairo skyline parallax background, same .shp-bg/.shp-overlay
+     mechanics as #mega-egypt above (see that section's comment / the tail
+     script's initParallaxSection). The radial navy gradient this section
+     used to have is kept as the base background-color, showing through
+     while the photo lazy-loads and giving the overlay something to blend
+     with, rather than being replaced outright. Every text element gets a
+     matching text-shadow (not just the heading) since the photo's bright
+     bridge-traffic band can sit behind any of them depending on viewport
+     height. "History" and "Aligns" in the heading, and the pill badges on
+     hover, get the same gold-soft glow already used for this section's
+     closing "one of those moments" - which now also breathes with a slow
+     ambient pulse. */
+  .whynow{position:relative;overflow:hidden;color:#fff;text-align:center;padding:120px 26px;background:#0a1428}
+  .whynow .shp-bg{position:absolute;left:0;right:0;top:-90px;bottom:-90px;background-size:cover;background-position:center 65%;will-change:transform}
+  .whynow .shp-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,11,24,.74) 0%,rgba(5,11,24,.5) 35%,rgba(5,11,24,.58) 65%,rgba(5,11,24,.82) 100%);z-index:1}
+  .whynow-inner{position:relative;z-index:2}
+  .whynow .k{font-family:var(--sans);text-transform:uppercase;letter-spacing:.34em;font-size:12px;color:var(--gold);font-weight:600;margin-bottom:28px;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+  .whynow h2{color:#fff;font-size:clamp(30px,4.6vw,58px);margin-bottom:22px;text-shadow:0 3px 20px rgba(0,0,0,.65),0 1px 3px rgba(0,0,0,.8)}
+  .whynow h2 .glow-word{color:var(--gold-soft);text-shadow:0 0 20px rgba(220,193,137,.6),0 3px 16px rgba(0,0,0,.6)}
+  .whynow p{font-family:var(--serif);font-weight:500;font-size:clamp(19px,2.1vw,26px);line-height:1.45;color:#dbe3ee;max-width:24ch;margin:0 auto;text-shadow:0 2px 16px rgba(0,0,0,.65)}
   .whynow .forces{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:720px;margin:36px auto 0}
-  .whynow .force{font-family:var(--sans);text-transform:uppercase;letter-spacing:.16em;font-size:12.5px;color:var(--gold-soft);font-weight:600;border:1px solid rgba(200,162,76,.4);border-radius:40px;padding:8px 18px}
-  .whynow .close{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.4vw,30px);color:#fff;margin-top:40px}
-  .whynow .close b{color:var(--gold-soft);font-weight:600}
+  .whynow .force{font-family:var(--sans);text-transform:uppercase;letter-spacing:.16em;font-size:12.5px;color:var(--gold-soft);font-weight:600;border:1px solid rgba(200,162,76,.4);border-radius:40px;padding:8px 18px;background:rgba(5,11,24,.35);text-shadow:0 2px 10px rgba(0,0,0,.6);transition:color .3s ease-out,border-color .3s ease-out,box-shadow .3s ease-out,background .3s ease-out,transform .3s ease-out}
+  .whynow .force:hover,.whynow .force:focus-visible{color:#fff;border-color:var(--gold-soft);background:rgba(200,162,76,.16);box-shadow:0 0 18px rgba(220,193,137,.45);transform:translateY(-2px)}
+  .whynow .close{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.4vw,30px);color:#fff;margin-top:40px;text-shadow:0 2px 16px rgba(0,0,0,.65)}
+  .whynow .close b{color:var(--gold-soft);font-weight:600;text-shadow:0 0 14px rgba(220,193,137,.5);animation:whynowPulse 3.6s ease-in-out infinite}
+  @keyframes whynowPulse{0%,100%{text-shadow:0 0 10px rgba(220,193,137,.35)}50%{text-shadow:0 0 22px rgba(220,193,137,.7)}}
+  @media(prefers-reduced-motion:reduce){.whynow .shp-bg{top:0;bottom:0}.whynow .force{transition:color .3s ease-out,border-color .3s ease-out,box-shadow .3s ease-out,background .3s ease-out}.whynow .force:hover,.whynow .force:focus-visible{transform:none}.whynow .close b{animation:none;text-shadow:0 0 16px rgba(220,193,137,.55)}}
 
   /* one big quote */
   .megaquote{background:#fff;text-align:center;padding:140px 26px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -659,20 +677,24 @@
 </section>
 
 <!-- ===== WHY EGYPT? WHY NOW? ===== -->
-<section class="whynow" aria-label="Why Egypt, why now">
-  <div class="k reveal">Why Egypt? Why Now?</div>
-  <h2 class="reveal">Because History Rarely Aligns Like This.</h2>
-  <p class="reveal d1">Every so often, a country reaches a moment when everything it needs arrives at once.</p>
-  <div class="forces reveal d1">
-    <span class="force">Talent</span>
-    <span class="force">Capital</span>
-    <span class="force">Leadership</span>
-    <span class="force">Technology</span>
-    <span class="force">Infrastructure</span>
-    <span class="force">Government</span>
-    <span class="force">Vision</span>
+<section class="whynow" id="why-now" aria-label="Why Egypt, why now">
+  <div class="shp-bg" id="whyNowBg" data-bg="images/CAIRO-EGYPT.jpg"></div>
+  <div class="shp-overlay"></div>
+  <div class="whynow-inner">
+    <div class="k reveal">Why Egypt? Why Now?</div>
+    <h2 class="reveal">Because <span class="glow-word">History</span> Rarely <span class="glow-word">Aligns</span> Like This.</h2>
+    <p class="reveal d1">Every so often, a country reaches a moment when everything it needs arrives at once.</p>
+    <div class="forces reveal d1">
+      <span class="force">Talent</span>
+      <span class="force">Capital</span>
+      <span class="force">Leadership</span>
+      <span class="force">Technology</span>
+      <span class="force">Infrastructure</span>
+      <span class="force">Government</span>
+      <span class="force">Vision</span>
+    </div>
+    <p class="close reveal d2">JT Foxx believes Egypt is entering <b>one of those moments.</b></p>
   </div>
-  <p class="close reveal d2">JT Foxx believes Egypt is entering <b>one of those moments.</b></p>
 </section>
 
 <!-- ===== MEGA EGYPT ===== -->
@@ -831,15 +853,16 @@
     els.forEach(function(e){io.observe(e);});
   })();
 
-  // "MEGA EGYPT" pyramid background parallax - same mechanics as
-  // index.html's initParallaxSection (#seen-heard / #students): the
-  // photo is lazy-loaded via IntersectionObserver, then (unless
-  // prefers-reduced-motion) nudged with a clamped, rAF-throttled
+  // Shared by every .shp-bg scroll-parallax section on this page (MEGA
+  // EGYPT's pyramid photo, Why Egypt/Why Now's Cairo skyline) - same
+  // mechanics as index.html's initParallaxSection (#seen-heard /
+  // #students): the photo is lazy-loaded via IntersectionObserver, then
+  // (unless prefers-reduced-motion) nudged with a clamped, rAF-throttled
   // translateY tied to scroll position, rather than
   // background-attachment:fixed, which mobile Safari doesn't support.
-  (function(){
-    var section=document.getElementById('mega-egypt');
-    var bg=document.getElementById('megaBg');
+  function initParallaxSection(sectionId, bgId){
+    var section=document.getElementById(sectionId);
+    var bg=document.getElementById(bgId);
     if(!section||!bg) return;
 
     var src=bg.getAttribute('data-bg');
@@ -871,7 +894,9 @@
     }
     addEventListener('scroll', onScroll, {passive:true});
     update();
-  })();
+  }
+  initParallaxSection('mega-egypt', 'megaBg');
+  initParallaxSection('why-now', 'whyNowBg');
 </script>
 <script src="assets/app.js"></script>
 
