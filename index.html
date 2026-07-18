@@ -469,6 +469,30 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 @media(max-width:980px){.bento-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){.bento-grid{grid-template-columns:1fr;grid-auto-rows:240px}.bento-tile{grid-column:1!important;grid-row:span 1!important}}
 
+/* ---- Iconic Connections gallery (reuses .bento-tile's visual
+   language - border, shadow, hover lift + image zoom, gradient
+   caption - but as a uniform grid rather than a masonry layout, since
+   these 18 tiles are meant to read as one even photo wall). ---- */
+.icons-gallery{padding:110px 0}
+.icons-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:52px}
+.icon-tile{position:relative;aspect-ratio:4/5;border-radius:8px;overflow:hidden;background:rgba(201,165,92,.07);border:1px solid rgba(201,165,92,.22);box-shadow:0 10px 24px rgba(15,27,51,.12);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.icon-tile:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.icon-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
+.icon-tile:hover img{transform:scale(1.05)}
+.icon-tile .cap{position:absolute;left:0;right:0;bottom:0;padding:12px 14px;background:linear-gradient(0deg,rgba(10,20,37,.88) 0%,rgba(10,20,37,0) 100%);font-size:12px;letter-spacing:.02em;color:#fff;font-weight:600}
+/* Six-step stagger cycling per row so the reveal reads as a wave
+   across the grid rather than everything fading in at once - reuses
+   the shared .reveal/.in mechanism from assets/app.js, only the
+   transition-delay is scoped here. */
+#icons .icon-tile.reveal:nth-child(6n+2){transition-delay:.05s}
+#icons .icon-tile.reveal:nth-child(6n+3){transition-delay:.1s}
+#icons .icon-tile.reveal:nth-child(6n+4){transition-delay:.15s}
+#icons .icon-tile.reveal:nth-child(6n+5){transition-delay:.2s}
+#icons .icon-tile.reveal:nth-child(6n+6){transition-delay:.25s}
+@media(prefers-reduced-motion:reduce){.icon-tile:hover img{transform:none}.icon-tile{transition:box-shadow .35s var(--ease)}}
+@media(max-width:980px){.icons-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.icons-grid{grid-template-columns:repeat(2,1fr);gap:12px}.icons-gallery{padding:80px 0}}
+
 .video-note{margin-top:22px;font-size:12px;color:var(--text-muted);text-align:center}
 
 /* ---- Watch video modal (click-to-load, reuses media.html's .lightbox
@@ -1425,6 +1449,47 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
         <img src="images/Dr.DalalAkoury-Speaker-Functional-Medicine.jpg" alt="Speaker — Functional Medicine" loading="lazy">
         <div class="bento-cap">Speaker — Functional Medicine</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ICONIC CONNECTIONS
+     Name captions below are inferred from filenames per the request
+     that added this section. Several filenames are misspelled or
+     ambiguous - flagged here for confirmation before publishing:
+     "Brett Michael" -> guessed "Bret Michaels" (not given explicitly,
+     inferred by this editor); "Charley Sheen and D" -> "Charlie
+     Sheen"; "Great Laughter Miel Giebson" -> "Mel Gibson"; "J Noonan &
+     Dalal" -> captioned "Peggy Noonan" per instruction, but the
+     filename's initial "J" doesn't match "Peggy" - worth confirming
+     who this actually is; "Myrtle&Dr.Dalal-Akoury" -> "Myrtle",
+     surname unknown; "Randy Zacherberg" -> "Randi Zuckerberg";
+     "Wosniac 3 Dolly" -> "Steve Wozniak". -->
+<section class="block bg-cream icons-gallery" id="icons">
+  <div class="container">
+    <div class="center">
+      <div class="section-label">Iconic Connections</div>
+      <h2 class="sh">The World's Most Influential <em>Leaders &amp; Icons</em></h2>
+    </div>
+    <div class="icons-grid">
+      <div class="icon-tile reveal"><img src="images/Al Pacino.jpg" alt="Al Pacino" loading="lazy"><div class="cap">Al Pacino</div></div>
+      <div class="icon-tile reveal"><img src="images/Brett Michael .jpg" alt="Bret Michaels" loading="lazy"><div class="cap">Bret Michaels</div></div>
+      <div class="icon-tile reveal"><img src="images/Charley Sheen and D.jpg" alt="Charlie Sheen" loading="lazy"><div class="cap">Charlie Sheen</div></div>
+      <div class="icon-tile reveal"><img src="images/Christie Brinkley Dalal.jpg" alt="Christie Brinkley" loading="lazy"><div class="cap">Christie Brinkley</div></div>
+      <div class="icon-tile reveal"><img src="images/Dr. Nido R. Qubein.jpg" alt="Dr. Nido Qubein" loading="lazy"><div class="cap">Dr. Nido Qubein</div></div>
+      <div class="icon-tile reveal"><img src="images/Dr.Robert Goldman.jpg" alt="Dr. Robert Goldman" loading="lazy"><div class="cap">Dr. Robert Goldman</div></div>
+      <div class="icon-tile reveal"><img src="images/DrDalal-and-Dr-Phil.png" alt="Dr. Phil" loading="lazy"><div class="cap">Dr. Phil</div></div>
+      <div class="icon-tile reveal"><img src="images/Gene Simons.jpg" alt="Gene Simmons" loading="lazy"><div class="cap">Gene Simmons</div></div>
+      <div class="icon-tile reveal"><img src="images/George Ross MegaSuccess 2017.jpg" alt="George Ross" loading="lazy"><div class="cap">George Ross</div></div>
+      <div class="icon-tile reveal"><img src="images/Great Laughter Miel Giebson.jpg" alt="Mel Gibson" loading="lazy"><div class="cap">Mel Gibson</div></div>
+      <div class="icon-tile reveal"><img src="images/Holyfield &amp;Dalal.jpg" alt="Evander Holyfield" loading="lazy"><div class="cap">Evander Holyfield</div></div>
+      <div class="icon-tile reveal"><img src="images/J Noonan &amp; Dalal.jpg" alt="Peggy Noonan" loading="lazy"><div class="cap">Peggy Noonan</div></div>
+      <div class="icon-tile reveal"><img src="images/Mark Wahrburd Dalal4.jpg" alt="Mark Wahlberg" loading="lazy"><div class="cap">Mark Wahlberg</div></div>
+      <div class="icon-tile reveal"><img src="images/Myrtle&amp;Dr.Dalal-Akoury.jpg" alt="Myrtle" loading="lazy"><div class="cap">Myrtle</div></div>
+      <div class="icon-tile reveal"><img src="images/Oprah Dalal  Transparent background copy.jpg" alt="Oprah Winfrey" loading="lazy"><div class="cap">Oprah Winfrey</div></div>
+      <div class="icon-tile reveal"><img src="images/Randy Zacherberg .jpg" alt="Randi Zuckerberg" loading="lazy"><div class="cap">Randi Zuckerberg</div></div>
+      <div class="icon-tile reveal"><img src="images/Travolta Dolly.jpg" alt="John Travolta" loading="lazy"><div class="cap">John Travolta</div></div>
+      <div class="icon-tile reveal"><img src="images/Wosniac 3 Dolly.jpg" alt="Steve Wozniak" loading="lazy"><div class="cap">Steve Wozniak</div></div>
     </div>
   </div>
 </section>
