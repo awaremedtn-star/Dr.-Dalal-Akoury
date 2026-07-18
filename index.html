@@ -475,7 +475,7 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
    these 18 tiles are meant to read as one even photo wall). ---- */
 .icons-gallery{padding:110px 0}
 .icons-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:52px}
-.icon-tile{position:relative;aspect-ratio:4/5;border-radius:8px;overflow:hidden;background:rgba(201,165,92,.07);border:1px solid rgba(201,165,92,.22);box-shadow:0 10px 24px rgba(15,27,51,.12);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.icon-tile{position:relative;aspect-ratio:4/5;border-radius:8px;overflow:hidden;background:rgba(201,165,92,.07);border:1px solid rgba(201,165,92,.22);box-shadow:0 10px 24px rgba(15,27,51,.12);transition:transform .35s var(--ease),box-shadow .35s var(--ease);cursor:pointer}
 .icon-tile:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .icon-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
 .icon-tile:hover img{transform:scale(1.05)}
@@ -492,6 +492,21 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 @media(prefers-reduced-motion:reduce){.icon-tile:hover img{transform:none}.icon-tile{transition:box-shadow .35s var(--ease)}}
 @media(max-width:980px){.icons-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:560px){.icons-grid{grid-template-columns:repeat(2,1fr);gap:12px}.icons-gallery{padding:80px 0}}
+
+/* Click-to-enlarge lightbox for the icons gallery - same overlay/
+   close-button/Escape/click-outside conventions as #videoModal above,
+   but the enlarged image itself "floats" in: starts slightly smaller
+   and lower, scales/rises up to full size on open, rather than just
+   snapping into place. */
+.ilightbox{position:fixed;inset:0;z-index:300;background:rgba(10,20,37,.92);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s var(--ease);padding:60px 24px}
+.ilightbox.open{opacity:1;visibility:visible;pointer-events:auto}
+.ilightbox img{max-width:88vw;max-height:82vh;object-fit:contain;border-radius:8px;box-shadow:0 40px 90px rgba(0,0,0,.5);transform:scale(.9) translateY(26px);transition:transform .4s var(--ease)}
+.ilightbox.open img{transform:scale(1) translateY(0)}
+.ilightbox-cap{position:absolute;bottom:30px;left:0;right:0;text-align:center;color:#fff;font-family:var(--display);font-size:1.15rem;letter-spacing:.02em;opacity:0;transform:translateY(10px);transition:opacity .4s var(--ease) .1s,transform .4s var(--ease) .1s}
+.ilightbox.open .ilightbox-cap{opacity:1;transform:translateY(0)}
+.ilightbox-close{position:absolute;top:20px;right:24px;background:none;border:none;color:#fff;font-size:2.2rem;line-height:1;cursor:pointer;padding:8px 14px;z-index:2}
+.ilightbox-close:hover{color:var(--gold-light)}
+@media(prefers-reduced-motion:reduce){.ilightbox,.ilightbox img,.ilightbox-cap{transition:none}}
 
 .video-note{margin-top:22px;font-size:12px;color:var(--text-muted);text-align:center}
 
@@ -1494,6 +1509,12 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
   </div>
 </section>
 
+<div class="ilightbox" id="iconLightbox" aria-hidden="true">
+  <button class="ilightbox-close" id="iconLightboxClose" aria-label="Close">&times;</button>
+  <img id="iconLightboxImg" src="" alt="">
+  <div class="ilightbox-cap" id="iconLightboxCap"></div>
+</div>
+
 <!-- NATIONAL MEDIA -->
 <section class="block bg-cream shp" id="seen-heard">
   <div class="shp-bg" id="shpBg" data-bg="images/media-interview-studio.jpg" aria-hidden="true"></div>
@@ -1754,6 +1775,41 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
     // (it's parsed inline, same as the rest of this tail script), so
     // app.js's own DOMContentLoaded handler still finds them - no extra
     // wiring needed here.
+  })();
+
+  // Iconic Connections gallery - click a tile to open it enlarged in a
+  // floating lightbox, same open/close/Escape/click-outside/body-scroll-
+  // lock conventions as the Watch modal above.
+  (function initIconLightbox(){
+    const tiles = document.querySelectorAll('#icons .icon-tile');
+    const lightbox = document.getElementById('iconLightbox');
+    const lightboxImg = document.getElementById('iconLightboxImg');
+    const lightboxCap = document.getElementById('iconLightboxCap');
+    const lightboxClose = document.getElementById('iconLightboxClose');
+    if (!tiles.length || !lightbox) return;
+
+    tiles.forEach((tile) => {
+      tile.addEventListener('click', () => {
+        const img = tile.querySelector('img');
+        const cap = tile.querySelector('.cap');
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCap.textContent = cap ? cap.textContent : '';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        lightboxClose.focus();
+      });
+    });
+
+    function closeLightbox(){
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox(); });
   })();
 
   (function initHeroSlideshow(){
