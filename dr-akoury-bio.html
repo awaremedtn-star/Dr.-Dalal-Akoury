@@ -75,19 +75,189 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="assets/style.css"/>
 <style>
-/* ---- Dr. Akoury in Egypt: inquiry form (page-specific; no other page has a form) ---- */
-.drbio-form{max-width:760px;margin:34px auto 0;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:34px;text-align:left;box-shadow:var(--shadow-lg)}
-.drbio-grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media(max-width:640px){.drbio-grid2{grid-template-columns:1fr}}
-.drbio-field{display:flex;flex-direction:column;margin-bottom:16px}
-.drbio-field label{font-size:var(--fs-caption);font-weight:700;color:var(--ink);margin-bottom:6px}
-.drbio-field input,.drbio-field select,.drbio-field textarea{font-family:var(--font-b);font-size:var(--fs-body);color:var(--ink);border:1px solid var(--border);border-radius:4px;padding:11px 13px;background:var(--white)}
-.drbio-field input:focus,.drbio-field select:focus,.drbio-field textarea:focus{border-color:var(--gold);outline:none;box-shadow:0 0 0 3px rgba(191,154,84,.18)}
-.drbio-consent{display:flex;gap:10px;align-items:flex-start;font-size:var(--fs-caption);color:var(--muted);margin:6px 0 20px}
-.drbio-consent input{margin-top:3px}
-.drbio-form-success{display:none;background:#f1f6f1;border:1px solid #cfe3cf;color:#2f6b3a;border-radius:6px;padding:18px 20px;margin-bottom:18px;font-size:var(--fs-body)}
-html[dir="rtl"] .drbio-form{text-align:right}
+
+#main{
+  --midnight:#0b1226;--midnight-2:#111b38;--gold:#c6a15b;--gold-soft:#d9bd82;--gold-deep:#a9853f;
+  --ivory:#f7f1e6;--ink:#171a22;--ink-soft:#41485a;--paper:#ffffff;--line:#e6ddcc;--maxw:1180px;
+  font-family:'Inter','Helvetica Neue',Arial,sans-serif;color:var(--ink);background:var(--paper);
+  line-height:1.72;font-size:17px;
+}
+#main h1,#main h2,#main h3,#main h4{font-family:'Cormorant Garamond','Playfair Display',Georgia,'Times New Roman',serif;font-weight:600;line-height:1.14;letter-spacing:.2px}
+#main a{color:var(--gold-deep);text-decoration:none}
+#main a:hover{text-decoration:underline}
+#main img{max-width:100%;display:block}
+#main .wrap{max-width:var(--maxw);margin:0 auto;padding:0 30px}
+#main .eyebrow2{text-transform:uppercase;letter-spacing:.26em;font-size:12px;font-weight:600;color:var(--gold);font-family:'Inter',sans-serif;display:block;margin-bottom:14px}
+#main section.dark .eyebrow2{color:var(--gold-soft)}
+
+/* ---- image placeholder / fallback (elegant, no visible text) ---- */
+#main .ph{position:relative;overflow:hidden;background:linear-gradient(135deg,#16223f 0%,#0c1329 100%);border:1px solid rgba(198,161,91,.28)}
+#main .ph::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 30% 20%, rgba(198,161,91,.16), transparent 70%);pointer-events:none}
+#main .ph::before{content:"";position:absolute;left:50%;top:50%;width:44px;height:44px;transform:translate(-50%,-50%);border:1px solid rgba(217,189,130,.35);border-radius:50%;opacity:.55}
+#main .ph img{position:relative;z-index:2;width:100%;height:100%;object-fit:cover;display:block}
+#main figure{margin:0}
+#main figcaption{font-size:12.5px;color:var(--ink-soft);margin-top:9px;letter-spacing:.01em}
+#main section.dark figcaption{color:#a7afc0}
+
+/* ---- buttons ---- */
+#main .btn2{display:inline-block;padding:15px 30px;border-radius:2px;font-size:15px;font-weight:600;transition:.2s;font-family:'Inter',sans-serif}
+#main .btn2-primary{background:var(--gold);color:var(--midnight)}
+#main .btn2-primary:hover{background:var(--gold-soft);text-decoration:none;transform:translateY(-1px)}
+#main .btn2-ghost{border:1px solid rgba(255,255,255,.4);color:#fff}
+#main .btn2-ghost:hover{border-color:var(--gold);color:var(--gold);text-decoration:none}
+#main .btn2-line{color:var(--gold-soft);border-bottom:1px solid rgba(217,189,130,.5);padding:4px 0}
+#main .btn2-line:hover{color:#fff;text-decoration:none;border-color:#fff}
+#main .btns{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+
+/* ---- hero ---- */
+#main .hero{position:relative;background:linear-gradient(180deg,var(--midnight),var(--midnight-2));color:var(--ivory);overflow:hidden}
+#main .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(1200px 600px at 84% -8%, rgba(198,161,91,.20), transparent 58%),radial-gradient(760px 460px at 0% 112%, rgba(124,45,45,.15), transparent 60%);z-index:1}
+#main .hero .wrap{position:relative;z-index:3;display:grid;grid-template-columns:1.2fr .95fr;gap:46px;align-items:center;padding-top:76px;padding-bottom:82px}
+#main .hero h1{font-size:clamp(33px,4.3vw,52px);margin:0 0 24px;color:#fff}
+#main .hero p.lede{font-size:19px;color:#cfd4e0;max-width:600px;margin:0 0 32px}
+#main .hero-media{position:relative}
+#main .hero-media .main-img{aspect-ratio:3/4;border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+#main .hero-media .inset{position:absolute;right:-18px;bottom:-26px;width:44%;aspect-ratio:4/3;border-radius:5px;border:2px solid var(--midnight);box-shadow:0 18px 44px rgba(0,0,0,.5)}
+@media(max-width:900px){#main .hero .wrap{grid-template-columns:1fr;gap:40px}#main .hero-media{max-width:400px}#main .hero-media .inset{width:46%}}
+
+/* ---- sections ---- */
+#main section.block{padding:86px 0}
+#main section.block.alt{background:var(--ivory)}
+#main section.block.dark{background:linear-gradient(180deg,var(--midnight-2),var(--midnight));color:var(--ivory)}
+#main section.dark h2,#main section.dark h3,#main section.dark h4{color:#fff}
+#main section.dark p{color:#cdd3e0}
+#main .sec-head2{max-width:820px;margin-bottom:40px}
+#main .sec-head2 h2{font-size:clamp(29px,3.9vw,44px);margin:14px 0 0;color:var(--midnight)}
+#main section.dark .sec-head2 h2{color:#fff}
+#main .lead2{max-width:840px}
+#main .lead2 p{font-size:18px;color:var(--ink-soft);margin:0 0 22px}
+#main section.dark .lead2 p{color:#cdd3e0}
+#main section:not(.dark) .lead2 p strong{color:var(--ink)}
+
+#main .statement{background:var(--midnight);color:var(--ivory);text-align:center}
+#main .statement .wrap{max-width:960px;padding:70px 30px}
+#main .statement p{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(23px,3vw,33px);line-height:1.42;font-style:italic;color:#fff;margin:0}
+#main .statement .attr{font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:22px}
+
+/* layout helpers */
+#main .split{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+@media(max-width:860px){#main .split{grid-template-columns:1fr;gap:28px}}
+#main .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:800px){#main .trio{grid-template-columns:1fr}}
+#main .ar-43{aspect-ratio:4/3;border-radius:6px}
+#main .ar-32{aspect-ratio:3/2;border-radius:6px}
+#main .ar-169{aspect-ratio:16/9;border-radius:6px}
+
+#main .pull2{border-left:3px solid var(--gold);padding:4px 0 4px 28px;margin:30px 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;line-height:1.4;font-style:italic;color:var(--midnight)}
+#main section.dark .pull2{color:#fff}
+
+#main .cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+#main .cols-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(max-width:860px){#main .cols-3,#main .cols-2{grid-template-columns:1fr}}
+#main .card2{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:26px 24px;transition:.2s;height:100%}
+#main section.alt .card2{background:#fff}
+#main section.dark .card2{background:rgba(255,255,255,.045);border-color:rgba(198,161,91,.28)}
+#main .card2:hover{border-color:var(--gold-soft);box-shadow:0 14px 38px rgba(11,18,38,.09);transform:translateY(-2px)}
+#main .card2 .kicker{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+#main section.dark .card2 .kicker{color:var(--gold-soft)}
+#main .card2 h3{font-size:22px;margin:9px 0 11px;color:var(--midnight)}
+#main section.dark .card2 h3{color:#fff}
+#main .card2 p{font-size:15.5px;color:var(--ink-soft);margin:0}
+#main section.dark .card2 p{color:#c6cdda}
+
+/* timeline (text) */
+#main .timeline{position:relative;max-width:820px;margin:0 auto;border-left:2px solid rgba(198,161,91,.4);padding-left:30px}
+#main .tl-item{position:relative;padding:0 0 26px}
+#main .tl-item::before{content:"";position:absolute;left:-37px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--midnight);border:2px solid var(--gold)}
+#main .tl-item .era{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
+#main .tl-item h4{font-size:20px;margin:4px 0 4px;color:#fff}
+#main .tl-item p{font-size:15px;color:#c6cdda;margin:0}
+
+/* sector mosaic (beyond healthcare) */
+#main .mosaic{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:980px){#main .mosaic{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){#main .mosaic{grid-template-columns:1fr}}
+#main .sector{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+#main .sector .simg{aspect-ratio:4/3}
+#main .sector .sbody{padding:16px 18px}
+#main .sector h3{font-size:18px;margin:0 0 6px;color:var(--midnight)}
+#main .sector p{font-size:13.5px;color:var(--ink-soft);margin:0 0 6px}
+#main .sector .ill{font-size:11px;letter-spacing:.04em;color:var(--gold-deep);font-style:italic}
+
+/* ecosystem */
+#main .eco2{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:860px){#main .eco2{grid-template-columns:1fr}}
+#main .node{border:1px solid var(--line);border-radius:6px;padding:24px;background:#fff}
+#main .node .name{font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;color:var(--midnight);font-weight:600}
+#main .node .what{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-deep);margin:4px 0 10px;font-weight:600}
+#main .node p{font-size:14.5px;color:var(--ink-soft);margin:0}
+
+/* evidence */
+#main .evidence{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+#main .evidence a{border:1px solid rgba(198,161,91,.5);color:var(--gold-soft);border-radius:2px;padding:11px 20px;font-size:14px}
+#main .evidence a:hover{background:var(--gold);color:var(--midnight);text-decoration:none}
+#main .bookrow{display:flex;gap:26px;align-items:center;flex-wrap:wrap;margin-top:30px}
+#main .bimg{aspect-ratio:2/3;border-radius:4px;width:168px}
+
+#main .chips2{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:20px}
+#main .chip2{border:1px solid var(--line);border-radius:999px;padding:8px 17px;font-size:13.5px;color:var(--midnight);background:#fff}
+#main section.dark .chip2{background:rgba(255,255,255,.06);border-color:rgba(198,161,91,.3);color:#fff}
+
+/* form */
+#main .form2{max-width:820px;margin:34px auto 0;background:#fff;border:1px solid var(--line);border-radius:8px;padding:34px;text-align:left;box-shadow:0 20px 60px rgba(11,18,38,.07)}
+#main .form2 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:640px){#main .form2 .grid2{grid-template-columns:1fr}}
+#main .field2{display:flex;flex-direction:column;margin-bottom:16px}
+#main .field2 label{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:.01em}
+#main .field2 input,#main .field2 select,#main .field2 textarea{font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:11px 13px;background:#fff;width:100%}
+#main .field2 input:focus,#main .field2 select:focus,#main .field2 textarea:focus{border-color:var(--gold);outline:none;box-shadow:0 0 0 3px rgba(198,161,91,.18)}
+#main .consent2{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--ink-soft);margin:6px 0 20px}
+#main .consent2 input{margin-top:3px}
+#main .form2 button{background:var(--gold);color:var(--midnight);border:none;border-radius:2px;padding:15px 32px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:.2s}
+#main .form2 button:hover{background:var(--gold-soft)}
+#main .form2-success{display:none;background:#f1f6f1;border:1px solid #cfe3cf;color:#2f6b3a;border-radius:6px;padding:18px 20px;margin-bottom:18px;font-size:15px}
+
+/* cta band */
+#main .cta2{background:var(--ivory);text-align:center}
+#main .cta2 h2{color:var(--midnight);font-size:clamp(29px,3.9vw,44px);margin:0 0 14px}
+#main .cta2 p{max-width:700px;margin:0 auto;color:var(--ink-soft);font-size:18px}
+
+/* legacy full-width */
+#main .legacy2{position:relative;color:#fff;text-align:center;overflow:hidden;background:linear-gradient(180deg,var(--midnight),#080d1c)}
+#main .legacy2 .limg{position:absolute;inset:0;z-index:0;border:none;border-radius:0}
+#main .legacy2::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(8,13,28,.62),rgba(8,13,28,.82))}
+#main .legacy2 .wrap{position:relative;z-index:2;max-width:920px;padding:118px 30px}
+#main .legacy2 h2{color:#fff;font-size:clamp(30px,4.4vw,48px);margin:0 0 26px;line-height:1.16}
+
+/* invitation / audience / pathways */
+#main .invite2{font-size:17px;color:var(--gold-soft);max-width:620px;margin:2px 0 30px;font-style:italic;border-left:2px solid rgba(198,161,91,.55);padding-left:16px;line-height:1.6}
+#main .aud2{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:860px){#main .aud2{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){#main .aud2{grid-template-columns:1fr}}
+#main .a-card2{border:1px solid var(--line);border-radius:6px;padding:24px 22px;background:#fff;transition:.2s}
+#main .a-card2:hover{border-color:var(--gold-soft);box-shadow:0 12px 32px rgba(11,18,38,.08);transform:translateY(-2px)}
+#main .a-card2 h3{font-size:19px;color:var(--midnight);margin:0 0 9px}
+#main .a-card2 p{font-size:14.5px;color:var(--ink-soft);margin:0}
+#main .paths2{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:860px){#main .paths2{grid-template-columns:1fr}}
+#main .path2{border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:6px;padding:20px 22px;background:#fff}
+#main .path2 h3{font-size:17.5px;color:var(--midnight);margin:0 0 6px}
+#main .path2 p{font-size:14px;color:var(--ink-soft);margin:0 0 12px}
+#main .path2 a{font-size:13px;font-weight:600}
+#main .voice2{font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;line-height:1.46;font-style:italic}
+#main .voice2 .sig{display:block;font-family:'Inter',sans-serif;font-size:12.5px;font-style:normal;letter-spacing:.08em;color:var(--gold-soft);margin-top:16px;text-transform:uppercase}
+
+/* RTL mirroring for the borders/left-alignment patterns above */
+html[dir="rtl"] #main .timeline{border-left:none;border-right:2px solid rgba(198,161,91,.4);padding-left:0;padding-right:30px}
+html[dir="rtl"] #main .tl-item::before{left:auto;right:-37px}
+html[dir="rtl"] #main .pull2,html[dir="rtl"] #main .path2{border-left:none;border-right:3px solid var(--gold);padding:20px 22px 20px 0}
+html[dir="rtl"] #main .pull2{padding:4px 28px 4px 0}
+html[dir="rtl"] #main .invite2{border-left:none;border-right:2px solid rgba(198,161,91,.55);padding-left:0;padding-right:16px}
+html[dir="rtl"] #main .hero-media .inset{right:auto;left:-18px}
+html[dir="rtl"] #main .form2{text-align:right}
+
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 </head>
 <body>
 
@@ -199,289 +369,270 @@ html[dir="rtl"] .drbio-form{text-align:right}
 
 <main id="main">
 
-<!-- HERO -->
-<section class="section on-dark">
+<section class="hero" aria-labelledby="hero-h1">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow light" data-i18n="hero.eyebrow">Born in Alexandria &middot; Built in America &middot; Returning for Egypt</div>
-      <h1 data-i18n="hero.h1">Dr. Dalal Akoury Returns to Egypt &mdash; with Forty Years of Medicine, Leadership and Global Vision</h1>
-      <p class="lead" data-i18n="hero.lede">After more than four decades devoted to medicine, research, education, entrepreneurship and whole-person healing in the United States, Dr. Dalal Akoury is bringing a lifetime of experience and relationships home &mdash; connecting healthcare with education, innovation and opportunity built on trust.</p>
+    <div class="hero-copy">
+      <span class="eyebrow2" data-i18n="hero.eyebrow">Born in Alexandria &middot; Built in America &middot; Returning for Egypt</span>
+      <h1 id="hero-h1" data-i18n="hero.h1">Dr. Dalal Akoury Returns to Egypt &mdash; with Forty Years of Medicine, Leadership and Global Vision</h1>
+      <p class="lede" data-i18n="hero.lede">After more than four decades devoted to medicine, research, education, entrepreneurship and whole-person healing in the United States, Dr. Dalal Akoury is bringing a lifetime of experience and relationships home &mdash; connecting healthcare with education, innovation and opportunity built on trust.</p>
+      <p class="invite2" data-i18n="hero.invite">If you believe Egypt&rsquo;s greatest opportunities will be built by bringing the right people, knowledge and resources together, Dr. Akoury invites you to discover where your experience may fit.</p>
+      <div class="btns">
+        <a class="btn2 btn2-primary" href="#audience" data-i18n="hero.cta1">Discover Where You Fit</a>
+        <a class="btn2 btn2-ghost" href="#beyond" data-i18n="hero.cta2">Explore the Egypt Vision</a>
+        <a class="btn2-line" href="#meet" data-i18n="hero.cta3">Meet Dr. Akoury</a>
+      </div>
     </div>
-    <p class="prose reveal" style="color:rgba(255,255,255,.78);font-style:italic;max-width:62ch" data-i18n="hero.invite">If you believe Egypt&rsquo;s greatest opportunities will be built by bringing the right people, knowledge and resources together, Dr. Akoury invites you to discover where your experience may fit.</p>
-    <div class="reveal" style="margin-top:22px;display:flex;gap:16px;flex-wrap:wrap">
-      <a href="#audience" class="btn btn-gold" data-i18n="hero.cta1">Discover Where You Fit</a>
-      <a href="#beyond" class="btn btn-line" data-i18n="hero.cta2">Explore the Egypt Vision</a>
-      <a href="#meet" class="textlink" style="color:var(--gold-lt);border-color:var(--gold-lt)" data-i18n="hero.cta3">Meet Dr. Akoury</a>
+    <div class="hero-media">
+      <div class="ph main-img"><img src="images/dr-dalal-akoury-egypt-hero.webp" alt="Dr. Dalal Akoury" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div>
+      <div class="ph inset"><img src="images/alexandria-egypt-dr-akoury-origins.webp" alt="Alexandria, Egypt" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div>
     </div>
   </div>
 </section>
 
-<!-- NOT SIMPLY A RETURN -->
-<section class="manifesto" id="return" aria-label="This is not simply a return">
-  <div class="wrap reveal">
-    <div class="rule"></div>
+<section class="statement" id="return" aria-label="This is not simply a return">
+  <div class="wrap">
     <p data-i18n="return.p">She left Egypt to learn from the world. She returns because what she learned belongs, in part, to the country that formed her.</p>
-    <a class="link" data-i18n="return.tag" style="pointer-events:none;border-bottom:none">The Return</a>
+    <div class="attr" data-i18n="return.tag">The Return</div>
   </div>
 </section>
 
-<!-- OPEN DOOR -->
-<section class="section bg-white" id="open-door">
+<section class="block alt" id="open-door" aria-labelledby="opendoor-h">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow" data-i18n="open.eyebrow">An Open Door</div>
-      <h2 data-i18n="open.h2">This Vision Was Never Meant to Be Built by One Person</h2>
+    <div class="split">
+      <div class="txt">
+        <div class="sec-head2" style="margin-bottom:24px"><span class="eyebrow2" data-i18n="open.eyebrow">An Open Door</span><h2 id="opendoor-h" data-i18n="open.h2">This Vision Was Never Meant to Be Built by One Person</h2></div>
+        <div class="lead2">
+          <p data-i18n="open.p1">Dr. Akoury is not returning to Egypt with a finished blueprint and all the answers. She is returning with experience, relationships and a willingness to listen &mdash; to physicians, educators, entrepreneurs, developers, innovators and Egyptians throughout the world who believe that meaningful progress begins with the right conversation.</p>
+          <p data-i18n="open.p2">Her role is not simply to present a vision. It is to help bring together people whose knowledge, values and capabilities may complement one another.</p>
+          <p data-i18n="open.p3">Some will bring medical expertise. Some will bring technology, education, land, development experience, hospitality, relationships or the means to help. Others will bring a deep understanding of Egypt and the communities any worthwhile initiative must serve.</p>
+        </div>
+        <a class="btn2 btn2-primary" href="#audience" style="margin-top:8px" data-i18n="open.cta">See How You Can Participate</a>
+      </div>
+      <div>
+        <figure><div class="ph "><img src="images/dr-dalal-akoury-listening-mentoring.webp" alt="Dr. Dalal Akoury listening and mentoring" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
+      </div>
     </div>
-    <div class="prose reveal" style="max-width:72ch">
-      <p data-i18n="open.p1" style="margin-bottom:18px">Dr. Akoury is not returning to Egypt with a finished blueprint and all the answers. She is returning with experience, relationships and a willingness to listen &mdash; to physicians, educators, entrepreneurs, developers, innovators and Egyptians throughout the world who believe that meaningful progress begins with the right conversation.</p>
-      <p data-i18n="open.p2" style="margin-bottom:18px">Her role is not simply to present a vision. It is to help bring together people whose knowledge, values and capabilities may complement one another.</p>
-      <p data-i18n="open.p3">Some will bring medical expertise. Some will bring technology, education, land, development experience, hospitality, relationships or the means to help. Others will bring a deep understanding of Egypt and the communities any worthwhile initiative must serve.</p>
-    </div>
-    <a href="#audience" class="textlink reveal" style="margin-top:22px;display:inline-block" data-i18n="open.cta">See How You Can Participate</a>
   </div>
 </section>
 
-<!-- MEET DR. AKOURY -->
-<section class="cine" id="meet" aria-labelledby="meet-h">
-  <div class="wrap reveal">
-    <div class="eyebrow light" data-i18n="meet.eyebrow" style="justify-content:center">In Her Own Words</div>
-    <h2 id="meet-h" class="sr-only" style="position:absolute;left:-9999px" data-i18n="meet.h2">Meet Dr. Akoury</h2>
-    <p data-i18n="meet.quote">&ldquo;I am not returning to Egypt because I believe one person can transform a country. I am returning because I have spent a lifetime seeing what becomes possible when the right people trust one another, share what they know and build around a purpose larger than themselves.<br><br>Egypt gave me my beginning. America gave me the chance to learn, practice, teach and build. This chapter is about bringing those worlds together &mdash; and listening for what Egypt needs now.&rdquo;</p>
-    <div class="cite" data-i18n="meet.sig">Dr. Dalal Akoury, MD</div>
-    <p style="margin-top:26px;font-size:var(--fs-caption);color:rgba(255,255,255,.6);font-style:italic" data-i18n="meet.foot">Sometimes the most important work begins when two people who should know one another finally meet.</p>
+<section class="block dark" id="meet" aria-labelledby="meet-h">
+  <div class="wrap" style="max-width:900px;text-align:center">
+    <div class="sec-head2" style="margin:0 auto 30px"><span class="eyebrow2" data-i18n="meet.eyebrow">In Her Own Words</span><h2 id="meet-h" data-i18n="meet.h2">Meet Dr. Akoury</h2></div>
+    <p class="voice2" style="font-size:27px" data-i18n="meet.quote">&ldquo;I am not returning to Egypt because I believe one person can transform a country. I am returning because I have spent a lifetime seeing what becomes possible when the right people trust one another, share what they know and build around a purpose larger than themselves.<br><br>Egypt gave me my beginning. America gave me the chance to learn, practice, teach and build. This chapter is about bringing those worlds together &mdash; and listening for what Egypt needs now.&rdquo;</p>
+    <span class="sig" data-i18n="meet.sig" style="display:block;font-family:Inter,sans-serif;font-size:12.5px;letter-spacing:.08em;color:var(--gold-soft);margin-top:16px;text-transform:uppercase">Dr. Dalal Akoury, MD</span>
+    <p style="font-size:15px;color:#aab2c4;margin-top:26px;font-style:italic" data-i18n="meet.foot">Sometimes the most important work begins when two people who should know one another finally meet.</p>
   </div>
 </section>
 
-<!-- SHE NEVER LEFT EGYPT -->
-<section class="section bg-papyrus">
+<section class="block" aria-labelledby="never-h">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow" data-i18n="never.eyebrow">A Legacy Chapter</div>
-      <h2 data-i18n="never.h2">She Never Left Egypt Behind</h2>
-    </div>
-    <div class="prose reveal" style="max-width:72ch">
-      <p data-i18n="never.p1" style="margin-bottom:18px">Egypt remained present in Dr. Akoury&rsquo;s faith, resilience, ambition, family values and belief that medicine must serve the whole human being. Her life in America expanded her knowledge and relationships, but it never erased where her story began.</p>
+    <div class="sec-head2"><span class="eyebrow2" data-i18n="never.eyebrow">A Legacy Chapter</span><h2 id="never-h" data-i18n="never.h2">She Never Left Egypt Behind</h2></div>
+    <div class="lead2" style="margin-bottom:40px">
+      <p data-i18n="never.p1">Egypt remained present in Dr. Akoury&rsquo;s faith, resilience, ambition, family values and belief that medicine must serve the whole human being. Her life in America expanded her knowledge and relationships, but it never erased where her story began.</p>
       <p data-i18n="never.p2">Her return to engage with Egypt is not nostalgia. It is not retirement. It is not merely a symbolic visit. It is the beginning of a legacy chapter &mdash; the convergence of <strong>identity, experience and responsibility</strong>.</p>
     </div>
+    <figure style="max-width:600px;margin:6px auto 0"><div class="ph ar-43"><img src="images/dr-dalal-akoury-young-physician.webp" alt="Dr. Dalal Akoury early in her medical career" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption style="text-align:center">&nbsp;</figcaption></figure>
   </div>
 </section>
 
-<!-- WHY SHE MATTERS -->
-<section class="section bg-limestone" aria-labelledby="matters-h">
+<section class="block alt" aria-labelledby="matters-h">
   <div class="wrap">
-    <div class="sec-head reveal" id="matters">
-      <div class="eyebrow" data-i18n="matters.eyebrow">Why Dr. Dalal Akoury Matters to Egypt</div>
-      <h2 data-i18n="matters.h2">What Can Forty Years of Global Experience Bring Home?</h2>
-    </div>
-    <div class="grid-3">
-      <div class="card reveal"><span class="pn" data-i18n="matters.1.k">One</span><h3 data-i18n="matters.1.h">Medical Experience</h3><p data-i18n="matters.1.p">More than four decades across medicine &mdash; including oncology, research, emergency care, pediatrics and whole-person healthcare.</p></div>
-      <div class="card reveal"><span class="pn" data-i18n="matters.2.k">Two</span><h3 data-i18n="matters.2.h">Healthcare Systems Thinking</h3><p data-i18n="matters.2.p">Experience building an approach that examines how disease, metabolism, nutrition, hormones, immunity, environment, psychology and lifestyle interact.</p></div>
-      <div class="card reveal"><span class="pn" data-i18n="matters.3.k">Three</span><h3 data-i18n="matters.3.h">Medical Education</h3><p data-i18n="matters.3.p">A commitment to educating physicians, practitioners, patients and healthcare entrepreneurs.</p></div>
-      <div class="card reveal"><span class="pn" data-i18n="matters.4.k">Four</span><h3 data-i18n="matters.4.h">Entrepreneurial Experience</h3><p data-i18n="matters.4.p">Experience creating clinical, educational and business platforms &mdash; not merely practicing within an existing institution.</p></div>
-      <div class="card reveal"><span class="pn" data-i18n="matters.5.k">Five</span><h3 data-i18n="matters.5.h">International Relationships</h3><p data-i18n="matters.5.p">Connections across medicine, education, entrepreneurship, investment and international leadership.</p></div>
-      <div class="card reveal"><span class="pn" data-i18n="matters.6.k">Six</span><h3 data-i18n="matters.6.h">Egyptian Identity</h3><p data-i18n="matters.6.p">A personal understanding of Egyptian culture, talent and resilience &mdash; and of the opportunity created when local leadership connects with global resources.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- AUDIENCE -->
-<section class="section bg-white" id="audience" aria-labelledby="aud-h">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow" data-i18n="audience.eyebrow">Perhaps You Are Part of This Story</div>
-      <h2 data-i18n="audience.h2">Who Is Dr. Akoury Hoping to Meet?</h2>
-      <p class="lead" data-i18n="audience.lead">This vision grows through people. You may recognize yourself in one of these &mdash; and if you do, there may be a place for you in the conversation.</p>
-    </div>
-    <div class="grid-3">
-      <div class="card reveal"><h3 data-i18n="audience.1.h">Physicians &amp; Healthcare Leaders</h3><p data-i18n="audience.1.p">If you are working to improve care, train clinicians or build more connected healthcare systems, there may be meaningful ground to explore together.</p></div>
-      <div class="card reveal"><h3 data-i18n="audience.2.h">Universities &amp; Researchers</h3><p data-i18n="audience.2.p">If you see opportunities for education, research, faculty exchange or international collaboration, Dr. Akoury welcomes the conversation.</p></div>
-      <div class="card reveal"><h3 data-i18n="audience.3.h">Entrepreneurs &amp; Technology Leaders</h3><p data-i18n="audience.3.p">If you are building responsible solutions in AI, digital health, diagnostics, education or patient engagement, Egypt may be a powerful place to collaborate.</p></div>
-      <div class="card reveal"><h3 data-i18n="audience.4.h">Egyptians Around the World</h3><p data-i18n="audience.4.p">If Egypt remains part of your identity and you have knowledge, relationships or experience you want to bring home, this invitation is also for you.</p></div>
-      <div class="card reveal"><h3 data-i18n="audience.5.h">Young Egyptian Physicians &amp; Founders</h3><p data-i18n="audience.5.p">If you are building the future from within Egypt, Dr. Akoury wants not only to speak, but to listen.</p></div>
-      <div class="card reveal"><h3 data-i18n="audience.6.h">Strategic Connectors</h3><p data-i18n="audience.6.p">If you know people who should be in the same room but have not yet met, you may help create the relationship that changes what becomes possible.</p></div>
-    </div>
-    <div class="reveal" style="text-align:center;margin-top:36px"><a href="#collaborate" class="btn btn-gold" data-i18n="audience.cta">Tell Us What You Bring to the Conversation</a></div>
-  </div>
-</section>
-
-<!-- JOURNEY -->
-<section class="section on-dark" aria-labelledby="journey-h">
-  <div class="wrap">
-    <div class="sec-head center reveal" id="journey">
-      <div class="eyebrow light" data-i18n="journey.eyebrow" style="justify-content:center">The Journey from Alexandria</div>
-      <h2 data-i18n="journey.h2">A Path That Circled the World and Led Home</h2>
-    </div>
-    <div class="run-rows">
-      <div class="run-row reveal"><div class="idx" data-i18n="journey.1.era">Alexandria, Egypt</div><div><h3 data-i18n="journey.1.h">Where the story begins</h3><p data-i18n="journey.1.p">Born and formed in Alexandria &mdash; the roots of faith, resilience and ambition.</p></div></div>
-      <div class="run-row reveal"><div class="idx" data-i18n="journey.2.era">Formation</div><div><h3 data-i18n="journey.2.h">Medical education &amp; the move to America</h3><p data-i18n="journey.2.p">Foundational medical education, and the journey to the United States to train at the frontier of American medicine.</p></div></div>
-      <div class="run-row reveal"><div class="idx" data-i18n="journey.3.era">Specialty &amp; science</div><div><h3 data-i18n="journey.3.h">Pediatrics, oncology &amp; research</h3><p data-i18n="journey.3.p">Training in pediatrics and pediatric hematology/oncology, and academic and laboratory research.</p></div></div>
-      <div class="run-row reveal"><div class="idx" data-i18n="journey.4.era">A wider lens</div><div><h3 data-i18n="journey.4.h">From frontline care to whole-person medicine</h3><p data-i18n="journey.4.p">Broad clinical practice across emergency and general medicine &mdash; and the turn toward integrative, functional, whole-person approaches.</p></div></div>
-      <div class="run-row reveal"><div class="idx" data-i18n="journey.5.era">Now</div><div><h3 data-i18n="journey.5.h">Founding AWAREmed &mdash; and returning home to Egypt</h3><p data-i18n="journey.5.p">Establishing AWAREmed and educating a new generation &mdash; and now bringing four decades of experience and relationships home.</p></div></div>
+    <div class="sec-head2" id="matters"><span class="eyebrow2" data-i18n="matters.eyebrow">Why Dr. Dalal Akoury Matters to Egypt</span><h2 id="matters-h" data-i18n="matters.h2">What Can Forty Years of Global Experience Bring Home?</h2></div>
+    <div class="cols-3">
+      <div class="card2"><span class="kicker" data-i18n="matters.1.k">One</span><h3 data-i18n="matters.1.h">Medical Experience</h3><p data-i18n="matters.1.p">More than four decades across medicine &mdash; including oncology, research, emergency care, pediatrics and whole-person healthcare.</p></div>
+      <div class="card2"><span class="kicker" data-i18n="matters.2.k">Two</span><h3 data-i18n="matters.2.h">Healthcare Systems Thinking</h3><p data-i18n="matters.2.p">Experience building an approach that examines how disease, metabolism, nutrition, hormones, immunity, environment, psychology and lifestyle interact.</p></div>
+      <div class="card2"><span class="kicker" data-i18n="matters.3.k">Three</span><h3 data-i18n="matters.3.h">Medical Education</h3><p data-i18n="matters.3.p">A commitment to educating physicians, practitioners, patients and healthcare entrepreneurs.</p></div>
+      <div class="card2"><span class="kicker" data-i18n="matters.4.k">Four</span><h3 data-i18n="matters.4.h">Entrepreneurial Experience</h3><p data-i18n="matters.4.p">Experience creating clinical, educational and business platforms &mdash; not merely practicing within an existing institution.</p></div>
+      <div class="card2"><span class="kicker" data-i18n="matters.5.k">Five</span><h3 data-i18n="matters.5.h">International Relationships</h3><p data-i18n="matters.5.p">Connections across medicine, education, entrepreneurship, investment and international leadership.</p></div>
+      <div class="card2"><span class="kicker" data-i18n="matters.6.k">Six</span><h3 data-i18n="matters.6.h">Egyptian Identity</h3><p data-i18n="matters.6.p">A personal understanding of Egyptian culture, talent and resilience &mdash; and of the opportunity created when local leadership connects with global resources.</p></div>
     </div>
   </div>
 </section>
 
-<!-- FORTY YEARS OF MEDICINE -->
-<section class="section bg-white" aria-labelledby="forty-h">
+<section class="block" id="audience" aria-labelledby="aud-h">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow" data-i18n="forty.eyebrow">Forty Years of Medicine</div>
-      <h2 data-i18n="forty.h2">A Career Built Across the Full Continuum of Human Health</h2>
-      <p class="lead" data-i18n="forty.lead">Dr. Akoury&rsquo;s perspective is unusually broad &mdash; spanning acute care and prevention, the very young and the aging, the molecular and the whole person. That breadth is what allows her to think in systems rather than single specialties.</p>
+    <div class="sec-head2"><span class="eyebrow2" data-i18n="audience.eyebrow">Perhaps You Are Part of This Story</span><h2 id="aud-h" data-i18n="audience.h2">Who Is Dr. Akoury Hoping to Meet?</h2></div>
+    <div class="lead2" style="margin-bottom:36px"><p data-i18n="audience.lead">This vision grows through people. You may recognize yourself in one of these &mdash; and if you do, there may be a place for you in the conversation.</p></div>
+    <div class="aud2">
+      <div class="a-card2"><h3 data-i18n="audience.1.h">Physicians &amp; Healthcare Leaders</h3><p data-i18n="audience.1.p">If you are working to improve care, train clinicians or build more connected healthcare systems, there may be meaningful ground to explore together.</p></div>
+      <div class="a-card2"><h3 data-i18n="audience.2.h">Universities &amp; Researchers</h3><p data-i18n="audience.2.p">If you see opportunities for education, research, faculty exchange or international collaboration, Dr. Akoury welcomes the conversation.</p></div>
+      <div class="a-card2"><h3 data-i18n="audience.3.h">Entrepreneurs &amp; Technology Leaders</h3><p data-i18n="audience.3.p">If you are building responsible solutions in AI, digital health, diagnostics, education or patient engagement, Egypt may be a powerful place to collaborate.</p></div>
+      <div class="a-card2"><h3 data-i18n="audience.4.h">Egyptians Around the World</h3><p data-i18n="audience.4.p">If Egypt remains part of your identity and you have knowledge, relationships or experience you want to bring home, this invitation is also for you.</p></div>
+      <div class="a-card2"><h3 data-i18n="audience.5.h">Young Egyptian Physicians &amp; Founders</h3><p data-i18n="audience.5.p">If you are building the future from within Egypt, Dr. Akoury wants not only to speak, but to listen.</p></div>
+      <div class="a-card2"><h3 data-i18n="audience.6.h">Strategic Connectors</h3><p data-i18n="audience.6.p">If you know people who should be in the same room but have not yet met, you may help create the relationship that changes what becomes possible.</p></div>
     </div>
-    <div class="grid-3">
-      <div class="card reveal"><h3 data-i18n="forty.1.h">Pediatrics, Oncology &amp; Research</h3><p data-i18n="forty.1.p">Early training in pediatrics and pediatric hematology/oncology, and academic and laboratory research into the science of disease.</p></div>
-      <div class="card reveal"><h3 data-i18n="forty.2.h">Emergency &amp; Clinical Medicine</h3><p data-i18n="forty.2.p">Frontline experience across acute and general care &mdash; the broad clinical grounding of a four-decade career.</p></div>
-      <div class="card reveal"><h3 data-i18n="forty.3.h">Integrative &amp; Functional Medicine</h3><p data-i18n="forty.3.p">Root-cause, systems-based, regenerative and metabolic approaches &mdash; with integrative oncology support that complements, never replaces, conventional care.</p></div>
-      <div class="card reveal"><h3 data-i18n="forty.4.h">Longevity &amp; Addiction Medicine</h3><p data-i18n="forty.4.p">Evidence-conscious healthy aging and longevity, and a clinical interest in addiction medicine and the neurobiology of recovery.</p></div>
-      <div class="card reveal"><h3 data-i18n="forty.5.h">Whole-Person &amp; Complex Care</h3><p data-i18n="forty.5.p">Care for layered, long-term conditions that rarely fit one specialty &mdash; body, mind and spirit, tailored to the individual.</p></div>
-    </div>
-    <p class="reveal" style="font-size:var(--fs-caption);color:var(--muted);margin-top:26px;font-style:italic;max-width:72ch" data-i18n="forty.note">Emerging and integrative approaches are described here as areas of practice and interest, not as universally proven or guaranteed. Individual needs and outcomes vary.</p>
+    <div style="text-align:center;margin-top:36px"><a class="btn2 btn2-primary" href="#collaborate" data-i18n="audience.cta">Tell Us What You Bring to the Conversation</a></div>
   </div>
 </section>
 
-<!-- BEYOND HEALTHCARE -->
-<section class="section bg-limestone" aria-labelledby="beyond-h">
+<section class="block dark" aria-labelledby="journey-h">
   <div class="wrap">
-    <div class="sec-head reveal" id="beyond">
-      <div class="eyebrow" data-i18n="beyond.eyebrow">Beyond Healthcare</div>
-      <h2 data-i18n="beyond.h2">Healthcare Is the Foundation &mdash; But the Opportunity Is Much Larger</h2>
-      <p class="lead" data-i18n="beyond.lead">Her Egypt vision begins with medicine, but it does not end there. It connects care with the systems, industries and relationships that let progress endure &mdash; each area reinforcing the others. These are illustrative of these fields, not depictions of finalized projects.</p>
-    </div>
-    <div class="grid-2">
-      <div class="card reveal"><h3 data-i18n="beyond.1.h">Healthcare &amp; Medical Education</h3><p data-i18n="beyond.1.p">Centers of excellence, prevention, integrative oncology, longevity, physician training and university collaboration.</p></div>
-      <div class="card reveal"><h3 data-i18n="beyond.2.h">Technology &amp; Entrepreneurship</h3><p data-i18n="beyond.2.p">AI, digital health and telehealth &mdash; and support for physicians and founders building ethical, sustainable ventures.</p></div>
-      <div class="card reveal"><h3 data-i18n="beyond.3.h">Wellness Tourism &amp; Hospitality</h3><p data-i18n="beyond.3.p">Connecting Egypt&rsquo;s heritage, geography and hospitality with responsible, high-quality wellness programs and destinations.</p></div>
-      <div class="card reveal"><h3 data-i18n="beyond.4.h">Real Estate &amp; Economic Development</h3><p data-i18n="beyond.4.p">Health-centered campuses and destinations, and conversations that convene leaders, developers and responsible partners.</p></div>
-    </div>
-    <p class="reveal" style="font-size:var(--fs-body);color:var(--muted);margin-top:26px;max-width:72ch" data-i18n="beyond.note"><strong>These are areas of vision and exploration</strong> &mdash; not representations that any specific project has been funded, approved, endorsed or launched.</p>
-  </div>
-</section>
-
-<!-- PATHWAYS -->
-<section class="section on-dark" id="pathways" aria-labelledby="paths-h">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow light" data-i18n="pathways.eyebrow">From Vision to Conversation</div>
-      <h2 data-i18n="pathways.h2">What Could We Explore Together?</h2>
-      <p class="lead" data-i18n="pathways.lead">No single project defines this vision. The first purpose is simpler and more human: to find aligned people, understand real needs, and explore where complementary strengths might lead to something worth building. Each of these is a starting point for a conversation &mdash; not a finished or funded project.</p>
-    </div>
-    <div class="pil-grid">
-      <div class="pil-card reveal"><h3 data-i18n="pathways.1.h">Physician Education &amp; Clinical Training</h3><p data-i18n="pathways.1.p">Sharing knowledge and raising clinical capability together &mdash; including integrative oncology education.</p><a href="#collaborate" class="textlink" style="color:var(--gold-lt);border-color:var(--gold-lt);margin-top:10px;display:inline-block;font-size:var(--fs-caption)" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
-      <div class="pil-card reveal"><h3 data-i18n="pathways.2.h">Healthcare &amp; Longevity Centers</h3><p data-i18n="pathways.2.p">Whole-person, preventive and longevity-focused models of care.</p><a href="#collaborate" class="textlink" style="color:var(--gold-lt);border-color:var(--gold-lt);margin-top:10px;display:inline-block;font-size:var(--fs-caption)" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
-      <div class="pil-card reveal"><h3 data-i18n="pathways.3.h">Medical &amp; Wellness Tourism</h3><p data-i18n="pathways.3.p">Pairing Egypt&rsquo;s hospitality and heritage with high-quality care.</p><a href="#collaborate" class="textlink" style="color:var(--gold-lt);border-color:var(--gold-lt);margin-top:10px;display:inline-block;font-size:var(--fs-caption)" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
-      <div class="pil-card reveal"><h3 data-i18n="pathways.4.h">AI-Enabled Health &amp; Education</h3><p data-i18n="pathways.4.p">Technology that extends access, learning and better decisions.</p><a href="#collaborate" class="textlink" style="color:var(--gold-lt);border-color:var(--gold-lt);margin-top:10px;display:inline-block;font-size:var(--fs-caption)" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
-      <div class="pil-card reveal"><h3 data-i18n="pathways.5.h">University &amp; Research Collaborations</h3><p data-i18n="pathways.5.p">Faculty exchange, joint research and shared programs.</p><a href="#collaborate" class="textlink" style="color:var(--gold-lt);border-color:var(--gold-lt);margin-top:10px;display:inline-block;font-size:var(--fs-caption)" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
-      <div class="pil-card reveal"><h3 data-i18n="pathways.6.h">Healthcare Real Estate &amp; Wellness Destinations</h3><p data-i18n="pathways.6.p">Campuses, hospitality and destinations designed around health and human performance.</p><a href="#collaborate" class="textlink" style="color:var(--gold-lt);border-color:var(--gold-lt);margin-top:10px;display:inline-block;font-size:var(--fs-caption)" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
+    <div class="sec-head2" id="journey"><span class="eyebrow2" data-i18n="journey.eyebrow">The Journey from Alexandria</span><h2 id="journey-h" data-i18n="journey.h2">A Path That Circled the World and Led Home</h2></div>
+    <div class="timeline">
+      <div class="tl-item"><div class="era" data-i18n="journey.1.era">Alexandria, Egypt</div><h4 data-i18n="journey.1.h">Where the story begins</h4><p data-i18n="journey.1.p">Born and formed in Alexandria &mdash; the roots of faith, resilience and ambition.</p></div>
+      <div class="tl-item"><div class="era" data-i18n="journey.2.era">Formation</div><h4 data-i18n="journey.2.h">Medical education &amp; the move to America</h4><p data-i18n="journey.2.p">Foundational medical education, and the journey to the United States to train at the frontier of American medicine.</p></div>
+      <div class="tl-item"><div class="era" data-i18n="journey.3.era">Specialty &amp; science</div><h4 data-i18n="journey.3.h">Pediatrics, oncology &amp; research</h4><p data-i18n="journey.3.p">Training in pediatrics and pediatric hematology/oncology, and academic and laboratory research.</p></div>
+      <div class="tl-item"><div class="era" data-i18n="journey.4.era">A wider lens</div><h4 data-i18n="journey.4.h">From frontline care to whole-person medicine</h4><p data-i18n="journey.4.p">Broad clinical practice across emergency and general medicine &mdash; and the turn toward integrative, functional, whole-person approaches.</p></div>
+      <div class="tl-item"><div class="era" data-i18n="journey.5.era">Now</div><h4 data-i18n="journey.5.h">Founding AWAREmed &mdash; and returning home to Egypt</h4><p data-i18n="journey.5.p">Establishing AWAREmed and educating a new generation &mdash; and now bringing four decades of experience and relationships home.</p></div>
     </div>
   </div>
 </section>
 
-<!-- WHY EGYPT, WHY NOW -->
-<section class="section bg-white" aria-labelledby="moment-h">
+<section class="block" aria-labelledby="forty-h">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow" data-i18n="moment.eyebrow">Egypt&rsquo;s Strategic Moment</div>
-      <h2 data-i18n="moment.h2">Why Egypt &mdash; and Why Now?</h2>
+    <div class="sec-head2"><span class="eyebrow2" data-i18n="forty.eyebrow">Forty Years of Medicine</span><h2 id="forty-h" data-i18n="forty.h2">A Career Built Across the Full Continuum of Human Health</h2></div>
+    <div class="lead2" style="margin-bottom:30px"><p data-i18n="forty.lead">Dr. Akoury&rsquo;s perspective is unusually broad &mdash; spanning acute care and prevention, the very young and the aging, the molecular and the whole person. That breadth is what allows her to think in systems rather than single specialties.</p></div>
+    <div class="trio" style="margin-bottom:34px" aria-label="Documentary medical gallery">
+      <figure><div class="ph ar-32"><img src="images/dr-dalal-akoury-medical-career.webp" alt="Dr. Dalal Akoury during her medical career" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
+      <figure><div class="ph ar-32"><img src="images/dr-dalal-akoury-teaching-speaking.webp" alt="Dr. Dalal Akoury teaching physicians" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
+      <figure><div class="ph ar-32"><img src="images/dr-dalal-akoury-listening-mentoring.webp" alt="Dr. Dalal Akoury mentoring healthcare professionals" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
     </div>
-    <div class="prose reveal" style="max-width:72ch">
-      <p data-i18n="moment.p1" style="margin-bottom:18px">Egypt sits at a rare intersection of geography, history and ambition. Its position bridges Africa, the Middle East and Europe; it is home to one of the largest and youngest populations in the region; and its universities and hospitals form a substantial base to build upon. Its cultural influence and hospitality traditions are known worldwide.</p>
+    <div class="cols-3">
+      <div class="card2"><h3 data-i18n="forty.1.h">Pediatrics, Oncology &amp; Research</h3><p data-i18n="forty.1.p">Early training in pediatrics and pediatric hematology/oncology, and academic and laboratory research into the science of disease.</p></div>
+      <div class="card2"><h3 data-i18n="forty.2.h">Emergency &amp; Clinical Medicine</h3><p data-i18n="forty.2.p">Frontline experience across acute and general care &mdash; the broad clinical grounding of a four-decade career.</p></div>
+      <div class="card2"><h3 data-i18n="forty.3.h">Integrative &amp; Functional Medicine</h3><p data-i18n="forty.3.p">Root-cause, systems-based, regenerative and metabolic approaches &mdash; with integrative oncology support that complements, never replaces, conventional care.</p></div>
+      <div class="card2"><h3 data-i18n="forty.4.h">Longevity &amp; Addiction Medicine</h3><p data-i18n="forty.4.p">Evidence-conscious healthy aging and longevity, and a clinical interest in addiction medicine and the neurobiology of recovery.</p></div>
+      <div class="card2"><h3 data-i18n="forty.5.h">Whole-Person &amp; Complex Care</h3><p data-i18n="forty.5.p">Care for layered, long-term conditions that rarely fit one specialty &mdash; body, mind and spirit, tailored to the individual.</p></div>
+    </div>
+    <p style="font-size:14px;color:#7a8296;margin-top:24px;font-style:italic" data-i18n="forty.note">Emerging and integrative approaches are described here as areas of practice and interest, not as universally proven or guaranteed. Individual needs and outcomes vary.</p>
+  </div>
+</section>
+
+<section class="block alt" aria-labelledby="beyond-h">
+  <div class="wrap">
+    <div class="sec-head2" id="beyond"><span class="eyebrow2" data-i18n="beyond.eyebrow">Beyond Healthcare</span><h2 id="beyond-h" data-i18n="beyond.h2">Healthcare Is the Foundation &mdash; But the Opportunity Is Much Larger</h2></div>
+    <div class="lead2" style="margin-bottom:34px"><p data-i18n="beyond.lead">Her Egypt vision begins with medicine, but it does not end there. It connects care with the systems, industries and relationships that let progress endure &mdash; each area reinforcing the others. These are illustrative of these fields, not depictions of finalized projects.</p></div>
+    <div class="mosaic">
+      <div class="sector"><div class="ph simg"><img src="images/egypt-healthcare-medical-education.webp" alt="Illustrative image" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><div class="sbody"><h3 data-i18n="beyond.1.h">Healthcare &amp; Medical Education</h3><p data-i18n="beyond.1.p">Centers of excellence, prevention, integrative oncology, longevity, physician training and university collaboration.</p><span class="ill">Illustrative &mdash; an area of vision.</span></div></div>
+      <div class="sector"><div class="ph simg"><img src="images/egypt-technology-entrepreneurship.webp" alt="Illustrative image" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><div class="sbody"><h3 data-i18n="beyond.2.h">Technology &amp; Entrepreneurship</h3><p data-i18n="beyond.2.p">AI, digital health and telehealth &mdash; and support for physicians and founders building ethical, sustainable ventures.</p><span class="ill">Illustrative &mdash; an area of vision.</span></div></div>
+      <div class="sector"><div class="ph simg"><img src="images/egypt-wellness-tourism-hospitality.webp" alt="Illustrative image" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><div class="sbody"><h3 data-i18n="beyond.3.h">Wellness Tourism &amp; Hospitality</h3><p data-i18n="beyond.3.p">Connecting Egypt&rsquo;s heritage, geography and hospitality with responsible, high-quality wellness programs and destinations.</p><span class="ill">Illustrative &mdash; an area of vision.</span></div></div>
+      <div class="sector"><div class="ph simg"><img src="images/egypt-real-estate-economic-development.webp" alt="Illustrative image" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><div class="sbody"><h3 data-i18n="beyond.4.h">Real Estate &amp; Economic Development</h3><p data-i18n="beyond.4.p">Health-centered campuses and destinations, and conversations that convene leaders, developers and responsible partners.</p><span class="ill">Illustrative &mdash; an area of vision.</span></div></div>
+    </div>
+    <p style="font-size:15px;margin-top:26px" data-i18n="beyond.note"><strong>These are areas of vision and exploration</strong> &mdash; not representations that any specific project has been funded, approved, endorsed or launched.</p>
+  </div>
+</section>
+
+<section class="block" id="pathways" aria-labelledby="paths-h">
+  <div class="wrap">
+    <div class="sec-head2"><span class="eyebrow2" data-i18n="pathways.eyebrow">From Vision to Conversation</span><h2 id="paths-h" data-i18n="pathways.h2">What Could We Explore Together?</h2></div>
+    <div class="lead2" style="margin-bottom:36px"><p data-i18n="pathways.lead">No single project defines this vision. The first purpose is simpler and more human: to find aligned people, understand real needs, and explore where complementary strengths might lead to something worth building. Each of these is a starting point for a conversation &mdash; not a finished or funded project.</p></div>
+    <div class="paths2">
+      <div class="path2"><h3 data-i18n="pathways.1.h">Physician Education &amp; Clinical Training</h3><p data-i18n="pathways.1.p">Sharing knowledge and raising clinical capability together &mdash; including integrative oncology education.</p><a href="#collaborate" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
+      <div class="path2"><h3 data-i18n="pathways.2.h">Healthcare &amp; Longevity Centers</h3><p data-i18n="pathways.2.p">Whole-person, preventive and longevity-focused models of care.</p><a href="#collaborate" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
+      <div class="path2"><h3 data-i18n="pathways.3.h">Medical &amp; Wellness Tourism</h3><p data-i18n="pathways.3.p">Pairing Egypt&rsquo;s hospitality and heritage with high-quality care.</p><a href="#collaborate" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
+      <div class="path2"><h3 data-i18n="pathways.4.h">AI-Enabled Health &amp; Education</h3><p data-i18n="pathways.4.p">Technology that extends access, learning and better decisions.</p><a href="#collaborate" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
+      <div class="path2"><h3 data-i18n="pathways.5.h">University &amp; Research Collaborations</h3><p data-i18n="pathways.5.p">Faculty exchange, joint research and shared programs.</p><a href="#collaborate" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
+      <div class="path2"><h3 data-i18n="pathways.6.h">Healthcare Real Estate &amp; Wellness Destinations</h3><p data-i18n="pathways.6.p">Campuses, hospitality and destinations designed around health and human performance.</p><a href="#collaborate" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="block dark" aria-labelledby="moment-h">
+  <div class="wrap">
+    <div class="sec-head2"><span class="eyebrow2" data-i18n="moment.eyebrow">Egypt&rsquo;s Strategic Moment</span><h2 id="moment-h" data-i18n="moment.h2">Why Egypt &mdash; and Why Now?</h2></div>
+    <figure style="margin-bottom:26px"><div class="ph ar-169"><img src="images/modern-egypt-future.webp" alt="Modern Egypt" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
+    <div class="lead2">
+      <p data-i18n="moment.p1">Egypt sits at a rare intersection of geography, history and ambition. Its position bridges Africa, the Middle East and Europe; it is home to one of the largest and youngest populations in the region; and its universities and hospitals form a substantial base to build upon. Its cultural influence and hospitality traditions are known worldwide.</p>
       <p data-i18n="moment.p2">Add an emerging technology and entrepreneurial community, deep tourism strengths and a growing appetite for international collaboration, and the case becomes clear: this is a moment when Egyptian leadership connected to global knowledge can support meaningful opportunities in healthcare, education, wellness tourism and responsible economic development.</p>
     </div>
   </div>
 </section>
 
-<!-- NOT ONE CLINIC: ECOSYSTEM -->
-<section class="section bg-limestone" aria-labelledby="eco2-h">
+<section class="block" aria-labelledby="eco2-h">
   <div class="wrap">
-    <div class="sec-head reveal" id="ecosystem">
-      <div class="eyebrow" data-i18n="ecosys.eyebrow">The Ecosystem She Built</div>
-      <h2 data-i18n="ecosys.h2">Not One Clinic &mdash; an Ecosystem of Ideas, Education and Care</h2>
-      <p class="lead" data-i18n="ecosys.lead">Dr. Akoury arrives not with an idea alone, but with an operating ecosystem spanning care, education and practice development. Three highlights:</p>
+    <div class="sec-head2" id="ecosystem"><span class="eyebrow2" data-i18n="ecosys.eyebrow">The Ecosystem She Built</span><h2 id="eco2-h" data-i18n="ecosys.h2">Not One Clinic &mdash; an Ecosystem of Ideas, Education and Care</h2></div>
+    <div class="lead2" style="margin-bottom:32px"><p data-i18n="ecosys.lead">Dr. Akoury arrives not with an idea alone, but with an operating ecosystem spanning care, education and practice development. Three highlights:</p></div>
+    <div class="eco2">
+      <div class="node"><div class="name">AWAREmed</div><div class="what" data-i18n="ecosys.1.what">Clinical home</div><p data-i18n="ecosys.1.p">The whole-person integrative care center Dr. Akoury founded &mdash; created to treat the person rather than the diagnosis alone.</p></div>
+      <div class="node"><div class="name">IAMI</div><div class="what" data-i18n="ecosys.2.what">Education &amp; training</div><p data-i18n="ecosys.2.p">An institute focused on advancing integrative medical knowledge and training practitioners in whole-person methods.</p></div>
+      <div class="node"><div class="name">MMDP</div><div class="what" data-i18n="ecosys.3.what">Practice development</div><p data-i18n="ecosys.3.p">An educational and practice-development program helping physicians and health entrepreneurs build ethical, organized, sustainable practices.</p></div>
     </div>
-    <div class="m-rows">
-      <div class="m-row reveal"><div class="sym">AWAREmed</div><div class="lbl" data-i18n="ecosys.1.what" style="font-size:var(--fs-caption);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--bronze);margin-bottom:8px">Clinical home</div><p data-i18n="ecosys.1.p">The whole-person integrative care center Dr. Akoury founded &mdash; created to treat the person rather than the diagnosis alone.</p></div>
-      <div class="m-row reveal"><div class="sym">IAMI</div><div class="lbl" data-i18n="ecosys.2.what" style="font-size:var(--fs-caption);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--bronze);margin-bottom:8px">Education &amp; training</div><p data-i18n="ecosys.2.p">An institute focused on advancing integrative medical knowledge and training practitioners in whole-person methods.</p></div>
-      <div class="m-row reveal"><div class="sym">MMDP</div><div class="lbl" data-i18n="ecosys.3.what" style="font-size:var(--fs-caption);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--bronze);margin-bottom:8px">Practice development</div><p data-i18n="ecosys.3.p">An educational and practice-development program helping physicians and health entrepreneurs build ethical, organized, sustainable practices.</p></div>
-    </div>
-    <p class="reveal" style="margin-top:22px"><a href="https://awaremed.com" class="textlink" data-i18n="ecosys.link">See the full ecosystem at awaremed.com &rarr;</a></p>
+    <p style="margin-top:22px"><a href="https://awaremed.com" data-i18n="ecosys.link">See the full ecosystem at awaremed.com &rarr;</a></p>
   </div>
 </section>
 
-<!-- PROOF -->
-<section class="section on-dark" aria-labelledby="proof2-h">
+<section class="block dark" aria-labelledby="proof-h">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow light" data-i18n="proof.eyebrow">Proof, Not Empty Praise</div>
-      <h2 data-i18n="proof.h2">A Life&rsquo;s Work That Can Be Examined</h2>
-      <p class="lead" data-i18n="proof.lead">Authority should be verifiable. Explore Dr. Akoury&rsquo;s published books, peer-reviewed work, professional profile and the ecosystem she built.</p>
+    <div class="sec-head2"><span class="eyebrow2" data-i18n="proof.eyebrow">Proof, Not Empty Praise</span><h2 id="proof-h" data-i18n="proof.h2">A Life&rsquo;s Work That Can Be Examined</h2></div>
+    <div class="lead2" style="margin-bottom:22px"><p data-i18n="proof.lead">Authority should be verifiable. Explore Dr. Akoury&rsquo;s published books, peer-reviewed work, professional profile and the ecosystem she built.</p></div>
+    <div class="evidence">
+      <a href="https://www.amazon.com/stores/Dalal-Akoury-M.D./author/B072FSVBJB" data-i18n="proof.link1">View Books</a>
+      <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Akoury+DA" data-i18n="proof.link2">Publications on PubMed</a>
+      <a href="https://awaremed.com/dr-dalalakoury" data-i18n="proof.link3">Professional Profile</a>
+      <a href="https://www.linkedin.com/in/dalalakourymd/" data-i18n="proof.link4">LinkedIn</a>
+      <a href="https://awaremed.com" data-i18n="proof.link5">AWAREmed</a>
     </div>
-    <div class="pill-row reveal">
-      <a href="https://www.amazon.com/stores/Dalal-Akoury-M.D./author/B072FSVBJB" class="pill-lt" data-i18n="proof.link1">View Books</a>
-      <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Akoury+DA" class="pill-lt" data-i18n="proof.link2">Publications on PubMed</a>
-      <a href="https://awaremed.com/dr-dalalakoury" class="pill-lt" data-i18n="proof.link3">Professional Profile</a>
-      <a href="https://www.linkedin.com/in/dalalakourymd/" class="pill-lt" data-i18n="proof.link4">LinkedIn</a>
-      <a href="https://awaremed.com" class="pill-lt" data-i18n="proof.link5">AWAREmed</a>
-    </div>
-    <p class="reveal" style="margin-top:26px;color:rgba(255,255,255,.78);font-size:var(--fs-body)" data-i18n="proof.book"><em>Secrets of Healthy Aging</em> &mdash; among Dr. Akoury&rsquo;s published works. <a href="https://www.amazon.com/stores/Dalal-Akoury-M.D./author/B072FSVBJB">Browse her books on Amazon &rarr;</a></p>
-  </div>
-</section>
-
-<!-- THE WOMAN BEHIND THE MISSION -->
-<section class="section bg-white" aria-labelledby="woman-h">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow" data-i18n="woman.eyebrow">The Woman Behind the Mission</div>
-      <h2 data-i18n="woman.h2">The Authority Is Professional. The Mission Is Deeply Personal.</h2>
-    </div>
-    <p class="prose reveal" style="max-width:72ch;margin-bottom:24px" data-i18n="woman.p1">Behind the credentials is a complete human being: Egyptian-born and America-shaped; a wife and mother; a woman of faith; an immigrant who built something of her own; a physician, founder, educator and mentor; someone who has known illness from the patient&rsquo;s side as well as the physician&rsquo;s; and, above all, a listener &mdash; an advocate for the body, the mind and the spirit together.</p>
-    <blockquote class="pull reveal" style="background:transparent;color:var(--ink);border-inline-start-color:var(--gold);padding:0 0 0 28px;font-size:var(--fs-lead)"><p data-i18n="woman.p2">She often reflects that more than forty years have taught her how illness changes a person, a family and sometimes an entire future &mdash; and that real progress requires more than medicine. It requires education, systems, relationships, courage and people willing to build together. Egypt gave her a beginning; she now hopes the experience of a lifetime can contribute to its future.</p></blockquote>
-  </div>
-</section>
-
-<!-- GLOBAL NETWORK + JT FOXX -->
-<section class="section bg-limestone" aria-labelledby="network-h">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow" data-i18n="network.eyebrow">Her Global Network</div>
-      <h2 data-i18n="network.h2">Relationships Built Across a Lifetime in Medicine and Enterprise</h2>
-      <p class="lead" data-i18n="network.lead">Over her career, Dr. Akoury has developed relationships across many worlds &mdash; a network she now brings to bear on Egypt&rsquo;s opportunity.</p>
-    </div>
-    <div class="pill-row reveal" data-i18n="network.chips" aria-label="Network domains"><span>Physicians</span><span>Researchers</span><span>Educators</span><span>Entrepreneurs</span><span>Business leaders</span><span>Investors</span><span>Developers</span><span>International speakers</span><span>Healthcare innovators</span></div>
-    <div class="reveal" style="margin-top:44px;border-top:1px solid var(--border);padding-top:38px">
-      <h3 style="font-size:var(--fs-h3);color:var(--lapis);margin-bottom:16px" data-i18n="network.h3">Connecting Egypt with Global Entrepreneurs and Strategic Leaders</h3>
-      <p class="prose" style="max-width:72ch;margin-bottom:14px" data-i18n="network.p1">Among Dr. Akoury&rsquo;s long-standing international relationships is her connection with entrepreneur, speaker and business strategist JT Foxx. Their relationship spans approximately fifteen years and is grounded in trust, shared conversations and mutual respect. They are exploring how international relationships and strategic dialogue may help introduce qualified leaders to opportunities connected with Egypt.</p>
-      <p style="font-size:var(--fs-caption);color:var(--muted);font-style:italic;max-width:72ch;margin-bottom:18px" data-i18n="network.p2">This describes an exploratory relationship only. It does not represent a formal partnership, a committed investment, an endorsement of any specific opportunity, a finalized agreement, or any expectation of returns.</p>
-      <a href="jt-foxx-egypt.html" class="textlink" data-i18n="network.link">Explore JT Foxx in Egypt &rarr;</a>
+    <div class="bookrow" aria-label="Published books">
+      <a href="https://www.amazon.com/stores/Dalal-Akoury-M.D./author/B072FSVBJB" aria-label="Secrets of Healthy Aging on Amazon" style="flex:0 0 auto">
+        <figure><div class="ph bimg"><img src="images/secrets-of-healthy-aging.webp" alt="Secrets of Healthy Aging, a book by Dr. Dalal Akoury" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div></figure>
+      </a>
+      <div style="max-width:440px"><p style="color:#cdd3e0;margin:0;font-size:16px" data-i18n="proof.book"><em>Secrets of Healthy Aging</em> &mdash; among Dr. Akoury&rsquo;s published works. <a href="https://www.amazon.com/stores/Dalal-Akoury-M.D./author/B072FSVBJB">Browse her books on Amazon &rarr;</a></p></div>
     </div>
   </div>
 </section>
 
-<!-- COLLABORATE: INVITATION + FORM -->
-<section class="section bg-white" id="collaborate" aria-labelledby="collab-h">
+<section class="block alt" aria-labelledby="woman-h">
   <div class="wrap">
-    <div class="sec-head center reveal">
-      <div class="eyebrow" data-i18n="collab.eyebrow" style="justify-content:center">A Place in the Conversation</div>
-      <h2 data-i18n="collab.h2">Could Your Experience Become Part of Egypt&rsquo;s Next Chapter?</h2>
-      <p class="lead" data-i18n="collab.p1">Whether you bring medical knowledge, educational leadership, technology, development experience, hospitality, the means to help, local understanding or an international relationship, the first step is not a commitment. It is a thoughtful conversation.</p>
+    <div class="sec-head2"><span class="eyebrow2" data-i18n="woman.eyebrow">The Woman Behind the Mission</span><h2 id="woman-h" data-i18n="woman.h2">The Authority Is Professional. The Mission Is Deeply Personal.</h2></div>
+    <div class="split">
+      <div class="txt">
+        <div class="lead2">
+          <p data-i18n="woman.p1">Behind the credentials is a complete human being: Egyptian-born and America-shaped; a wife and mother; a woman of faith; an immigrant who built something of her own; a physician, founder, educator and mentor; someone who has known illness from the patient&rsquo;s side as well as the physician&rsquo;s; and, above all, a listener &mdash; an advocate for the body, the mind and the spirit together.</p>
+          <p class="pull2" data-i18n="woman.p2" style="border:none;padding:0;margin-top:18px">She often reflects that more than forty years have taught her how illness changes a person, a family and sometimes an entire future &mdash; and that real progress requires more than medicine. It requires education, systems, relationships, courage and people willing to build together. Egypt gave her a beginning; she now hopes the experience of a lifetime can contribute to its future.</p>
+        </div>
+      </div>
+      <div>
+        <figure><div class="ph "><img src="images/dr-dalal-akoury-personal-portrait.webp" alt="A personal portrait of Dr. Dalal Akoury" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
+      </div>
     </div>
-    <p class="reveal" style="max-width:62ch;margin:-30px auto 0;text-align:center;color:var(--muted)" data-i18n="collab.p2">You do not need to arrive with a formal proposal. Tell us who you are, what you care about and what you believe may be possible.</p>
+  </div>
+</section>
 
-    <div class="reveal" style="max-width:820px;margin:40px auto 0">
-      <h3 style="font-size:var(--fs-h3);color:var(--lapis);margin-bottom:8px" data-i18n="collab.h3">Begin With a Conversation</h3>
-      <p style="color:var(--muted);margin-bottom:0" data-i18n="collab.p3">Tell us a little about yourself and why Egypt&rsquo;s future matters to you. Dr. Akoury&rsquo;s team will review each thoughtful inquiry and respond when there appears to be meaningful alignment.</p>
+<section class="block" aria-labelledby="network-h">
+  <div class="wrap">
+    <div class="sec-head2"><span class="eyebrow2" data-i18n="network.eyebrow">Her Global Network</span><h2 id="network-h" data-i18n="network.h2">Relationships Built Across a Lifetime in Medicine and Enterprise</h2></div>
+    <div class="lead2" style="margin-bottom:24px"><p data-i18n="network.lead">Over her career, Dr. Akoury has developed relationships across many worlds &mdash; a network she now brings to bear on Egypt&rsquo;s opportunity.</p></div>
+    <div class="chips2" data-i18n="network.chips" aria-label="Network domains"><span class="chip2">Physicians</span><span class="chip2">Researchers</span><span class="chip2">Educators</span><span class="chip2">Entrepreneurs</span><span class="chip2">Business leaders</span><span class="chip2">Investors</span><span class="chip2">Developers</span><span class="chip2">International speakers</span><span class="chip2">Healthcare innovators</span></div>
+    <div style="margin-top:44px;border-top:1px solid var(--line);padding-top:38px">
+      <h3 style="font-size:26px;color:var(--midnight);margin:0 0 18px" data-i18n="network.h3">Connecting Egypt with Global Entrepreneurs and Strategic Leaders</h3>
+      <div class="split">
+        <div class="txt">
+          <div class="lead2">
+            <p data-i18n="network.p1">Among Dr. Akoury&rsquo;s long-standing international relationships is her connection with entrepreneur, speaker and business strategist JT Foxx. Their relationship spans approximately fifteen years and is grounded in trust, shared conversations and mutual respect. They are exploring how international relationships and strategic dialogue may help introduce qualified leaders to opportunities connected with Egypt.</p>
+            <p style="font-size:14.5px;color:#7a8296;font-style:italic" data-i18n="network.p2">This describes an exploratory relationship only. It does not represent a formal partnership, a committed investment, an endorsement of any specific opportunity, a finalized agreement, or any expectation of returns.</p>
+          </div>
+          <a class="btn2-line" style="color:var(--gold-deep);border-color:var(--gold-deep)" href="jt-foxx-egypt.html" data-i18n="network.link">Explore JT Foxx in Egypt &rarr;</a>
+        </div>
+        <div>
+          <figure><div class="ph ar-32"><img src="images/dr-dalal-akoury-jt-foxx.webp" alt="Dr. Dalal Akoury with JT Foxx" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block cta2" id="collaborate" aria-labelledby="collab-h">
+  <div class="wrap">
+    <span class="eyebrow2" data-i18n="collab.eyebrow">A Place in the Conversation</span>
+    <h2 id="collab-h" data-i18n="collab.h2">Could Your Experience Become Part of Egypt&rsquo;s Next Chapter?</h2>
+    <p data-i18n="collab.p1">Whether you bring medical knowledge, educational leadership, technology, development experience, hospitality, the means to help, local understanding or an international relationship, the first step is not a commitment. It is a thoughtful conversation.</p>
+    <p style="max-width:640px;margin:14px auto 0;color:var(--ink-soft)" data-i18n="collab.p2">You do not need to arrive with a formal proposal. Tell us who you are, what you care about and what you believe may be possible.</p>
+
+    <div style="max-width:820px;margin:40px auto 0;text-align:left">
+      <h3 style="font-size:24px;color:var(--midnight);margin:0 0 8px" data-i18n="collab.h3">Begin With a Conversation</h3>
+      <p style="color:var(--ink-soft);margin:0" data-i18n="collab.p3">Tell us a little about yourself and why Egypt&rsquo;s future matters to you. Dr. Akoury&rsquo;s team will review each thoughtful inquiry and respond when there appears to be meaningful alignment.</p>
     </div>
 
     <!-- Set the form action to a GoHighLevel/CRM endpoint; falls back to a mailto: draft until one is set. -->
-    <form class="drbio-form reveal" id="drbioForm" method="POST" action="" novalidate>
-      <div class="drbio-form-success" id="drbioFormSuccess" data-i18n="form.success">Thank you. Meaningful work often begins with a single conversation. Dr. Akoury&rsquo;s team will review your message and respond if there appears to be a relevant path to explore.</div>
+    <form class="form2" id="drbioForm" method="POST" action="" novalidate>
+      <div class="form2-success" id="drbioFormSuccess" data-i18n="form.success">Thank you. Meaningful work often begins with a single conversation. Dr. Akoury&rsquo;s team will review your message and respond if there appears to be a relevant path to explore.</div>
       <input type="hidden" name="source" value="dr-akoury-bio">
-      <div class="drbio-grid2">
-        <div class="drbio-field"><label for="db-name" data-i18n="form.name">Full name *</label><input id="db-name" name="name" type="text" required></div>
-        <div class="drbio-field"><label for="db-email" data-i18n="form.email">Email *</label><input id="db-email" name="email" type="email" required></div>
+      <div class="grid2">
+        <div class="field2"><label for="db-name" data-i18n="form.name">Full name *</label><input id="db-name" name="name" type="text" required></div>
+        <div class="field2"><label for="db-email" data-i18n="form.email">Email *</label><input id="db-email" name="email" type="email" required></div>
       </div>
-      <div class="drbio-field"><label for="db-org" data-i18n="form.org">Organization or role</label><input id="db-org" name="organization" type="text"></div>
-      <div class="drbio-field"><label for="db-interest" data-i18n="form.interestlabel">Where do you see yourself in this vision?</label>
+      <div class="field2"><label for="db-org" data-i18n="form.org">Organization or role</label><input id="db-org" name="organization" type="text"></div>
+      <div class="field2"><label for="db-interest" data-i18n="form.interestlabel">Where do you see yourself in this vision?</label>
         <select id="db-interest" name="interest">
           <option value="" data-i18n="form.opt0">Please select&hellip;</option>
           <option data-i18n="form.opt1">I am a physician or healthcare leader</option>
@@ -497,20 +648,20 @@ html[dir="rtl"] .drbio-form{text-align:right}
           <option data-i18n="form.opt11">I have another idea</option>
         </select>
       </div>
-      <div class="drbio-field"><label for="db-message" data-i18n="form.message">What would you like Dr. Akoury to know?</label><textarea id="db-message" name="message" rows="4"></textarea></div>
-      <div class="drbio-field"><label for="db-bring" data-i18n="form.bring">What opportunity or idea would you like to explore? (optional)</label><textarea id="db-bring" name="bring" rows="2"></textarea></div>
-      <label class="drbio-consent"><input type="checkbox" name="consent" required> <span data-i18n="form.consent">I acknowledge that the information I provide will be used to respond to my inquiry, in accordance with the privacy practices of Dr. Dalal Akoury / AWAREmed. *</span></label>
-      <button type="submit" class="btn btn-gold" data-i18n="form.submit">Share Your Interest</button>
+      <div class="field2"><label for="db-message" data-i18n="form.message">What would you like Dr. Akoury to know?</label><textarea id="db-message" name="message" rows="4"></textarea></div>
+      <div class="field2"><label for="db-bring" data-i18n="form.bring">What opportunity or idea would you like to explore? (optional)</label><textarea id="db-bring" name="bring" rows="2"></textarea></div>
+      <label class="consent2"><input type="checkbox" name="consent" required> <span data-i18n="form.consent">I acknowledge that the information I provide will be used to respond to my inquiry, in accordance with the privacy practices of Dr. Dalal Akoury / AWAREmed. *</span></label>
+      <button type="submit" data-i18n="form.submit">Share Your Interest</button>
     </form>
   </div>
 </section>
 
-<!-- LEGACY -->
-<section class="final" aria-labelledby="legacy2-h">
-  <div class="wrap reveal">
-    <span class="eyebrow light" style="justify-content:center" data-i18n="legacy2.tag">A Legacy Chapter</span>
+<section class="legacy2" aria-labelledby="legacy2-h">
+  <figure class="limg"><div class="ph "><img src="images/dr-dalal-akoury-egypt-legacy.webp" alt="Dr. Dalal Akoury reflecting on Egypt's future" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div></figure>
+  <div class="wrap">
+    <span class="eyebrow2" data-i18n="legacy2.tag">A Legacy Chapter</span>
     <h2 id="legacy2-h" data-i18n="legacy2.h2">She Left Egypt to Build a Life. She Returns to Help Build a Future.</h2>
-    <a href="#collaborate" class="btn btn-gold" data-i18n="legacy2.cta">Begin a Conversation</a>
+    <a class="btn2 btn2-primary" href="#collaborate" data-i18n="legacy2.cta">Begin a Conversation</a>
   </div>
 </section>
 
@@ -551,6 +702,7 @@ html[dir="rtl"] .drbio-form{text-align:right}
 </footer>
 
 
+
 <script>
 (function(){
   // Elegant inquiry-form handling for the About Dr. Akoury page: tries the
@@ -581,7 +733,7 @@ html[dir="rtl"] .drbio-form{text-align:right}
         .then(function(r){ if(r.ok){ showThanks(); form.reset(); } else { mailtoFallback(f); showThanks(); } })
         .catch(function(){ mailtoFallback(f); showThanks(); });
     } else {
-      mailtoFallback(f); showThanks();
+
     }
   });
 })();
