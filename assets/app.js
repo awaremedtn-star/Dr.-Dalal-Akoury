@@ -167,7 +167,16 @@
     var d = (l === 'en') ? EN : (window.I18N && window.I18N[l]);
     document.querySelectorAll('[data-i18n]').forEach(function(e){
       var k = e.getAttribute('data-i18n');
-      e.innerHTML = (d && d[k] !== undefined) ? d[k] : EN[k];
+      var hasTranslation = d && d[k] !== undefined;
+      e.innerHTML = hasTranslation ? d[k] : EN[k];
+      // Guards against the classic RTL bug where leftover/untranslated
+      // English text (falling back to EN[k]) inherits the page's
+      // dir="rtl" and has its trailing punctuation reordered to the
+      // front of the sentence. Any element still showing English gets
+      // an explicit LTR embedding regardless of page direction; a real
+      // translation clears it so Arabic renders RTL normally.
+      if(l !== 'en' && !hasTranslation){ e.setAttribute('dir','ltr'); e.style.unicodeBidi='isolate'; }
+      else { e.removeAttribute('dir'); e.style.unicodeBidi=''; }
     });
     root.setAttribute('lang', l);
     root.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
