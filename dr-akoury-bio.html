@@ -398,19 +398,21 @@ html[dir="rtl"] #main .form2{text-align:right}
 
 <section class="block alt" id="open-door" aria-labelledby="opendoor-h">
   <div class="wrap">
-    <div class="split">
-      <div class="txt">
-        <div class="sec-head2" style="margin-bottom:24px"><span class="eyebrow2" data-i18n="open.eyebrow">An Open Door</span><h2 id="opendoor-h" data-i18n="open.h2">This Vision Was Never Meant to Be Built by One Person</h2></div>
-        <div class="lead2">
-          <p data-i18n="open.p1">Dr. Akoury is not returning to Egypt with a finished blueprint and all the answers. She is returning with experience, relationships and a willingness to listen &mdash; to physicians, educators, entrepreneurs, developers, innovators and Egyptians throughout the world who believe that meaningful progress begins with the right conversation.</p>
-          <p data-i18n="open.p2">Her role is not simply to present a vision. It is to help bring together people whose knowledge, values and capabilities may complement one another.</p>
-          <p data-i18n="open.p3">Some will bring medical expertise. Some will bring technology, education, land, development experience, hospitality, relationships or the means to help. Others will bring a deep understanding of Egypt and the communities any worthwhile initiative must serve.</p>
-        </div>
-        <a class="btn2 btn2-primary" href="#audience" style="margin-top:8px" data-i18n="open.cta">See How You Can Participate</a>
+    <!-- Single centered text column (was: text left / placeholder-embed right).
+         max-width kept well under .wrap's 1180px so the flanking space on both
+         sides reads as deliberate room for future decorative pillar graphics,
+         not leftover margin. -->
+    <div style="max-width:700px;margin:0 auto;text-align:center">
+      <div class="sec-head2" style="margin:0 auto 24px">
+        <span class="eyebrow2" data-i18n="open.eyebrow">An Open Door</span>
+        <h2 id="opendoor-h" data-i18n="open.h2">This Vision Was Never Meant to Be Built by One Person</h2>
       </div>
-      <div>
-        <figure><div class="ph "><img src="images/dr-dalal-akoury-listening-mentoring.webp" alt="Dr. Dalal Akoury listening and mentoring" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
+      <div class="lead2" style="text-align:start;max-width:none">
+        <p data-i18n="open.p1">Dr. Akoury is not returning to Egypt with a finished blueprint and all the answers. She is returning with experience, relationships and a willingness to listen &mdash; to physicians, educators, entrepreneurs, developers, innovators and Egyptians throughout the world who believe that meaningful progress begins with the right conversation.</p>
+        <p data-i18n="open.p2">Her role is not simply to present a vision. It is to help bring together people whose knowledge, values and capabilities may complement one another.</p>
+        <p data-i18n="open.p3">Some will bring medical expertise. Some will bring technology, education, land, development experience, hospitality, relationships or the means to help. Others will bring a deep understanding of Egypt and the communities any worthwhile initiative must serve.</p>
       </div>
+      <a class="btn2 btn2-primary" href="#audience" style="margin-top:8px" data-i18n="open.cta">See How You Can Participate</a>
     </div>
   </div>
 </section>
