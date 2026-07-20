@@ -146,21 +146,27 @@
 #main section.block.alt{background:var(--ivory)}
 #main section.block.dark{background:linear-gradient(180deg,var(--midnight-2),var(--midnight));color:var(--ivory)}
 
-/* Open Door — decorative flanking pillars. The text column is capped at
-   700px and centered (see markup), leaving generous side gutters at
-   >=1024px; the pillars live in those gutters only, never in the text's
-   own space. Hidden below 1024px, where the gutters get too tight to fit
-   a pillar without crowding the copy (per the sizing math: at exactly
-   1024px viewport the clamp below still leaves ~50px of clear air
-   between the pillar's inner edge and the text). Image already fades to
-   transparent at its own edges, so it blends into the ivory background
-   without needing an additional mask. */
+/* Open Door — decorative flanking pillars, sized to run the full height
+   of the section (top edge to bottom edge) with the now-compressed
+   460px text column reading as an inscribed strip between them. Height
+   is the driver (92% of the section, top/bottom inset 4% each so it
+   doesn't touch the hairline borders) with width auto so the image's own
+   2:3 aspect ratio is preserved rather than stretched. Width is also
+   capped via vw so it can't out-grow the gutter and collide with the
+   text on narrower "allowed" desktop widths -- verified headlessly at
+   1920/1600/1440/1366/1280/1150px: the vw cap binds tighter than the
+   height-driven size at every one of them (pillar width tops out at
+   26vw well before it'd reach height*aspect-ratio), and the clear gap
+   to the text ranges from 231px down to 46px at the 1150px hide-below
+   floor -- never overlapping. Image already fades to transparent at
+   its own edges, so it blends into the ivory background without
+   needing an additional mask. */
 #main #open-door{position:relative}
-#main #open-door .pillar{display:none;position:absolute;top:50%;width:clamp(72px,9vw,150px);height:auto;transform:translateY(-50%);opacity:.9;z-index:0;pointer-events:none;user-select:none}
-#main #open-door .pillar.l{left:16px}
-#main #open-door .pillar.r{right:16px;transform:translateY(-50%) scaleX(-1)}
+#main #open-door .pillar{display:none;position:absolute;top:4%;height:92%;width:auto;max-width:26vw;opacity:.92;z-index:0;pointer-events:none;user-select:none}
+#main #open-door .pillar.l{left:0}
+#main #open-door .pillar.r{right:0;transform:scaleX(-1)}
 #main #open-door .wrap{position:relative;z-index:1}
-@media(min-width:1024px){#main #open-door .pillar{display:block}}
+@media(min-width:1150px){#main #open-door .pillar{display:block}}
 #main section.dark h2,#main section.dark h3,#main section.dark h4{color:#fff}
 #main section.dark p{color:#cdd3e0}
 #main .sec-head2{max-width:820px;margin-bottom:40px}
@@ -436,10 +442,9 @@ html[dir="rtl"] #main .form2{text-align:right}
   <img class="pillar r" src="images/Egyptpillar.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
     <!-- Single centered text column (was: text left / placeholder-embed right).
-         max-width kept well under .wrap's 1180px so the flanking space on both
-         sides reads as deliberate room for future decorative pillar graphics,
-         not leftover margin. -->
-    <div style="max-width:700px;margin:0 auto;text-align:center">
+         Compressed from 700px so the flanking pillars can run large -- see
+         #open-door .pillar below -- while still leaving clear side gutters. -->
+    <div style="max-width:460px;margin:0 auto;text-align:center">
       <div class="sec-head2" style="margin:0 auto 24px">
         <span class="eyebrow2" data-i18n="open.eyebrow">An Open Door</span>
         <h2 id="opendoor-h" data-i18n="open.h2">This Vision Was Never Meant to Be Built by One Person</h2>
