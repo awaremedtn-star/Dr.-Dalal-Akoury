@@ -146,6 +146,21 @@
 #main section.block.alt{background:var(--ivory)}
 #main section.block.dark{background:linear-gradient(180deg,var(--midnight-2),var(--midnight));color:var(--ivory)}
 
+/* Meet Dr. Akoury — photo background, scoped to #meet specifically since
+   .block.dark is shared with the Journey, Why-Egypt-Why-Now and Proof
+   sections too (a plain background-color override on the shared class
+   would have swapped the photo in behind all four). The source photo
+   (Dr. Akoury on a panel, bright purple/white backdrop stage-left, a
+   darker teal wall stage-right) has too wide a brightness range for a
+   directional scrim like the hero's -- the whole panel would need to
+   guarantee contrast for text that runs the full width and, on this
+   quote section, the full scroll height -- so this is a flat, uniformly
+   strong navy overlay (top of the requested .75-.85 range) rather than a
+   gradient, at every breakpoint. */
+#main #meet{position:relative;background:url('images/doc-interview.jpg') center/cover no-repeat}
+#main #meet::before{content:"";position:absolute;inset:0;background:rgba(10,22,40,.84)}
+#main #meet .wrap{position:relative;z-index:1}
+
 /* Open Door — decorative flanking pillars, sized to run the full height
    of the section (top edge to bottom edge) with the now-compressed
    460px text column reading as an inscribed strip between them. Height
