@@ -275,7 +275,10 @@
 #main .evidence a{border:1px solid rgba(198,161,91,.5);color:var(--gold-soft);border-radius:2px;padding:11px 20px;font-size:14px}
 #main .evidence a:hover{background:var(--gold);color:var(--midnight);text-decoration:none}
 #main .bookrow{display:flex;gap:26px;align-items:center;flex-wrap:wrap;margin-top:30px}
-#main .bimg{aspect-ratio:2/3;border-radius:4px;width:168px}
+#main .bookrow .book-tile{flex:0 0 auto;display:block;transition:transform .25s var(--ease,ease),box-shadow .25s var(--ease,ease);border-radius:4px}
+#main .bookrow .book-tile:hover,#main .bookrow .book-tile:focus-visible{transform:translateY(-4px) scale(1.03);box-shadow:0 16px 34px rgba(0,0,0,.4)}
+#main .bimg{aspect-ratio:2/3;border-radius:4px;width:252px}
+@media(max-width:640px){#main .bookrow{flex-direction:column;align-items:center;text-align:center}#main .bookrow .book-tile{order:-1}}
 
 #main .chips2{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:20px}
 #main .chip2{border:1px solid var(--line);border-radius:999px;padding:8px 17px;font-size:13.5px;color:var(--midnight);background:#fff}
@@ -642,10 +645,16 @@ html[dir="rtl"] #main .form2{text-align:right}
       <a href="https://awaremed.com" data-i18n="proof.link5">AWAREmed</a>
     </div>
     <div class="bookrow" aria-label="Published books">
-      <a href="https://www.amazon.com/stores/Dalal-Akoury-M.D./author/B072FSVBJB" aria-label="Secrets of Healthy Aging on Amazon" style="flex:0 0 auto">
-        <figure><div class="ph bimg"><img src="images/secrets-of-healthy-aging.webp" alt="Secrets of Healthy Aging, a book by Dr. Dalal Akoury" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div></figure>
+      <div style="max-width:440px"><p style="color:#cdd3e0;margin:0;font-size:16px" data-i18n="proof.book">Among Dr. Akoury&rsquo;s published works. <a href="https://www.amazon.com/stores/Dalal-Akoury-M.D./author/B072FSVBJB" target="_blank" rel="noopener noreferrer">Browse her books on Amazon &rarr;</a></p></div>
+      <a class="book-tile" href="https://www.amazon.com/stores/Dalal-Akoury-M.D./author/B072FSVBJB" aria-label="Browse Dr. Dalal Akoury's books on Amazon" target="_blank" rel="noopener noreferrer">
+        <!-- No real cover art exists in images/ for any specific title yet (the previous
+             src, images/secrets-of-healthy-aging.webp, was never actually in the repo --
+             this tile was silently rendering the empty placeholder below). Since this
+             tile now links to the general author page rather than one book, it's left
+             as the placeholder until an actual cover (or a small multi-book collage) is
+             supplied -- swap in a real <img> here at that point. -->
+        <figure><div class="ph bimg"></div></figure>
       </a>
-      <div style="max-width:440px"><p style="color:#cdd3e0;margin:0;font-size:16px" data-i18n="proof.book"><em>Secrets of Healthy Aging</em> &mdash; among Dr. Akoury&rsquo;s published works. <a href="https://www.amazon.com/stores/Dalal-Akoury-M.D./author/B072FSVBJB">Browse her books on Amazon &rarr;</a></p></div>
     </div>
   </div>
 </section>
