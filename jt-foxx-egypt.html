@@ -363,14 +363,21 @@
   /* video feature */
   .videofeat{position:relative;background:var(--navy2);overflow:hidden}
   .videofeat .frame{position:relative;max-width:1320px;margin:0 auto;aspect-ratio:16/9;background:#000}
-  .videofeat video{width:100%;height:100%;object-fit:cover;display:block}
-  .videofeat .poster{position:absolute;inset:0;background:linear-gradient(150deg,var(--navy3),var(--navy2));display:flex;align-items:center;justify-content:center;color:rgba(220,193,137,.5);font-family:var(--sans);letter-spacing:.15em;text-transform:uppercase;font-size:13px;text-align:center;padding:30px}
+  .videofeat .yt-mount{position:absolute;inset:0;width:100%;height:100%;background:var(--navy2)}
+  /* The YouTube IFrame API replaces #jt-video-mount in place with a raw <iframe>
+     (same id, no class carried over), so this targets the frame structurally
+     rather than relying on a class surviving that swap. */
+  .videofeat .frame > iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
   .videofeat .overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,11,26,.8),rgba(5,11,26,.06) 45%,rgba(5,11,26,.4));display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(26px,4vw,60px);pointer-events:none}
   .videofeat .overlay .k{font-family:var(--sans);text-transform:uppercase;letter-spacing:.28em;font-size:12px;color:var(--gold-soft);font-weight:600;margin-bottom:12px}
   .videofeat .overlay h2{color:#fff;font-size:clamp(24px,3.4vw,46px);max-width:22ch}
-  .videofeat .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;width:86px;height:86px;border-radius:50%;background:rgba(200,162,76,.94);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .25s}
-  .videofeat .play:hover{transform:translate(-50%,-50%) scale(1.09)}
-  .videofeat .play::after{content:"";border-left:26px solid var(--navy2);border-top:16px solid transparent;border-bottom:16px solid transparent;margin-left:6px}
+  .videofeat .sound-btn{position:absolute;top:18px;right:18px;z-index:4;width:44px;height:44px;border:none;border-radius:50%;background:rgba(200,162,76,.94);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .25s,background .25s}
+  .videofeat .sound-btn:hover{transform:scale(1.08);background:var(--gold-soft)}
+  .videofeat .sound-btn svg{width:20px;height:20px;fill:var(--navy2)}
+  .videofeat .sound-btn .icon-on{display:none}
+  .videofeat .sound-btn.unmuted .icon-off{display:none}
+  .videofeat .sound-btn.unmuted .icon-on{display:block}
+  @media(max-width:640px){.videofeat .sound-btn{top:12px;right:12px;width:38px;height:38px}.videofeat .sound-btn svg{width:17px;height:17px}}
 
   /* blackout */
   .blackout{background:#000;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 26px;position:relative;overflow:hidden}
@@ -926,15 +933,17 @@
 </section>
 
 <!-- ===== EMOTIONAL VIDEO — JT alone ===== -->
-<section class="videofeat" aria-label="A quiet moment">
+<section class="videofeat" aria-label="A quiet moment" id="jt-video-section">
   <div class="frame">
-    <!-- EMOTIONAL FILM — no narration, music only: JT walking alone, slow motion; Cairo, the Nile,
-         the pyramids; with physicians and students; through a hospital. Replace <source>. -->
-    <div class="play" role="button" tabindex="0" aria-label="Play the film" onclick="(function(b){var f=b.parentNode,v=f.querySelector('video');if(v){b.style.display='none';v.setAttribute('controls','');try{v.play()}catch(e){}}})(this)"></div>
-    <div class="poster">Cinematic film · no words, only music<br>JT in Egypt — Cairo, the Nile, physicians, students<br>(footage placeholder)</div>
-    <video preload="none" playsinline style="position:absolute;inset:0;opacity:0">
-      <source src="https://drdalalakoury.com/assets/videos/jt-in-egypt.mp4" type="video/mp4" />
-    </video>
+    <!-- YouTube IFrame Player API, lazy-instantiated by the script at the bottom of this
+         page once the section nears the viewport, then muted-autoplayed via playVideo()
+         once it's ~50% on screen (browsers block unmuted autoplay outright). #jt-video-mount
+         is replaced in place by the API with the actual <iframe>. -->
+    <div class="yt-mount" id="jt-video-mount" data-video-id="hPW0bWcwK-c"></div>
+    <button class="sound-btn" id="jt-sound-btn" type="button" aria-label="Unmute video" aria-pressed="false">
+      <svg class="icon-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 7 9H3v6h4l5 5V4z"/><path d="M17.5 7.5 22 12m0-4.5L17.5 12" stroke="#070f1f" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <svg class="icon-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 7 9H3v6h4l5 5V4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="#070f1f" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="#070f1f" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>
+    </button>
     <div class="overlay"><div class="k">The Quiet Moment</div><h2>Some Decisions Don't Need Words.</h2></div>
   </div>
 </section>
@@ -1137,6 +1146,95 @@
     } else {
       start();
     }
+  })();
+
+  // "The Quiet Moment" video (YouTube IFrame Player API):
+  // - The API script and player are only created once the section nears the
+  //   viewport (rootMargin below), not on initial page load, since eagerly
+  //   loading YouTube's iframe adds real weight up front.
+  // - Once created, a separate observer at 50% visibility calls playVideo()
+  //   the first time the section comes on screen (muted — browsers block
+  //   unmuted autoplay regardless, and this is the only way scroll-triggered
+  //   playback works at all). Scrolling back out pauses it; scrolling back
+  //   in resumes from that paused position rather than restarting from 0,
+  //   which reads more natural for a slow, ambient film than snapping back
+  //   to the beginning every time someone scrolls past it twice.
+  // - The gold corner button lets the visitor turn sound on/off at will via
+  //   the API's mute()/unMute(), independent of the scroll-driven play/pause.
+  (function(){
+    var section = document.getElementById('jt-video-section');
+    var mount = document.getElementById('jt-video-mount');
+    var soundBtn = document.getElementById('jt-sound-btn');
+    if(!section || !mount || !soundBtn) return;
+
+    var videoId = mount.getAttribute('data-video-id');
+    var player = null;
+    var hasTriggered = false;
+    var reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function createPlayer(){
+      if(player || !window.YT || !window.YT.Player) return;
+      player = new YT.Player(mount, {
+        videoId: videoId,
+        width: '100%',
+        height: '100%',
+        playerVars: { mute: 1, playsinline: 1, rel: 0, modestbranding: 1 },
+        events: {
+          onReady: function(){
+            watchScroll();
+          }
+        }
+      });
+    }
+
+    // YouTube's API loader calls this global once the script finishes loading.
+    var prevReady = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = function(){
+      if(typeof prevReady === 'function') prevReady();
+      createPlayer();
+    };
+
+    function loadApiScript(){
+      if(window.YT && window.YT.Player){ createPlayer(); return; }
+      if(document.getElementById('yt-iframe-api')) return;
+      var tag = document.createElement('script');
+      tag.id = 'yt-iframe-api';
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+    }
+
+    if('IntersectionObserver' in window){
+      var loadIo = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ loadApiScript(); loadIo.disconnect(); }
+        });
+      }, { rootMargin: '600px 0px' });
+      loadIo.observe(section);
+    } else {
+      loadApiScript();
+    }
+
+    function watchScroll(){
+      if(!('IntersectionObserver' in window)) return;
+      var playIo = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            hasTriggered = true;
+            if(!reduceMotion) player.playVideo();
+          } else if(hasTriggered && !reduceMotion){
+            player.pauseVideo();
+          }
+        });
+      }, { threshold: .5 });
+      playIo.observe(section);
+    }
+
+    soundBtn.addEventListener('click', function(){
+      if(!player) return;
+      var nowUnmuted = soundBtn.classList.toggle('unmuted');
+      if(nowUnmuted){ player.unMute(); soundBtn.setAttribute('aria-pressed','true'); soundBtn.setAttribute('aria-label','Mute video'); }
+      else{ player.mute(); soundBtn.setAttribute('aria-pressed','false'); soundBtn.setAttribute('aria-label','Unmute video'); }
+    });
   })();
 </script>
 <script src="assets/app.js"></script>
