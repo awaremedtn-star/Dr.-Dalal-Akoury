@@ -161,6 +161,26 @@
 #main #meet::before{content:"";position:absolute;inset:0;background:rgba(10,22,40,.84)}
 #main #meet .wrap{position:relative;z-index:1}
 
+/* Why Dr. Dalal Akoury Matters to Egypt — hieroglyph-block photo
+   background. Scoped via the aria-labelledby attribute (this section has
+   no id of its own, and .block.alt is shared with Open Door, Beyond
+   Healthcare and The Woman Behind the Mission, so neither the bare
+   class nor adding a fresh id already used elsewhere was an option).
+   Uses its own recompressed copy of the source image
+   (hieroglyph-blocks-bg.jpg, 1440px/295KB vs. the original 1672px/425KB)
+   rather than overwriting blocks-egyptian-DalalAkoury-Homecoming.jpg in
+   place, since that file is already used as-is on index.html,
+   coming-home.html and jt-foxx-egypt.html.
+   Text here is dark-on-light (navy headline, gold eyebrow), so the
+   overlay is a light cream film -- not a dark scrim -- to keep that
+   same contrast relationship rather than flipping it. The six .card2
+   boxes already render solid #fff under section.alt (see the .card2
+   rule above), so they stay fully opaque over the photo with no change
+   needed there. */
+#main section.block.alt[aria-labelledby="matters-h"]{position:relative;background:url('images/hieroglyph-blocks-bg.jpg') center/cover no-repeat}
+#main section.block.alt[aria-labelledby="matters-h"]::before{content:"";position:absolute;inset:0;background:rgba(250,246,237,.8)}
+#main section.block.alt[aria-labelledby="matters-h"] .wrap{position:relative;z-index:1}
+
 /* Open Door — decorative flanking pillars, sized to run the full height
    of the section (top edge to bottom edge) with the now-compressed
    460px text column reading as an inscribed strip between them. Height
