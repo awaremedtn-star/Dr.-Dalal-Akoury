@@ -796,6 +796,36 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 @media(max-width:900px){.futuregrid{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.futuregrid{grid-template-columns:1fr}}
 
+/* #future.bg-photo follows the exact same recipe as #ecosystem.bg-photo
+   above: navy gradient baked into background-image alongside the
+   photo (no separate overlay element needed), and fut-card's own
+   near-invisible 4%-opacity background bumped up to something
+   substantial enough to read against the stone texture, mirroring
+   eco-card's treatment 1:1 since both card types already share the
+   same dark-background-tuned text colors (white heading, gold-light
+   numeral, translucent cream body copy). */
+#future.bg-photo{
+  position:relative;
+  background-image:linear-gradient(135deg,rgba(10,20,37,.88) 0%,rgba(10,20,37,.8) 45%,rgba(10,20,37,.86) 100%),url('images/blocks-egyptian-DalalAkoury-Homecoming.jpg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-attachment:scroll;
+}
+#future.bg-photo .fut-card{background:rgba(8,16,32,.9);border-color:rgba(201,165,92,.55)}
+#future.bg-photo .fut-card .fnum{text-shadow:0 2px 10px rgba(0,0,0,.6)}
+#future.bg-photo .fut-card h3{text-shadow:0 2px 10px rgba(0,0,0,.6)}
+#future.bg-photo .fut-card p{color:rgba(238,231,220,.92);text-shadow:0 1px 8px rgba(0,0,0,.5)}
+#future.bg-photo .fut-card:hover{background:rgba(8,16,32,.94);border-color:var(--gold-light);box-shadow:0 34px 70px rgba(0,0,0,.55),0 0 46px rgba(201,165,92,.4)}
+@supports (backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px)){
+  #future.bg-photo .fut-card{
+    background:rgba(8,16,32,.72);
+    backdrop-filter:blur(18px) saturate(1.2);
+    -webkit-backdrop-filter:blur(18px) saturate(1.2);
+  }
+  #future.bg-photo .fut-card:hover{background:rgba(8,16,32,.8)}
+}
+
 /* ---- Full-bleed moment ---- */
 .fullband{position:relative;min-height:86vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:var(--deep,#0a1425)}
 .fullband img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.26;filter:grayscale(.35)}
@@ -1637,7 +1667,7 @@ html[dir="rtl"] .qframe{padding:64px 52px}
 </div>
 
 <!-- BUILDING THE FUTURE -->
-<section class="block bg-navy" id="future">
+<section class="block bg-navy bg-photo" id="future">
   <div class="container">
     <div class="center">
       <div class="section-label" data-i18n="future.eyebrow">Building the Future</div>
