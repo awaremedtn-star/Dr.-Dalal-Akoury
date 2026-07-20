@@ -110,8 +110,14 @@
 #main .btns{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
 
 /* ---- hero ---- */
-#main .hero{position:relative;background:linear-gradient(180deg,var(--midnight),var(--midnight-2));color:var(--ivory);overflow:hidden}
-#main .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(1200px 600px at 84% -8%, rgba(198,161,91,.20), transparent 58%),radial-gradient(760px 460px at 0% 112%, rgba(124,45,45,.15), transparent 60%);z-index:1}
+#main .hero{position:relative;background:url('images/sphinx-background.jpg') center/cover no-repeat,linear-gradient(180deg,var(--midnight),var(--midnight-2));color:var(--ivory);overflow:hidden}
+/* Dark navy scrim over the sphinx/pyramid photo — darker on the left where
+   the eyebrow/h1/lede/quote sit (needs the most contrast for white and gold
+   text), lighter toward the right behind the framed portrait (which is its
+   own opaque boxed image and doesn't need the scrim to read against it).
+   The gold/red radial accents are unchanged, layered on top of the scrim
+   so the site's signature glow still shows through the photo. */
+#main .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg, rgba(10,22,40,.90) 0%, rgba(10,22,40,.84) 32%, rgba(10,22,40,.68) 58%, rgba(10,22,40,.52) 100%),radial-gradient(1200px 600px at 84% -8%, rgba(198,161,91,.20), transparent 58%),radial-gradient(760px 460px at 0% 112%, rgba(124,45,45,.15), transparent 60%);z-index:1}
 #main .hero .wrap{position:relative;z-index:3;display:grid;grid-template-columns:1.2fr .95fr;gap:46px;align-items:center;padding-top:76px;padding-bottom:82px}
 #main .hero h1{font-size:clamp(33px,4.3vw,52px);margin:0 0 24px;color:#fff}
 #main .hero p.lede{font-size:19px;color:#cfd4e0;max-width:600px;margin:0 0 32px}
@@ -123,7 +129,17 @@
    loop) was leaking in here since nothing overrode it, making the
    placeholder pulse and fade instead of sitting still. Pin it static. */
 #main .hero-media img{animation:none;opacity:1}
-@media(max-width:900px){#main .hero .wrap{grid-template-columns:1fr;gap:40px}#main .hero-media{max-width:400px}}
+@media(max-width:900px){
+  #main .hero .wrap{grid-template-columns:1fr;gap:40px}
+  #main .hero-media{max-width:400px}
+  /* Below 900px the copy and portrait stack instead of sitting side by
+     side, so a left-dark/right-light scrim no longer lines up with
+     "behind the text" vs "behind the portrait" — both now span the full
+     width. Switch to a uniform, safely-dark scrim (top of the requested
+     .75-.85 range) so headline/body/quote legibility holds regardless of
+     where they land horizontally. */
+  #main .hero::before{background:linear-gradient(180deg, rgba(10,22,40,.85) 0%, rgba(10,22,40,.80) 100%),radial-gradient(1200px 600px at 84% -8%, rgba(198,161,91,.20), transparent 58%),radial-gradient(760px 460px at 0% 112%, rgba(124,45,45,.15), transparent 60%)}
+}
 
 /* ---- sections ---- */
 #main section.block{padding:86px 0}
