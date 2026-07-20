@@ -117,6 +117,12 @@
 #main .hero p.lede{font-size:19px;color:#cfd4e0;max-width:600px;margin:0 0 32px}
 #main .hero-media{position:relative}
 #main .hero-media .main-img{aspect-ratio:3/4;border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+/* This hero holds a single static portrait placeholder, not the rotating
+   photo carousel assets/style.css's .hero-media img was built for — that
+   shared rule's kenburns/heroFade animation (opacity 0 most of each 27s
+   loop) was leaking in here since nothing overrode it, making the
+   placeholder pulse and fade instead of sitting still. Pin it static. */
+#main .hero-media img{animation:none;opacity:1}
 @media(max-width:900px){#main .hero .wrap{grid-template-columns:1fr;gap:40px}#main .hero-media{max-width:400px}}
 
 /* ---- sections ---- */
