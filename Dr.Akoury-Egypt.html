@@ -181,6 +181,23 @@
 #main section.block.alt[aria-labelledby="matters-h"]::before{content:"";position:absolute;inset:0;background:rgba(250,246,237,.8)}
 #main section.block.alt[aria-labelledby="matters-h"] .wrap{position:relative;z-index:1}
 
+/* She Never Left Egypt Behind — Cairo/Nile skyline photo background.
+   Scoped via aria-labelledby, same reasoning as matters-h above: this
+   section's own class is the bare, shared .block (also used by audience,
+   forty, pathways, ecosystem and network), so neither the class nor a
+   fresh id was available to scope on safely.
+   Text is dark-on-light here too, so the same light cream film is used
+   rather than a dark scrim -- kept a touch more opaque (.82 vs .8) than
+   the hieroglyph treatment since this photo carries more high-contrast
+   detail (signage, cars, water reflections) that would otherwise compete
+   with the heading/body text. The placeholder figure below the text
+   already has its own gold-tinted border and dark navy fill (see .ph),
+   so it reads as a deliberate box against the photo with no changes
+   needed there. */
+#main section.block[aria-labelledby="never-h"]{position:relative;background:url('images/cairoskyline-About-dr.akoury.jpg') center/cover no-repeat}
+#main section.block[aria-labelledby="never-h"]::before{content:"";position:absolute;inset:0;background:rgba(250,246,237,.82)}
+#main section.block[aria-labelledby="never-h"] .wrap{position:relative;z-index:1}
+
 /* Open Door — decorative flanking pillars, sized to run the full height
    of the section (top edge to bottom edge) with the now-compressed
    460px text column reading as an inscribed strip between them. Height
