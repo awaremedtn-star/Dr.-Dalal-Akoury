@@ -646,24 +646,16 @@ html[dir="rtl"] #main .form2{text-align:right}
     </div>
     <div class="bookrow" aria-label="Published books">
       <div style="max-width:440px">
-        <p style="margin:0 0 10px;font-size:20px;color:#fff" data-i18n="proof.book.title"><em>CANCER: Beyond Cure</em></p>
-        <!-- SYNOPSIS PLACEHOLDER: real back-cover copy needed here -- Amazon's
-             product page is blocked to this environment's outbound network
-             (proxy policy denies amazon.com), so this is not the book's
-             actual description. Replace before shipping. -->
-        <p style="color:#cdd3e0;margin:0 0 10px;font-size:16px" data-i18n="proof.book.synopsis">[Synopsis needed: a short back-cover description of <em>CANCER: Beyond Cure</em> by Dr. Dalal Akoury.]</p>
+        <p style="margin:0 0 10px;font-size:20px;color:#fff" data-i18n="proof.book.title"><em>CANCER: Beyond the Cure</em></p>
+        <!-- "The answer is to heal from inside out" is the tagline printed on
+             the real cover itself (images/cancer-beyond-the-cure.jpg) -- not a
+             fabricated summary. A fuller back-cover synopsis can replace this
+             if/when that copy is supplied. -->
+        <p style="color:#cdd3e0;margin:0 0 10px;font-size:16px;font-style:italic" data-i18n="proof.book.synopsis">&ldquo;The answer is to heal from inside out.&rdquo;</p>
         <p style="color:#cdd3e0;margin:0;font-size:16px"><a href="https://www.amazon.com/CANCER-Beyond-Cure-Dalal-Akoury-ebook/dp/B08NJFZ5JF/" data-i18n="proof.book.cta" target="_blank" rel="noopener noreferrer">Get it on Amazon &rarr;</a></p>
       </div>
-      <a class="book-tile" href="https://www.amazon.com/CANCER-Beyond-Cure-Dalal-Akoury-ebook/dp/B08NJFZ5JF/" aria-label="CANCER: Beyond Cure by Dr. Dalal Akoury, on Amazon" target="_blank" rel="noopener noreferrer">
-        <!-- No real cover art exists in images/ or anywhere reachable from this
-             environment for this title -- Amazon (both the product page and
-             its image CDN) is blocked by the outbound network policy here, and
-             there's no local asset under any cancer/beyond-cure-style filename
-             either. Placeholder stays until the real cover is supplied at
-             images/cancer-beyond-cure.jpg (wire up an <img data-fallback
-             onerror="this.style.visibility='hidden'"> the same way the other
-             book tile in this file does once it exists). -->
-        <figure><div class="ph bimg"></div></figure>
+      <a class="book-tile" href="https://www.amazon.com/CANCER-Beyond-Cure-Dalal-Akoury-ebook/dp/B08NJFZ5JF/" aria-label="CANCER: Beyond the Cure by Dr. Dalal Akoury, on Amazon" target="_blank" rel="noopener noreferrer">
+        <figure><div class="ph bimg"><img src="images/cancer-beyond-the-cure.jpg" alt="CANCER: Beyond the Cure, a book by Dr. Dalal Akoury, MD" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div></figure>
       </a>
     </div>
   </div>
