@@ -459,6 +459,45 @@
   #main .tl-marker{transition:background .2s ease,color .2s ease}
 }
 
+/* Full-bleed image bridge between "Forty Years of Medicine" and "Beyond
+   Healthcare". The source graphic (Egypt-Dr.akoury-page.jpg) is a tall
+   portrait piece, 971x1619 (ratio ~0.6) -- an "EGYPT" cut-out revealing
+   a pyramids/desert photo -- not a wide banner photo. Per explicit
+   instruction the image must never crop and must show at its natural
+   ratio, so at full 100vw width this section renders quite tall on
+   wide viewports; that tradeoff was confirmed rather than cropping it
+   to a conventional banner shape.
+   width:100vw + margin-left:calc(50% - 50vw) breaks the image out of
+   every ancestor's centered max-width (the site has no outer #page
+   wrapper constraining width, but .wrap/.narrow elsewhere do, so this
+   section deliberately sits at the top level between two <section>s,
+   not inside a .wrap, and uses the safe full-bleed technique rather
+   than assuming a particular ancestor width).
+   The "Beyond Healthcare" eyebrow moved here from the .sec-head2 below
+   (removed there, not duplicated) -- .egypt-bridge__content reuses the
+   same --maxw/30px column as .wrap so the eyebrow lines up with the
+   heading that now begins directly below it. */
+#main .egypt-bridge{position:relative;width:100vw;margin-left:calc(50% - 50vw);overflow:hidden;line-height:0}
+#main .egypt-bridge__image{display:block;width:100%;height:auto;max-width:none;object-fit:contain;object-position:center;opacity:.92;transform:scale(1.01);transition:opacity .85s var(--ease,ease),transform .85s var(--ease,ease)}
+#main .egypt-bridge__image.in{opacity:1;transform:scale(1)}
+@media(prefers-reduced-motion:reduce){#main .egypt-bridge__image{opacity:1;transform:none;transition:none}}
+#main .egypt-bridge__overlay{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to bottom, rgba(7,23,46,0) 50%, rgba(7,23,46,.28) 75%, rgba(7,23,46,.72) 100%);
+}
+#main .egypt-bridge__content{position:absolute;left:0;right:0;bottom:0;z-index:2;max-width:var(--maxw);margin:0 auto;padding:0 30px 42px}
+#main .egypt-bridge__eyebrow{margin-bottom:0;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+@media(max-width:640px){
+  #main .egypt-bridge__content{padding:0 20px 26px}
+  #main .egypt-bridge__eyebrow{font-size:10.5px;letter-spacing:.22em}
+}
+/* Eyebrow removed from this heading (moved onto the image above), so
+   trim the section's top padding accordingly -- otherwise the heading
+   would sit in the same 86px gap that used to also hold the eyebrow,
+   leaving visibly more empty ivory space above it than any other
+   section on the page. */
+#main section.block.alt[aria-labelledby="beyond-h"]{padding-top:48px}
+
 /* sector mosaic (beyond healthcare) */
 #main .mosaic{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 @media(max-width:980px){#main .mosaic{grid-template-columns:repeat(2,1fr)}}
@@ -963,9 +1002,17 @@ html[dir="rtl"] #main .form2{text-align:right}
   </div>
 </section>
 
+<section class="egypt-bridge" aria-label="Egypt vision">
+  <img class="egypt-bridge__image reveal" src="images/Egypt-Dr.akoury-page.jpg" alt="Dr. Dalal Akoury&rsquo;s vision connecting healthcare leadership with Egypt&rsquo;s future" loading="lazy" decoding="async" width="971" height="1619">
+  <div class="egypt-bridge__overlay" aria-hidden="true"></div>
+  <div class="egypt-bridge__content">
+    <span class="eyebrow2 egypt-bridge__eyebrow" data-i18n="beyond.eyebrow">Beyond Healthcare</span>
+  </div>
+</section>
+
 <section class="block alt" aria-labelledby="beyond-h">
   <div class="wrap">
-    <div class="sec-head2" id="beyond"><span class="eyebrow2" data-i18n="beyond.eyebrow">Beyond Healthcare</span><h2 id="beyond-h" data-i18n="beyond.h2">Healthcare Is the Foundation &mdash; But the Opportunity Is Much Larger</h2></div>
+    <div class="sec-head2" id="beyond"><h2 id="beyond-h" data-i18n="beyond.h2">Healthcare Is the Foundation &mdash; But the Opportunity Is Much Larger</h2></div>
     <div class="lead2" style="margin-bottom:34px"><p data-i18n="beyond.lead">Her Egypt vision begins with medicine, but it does not end there. It connects care with the systems, industries and relationships that let progress endure &mdash; each area reinforcing the others. These are illustrative of these fields, not depictions of finalized projects.</p></div>
     <div class="mosaic">
       <div class="sector"><div class="ph simg"><img src="images/egypt-healthcare-medical-education.webp" alt="Illustrative image" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><div class="sbody"><h3 data-i18n="beyond.1.h">Healthcare &amp; Medical Education</h3><p data-i18n="beyond.1.p">Centers of excellence, prevention, integrative oncology, longevity, physician training and university collaboration.</p><span class="ill">Illustrative &mdash; an area of vision.</span></div></div>
