@@ -457,6 +457,117 @@
 #main .a-card2:hover{border-color:var(--gold-soft);box-shadow:0 12px 32px rgba(11,18,38,.08);transform:translateY(-2px)}
 #main .a-card2 h3{font-size:19px;color:var(--midnight);margin:0 0 9px}
 #main .a-card2 p{font-size:14.5px;color:var(--ink-soft);margin:0}
+
+/* "Who Is Dr. Akoury Hoping to Meet?" -- premium refresh, 2026.
+   .aud2/.a-card2 are only ever used in this one #audience section (unlike
+   .card2 above, which is shared with Forty Years), so these overrides
+   restyle the base rules directly rather than needing attribute-selector
+   scoping -- still prefixed with #audience for clarity and in case the
+   classes ever get reused elsewhere.
+   Entrance animation reuses the site-wide .reveal/.reveal.in mechanism
+   already wired up in assets/app.js (IntersectionObserver, fires once,
+   and assets/style.css already turns it into a no-op under
+   prefers-reduced-motion) rather than a page-specific observer -- only
+   the eyebrow/heading/paragraph/card elements below gained the class,
+   plus small .d1-.d6 stagger-delay utilities scoped to this file since
+   none existed here yet (jt-foxx-egypt.html has its own separate .d1/.d2
+   pair for the same purpose, but nothing this page could reuse). */
+#audience{position:relative;overflow:hidden}
+#audience::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(1100px 480px at 10% -12%, rgba(198,161,91,.08), transparent 62%),
+    radial-gradient(900px 460px at 104% 110%, rgba(198,161,91,.06), transparent 58%),
+    linear-gradient(180deg, var(--ivory) 0%, var(--paper) 46%, var(--paper) 100%);
+}
+/* Faint abstract connection-network line art -- a handful of nodes
+   linked by hairline gold strokes along the section's edges, well clear
+   of the cards' text so it never competes with legibility. Decorative
+   only (aria-hidden), so it carries no meaning that needs a text
+   alternative. */
+#audience .a-motif{position:absolute;inset:0;z-index:0;width:100%;height:100%;opacity:.55}
+#audience .a-motif circle{fill:var(--gold-deep)}
+#audience .a-motif path{stroke:var(--gold-deep);stroke-width:1;fill:none}
+#audience .wrap{position:relative;z-index:1}
+
+/* Section intro */
+#audience .sec-head2{margin-bottom:44px;max-width:720px}
+#audience .a-eyebrow{display:flex;align-items:center;gap:10px;letter-spacing:.3em}
+#audience .a-eyebrow::before{content:"";display:inline-block;width:26px;height:1px;background:var(--gold-deep)}
+#audience .a-eyebrow::after{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold-deep)}
+#audience .sec-head2 h2{line-height:1.2;margin-top:16px}
+#audience .lead2{max-width:640px}
+#audience .lead2 p{color:var(--ink-soft);line-height:1.7}
+
+/* Cards */
+#audience .aud2{gap:22px;margin-top:6px}
+/* .aud2's own max-width:860px breakpoint already collapses to 2 columns,
+   but scope a slightly wider 768-1024px band to 2 columns explicitly so
+   the tablet layout matches the matters-h cards section immediately
+   above it on this page, which uses the same 768/1024 boundary. */
+@media(min-width:768px) and (max-width:1024px){#audience .aud2{grid-template-columns:repeat(2,1fr)}}
+#audience .a-card2{
+  position:relative;overflow:hidden;
+  border-radius:14px;
+  padding:30px 26px;
+  border-color:rgba(169,133,63,.28);
+  box-shadow:0 1px 2px rgba(11,18,38,.05), 0 16px 36px rgba(11,18,38,.08);
+  transition:transform .38s var(--ease,ease),box-shadow .38s var(--ease,ease),border-color .38s var(--ease,ease);
+}
+#audience .a-card2::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold),var(--gold-soft));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .38s var(--ease,ease);
+}
+#audience .a-card2::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(220px circle at var(--a-mx,50%) var(--a-my,50%),rgba(198,161,91,.13),transparent 62%);
+  opacity:0;transition:opacity .38s var(--ease,ease);
+}
+#audience .a-card2:hover,
+#audience .a-card2:focus-visible{
+  transform:translateY(-9px) scale(1.015);
+  box-shadow:0 22px 44px rgba(11,18,38,.14), 0 2px 10px rgba(169,133,63,.18);
+  border-color:var(--gold-soft);
+}
+#audience .a-card2:hover::before,
+#audience .a-card2:focus-visible::before{transform:scaleX(1)}
+#audience .a-card2:hover::after{opacity:1}
+#audience .a-card2:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px}
+#audience .a-ic{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:46px;height:46px;border-radius:50%;
+  margin-bottom:16px;
+  border:1px solid rgba(169,133,63,.32);
+  color:var(--gold-deep);
+  background:rgba(198,161,91,.07);
+  transition:transform .38s var(--ease,ease);
+}
+#audience .a-ic svg{width:22px;height:22px}
+#audience .a-card2:hover .a-ic,
+#audience .a-card2:focus-visible .a-ic{transform:translateY(-3px)}
+#audience .a-card2 h3{font-size:19px;line-height:1.3;margin:0 0 10px}
+#audience .a-card2 p{line-height:1.66}
+
+@media(max-width:560px){
+  #audience .a-card2{padding:24px 20px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  #audience .a-card2,#audience .a-card2::before,#audience .a-card2::after,#audience .a-ic{transition:none}
+  #audience .a-card2:hover,#audience .a-card2:focus-visible{transform:none}
+  #audience .a-card2:hover .a-ic,#audience .a-card2:focus-visible .a-ic{transform:none}
+}
+
+/* Entrance stagger -- 80ms between each card, matching the jt-foxx-egypt
+   .reveal.d1/.d2 naming pattern already used elsewhere on the site. */
+#audience .reveal.d1{transition-delay:.08s}
+#audience .reveal.d2{transition-delay:.16s}
+#audience .reveal.d3{transition-delay:.24s}
+#audience .reveal.d4{transition-delay:.32s}
+#audience .reveal.d5{transition-delay:.4s}
+#audience .reveal.d6{transition-delay:.48s}
 #main .paths2{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 @media(max-width:860px){#main .paths2{grid-template-columns:1fr}}
 #main .path2{border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:6px;padding:20px 22px;background:#fff}
@@ -674,16 +785,42 @@ html[dir="rtl"] #main .form2{text-align:right}
 </section>
 
 <section class="block" id="audience" aria-labelledby="aud-h">
+  <svg class="a-motif" aria-hidden="true" viewBox="0 0 1200 500" preserveAspectRatio="none" focusable="false">
+    <path d="M40 60 220 30 380 95 40 60Z" fill="none"/>
+    <path d="M40 60 220 30M220 30 380 95M60 430 260 470M260 470 470 400M900 90 1080 40M1080 40 1150 130M980 440 1140 470"/>
+    <circle cx="40" cy="60" r="3.5"/><circle cx="220" cy="30" r="3.5"/><circle cx="380" cy="95" r="3.5"/>
+    <circle cx="60" cy="430" r="3.5"/><circle cx="260" cy="470" r="3.5"/><circle cx="470" cy="400" r="3.5"/>
+    <circle cx="900" cy="90" r="3.5"/><circle cx="1080" cy="40" r="3.5"/><circle cx="1150" cy="130" r="3.5"/>
+    <circle cx="980" cy="440" r="3.5"/><circle cx="1140" cy="470" r="3.5"/>
+  </svg>
   <div class="wrap">
-    <div class="sec-head2"><span class="eyebrow2" data-i18n="audience.eyebrow">Perhaps You Are Part of This Story</span><h2 id="aud-h" data-i18n="audience.h2">Who Is Dr. Akoury Hoping to Meet?</h2></div>
-    <div class="lead2" style="margin-bottom:36px"><p data-i18n="audience.lead">This vision grows through people. You may recognize yourself in one of these &mdash; and if you do, there may be a place for you in the conversation.</p></div>
+    <div class="sec-head2"><span class="eyebrow2 a-eyebrow reveal" data-i18n="audience.eyebrow">Perhaps You Are Part of This Story</span><h2 id="aud-h" class="reveal d1" data-i18n="audience.h2">Who Is Dr. Akoury Hoping to Meet?</h2></div>
+    <div class="lead2 reveal d2" style="margin-bottom:36px"><p data-i18n="audience.lead">This vision grows through people. You may recognize yourself in one of these &mdash; and if you do, there may be a place for you in the conversation.</p></div>
     <div class="aud2">
-      <div class="a-card2"><h3 data-i18n="audience.1.h">Physicians &amp; Healthcare Leaders</h3><p data-i18n="audience.1.p">If you are working to improve care, train clinicians or build more connected healthcare systems, there may be meaningful ground to explore together.</p></div>
-      <div class="a-card2"><h3 data-i18n="audience.2.h">Universities &amp; Researchers</h3><p data-i18n="audience.2.p">If you see opportunities for education, research, faculty exchange or international collaboration, Dr. Akoury welcomes the conversation.</p></div>
-      <div class="a-card2"><h3 data-i18n="audience.3.h">Entrepreneurs &amp; Technology Leaders</h3><p data-i18n="audience.3.p">If you are building responsible solutions in AI, digital health, diagnostics, education or patient engagement, Egypt may be a powerful place to collaborate.</p></div>
-      <div class="a-card2"><h3 data-i18n="audience.4.h">Egyptians Around the World</h3><p data-i18n="audience.4.p">If Egypt remains part of your identity and you have knowledge, relationships or experience you want to bring home, this invitation is also for you.</p></div>
-      <div class="a-card2"><h3 data-i18n="audience.5.h">Young Egyptian Physicians &amp; Founders</h3><p data-i18n="audience.5.p">If you are building the future from within Egypt, Dr. Akoury wants not only to speak, but to listen.</p></div>
-      <div class="a-card2"><h3 data-i18n="audience.6.h">Strategic Connectors</h3><p data-i18n="audience.6.p">If you know people who should be in the same room but have not yet met, you may help create the relationship that changes what becomes possible.</p></div>
+      <div class="a-card2 reveal d1" tabindex="0">
+        <span class="a-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.2S4 15 4 9.6C4 6.6 6.2 4.4 9 4.4c1.6 0 3 .9 3 .9s1.4-.9 3-.9c2.8 0 5 2.2 5 5.2 0 5.4-8 10.6-8 10.6z"/><path d="M5 11h3l1.4-3 2 6 1.6-4.5.8 1.5H19"/></svg></span>
+        <h3 data-i18n="audience.1.h">Physicians &amp; Healthcare Leaders</h3><p data-i18n="audience.1.p">If you are working to improve care, train clinicians or build more connected healthcare systems, there may be meaningful ground to explore together.</p>
+      </div>
+      <div class="a-card2 reveal d2" tabindex="0">
+        <span class="a-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.7c2.2-1.2 5-1.2 7 0v13c-2-1.2-4.8-1.2-7 0z"/><path d="M20 5.7c-2.2-1.2-5-1.2-7 0v13c2-1.2 4.8-1.2 7 0z"/></svg></span>
+        <h3 data-i18n="audience.2.h">Universities &amp; Researchers</h3><p data-i18n="audience.2.p">If you see opportunities for education, research, faculty exchange or international collaboration, Dr. Akoury welcomes the conversation.</p>
+      </div>
+      <div class="a-card2 reveal d3" tabindex="0">
+        <span class="a-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/><path d="M9.5 18h5M10.3 20.5h3.4"/><circle cx="18.6" cy="5.6" r="1"/><path d="M16.4 7.2l1.4-1.3"/></svg></span>
+        <h3 data-i18n="audience.3.h">Entrepreneurs &amp; Technology Leaders</h3><p data-i18n="audience.3.p">If you are building responsible solutions in AI, digital health, diagnostics, education or patient engagement, Egypt may be a powerful place to collaborate.</p>
+      </div>
+      <div class="a-card2 reveal d4" tabindex="0">
+        <span class="a-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="12" r="8.2"/><path d="M2.8 12h16.4M11 3.8c2.5 2.2 3.9 5.1 3.9 8.2s-1.4 6-3.9 8.2c-2.5-2.2-3.9-5.1-3.9-8.2s1.4-6 3.9-8.2z"/><circle cx="19.2" cy="6" r="1.1" fill="currentColor" stroke="none"/><path d="M18 5 15.4 7.3"/></svg></span>
+        <h3 data-i18n="audience.4.h">Egyptians Around the World</h3><p data-i18n="audience.4.p">If Egypt remains part of your identity and you have knowledge, relationships or experience you want to bring home, this invitation is also for you.</p>
+      </div>
+      <div class="a-card2 reveal d5" tabindex="0">
+        <span class="a-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19 9 13 13 16 20 6"/><path d="M15 6h5v5"/></svg></span>
+        <h3 data-i18n="audience.5.h">Young Egyptian Physicians &amp; Founders</h3><p data-i18n="audience.5.p">If you are building the future from within Egypt, Dr. Akoury wants not only to speak, but to listen.</p>
+      </div>
+      <div class="a-card2 reveal d6" tabindex="0">
+        <span class="a-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="7" r="2.6"/><circle cx="18" cy="7" r="2.6"/><circle cx="12" cy="18" r="2.6"/><path d="M8.3 8.6 9.9 15.4M15.7 8.6 14.1 15.4M8.6 7h6.8"/></svg></span>
+        <h3 data-i18n="audience.6.h">Strategic Connectors</h3><p data-i18n="audience.6.p">If you know people who should be in the same room but have not yet met, you may help create the relationship that changes what becomes possible.</p>
+      </div>
     </div>
     <div style="text-align:center;margin-top:36px"><a class="btn2 btn2-primary" href="#collaborate" data-i18n="audience.cta">Tell Us What You Bring to the Conversation</a></div>
   </div>
@@ -999,6 +1136,26 @@ html[dir="rtl"] #main .form2{text-align:right}
       var r = card.getBoundingClientRect();
       card.style.setProperty('--mh-mx', ((e.clientX - r.left) / r.width * 100) + '%');
       card.style.setProperty('--mh-my', ((e.clientY - r.top) / r.height * 100) + '%');
+    });
+  });
+})();
+</script>
+
+<script>
+(function(){
+  // Same pointer-following highlight, applied to the six "Who Is Dr.
+  // Akoury Hoping to Meet?" cards -- kept as its own small block (rather
+  // than folding into the matters-h script above) since the two
+  // sections' custom properties (--a-mx/--a-my vs --mh-mx/--mh-my) and
+  // selectors are independent.
+  if (!window.matchMedia || !matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var cards = document.querySelectorAll('#audience .a-card2');
+  cards.forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--a-mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      card.style.setProperty('--a-my', ((e.clientY - r.top) / r.height * 100) + '%');
     });
   });
 })();
