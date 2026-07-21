@@ -176,10 +176,121 @@
    same contrast relationship rather than flipping it. The six .card2
    boxes already render solid #fff under section.alt (see the .card2
    rule above), so they stay fully opaque over the photo with no change
-   needed there. */
-#main section.block.alt[aria-labelledby="matters-h"]{position:relative;background:url('images/hieroglyph-blocks-bg.jpg') center/cover no-repeat}
-#main section.block.alt[aria-labelledby="matters-h"]::before{content:"";position:absolute;inset:0;background:rgba(250,246,237,.8)}
+   needed there.
+
+   2026 refresh: the photo now lives on its own ::before layer (instead
+   of directly on the section) so a contrast/saturation filter can
+   sharpen the relief carving without darkening the ivory scrim or the
+   heading/card content in .wrap, which stays on top via z-index. The
+   flat .8 cream wash is replaced with a lighter base tint plus a
+   restrained radial glow concentrated behind the eyebrow/heading (the
+   only place text sits directly over the photo -- the cards are opaque
+   regardless), so the carving reads clearly in the gutters while the
+   heading keeps strong contrast. Every heading/card rule below this
+   block is scoped the same [aria-labelledby="matters-h"] way, since
+   .sec-head2, .card2, .cols-3 and .kicker are shared with the Forty
+   Years section further down this page -- unscoped rules would have
+   restyled those five cards too. */
+#main section.block.alt[aria-labelledby="matters-h"]{
+  position:relative;
+  --mh-shadow-rest:0 1px 2px rgba(11,18,38,.06), 0 18px 40px rgba(11,18,38,.10);
+  --mh-shadow-hover:0 22px 46px rgba(11,18,38,.16), 0 2px 12px rgba(169,133,63,.20);
+  --mh-ease:cubic-bezier(.22,.61,.36,1);
+  --mh-speed:380ms;
+}
+#main section.block.alt[aria-labelledby="matters-h"]::before{
+  content:"";position:absolute;inset:0;
+  background:url('images/hieroglyph-blocks-bg.jpg') center/cover no-repeat;
+  filter:contrast(1.1) saturate(1.08) brightness(.98);
+}
+@media(min-width:901px) and (prefers-reduced-motion:no-preference){
+  /* Fixed attachment reads as a very subtle parallax as the section
+     scrolls past; desktop only per the brief, and skipped for reduced-
+     motion users even on desktop since scroll-linked movement is what
+     that preference exists to suppress (background-attachment:fixed on
+     mobile Safari is also notoriously janky, which is the other reason
+     it's desktop-only). */
+  #main section.block.alt[aria-labelledby="matters-h"]::before{background-attachment:fixed}
+}
+#main section.block.alt[aria-labelledby="matters-h"]::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(760px 460px at 18% 4%, rgba(247,241,230,.94), transparent 68%),
+    rgba(247,241,230,.55);
+}
 #main section.block.alt[aria-labelledby="matters-h"] .wrap{position:relative;z-index:1}
+
+/* Heading: unchanged copy/color, just tighter line-height and a very
+   soft light-colored text-shadow (a halo, not a drop shadow) so the
+   navy/gold text keeps an extra edge of contrast now that more of the
+   textured photo shows through behind it. */
+#main section.block.alt[aria-labelledby="matters-h"] .sec-head2{margin-bottom:46px}
+#main section.block.alt[aria-labelledby="matters-h"] .sec-head2 h2{
+  line-height:1.22;
+  text-shadow:0 1px 0 rgba(255,255,255,.6), 0 14px 32px rgba(255,255,255,.4);
+}
+#main section.block.alt[aria-labelledby="matters-h"] .eyebrow2{text-shadow:0 1px 0 rgba(255,255,255,.45)}
+
+/* Cards: layered shadow + thin gold-tinted border at rest; on hover/
+   keyboard focus, a small lift + scale, a gold accent bar draws in
+   along the top edge, the kicker's underline expands, and a soft
+   pointer-following highlight fades in (position set by the small
+   script below; harmless no-op if JS never runs since --mh-mx/--mh-my
+   just fall back to centered). */
+#main section.block.alt[aria-labelledby="matters-h"] .card2{
+  position:relative;overflow:hidden;
+  border-color:rgba(169,133,63,.30);
+  box-shadow:var(--mh-shadow-rest);
+  transition:transform var(--mh-speed) var(--mh-ease),box-shadow var(--mh-speed) var(--mh-ease),border-color var(--mh-speed) var(--mh-ease);
+}
+#main section.block.alt[aria-labelledby="matters-h"] .card2::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold),var(--gold-soft));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform var(--mh-speed) var(--mh-ease);
+}
+#main section.block.alt[aria-labelledby="matters-h"] .card2::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(220px circle at var(--mh-mx,50%) var(--mh-my,50%),rgba(198,161,91,.14),transparent 62%);
+  opacity:0;transition:opacity var(--mh-speed) var(--mh-ease);
+}
+#main section.block.alt[aria-labelledby="matters-h"] .card2:hover,
+#main section.block.alt[aria-labelledby="matters-h"] .card2:focus-visible{
+  transform:translateY(-8px) scale(1.015);
+  box-shadow:var(--mh-shadow-hover);
+  border-color:var(--gold-soft);
+}
+#main section.block.alt[aria-labelledby="matters-h"] .card2:hover::before,
+#main section.block.alt[aria-labelledby="matters-h"] .card2:focus-visible::before{transform:scaleX(1)}
+#main section.block.alt[aria-labelledby="matters-h"] .card2:hover::after{opacity:1}
+#main section.block.alt[aria-labelledby="matters-h"] .card2:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px}
+#main section.block.alt[aria-labelledby="matters-h"] .card2 .kicker{position:relative;display:inline-block;padding-bottom:6px}
+#main section.block.alt[aria-labelledby="matters-h"] .card2 .kicker::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;
+  background:var(--gold-deep);
+  transform:scaleX(.35);transform-origin:left;
+  transition:transform var(--mh-speed) var(--mh-ease);
+}
+#main section.block.alt[aria-labelledby="matters-h"] .card2:hover .kicker::after,
+#main section.block.alt[aria-labelledby="matters-h"] .card2:focus-visible .kicker::after{transform:scaleX(1)}
+#main section.block.alt[aria-labelledby="matters-h"] .card2 p{line-height:1.68}
+
+@media(prefers-reduced-motion:reduce){
+  #main section.block.alt[aria-labelledby="matters-h"] .card2,
+  #main section.block.alt[aria-labelledby="matters-h"] .card2::before,
+  #main section.block.alt[aria-labelledby="matters-h"] .card2::after,
+  #main section.block.alt[aria-labelledby="matters-h"] .card2 .kicker::after{transition:none}
+  #main section.block.alt[aria-labelledby="matters-h"] .card2:hover,
+  #main section.block.alt[aria-labelledby="matters-h"] .card2:focus-visible{transform:none}
+}
+
+/* Tablet: two columns instead of the site-wide three-to-one collapse
+   (.cols-3 otherwise jumps straight from 3 columns to 1 at 860px), just
+   for this section's six cards -- scoped the same way so the Forty
+   Years section's five cards keep their existing responsive behavior. */
+@media(min-width:768px) and (max-width:1024px){
+  #main section.block.alt[aria-labelledby="matters-h"] .cols-3{grid-template-columns:repeat(2,1fr)}
+}
 
 /* She Never Left Egypt Behind — Cairo/Nile skyline photo background.
    Scoped via aria-labelledby, same reasoning as matters-h above: this
@@ -552,12 +663,12 @@ html[dir="rtl"] #main .form2{text-align:right}
   <div class="wrap">
     <div class="sec-head2" id="matters"><span class="eyebrow2" data-i18n="matters.eyebrow">Why Dr. Dalal Akoury Matters to Egypt</span><h2 id="matters-h" data-i18n="matters.h2">What Can Forty Years of Global Experience Bring Home?</h2></div>
     <div class="cols-3">
-      <div class="card2"><span class="kicker" data-i18n="matters.1.k">One</span><h3 data-i18n="matters.1.h">Medical Experience</h3><p data-i18n="matters.1.p">More than four decades across medicine &mdash; including oncology, research, emergency care, pediatrics and whole-person healthcare.</p></div>
-      <div class="card2"><span class="kicker" data-i18n="matters.2.k">Two</span><h3 data-i18n="matters.2.h">Healthcare Systems Thinking</h3><p data-i18n="matters.2.p">Experience building an approach that examines how disease, metabolism, nutrition, hormones, immunity, environment, psychology and lifestyle interact.</p></div>
-      <div class="card2"><span class="kicker" data-i18n="matters.3.k">Three</span><h3 data-i18n="matters.3.h">Medical Education</h3><p data-i18n="matters.3.p">A commitment to educating physicians, practitioners, patients and healthcare entrepreneurs.</p></div>
-      <div class="card2"><span class="kicker" data-i18n="matters.4.k">Four</span><h3 data-i18n="matters.4.h">Entrepreneurial Experience</h3><p data-i18n="matters.4.p">Experience creating clinical, educational and business platforms &mdash; not merely practicing within an existing institution.</p></div>
-      <div class="card2"><span class="kicker" data-i18n="matters.5.k">Five</span><h3 data-i18n="matters.5.h">International Relationships</h3><p data-i18n="matters.5.p">Connections across medicine, education, entrepreneurship, investment and international leadership.</p></div>
-      <div class="card2"><span class="kicker" data-i18n="matters.6.k">Six</span><h3 data-i18n="matters.6.h">Egyptian Identity</h3><p data-i18n="matters.6.p">A personal understanding of Egyptian culture, talent and resilience &mdash; and of the opportunity created when local leadership connects with global resources.</p></div>
+      <div class="card2" tabindex="0"><span class="kicker" data-i18n="matters.1.k">One</span><h3 data-i18n="matters.1.h">Medical Experience</h3><p data-i18n="matters.1.p">More than four decades across medicine &mdash; including oncology, research, emergency care, pediatrics and whole-person healthcare.</p></div>
+      <div class="card2" tabindex="0"><span class="kicker" data-i18n="matters.2.k">Two</span><h3 data-i18n="matters.2.h">Healthcare Systems Thinking</h3><p data-i18n="matters.2.p">Experience building an approach that examines how disease, metabolism, nutrition, hormones, immunity, environment, psychology and lifestyle interact.</p></div>
+      <div class="card2" tabindex="0"><span class="kicker" data-i18n="matters.3.k">Three</span><h3 data-i18n="matters.3.h">Medical Education</h3><p data-i18n="matters.3.p">A commitment to educating physicians, practitioners, patients and healthcare entrepreneurs.</p></div>
+      <div class="card2" tabindex="0"><span class="kicker" data-i18n="matters.4.k">Four</span><h3 data-i18n="matters.4.h">Entrepreneurial Experience</h3><p data-i18n="matters.4.p">Experience creating clinical, educational and business platforms &mdash; not merely practicing within an existing institution.</p></div>
+      <div class="card2" tabindex="0"><span class="kicker" data-i18n="matters.5.k">Five</span><h3 data-i18n="matters.5.h">International Relationships</h3><p data-i18n="matters.5.p">Connections across medicine, education, entrepreneurship, investment and international leadership.</p></div>
+      <div class="card2" tabindex="0"><span class="kicker" data-i18n="matters.6.k">Six</span><h3 data-i18n="matters.6.h">Egyptian Identity</h3><p data-i18n="matters.6.p">A personal understanding of Egyptian culture, talent and resilience &mdash; and of the opportunity created when local leadership connects with global resources.</p></div>
     </div>
   </div>
 </section>
@@ -868,6 +979,27 @@ html[dir="rtl"] #main .form2{text-align:right}
     } else {
 
     }
+  });
+})();
+</script>
+
+<script>
+(function(){
+  // Subtle pointer-following highlight for the six "Why Dr. Dalal Akoury
+  // Matters to Egypt" cards -- desktop/mouse only (hover+fine pointer),
+  // and skipped entirely for prefers-reduced-motion so no listener is
+  // even attached. Purely cosmetic: sets --mh-mx/--mh-my (percentages)
+  // that the CSS radial-gradient in .card2::after reads; if this never
+  // runs the gradient just stays centered and invisible until hover.
+  if (!window.matchMedia || !matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var cards = document.querySelectorAll('#main section.block.alt[aria-labelledby="matters-h"] .card2');
+  cards.forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mh-mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      card.style.setProperty('--mh-my', ((e.clientY - r.top) / r.height * 100) + '%');
+    });
   });
 })();
 </script>
