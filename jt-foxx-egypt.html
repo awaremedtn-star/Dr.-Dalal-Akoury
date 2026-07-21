@@ -360,6 +360,15 @@
   #why-egypt .mosaic .btile:nth-child(4){grid-column:1/7;grid-row:3/4}
   #why-egypt .mosaic .btile:nth-child(5){grid-column:7/13;grid-row:3/4}
 
+  /* Enlarge the Proof-of-Egypt bento grid ~25% over the site's default
+     .wrap/.mosaic sizing, scoped to #why-egypt only so #who-for's mosaic
+     (a different grid reusing the same classes) is unaffected. Column
+     spans are left as-is -- the wider wrap and taller rows scale every
+     tile's footprint together while keeping proportions and gutters. */
+  #why-egypt .wrap{max-width:1480px}
+  #why-egypt .mosaic{grid-auto-rows:262px}
+  @media(max-width:820px){#why-egypt .mosaic{grid-auto-rows:213px}}
+
   /* video feature */
   .videofeat{position:relative;background:var(--navy2);overflow:hidden}
   .videofeat .frame{position:relative;max-width:1320px;margin:0 auto;aspect-ratio:16/9;background:#000}
@@ -880,11 +889,11 @@
   </div>
   <div class="wrap">
     <div class="mosaic reveal">
-      <div class="btile"><div class="cap">Global Leaders, One Vision for Egypt</div></div>
-      <div class="btile"><div class="cap">Where Capital Meets Egyptian Innovation</div></div>
-      <div class="btile"><div class="cap">Building Egypt's Industries of Tomorrow</div></div>
-      <div class="btile"><div class="cap">Advancing Health, Science and Human Potential</div></div>
-      <div class="btile"><div class="cap">Egyptian Talent. Global Opportunity.</div></div>
+      <div class="btile"><img src="images/jtpage-global-leaders-vision.jpg" alt="International and Egyptian leaders meeting around a boardroom table overlooking the Cairo skyline at sunset" loading="lazy"><div class="cap">Global Leaders, One Vision for Egypt</div></div>
+      <div class="btile"><img src="images/jtpage-capital-meets-innovation.jpg" alt="Physicians and executives collaborating in a high-tech medical research office with the Cairo skyline and pyramids in view" loading="lazy"><div class="cap">Where Capital Meets Egyptian Innovation</div></div>
+      <div class="btile"><img src="images/jtpage-industries-of-tomorrow.jpg" alt="Business leaders reviewing plans at a table overlooking a modern industrial port with the pyramids in the distance" loading="lazy"><div class="cap">Building Egypt's Industries of Tomorrow</div></div>
+      <div class="btile"><img src="images/jtpage-advancing-health-science.jpg" alt="Physicians and a visiting executive reviewing medical imaging on an interactive screen with the pyramids visible outside" loading="lazy"><div class="cap">Advancing Health, Science and Human Potential</div></div>
+      <div class="btile"><img src="images/jtpage-egyptian-talent-global.jpg" alt="A mentor talking with young Egyptian professionals and researchers at an outdoor campus table near the pyramids" loading="lazy"><div class="cap">Egyptian Talent. Global Opportunity.</div></div>
     </div>
     <p class="pivot reveal" style="margin-top:36px;font-style:italic">Egypt is no longer just a destination. <b>It is becoming a platform</b> — for healthcare, innovation, artificial intelligence, education, entrepreneurship and global investment. And momentum is the one thing global capital chases.</p>
   </div>
