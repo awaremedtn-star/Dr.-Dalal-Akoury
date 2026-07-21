@@ -369,6 +369,12 @@
   #why-egypt .mosaic{grid-auto-rows:262px}
   @media(max-width:820px){#why-egypt .mosaic{grid-auto-rows:213px}}
 
+  /* Same ~25% enlargement applied to the who-for mosaic, scoped to
+     #who-for only so #why-egypt's grid above is unaffected. */
+  #who-for .wrap{max-width:1480px}
+  #who-for .mosaic{grid-auto-rows:262px}
+  @media(max-width:820px){#who-for .mosaic{grid-auto-rows:213px}}
+
   /* video feature */
   .videofeat{position:relative;background:var(--navy2);overflow:hidden}
   .videofeat .frame{position:relative;max-width:1320px;margin:0 auto;aspect-ratio:16/9;background:#000}
