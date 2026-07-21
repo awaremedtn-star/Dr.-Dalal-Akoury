@@ -371,13 +371,93 @@
 #main .card2 p{font-size:15.5px;color:var(--ink-soft);margin:0}
 #main section.dark .card2 p{color:#c6cdda}
 
-/* timeline (text) */
-#main .timeline{position:relative;max-width:820px;margin:0 auto;border-left:2px solid rgba(198,161,91,.4);padding-left:30px}
-#main .tl-item{position:relative;padding:0 0 26px}
-#main .tl-item::before{content:"";position:absolute;left:-37px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--midnight);border:2px solid var(--gold)}
-#main .tl-item .era{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
-#main .tl-item h4{font-size:20px;margin:4px 0 4px;color:#fff}
-#main .tl-item p{font-size:15px;color:#c6cdda;margin:0}
+/* "A Path That Circled the World and Led Home" -- premium refresh, 2026.
+   .timeline/.tl-item/.era are only ever used in this one journey-h
+   section (confirmed via repo-wide search), so the structural/card
+   rules below restyle those classes directly; the section's own
+   background and heading get the [aria-labelledby="journey-h"]
+   attribute scoping already used elsewhere on this page, since
+   section.block.dark is shared with #meet, why-now and proof. */
+#main section.block.dark[aria-labelledby="journey-h"]{position:relative;overflow:hidden}
+#main section.block.dark[aria-labelledby="journey-h"]::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:radial-gradient(900px 520px at 50% 8%, rgba(198,161,91,.10), transparent 62%);
+}
+/* Faint decorative route: a single curved gold line with a few points,
+   suggesting the Alexandria -> abroad -> home arc of the timeline
+   without any literal map or readable labels. Purely decorative. */
+#main section.block.dark[aria-labelledby="journey-h"] .jr-route{position:absolute;inset:0;z-index:0;width:100%;height:100%;opacity:.5}
+#main section.block.dark[aria-labelledby="journey-h"] .jr-route path{stroke:var(--gold-soft);stroke-width:1.2;fill:none}
+#main section.block.dark[aria-labelledby="journey-h"] .jr-route circle{fill:var(--gold-soft)}
+/* .timeline is centered with a max-width of 820px, so anything past
+   roughly x=940 in this 1200-wide viewBox falls in the empty right
+   margin -- confining the route there keeps it from ever crossing
+   behind card text. Once the viewport narrows enough that the timeline
+   runs edge-to-edge (no margin left to route through), hide it outright
+   rather than let it overlap content. */
+@media(max-width:1024px){#main section.block.dark[aria-labelledby="journey-h"] .jr-route{display:none}}
+#main section.block.dark[aria-labelledby="journey-h"] .wrap{position:relative;z-index:1}
+
+/* Section intro */
+#main section.block.dark[aria-labelledby="journey-h"] .sec-head2{max-width:640px}
+#main section.block.dark[aria-labelledby="journey-h"] .eyebrow2{display:flex;align-items:center;gap:10px;letter-spacing:.3em}
+#main section.block.dark[aria-labelledby="journey-h"] .eyebrow2::before{content:"";display:inline-block;width:26px;height:1px;background:var(--gold)}
+#main section.block.dark[aria-labelledby="journey-h"] .eyebrow2::after{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+#main section.block.dark[aria-labelledby="journey-h"] .sec-head2 h2{line-height:1.22;text-shadow:0 2px 28px rgba(198,161,91,.22)}
+
+/* Timeline track: a static low-opacity base line plus a separate
+   progress overlay (a real element, not a pseudo, since its height is
+   driven by JS as the reader scrolls) that grows and glows gold as
+   milestones activate. */
+#main .timeline{position:relative;max-width:820px;margin:0 auto;padding-left:34px}
+#main .timeline::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:2px;background:rgba(198,161,91,.22)}
+#main .tl-progress{position:absolute;left:0;top:6px;width:2px;height:0;background:linear-gradient(180deg,var(--gold),var(--gold-soft));box-shadow:0 0 14px rgba(198,161,91,.55);transition:height .5s var(--ease,ease)}
+#main .tl-item{position:relative;padding:0 0 40px}
+#main .tl-item:last-child{padding-bottom:0}
+#main .tl-marker{
+  position:absolute;left:-34px;top:2px;width:20px;height:20px;border-radius:50%;
+  background:var(--midnight);border:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;color:var(--gold);
+  box-shadow:0 0 0 4px rgba(198,161,91,.10);
+  transition:background .4s var(--ease,ease),box-shadow .4s var(--ease,ease),color .4s var(--ease,ease);
+}
+#main .tl-marker svg{width:11px;height:11px}
+#main .tl-item.in .tl-marker{background:var(--gold);color:var(--midnight);box-shadow:0 0 0 6px rgba(198,161,91,.18),0 0 18px rgba(198,161,91,.5)}
+#main .tl-card{
+  position:relative;
+  padding:20px 24px;margin:-2px 0 0 -2px;
+  border-radius:12px;
+  border:1px solid rgba(198,161,91,.22);
+  background:rgba(255,255,255,.045);
+  opacity:0;transform:translateY(18px);
+  transition:opacity .6s var(--ease,ease),transform .6s var(--ease,ease),border-color .35s var(--ease,ease),background .35s var(--ease,ease);
+}
+#main .tl-item.in .tl-card{opacity:1;transform:none}
+#main .tl-card:hover,#main .tl-card:focus-visible{
+  transform:translateX(6px);
+  border-color:rgba(198,161,91,.55);
+  background:rgba(255,255,255,.07);
+}
+#main .tl-card:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+#main .tl-card:hover ~ .tl-marker,
+#main .tl-card:focus-visible ~ .tl-marker{background:var(--gold);color:var(--midnight);box-shadow:0 0 0 6px rgba(198,161,91,.18),0 0 18px rgba(198,161,91,.5)}
+#main .tl-item .era{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600}
+#main .tl-item h4{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-weight:600;font-size:22px;margin:6px 0 8px;color:#fff}
+#main .tl-item p{font-size:15px;color:#c6cdda;margin:0;line-height:1.68;max-width:52ch}
+
+@media(max-width:640px){
+  #main .timeline{padding-left:26px}
+  #main .tl-marker{left:-26px;width:17px;height:17px}
+  #main .tl-marker svg{width:9px;height:9px}
+  #main .tl-card{padding:16px 18px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  #main .tl-progress{transition:none}
+  #main .tl-card{transition:border-color .2s ease,background .2s ease}
+  #main .tl-card:hover,#main .tl-card:focus-visible{transform:none}
+  #main .tl-marker{transition:background .2s ease,color .2s ease}
+}
 
 /* sector mosaic (beyond healthcare) */
 #main .mosaic{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -578,8 +658,12 @@
 #main .voice2 .sig{display:block;font-family:'Inter',sans-serif;font-size:12.5px;font-style:normal;letter-spacing:.08em;color:var(--gold-soft);margin-top:16px;text-transform:uppercase}
 
 /* RTL mirroring for the borders/left-alignment patterns above */
-html[dir="rtl"] #main .timeline{border-left:none;border-right:2px solid rgba(198,161,91,.4);padding-left:0;padding-right:30px}
-html[dir="rtl"] #main .tl-item::before{left:auto;right:-37px}
+html[dir="rtl"] #main .timeline{padding-left:0;padding-right:34px}
+html[dir="rtl"] #main .timeline::before{left:auto;right:0}
+html[dir="rtl"] #main .tl-progress{left:auto;right:0}
+html[dir="rtl"] #main .tl-marker{left:auto;right:-34px}
+html[dir="rtl"] #main .tl-card:hover,html[dir="rtl"] #main .tl-card:focus-visible{transform:translateX(-6px)}
+@media(max-width:640px){html[dir="rtl"] #main .tl-marker{right:-26px}}
 html[dir="rtl"] #main .pull2,html[dir="rtl"] #main .path2{border-left:none;border-right:3px solid var(--gold);padding:20px 22px 20px 0}
 html[dir="rtl"] #main .pull2{padding:4px 28px 4px 0}
 html[dir="rtl"] #main .invite2{border-left:none;border-right:2px solid rgba(198,161,91,.55);padding-left:0;padding-right:16px}
@@ -827,14 +911,34 @@ html[dir="rtl"] #main .form2{text-align:right}
 </section>
 
 <section class="block dark" aria-labelledby="journey-h">
+  <svg class="jr-route" aria-hidden="true" viewBox="0 0 1200 600" preserveAspectRatio="none" focusable="false">
+    <path d="M1155 35 C 995 130, 1150 270, 1005 395 C 915 475, 1085 535, 1120 585"/>
+    <circle cx="1155" cy="35" r="4"/><circle cx="1005" cy="395" r="3"/><circle cx="1120" cy="585" r="4"/>
+  </svg>
   <div class="wrap">
-    <div class="sec-head2" id="journey"><span class="eyebrow2" data-i18n="journey.eyebrow">The Journey from Alexandria</span><h2 id="journey-h" data-i18n="journey.h2">A Path That Circled the World and Led Home</h2></div>
+    <div class="sec-head2" id="journey"><span class="eyebrow2 reveal" data-i18n="journey.eyebrow">The Journey from Alexandria</span><h2 id="journey-h" class="reveal d1" data-i18n="journey.h2">A Path That Circled the World and Led Home</h2></div>
     <div class="timeline">
-      <div class="tl-item"><div class="era" data-i18n="journey.1.era">Alexandria, Egypt</div><h4 data-i18n="journey.1.h">Where the story begins</h4><p data-i18n="journey.1.p">Born and formed in Alexandria &mdash; the roots of faith, resilience and ambition.</p></div>
-      <div class="tl-item"><div class="era" data-i18n="journey.2.era">Formation</div><h4 data-i18n="journey.2.h">Medical education &amp; the move to America</h4><p data-i18n="journey.2.p">Foundational medical education, and the journey to the United States to train at the frontier of American medicine.</p></div>
-      <div class="tl-item"><div class="era" data-i18n="journey.3.era">Specialty &amp; science</div><h4 data-i18n="journey.3.h">Pediatrics, oncology &amp; research</h4><p data-i18n="journey.3.p">Training in pediatrics and pediatric hematology/oncology, and academic and laboratory research.</p></div>
-      <div class="tl-item"><div class="era" data-i18n="journey.4.era">A wider lens</div><h4 data-i18n="journey.4.h">From frontline care to whole-person medicine</h4><p data-i18n="journey.4.p">Broad clinical practice across emergency and general medicine &mdash; and the turn toward integrative, functional, whole-person approaches.</p></div>
-      <div class="tl-item"><div class="era" data-i18n="journey.5.era">Now</div><h4 data-i18n="journey.5.h">Founding AWAREmed &mdash; and returning home to Egypt</h4><p data-i18n="journey.5.p">Establishing AWAREmed and educating a new generation &mdash; and now bringing four decades of experience and relationships home.</p></div>
+      <div class="tl-progress" aria-hidden="true"></div>
+      <div class="tl-item">
+        <div class="tl-card" tabindex="0"><div class="era" data-i18n="journey.1.era">Alexandria, Egypt</div><h4 data-i18n="journey.1.h">Where the story begins</h4><p data-i18n="journey.1.p">Born and formed in Alexandria &mdash; the roots of faith, resilience and ambition.</p></div>
+        <span class="tl-marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M7 8h10l-1.4 4.6a3.6 3.6 0 0 1-3.44 2.55h0A3.6 3.6 0 0 1 8.72 12.6z"/><path d="M4 21c1.6-1.4 3.6-2 5-2h6c1.4 0 3.4.6 5 2"/></svg></span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-card" tabindex="0"><div class="era" data-i18n="journey.2.era">Formation</div><h4 data-i18n="journey.2.h">Medical education &amp; the move to America</h4><p data-i18n="journey.2.p">Foundational medical education, and the journey to the United States to train at the frontier of American medicine.</p></div>
+        <span class="tl-marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9 12 5l9.5 4-9.5 4z"/><path d="M6 11v5c0 1.2 2.7 2.3 6 2.3s6-1.1 6-2.3v-5"/></svg></span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-card" tabindex="0"><div class="era" data-i18n="journey.3.era">Specialty &amp; science</div><h4 data-i18n="journey.3.h">Pediatrics, oncology &amp; research</h4><p data-i18n="journey.3.p">Training in pediatrics and pediatric hematology/oncology, and academic and laboratory research.</p></div>
+        <span class="tl-marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3h4"/><path d="M11 3v5.5L6.5 17A3 3 0 0 0 9.2 21.4h5.6A3 3 0 0 0 17.5 17L13 8.5V3"/><path d="M8.2 15h7.6"/></svg></span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-card" tabindex="0"><div class="era" data-i18n="journey.4.era">A wider lens</div><h4 data-i18n="journey.4.h">From frontline care to whole-person medicine</h4><p data-i18n="journey.4.p">Broad clinical practice across emergency and general medicine &mdash; and the turn toward integrative, functional, whole-person approaches.</p></div>
+        <span class="tl-marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M14.6 9.4 13 13l-3.6 1.6L11 11z"/></svg></span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-card" tabindex="0"><div class="era" data-i18n="journey.5.era">Now</div><h4 data-i18n="journey.5.h">Founding AWAREmed &mdash; and returning home to Egypt</h4><p data-i18n="journey.5.p">Establishing AWAREmed and educating a new generation &mdash; and now bringing four decades of experience and relationships home.</p></div>
+        <span class="tl-marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 13 12 5.5 20.5 13"/><path d="M6 11.5V20h12v-8.5"/></svg></span>
+      </div>
     </div>
   </div>
 </section>
@@ -1158,6 +1262,59 @@ html[dir="rtl"] #main .form2{text-align:right}
       card.style.setProperty('--a-my', ((e.clientY - r.top) / r.height * 100) + '%');
     });
   });
+})();
+</script>
+
+<script>
+(function(){
+  // "A Path That Circled the World and Led Home" timeline: activates
+  // each milestone (filling its marker gold and revealing its card) as
+  // it nears the viewport center, and grows the gold .tl-progress line
+  // to match the furthest-activated marker. Fires once per item, same
+  // as the site-wide .reveal observer in assets/app.js, but kept
+  // separate since it also drives the progress-line height, which that
+  // shared observer has no concept of.
+  var timeline = document.querySelector('[aria-labelledby="journey-h"] .timeline');
+  if (!timeline) return;
+  var progress = timeline.querySelector('.tl-progress');
+  var items = timeline.querySelectorAll('.tl-item');
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  function markerOffset(item){
+    // The marker is absolutely positioned against its own .tl-item (so
+    // it lines up with that item's card regardless of the card's
+    // height), so offsetTop alone is relative to the wrong ancestor --
+    // measure via getBoundingClientRect deltas against .timeline instead.
+    var marker = item.querySelector('.tl-marker');
+    var mRect = marker.getBoundingClientRect();
+    var tRect = timeline.getBoundingClientRect();
+    return (mRect.top - tRect.top) + mRect.height / 2;
+  }
+
+  if (reduced || !('IntersectionObserver' in window)) {
+    // No scroll-driven reveal or animated fill: show every milestone
+    // immediately and set the line to its full height in one step.
+    items.forEach(function(item){ item.classList.add('in'); });
+    if (progress && items.length) progress.style.height = markerOffset(items[items.length - 1]) + 'px';
+    return;
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+      // Only grow the line, never let a fast/out-of-order scroll retract
+      // it back up past an already-reached milestone.
+      if (progress){
+        var next = markerOffset(entry.target);
+        var current = parseFloat(progress.style.height) || 0;
+        progress.style.height = Math.max(current, next) + 'px';
+      }
+    });
+  }, { threshold: .4 });
+
+  items.forEach(function(item){ io.observe(item); });
 })();
 </script>
 
