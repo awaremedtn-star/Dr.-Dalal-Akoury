@@ -594,6 +594,49 @@
 #main .node .what{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-deep);margin:4px 0 10px;font-weight:600}
 #main .node p{font-size:14.5px;color:var(--ink-soft);margin:0}
 
+/* "The Ecosystem She Built" -- full-bleed background video, 2026.
+   .eco2/.node are only ever used in this one section (confirmed via
+   repo-wide search), so the glass-card overrides below could restyle
+   those classes directly, but everything is still scoped through the
+   section's aria-labelledby="eco2-h" attribute -- matching this file's
+   established convention -- since the video/overlay/text-color rules
+   MUST be scoped that way (section.block is shared with several other
+   plain-white sections on this page). */
+#main section.block[aria-labelledby="eco2-h"]{position:relative;overflow:hidden;color:#fff}
+#main section.block[aria-labelledby="eco2-h"] .eco-bgvideo{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+#main section.block[aria-labelledby="eco2-h"]::before{content:"";position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.5);pointer-events:none}
+#main section.block[aria-labelledby="eco2-h"] .wrap{position:relative;z-index:2}
+#main section.block[aria-labelledby="eco2-h"] .eyebrow2{color:var(--gold-soft)}
+#main section.block[aria-labelledby="eco2-h"] .sec-head2 h2{color:#fff}
+#main section.block[aria-labelledby="eco2-h"] .lead2 p{color:#e4e8f0}
+#main section.block[aria-labelledby="eco2-h"] .lead2 p strong{color:#fff}
+
+/* Glass cards -- rgba white fill + backdrop-filter blur rather than a
+   flat dark panel, so the moving video still reads through them.
+   border-radius/padding are intentionally left untouched (inherited
+   from the base .node rule above) per the brief; only surface, border,
+   text color and the hover lift change here. */
+#main section.block[aria-labelledby="eco2-h"] .node{
+  background:rgba(255,255,255,.14);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.25);
+  box-shadow:0 18px 40px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.16);
+  transition:transform .35s var(--ease,ease),border-color .35s var(--ease,ease),box-shadow .35s var(--ease,ease);
+}
+#main section.block[aria-labelledby="eco2-h"] .node:hover{
+  transform:translateY(-4px);
+  border-color:rgba(217,189,130,.55);
+  box-shadow:0 24px 50px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.2);
+}
+#main section.block[aria-labelledby="eco2-h"] .node .name{color:#fff}
+#main section.block[aria-labelledby="eco2-h"] .node .what{color:var(--gold-soft)}
+#main section.block[aria-labelledby="eco2-h"] .node p{color:#e4e8f0}
+@media(prefers-reduced-motion:reduce){
+  #main section.block[aria-labelledby="eco2-h"] .node{transition:none}
+  #main section.block[aria-labelledby="eco2-h"] .node:hover{transform:none}
+}
+
 /* evidence */
 #main .evidence{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
 #main .evidence a{border:1px solid rgba(198,161,91,.5);color:var(--gold-soft);border-radius:2px;padding:11px 20px;font-size:14px}
@@ -1445,6 +1488,10 @@ html[dir="rtl"] #main .form2{text-align:right}
 </section>
 
 <section class="block" aria-labelledby="eco2-h">
+  <video class="eco-bgvideo" aria-hidden="true" autoplay muted loop playsinline>
+    <source src="assets/bg_video_mobile.mp4" media="(max-width: 768px)" type="video/mp4">
+    <source src="assets/bg_video_1080p_hq.mp4" media="(min-width: 769px)" type="video/mp4">
+  </video>
   <div class="wrap">
     <div class="sec-head2" id="ecosystem"><span class="eyebrow2" data-i18n="ecosys.eyebrow">The Ecosystem She Built</span><h2 id="eco2-h" data-i18n="ecosys.h2">Not One Clinic &mdash; an Ecosystem of Ideas, Education and Care</h2></div>
     <div class="lead2" style="margin-bottom:32px"><p data-i18n="ecosys.lead">Dr. Akoury arrives not with an idea alone, but with an operating ecosystem spanning care, education and practice development. Three highlights:</p></div>
@@ -1960,6 +2007,18 @@ html[dir="rtl"] #main .form2{text-align:right}
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', onScroll, { passive: true });
   onScroll();
+})();
+</script>
+
+<script>
+(function(){
+  // Pause the "Ecosystem She Built" background video for
+  // prefers-reduced-motion users -- a continuously looping autoplay
+  // video is exactly the kind of motion that preference exists to
+  // suppress, even though the video itself carries no essential
+  // information (aria-hidden, purely decorative backdrop).
+  var v = document.querySelector('section[aria-labelledby="eco2-h"] .eco-bgvideo');
+  if (v && window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches) v.pause();
 })();
 </script>
 <script>
