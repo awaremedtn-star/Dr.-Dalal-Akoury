@@ -519,6 +519,78 @@
 #main .sector p{font-size:13.5px;color:var(--ink-soft);margin:0 0 6px}
 #main .sector .ill{font-size:11px;letter-spacing:.04em;color:var(--gold-deep);font-style:italic}
 
+/* Beyond Healthcare card thumbnails + lightbox, 2026. The four cards
+   previously referenced .webp files that don't exist in the repo
+   (images/egypt-*.webp) -- the onerror handler was silently hiding the
+   broken <img>, leaving just .ph's own navy-gradient placeholder
+   background visible, which is why every card looked like an empty
+   dark box. Swapped in the four real Dr.Akoury-pageS1-4.jpg images and
+   turned each .ph.simg into a <button> (was a plain non-interactive
+   div) so the click/keyboard-activate target is semantic.
+   .sector:hover's card lift and .eg-thumb:hover's image scale are two
+   separate rules on two different elements, so they animate
+   independently even though hovering the thumb also counts as hovering
+   its ancestor .sector. */
+#main .eg-thumb{position:relative;display:block;width:100%;height:100%;padding:0;margin:0;border:0;background:none;font:inherit;cursor:pointer;overflow:hidden}
+#main .eg-thumb img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .38s var(--ease,ease)}
+#main .eg-thumb:hover img,#main .eg-thumb:focus-visible img{transform:scale(1.04)}
+/* The image needs its own z-index (not just DOM order) because
+   :hover's transform:scale on the img promotes it into a stacking
+   context of its own -- without an explicit z-index here the
+   transformed img was painting above the overlay despite coming first
+   in markup, hiding the icon/label entirely on hover. */
+#main .eg-thumb-overlay{
+  position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  background:rgba(11,18,38,.38);color:#fff;opacity:0;
+  transition:opacity .35s var(--ease,ease);
+}
+#main .eg-thumb-overlay svg{width:26px;height:26px}
+#main .eg-thumb-label{font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+#main .eg-thumb:hover .eg-thumb-overlay,#main .eg-thumb:focus-visible .eg-thumb-overlay{opacity:1}
+#main .eg-thumb:focus-visible{outline:2px solid var(--gold);outline-offset:-3px}
+#main .sector{transition:transform .38s var(--ease,ease),box-shadow .38s var(--ease,ease)}
+#main .sector:hover{transform:translateY(-5px);box-shadow:0 18px 38px rgba(11,18,38,.14)}
+/* Touch devices can't hover, so the affordance stays visible at all times
+   instead of depending on a hover state that will never fire. */
+@media(hover:none){#main .eg-thumb-overlay{opacity:1;background:rgba(11,18,38,.22)}#main .eg-thumb-label{display:none}}
+@media(prefers-reduced-motion:reduce){
+  #main .eg-thumb img,#main .eg-thumb-overlay,#main .sector{transition:none}
+  #main .sector:hover{transform:none}
+}
+
+#main .eg-lightbox{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:24px;padding:max(24px,env(safe-area-inset-top)) max(24px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(24px,env(safe-area-inset-left))}
+#main .eg-lightbox[hidden]{display:none}
+#main .eg-lightbox__backdrop{position:absolute;inset:0;background:rgba(7,10,20,.88)}
+#main .eg-lightbox__dialog{position:relative;z-index:1;max-width:100%;max-height:100%;opacity:0;transform:scale(.97);transition:opacity .28s var(--ease,ease),transform .28s var(--ease,ease)}
+#main .eg-lightbox.eg-open .eg-lightbox__backdrop{animation:eg-fade .28s var(--ease,ease) forwards}
+#main .eg-lightbox.eg-open .eg-lightbox__dialog{opacity:1;transform:scale(1)}
+@keyframes eg-fade{from{opacity:0}to{opacity:1}}
+#main .eg-lightbox__figure{margin:0;display:flex;flex-direction:column;align-items:center}
+#main .eg-lightbox__image{display:block;width:auto;height:auto;max-width:92vw;max-height:80vh;object-fit:contain;border-radius:2px;box-shadow:0 30px 70px rgba(0,0,0,.5)}
+#main .eg-lightbox__caption{margin-top:14px;text-align:center;color:var(--ivory);display:flex;align-items:center;gap:12px}
+#main .eg-lightbox__title{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-size:19px}
+#main .eg-lightbox__count{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.08em;color:var(--gold-soft)}
+#main .eg-lightbox__close,#main .eg-lightbox__nav{
+  position:fixed;display:flex;align-items:center;justify-content:center;
+  width:44px;height:44px;border-radius:50%;border:1px solid rgba(217,189,130,.4);
+  background:rgba(11,18,38,.6);color:#fff;cursor:pointer;transition:background .2s ease,border-color .2s ease;
+}
+#main .eg-lightbox__close svg,#main .eg-lightbox__nav svg{width:20px;height:20px}
+#main .eg-lightbox__close:hover,#main .eg-lightbox__nav:hover{background:var(--gold);border-color:var(--gold);color:var(--midnight)}
+#main .eg-lightbox__close:focus-visible,#main .eg-lightbox__nav:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#main .eg-lightbox__close{top:max(20px,env(safe-area-inset-top));right:max(20px,env(safe-area-inset-right))}
+#main .eg-lightbox__prev{left:max(16px,env(safe-area-inset-left))}
+#main .eg-lightbox__next{right:max(16px,env(safe-area-inset-right))}
+@media(max-width:640px){
+  #main .eg-lightbox__image{max-height:72vh}
+  #main .eg-lightbox__close,#main .eg-lightbox__nav{width:40px;height:40px}
+  #main .eg-lightbox__title{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){
+  #main .eg-lightbox__dialog{transition:none;transform:none}
+  #main .eg-lightbox.eg-open .eg-lightbox__backdrop{animation:none}
+}
+
 /* ecosystem */
 #main .eco2{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 @media(max-width:860px){#main .eco2{grid-template-columns:1fr}}
@@ -1023,13 +1095,26 @@ html[dir="rtl"] #main .form2{text-align:right}
 <section class="block alt" aria-labelledby="beyond-h">
   <div class="wrap">
     <div class="lead2" style="margin-bottom:34px"><p data-i18n="beyond.lead">Her Egypt vision begins with medicine, but it does not end there. It connects care with the systems, industries and relationships that let progress endure &mdash; each area reinforcing the others. These are illustrative of these fields, not depictions of finalized projects.</p></div>
-    <div class="mosaic">
-      <div class="sector"><div class="ph simg"><img src="images/egypt-healthcare-medical-education.webp" alt="Illustrative image" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><div class="sbody"><h3 data-i18n="beyond.1.h">Healthcare &amp; Medical Education</h3><p data-i18n="beyond.1.p">Centers of excellence, prevention, integrative oncology, longevity, physician training and university collaboration.</p><span class="ill">Illustrative &mdash; an area of vision.</span></div></div>
-      <div class="sector"><div class="ph simg"><img src="images/egypt-technology-entrepreneurship.webp" alt="Illustrative image" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><div class="sbody"><h3 data-i18n="beyond.2.h">Technology &amp; Entrepreneurship</h3><p data-i18n="beyond.2.p">AI, digital health and telehealth &mdash; and support for physicians and founders building ethical, sustainable ventures.</p><span class="ill">Illustrative &mdash; an area of vision.</span></div></div>
-      <div class="sector"><div class="ph simg"><img src="images/egypt-wellness-tourism-hospitality.webp" alt="Illustrative image" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><div class="sbody"><h3 data-i18n="beyond.3.h">Wellness Tourism &amp; Hospitality</h3><p data-i18n="beyond.3.p">Connecting Egypt&rsquo;s heritage, geography and hospitality with responsible, high-quality wellness programs and destinations.</p><span class="ill">Illustrative &mdash; an area of vision.</span></div></div>
-      <div class="sector"><div class="ph simg"><img src="images/egypt-real-estate-economic-development.webp" alt="Illustrative image" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><div class="sbody"><h3 data-i18n="beyond.4.h">Real Estate &amp; Economic Development</h3><p data-i18n="beyond.4.p">Health-centered campuses and destinations, and conversations that convene leaders, developers and responsible partners.</p><span class="ill">Illustrative &mdash; an area of vision.</span></div></div>
+    <div class="mosaic" id="eg-gallery">
+      <div class="sector"><button type="button" class="ph simg eg-thumb" data-eg-title="Healthcare &amp; Medical Education"><img src="images/Dr.Akoury-pageS1.jpg" alt="Healthcare and medical education vision for Egypt." loading="lazy" decoding="async" width="1448" height="1086" data-fallback onerror="this.style.visibility='hidden'"><span class="eg-thumb-overlay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.3 15.3 20 20"/><path d="M10.5 8v5M8 10.5h5"/></svg><span class="eg-thumb-label">View Full Image</span></span></button><div class="sbody"><h3 data-i18n="beyond.1.h">Healthcare &amp; Medical Education</h3><p data-i18n="beyond.1.p">Centers of excellence, prevention, integrative oncology, longevity, physician training and university collaboration.</p><span class="ill">Illustrative &mdash; an area of vision.</span></div></div>
+      <div class="sector"><button type="button" class="ph simg eg-thumb" data-eg-title="Technology &amp; Entrepreneurship"><img src="images/Dr.Akoury-pageS2.jpg" alt="Technology and entrepreneurship vision for Egypt." loading="lazy" decoding="async" width="1448" height="1086" data-fallback onerror="this.style.visibility='hidden'"><span class="eg-thumb-overlay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.3 15.3 20 20"/><path d="M10.5 8v5M8 10.5h5"/></svg><span class="eg-thumb-label">View Full Image</span></span></button><div class="sbody"><h3 data-i18n="beyond.2.h">Technology &amp; Entrepreneurship</h3><p data-i18n="beyond.2.p">AI, digital health and telehealth &mdash; and support for physicians and founders building ethical, sustainable ventures.</p><span class="ill">Illustrative &mdash; an area of vision.</span></div></div>
+      <div class="sector"><button type="button" class="ph simg eg-thumb" data-eg-title="Wellness Tourism &amp; Hospitality"><img src="images/Dr.Akoury-pageS3.jpg" alt="Wellness tourism and hospitality vision for Egypt." loading="lazy" decoding="async" width="1448" height="1086" data-fallback onerror="this.style.visibility='hidden'"><span class="eg-thumb-overlay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.3 15.3 20 20"/><path d="M10.5 8v5M8 10.5h5"/></svg><span class="eg-thumb-label">View Full Image</span></span></button><div class="sbody"><h3 data-i18n="beyond.3.h">Wellness Tourism &amp; Hospitality</h3><p data-i18n="beyond.3.p">Connecting Egypt&rsquo;s heritage, geography and hospitality with responsible, high-quality wellness programs and destinations.</p><span class="ill">Illustrative &mdash; an area of vision.</span></div></div>
+      <div class="sector"><button type="button" class="ph simg eg-thumb" data-eg-title="Real Estate &amp; Economic Development"><img src="images/Dr.Akoury-pageS4.jpg" alt="Real estate and economic development vision for Egypt." loading="lazy" decoding="async" width="1448" height="1086" data-fallback onerror="this.style.visibility='hidden'"><span class="eg-thumb-overlay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.3 15.3 20 20"/><path d="M10.5 8v5M8 10.5h5"/></svg><span class="eg-thumb-label">View Full Image</span></span></button><div class="sbody"><h3 data-i18n="beyond.4.h">Real Estate &amp; Economic Development</h3><p data-i18n="beyond.4.p">Health-centered campuses and destinations, and conversations that convene leaders, developers and responsible partners.</p><span class="ill">Illustrative &mdash; an area of vision.</span></div></div>
     </div>
     <p style="font-size:15px;margin-top:26px" data-i18n="beyond.note"><strong>These are areas of vision and exploration</strong> &mdash; not representations that any specific project has been funded, approved, endorsed or launched.</p>
+  </div>
+
+  <div class="eg-lightbox" id="eg-lightbox" hidden>
+    <div class="eg-lightbox__backdrop"></div>
+    <div class="eg-lightbox__dialog" role="dialog" aria-modal="true" aria-labelledby="eg-lightbox-title">
+      <button type="button" class="eg-lightbox__close" data-eg-close aria-label="Close full image"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <button type="button" class="eg-lightbox__nav eg-lightbox__prev" aria-label="Previous image"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 8 12l7 7"/></svg></button>
+      <button type="button" class="eg-lightbox__nav eg-lightbox__next" aria-label="Next image"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></button>
+      <figure class="eg-lightbox__figure">
+        <img class="eg-lightbox__image" id="eg-lightbox-img" src="" alt="">
+        <figcaption class="eg-lightbox__caption"><span id="eg-lightbox-title" class="eg-lightbox__title"></span><span class="eg-lightbox__count" aria-hidden="true"></span></figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -1317,6 +1402,114 @@ html[dir="rtl"] #main .form2{text-align:right}
       card.style.setProperty('--a-mx', ((e.clientX - r.left) / r.width * 100) + '%');
       card.style.setProperty('--a-my', ((e.clientY - r.top) / r.height * 100) + '%');
     });
+  });
+})();
+</script>
+
+<script>
+(function(){
+  // Reusable lightbox for the four "Beyond Healthcare" card images --
+  // one modal shared across all four thumbnails rather than four
+  // separate ones. Not built on assets/app.js's existing .lightbox
+  // (used by the media.html press gallery): that one has no prev/next,
+  // no focus trap and no dialog semantics, and extending it risked
+  // changing behavior on an unrelated page, so this is a self-contained
+  // implementation scoped to #eg-gallery/#eg-lightbox.
+  var modal = document.getElementById('eg-lightbox');
+  var gallery = document.getElementById('eg-gallery');
+  if (!modal || !gallery) return;
+
+  var thumbs = Array.prototype.slice.call(gallery.querySelectorAll('.eg-thumb'));
+  if (!thumbs.length) return;
+
+  var items = thumbs.map(function(btn){
+    var img = btn.querySelector('img');
+    return { src: img.currentSrc || img.src, alt: img.alt, title: btn.getAttribute('data-eg-title') || img.alt };
+  });
+
+  var dialog = modal.querySelector('.eg-lightbox__dialog');
+  var imgEl = modal.querySelector('.eg-lightbox__image');
+  var titleEl = modal.querySelector('.eg-lightbox__title');
+  var countEl = modal.querySelector('.eg-lightbox__count');
+  var closeBtn = modal.querySelector('.eg-lightbox__close');
+  var prevBtn = modal.querySelector('.eg-lightbox__prev');
+  var nextBtn = modal.querySelector('.eg-lightbox__next');
+  var focusables = [closeBtn, prevBtn, nextBtn];
+
+  var current = 0;
+  var lastTrigger = null;
+
+  function render(){
+    var item = items[current];
+    imgEl.src = item.src;
+    imgEl.alt = item.alt;
+    titleEl.textContent = item.title;
+    countEl.textContent = (current + 1) + ' / ' + items.length;
+  }
+
+  function open(index, trigger){
+    current = index;
+    lastTrigger = trigger || document.activeElement;
+    render();
+    modal.hidden = false;
+    // Force layout before adding the class so the open transition runs
+    // instead of the dialog appearing already at its end state.
+    modal.getBoundingClientRect();
+    modal.classList.add('eg-open');
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', onKeydown);
+    closeBtn.focus();
+  }
+
+  function close(){
+    modal.classList.remove('eg-open');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onKeydown);
+    var finish = function(){
+      modal.hidden = true;
+      dialog.removeEventListener('transitionend', finish);
+    };
+    if (matchMedia('(prefers-reduced-motion:reduce)').matches) finish();
+    else dialog.addEventListener('transitionend', finish);
+    if (lastTrigger) lastTrigger.focus();
+  }
+
+  function go(delta){
+    current = (current + delta + items.length) % items.length;
+    render();
+  }
+
+  function onKeydown(e){
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key === 'ArrowLeft') { go(-1); return; }
+    if (e.key === 'ArrowRight') { go(1); return; }
+    if (e.key === 'Tab') {
+      var i = focusables.indexOf(document.activeElement);
+      if (e.shiftKey && (i <= 0)) { e.preventDefault(); focusables[focusables.length - 1].focus(); }
+      else if (!e.shiftKey && (i === -1 || i === focusables.length - 1)) { e.preventDefault(); focusables[0].focus(); }
+    }
+  }
+
+  thumbs.forEach(function(btn, i){
+    btn.addEventListener('click', function(){ open(i, btn); });
+  });
+  closeBtn.addEventListener('click', close);
+  prevBtn.addEventListener('click', function(){ go(-1); });
+  nextBtn.addEventListener('click', function(){ go(1); });
+  modal.addEventListener('click', function(e){
+    if (e.target.closest('.eg-lightbox__image, .eg-lightbox__nav, .eg-lightbox__close')) return;
+    close();
+  });
+
+  // Basic touch-swipe: a single-finger horizontal drag past ~45px
+  // navigates, without pulling in a gesture library.
+  var touchStartX = null;
+  modal.addEventListener('touchstart', function(e){ touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+  modal.addEventListener('touchend', function(e){
+    if (touchStartX === null) return;
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 45) go(dx > 0 ? -1 : 1);
+    touchStartX = null;
   });
 })();
 </script>
