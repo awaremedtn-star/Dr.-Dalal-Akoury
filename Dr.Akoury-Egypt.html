@@ -1132,39 +1132,58 @@ html[dir="rtl"] #main .form2{text-align:right}
 #legacy-ghaly .g-sub{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-style:italic;font-weight:500;font-size:clamp(19px,2.4vw,27px);color:var(--gold-soft);margin:4px 0 0;line-height:1.35}
 #legacy-ghaly .g-divider{width:62px;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-soft));margin:22px auto 0;position:relative}
 #legacy-ghaly .g-divider::after{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;transform:translate(-50%,-50%) rotate(45deg);background:var(--gold)}
-/* ---- bento gallery (replaces the single portrait figure) ---- */
+/* ---- three-image asymmetrical bento gallery ---- */
 #legacy-ghaly .split{grid-template-columns:minmax(0,1.18fr) minmax(0,1fr);gap:56px;align-items:start}
-#legacy-ghaly .g-gallery{position:relative;display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(10,minmax(0,1fr));gap:12px;min-height:634px}
+#legacy-ghaly .g-gallery{position:relative;display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(10,minmax(0,1fr));gap:14px;min-height:640px}
 /* faint repeating diagonal hairlines behind the tiles -- an abstract,
    understated nod to Egyptian geometric pattern-work, never a literal
-   pyramid/hieroglyph graphic. Only visible in the 12px gaps. */
+   pyramid/hieroglyph graphic. Only visible in the 14px gaps. */
 #legacy-ghaly .g-gallery::before{content:"";position:absolute;inset:-14px;background:repeating-linear-gradient(118deg,rgba(198,161,91,.06) 0 1px,transparent 1px 44px);pointer-events:none;z-index:0}
-#legacy-ghaly .g-tile{position:relative;z-index:1;overflow:hidden;border-radius:11px;border:1px solid rgba(206,169,91,.42);background:linear-gradient(135deg,#16223f 0%,#0c1329 100%);box-shadow:0 18px 45px rgba(0,0,0,.24),inset 0 0 0 1px rgba(255,255,255,.025);transition:transform .55s cubic-bezier(.22,.9,.32,1),border-color .55s var(--ease,ease),box-shadow .55s var(--ease,ease)}
-#legacy-ghaly .g-tile-1{grid-column:1/8;grid-row:1/7}
-#legacy-ghaly .g-tile-2{grid-column:8/13;grid-row:1/5}
-#legacy-ghaly .g-tile-3{grid-column:8/13;grid-row:5/11}
-#legacy-ghaly .g-tile-4{grid-column:1/8;grid-row:7/11}
-#legacy-ghaly .g-tile img{position:absolute;inset:0;z-index:2;width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(.22,.9,.32,1)}
-#legacy-ghaly .g-tile-1 img{object-position:center 22%}
-#legacy-ghaly .g-tile-2 img{object-position:center 30%}
-#legacy-ghaly .g-tile-3 img{object-position:center 25%}
-#legacy-ghaly .g-tile-4 img{object-position:center center}
-/* subtle navy vignette so the tiles read as one integrated gallery
-   rather than four unrelated cut-outs; kept light so faces stay clear */
-#legacy-ghaly .g-tile::after{content:"";position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,transparent 58%,rgba(11,18,38,.5) 100%);pointer-events:none}
-#legacy-ghaly .g-tile-ph{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:16px;color:#cdd6e4}
-#legacy-ghaly .g-tile-ph svg{width:28px;height:28px;opacity:.5}
-#legacy-ghaly .g-tile-ph b{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(14px,1.6vw,18px);color:#e7edf6;font-weight:600;letter-spacing:.01em}
-#legacy-ghaly .g-tile-ph span{font-size:10.5px;letter-spacing:.03em;color:#9fb0c7;max-width:14rem;line-height:1.5}
-/* editorial role labels -- restrained, bottom-left, never over a face */
-#legacy-ghaly .g-tile-tag{position:absolute;left:14px;bottom:13px;z-index:4;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft);text-shadow:0 1px 6px rgba(0,0,0,.6)}
+#legacy-ghaly .g-tile{position:relative;z-index:1;overflow:hidden;isolation:isolate;border-radius:12px;border:1px solid rgba(206,169,91,.36);background:#0b1730;box-shadow:0 20px 48px rgba(0,0,0,.24),inset 0 0 0 1px rgba(255,255,255,.025);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1),filter .7s cubic-bezier(.22,1,.36,1),border-color .45s ease,box-shadow .6s ease}
+#legacy-ghaly .g-tile-1{grid-column:1/8;grid-row:1/11}
+#legacy-ghaly .g-tile-2{grid-column:8/13;grid-row:1/6}
+#legacy-ghaly .g-tile-3{grid-column:8/13;grid-row:6/11}
+#legacy-ghaly .g-tile img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.22,.9,.32,1),filter .6s ease}
+#legacy-ghaly .g-tile-1 img{object-position:center 18%}
+#legacy-ghaly .g-tile-2 img{object-position:center 32%}
+#legacy-ghaly .g-tile-3 img{object-position:64% 76%}
+/* pointer-following glow -- JS sets --pointer-x/--pointer-y per tile;
+   the fallback (50%,0%) keeps it inert until the first pointer move */
+#legacy-ghaly .g-tile::before{content:"";position:absolute;inset:0;z-index:2;opacity:0;pointer-events:none;background:radial-gradient(280px circle at var(--pointer-x,50%) var(--pointer-y,0%),rgba(218,181,96,.09),transparent 68%);transition:opacity .35s ease}
+/* very subtle navy vignette so the tiles integrate with the section --
+   kept light so it never covers or mutes the faces */
+#legacy-ghaly .g-tile::after{content:"";position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,rgba(7,18,40,.03) 45%,rgba(7,18,40,.26) 100%);pointer-events:none}
+/* light-sweep: a real (aria-hidden) node rather than a third pseudo-element,
+   since ::before/::after are already the pointer-glow and the vignette */
+#legacy-ghaly .g-tile-sweep{position:absolute;top:-20%;bottom:-20%;left:-45%;width:28%;z-index:4;transform:skewX(-18deg);background:linear-gradient(90deg,transparent,rgba(255,243,211,.1),transparent);pointer-events:none;opacity:0}
+@keyframes g-sweep{0%{opacity:0;transform:skewX(-18deg) translateX(0)}14%{opacity:1}55%{opacity:.6}100%{opacity:0;transform:skewX(-18deg) translateX(640%)}}
 @media(hover:hover){
-  #legacy-ghaly .g-tile:hover{transform:translateY(-4px);border-color:rgba(217,189,130,.78);box-shadow:0 24px 54px rgba(0,0,0,.32),inset 0 0 0 1px rgba(255,255,255,.04)}
-  #legacy-ghaly .g-tile:hover img{transform:scale(1.035)}
+  /* .reveal.in{transform:translateY(0)} outweighs a plain :hover on
+     specificity (3 classes vs 1 class+pseudo), so the lift would never
+     apply post-entrance without also matching .reveal.in here */
+  #legacy-ghaly .g-tile.reveal.in:hover{transform:translateY(-5px);border-color:rgba(219,183,99,.62);box-shadow:0 28px 65px rgba(0,0,0,.3),0 0 28px rgba(207,168,81,.07)}
+  #legacy-ghaly .g-tile:hover::before{opacity:1}
+  #legacy-ghaly .g-tile:hover img{transform:scale(1.035);filter:brightness(1.035)}
+  #legacy-ghaly .g-tile:hover .g-tile-sweep{animation:g-sweep .95s cubic-bezier(.22,1,.36,1) 1}
 }
+/* staggered entrance: primary tile first, upper-right next, text column
+   in between, lower-right last -- reuses the site-wide .reveal/.reveal.in
+   IntersectionObserver (assets/app.js), just adding this section's own
+   delay steps and an image-specific brightness fade */
+#legacy-ghaly .g-tile.reveal{opacity:0;transform:translateY(22px);filter:brightness(.88)}
+#legacy-ghaly .g-tile.reveal.in{opacity:1;transform:translateY(0);filter:brightness(1)}
+#legacy-ghaly .reveal.d1{transition-delay:0s}
+#legacy-ghaly .reveal.d2{transition-delay:.11s}
+#legacy-ghaly .reveal.d3{transition-delay:.15s}
+#legacy-ghaly .reveal.d4{transition-delay:.2s}
 @media(prefers-reduced-motion:reduce){
-  #legacy-ghaly .g-tile,#legacy-ghaly .g-tile img{transition:none}
-  #legacy-ghaly .g-tile:hover,#legacy-ghaly .g-tile:hover img{transform:none}
+  #legacy-ghaly .g-tile{transition:border-color .3s ease,box-shadow .3s ease}
+  #legacy-ghaly .g-tile.reveal{opacity:1;transform:none;filter:none;transition:none}
+  #legacy-ghaly .g-tile img{transition:none}
+  #legacy-ghaly .g-tile:hover{transform:none}
+  #legacy-ghaly .g-tile:hover img{transform:none;filter:none}
+  #legacy-ghaly .g-tile::before{transition:none}
+  #legacy-ghaly .g-tile-sweep{display:none}
 }
 #legacy-ghaly .g-story{max-width:620px}
 #legacy-ghaly .g-story p{font-size:16px;color:#c6cdda;line-height:1.8;margin:0 0 16px}
@@ -1254,18 +1273,21 @@ html[dir="rtl"] #main .form2{text-align:right}
   #legacy-ghaly .g-gallery{min-height:520px;gap:10px}
   #legacy-ghaly .g-story{max-width:none}
 }
-/* mobile: compact two-column bento -- hero spans both columns on top,
-   the remaining three tiles arrange below it (per the requested layout) */
+/* mobile: primary portrait spans the full width, the two supporting
+   photos sit side by side beneath it */
 @media(max-width:560px){
-  #legacy-ghaly .g-gallery{grid-template-columns:repeat(2,1fr);grid-template-rows:minmax(190px,auto) minmax(170px,auto) minmax(170px,auto);min-height:0;gap:8px}
-  #legacy-ghaly .g-tile-1{grid-column:1/3;grid-row:1/2}
-  #legacy-ghaly .g-tile-2{grid-column:1/2;grid-row:2/3}
-  #legacy-ghaly .g-tile-3{grid-column:2/3;grid-row:2/3}
-  #legacy-ghaly .g-tile-4{grid-column:1/3;grid-row:3/4}
-  #legacy-ghaly .g-tile-ph span{display:none}
-  #legacy-ghaly .g-tile-ph b{font-size:12px}
-  #legacy-ghaly .g-tile-ph svg{width:20px;height:20px}
-  #legacy-ghaly .g-tile-tag{font-size:9px;left:10px;bottom:9px}
+  #legacy-ghaly .g-gallery{grid-template-columns:repeat(2,1fr);grid-template-rows:auto auto;min-height:0;gap:10px}
+  #legacy-ghaly .g-tile-1{grid-column:1/3;grid-row:1;aspect-ratio:5/6}
+  #legacy-ghaly .g-tile-2{grid-column:1/2;grid-row:2;aspect-ratio:4/5}
+  #legacy-ghaly .g-tile-3{grid-column:2/3;grid-row:2;aspect-ratio:4/5}
+}
+/* narrow phones: two side-by-side supporting tiles get too tight to keep
+   both faces readable, so stack all three in one column instead */
+@media(max-width:420px){
+  #legacy-ghaly .g-gallery{grid-template-columns:1fr;gap:8px}
+  #legacy-ghaly .g-tile-1{grid-column:1;grid-row:1;aspect-ratio:4/5}
+  #legacy-ghaly .g-tile-2{grid-column:1;grid-row:2;aspect-ratio:4/3}
+  #legacy-ghaly .g-tile-3{grid-column:1;grid-row:3;aspect-ratio:4/3}
 }
 </style>
 <div class="wrap">
@@ -1278,53 +1300,22 @@ html[dir="rtl"] #main .form2{text-align:right}
  </div>
 
  <div class="split">
-  <div class="g-gallery reveal">
-   <!-- IMAGE 1 — FINAL ASSET: replace src with Dr. Fouad Ghaly's portrait -->
-   <div class="g-tile g-tile-1">
-    <div class="g-tile-ph" aria-hidden="true">
-     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-4 4-3-3-6 6"/></svg>
-     <b>Portrait</b>
-     <span>images/dr-fouad-ghaly-portrait.jpg</span>
-    </div>
-    <img src="images/dr-fouad-ghaly-portrait.jpg" alt="Portrait of Dr. Fouad Ghaly" loading="lazy" decoding="async" width="900" height="1125" data-fallback onerror="this.style.visibility='hidden'">
-    <span class="g-tile-tag" aria-hidden="true">Physician</span>
+  <div class="g-gallery">
+   <div class="g-tile g-tile-1 reveal d1">
+    <img src="images/DR.Ghaly.jpg" alt="Portrait of Dr. Fouad Ghaly" loading="lazy" decoding="async" width="1254" height="1254" data-fallback onerror="this.style.visibility='hidden'">
+    <span class="g-tile-sweep" aria-hidden="true"></span>
    </div>
-
-   <!-- IMAGE 2 — FINAL ASSET: replace src with a photo from his medical career -->
-   <div class="g-tile g-tile-2">
-    <div class="g-tile-ph" aria-hidden="true">
-     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-4 4-3-3-6 6"/></svg>
-     <b>Medical Career</b>
-     <span>images/dr-fouad-ghaly-medical-career.jpg</span>
-    </div>
-    <img src="images/dr-fouad-ghaly-medical-career.jpg" alt="Dr. Fouad Ghaly during his medical career" loading="lazy" decoding="async" width="900" height="620" data-fallback onerror="this.style.visibility='hidden'">
-    <span class="g-tile-tag" aria-hidden="true">Innovator</span>
+   <div class="g-tile g-tile-2 reveal d2">
+    <img src="images/Dr.Ghaly%20&amp;%20Dr.AkouryS1.jpg" alt="Dr. Fouad Ghaly and Dr. Dalal Akoury together" loading="lazy" decoding="async" width="1448" height="1086" data-fallback onerror="this.style.visibility='hidden'">
+    <span class="g-tile-sweep" aria-hidden="true"></span>
    </div>
-
-   <!-- IMAGE 3 — FINAL ASSET: replace src with a mentorship / teaching photo -->
-   <div class="g-tile g-tile-3">
-    <div class="g-tile-ph" aria-hidden="true">
-     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-4 4-3-3-6 6"/></svg>
-     <b>Mentorship</b>
-     <span>images/dr-fouad-ghaly-mentorship.jpg</span>
-    </div>
-    <img src="images/dr-fouad-ghaly-mentorship.jpg" alt="Dr. Fouad Ghaly teaching or mentoring physicians" loading="lazy" decoding="async" width="700" height="1000" data-fallback onerror="this.style.visibility='hidden'">
-    <span class="g-tile-tag" aria-hidden="true">Mentor</span>
-   </div>
-
-   <!-- IMAGE 4 — FINAL ASSET: replace src with a personal / family / archival photo -->
-   <div class="g-tile g-tile-4">
-    <div class="g-tile-ph" aria-hidden="true">
-     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-4 4-3-3-6 6"/></svg>
-     <b>Family Legacy</b>
-     <span>images/dr-fouad-ghaly-legacy.jpg</span>
-    </div>
-    <img src="images/dr-fouad-ghaly-legacy.jpg" alt="Personal archival photograph connected to Dr. Fouad Ghaly" loading="lazy" decoding="async" width="1200" height="620" data-fallback onerror="this.style.visibility='hidden'">
-    <span class="g-tile-tag" aria-hidden="true">Family Legacy</span>
+   <div class="g-tile g-tile-3 reveal d4">
+    <img src="images/Dr.Ghaly&amp;Dr.AkouryS2.jpg" alt="Dr. Fouad Ghaly with Dr. Dalal Akoury at a professional event" loading="lazy" decoding="async" width="1448" height="1086" data-fallback onerror="this.style.visibility='hidden'">
+    <span class="g-tile-sweep" aria-hidden="true"></span>
    </div>
   </div>
 
-  <div class="g-story reveal d1">
+  <div class="g-story reveal d3">
    <p class="g-open" data-i18n="ghaly.p0">Every great journey begins because someone inspires us to dream.</p>
    <p data-i18n="ghaly.p1">Before I became a physician, there was one person I admired deeply &mdash; my older cousin, <strong>Dr. Fouad Ghaly</strong>. As a young girl growing up in Alexandria, Egypt, I watched him leave Egypt to pursue medicine in the United States. He went on to build a distinguished career and became known for his work in regenerative medicine, longevity, innovative patient care, and physician education.</p>
    <p data-i18n="ghaly.p2">Long before others knew his accomplishments, I knew him as my cousin &mdash; the charismatic physician whose courage, vision, and ambition showed a young Egyptian girl that medicine could become more than a profession. It could become a calling.</p>
@@ -2128,6 +2119,36 @@ html[dir="rtl"] #pathways .path2::after{left:auto;right:0}
     var card = e.target.closest('.path2');
     if (!card) return;
     lastCard = card; lastX = e.clientX; lastY = e.clientY;
+    if (!scheduled) { scheduled = true; requestAnimationFrame(apply); }
+  }, { passive: true });
+})();
+</script>
+
+<script>
+(function(){
+  // Pointer-following glow for the #legacy-ghaly photo gallery. Same
+  // approach as the #pathways card glow: scoped to the gallery grid,
+  // skipped entirely (no listener attached) on touch/imprecise pointers
+  // and under prefers-reduced-motion, rAF-throttled to one style write
+  // per frame.
+  var grid = document.querySelector('#legacy-ghaly .g-gallery');
+  if (!grid) return;
+  var fine = window.matchMedia && matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if (!fine || reduced) return;
+
+  var scheduled = false, lastTile = null, lastX = 0, lastY = 0;
+  function apply(){
+    scheduled = false;
+    if (!lastTile) return;
+    var r = lastTile.getBoundingClientRect();
+    lastTile.style.setProperty('--pointer-x', (lastX - r.left) + 'px');
+    lastTile.style.setProperty('--pointer-y', (lastY - r.top) + 'px');
+  }
+  grid.addEventListener('pointermove', function(e){
+    var tile = e.target.closest('.g-tile');
+    if (!tile) return;
+    lastTile = tile; lastX = e.clientX; lastY = e.clientY;
     if (!scheduled) { scheduled = true; requestAnimationFrame(apply); }
   }, { passive: true });
 })();
