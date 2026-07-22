@@ -1141,14 +1141,71 @@ html[dir="rtl"] #main .form2{text-align:right}
 #legacy-ghaly .g-quote cite{display:block;margin-top:22px;font-style:normal;font-family:'Inter',sans-serif;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft)}
 #legacy-ghaly .g-tlhead{text-align:center;margin:0 0 36px}
 #legacy-ghaly .g-tlhead h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;color:#fff;font-size:clamp(24px,3vw,33px);margin:0}
-#legacy-ghaly .g-tl{position:relative;max-width:790px;margin:0 auto;padding-left:30px;list-style:none}
-#legacy-ghaly .g-tl::before{content:"";position:absolute;left:5px;top:9px;bottom:9px;width:2px;background:linear-gradient(180deg,var(--gold),rgba(198,161,91,.22))}
-#legacy-ghaly .g-tl li{position:relative;padding:0 0 36px 26px}
-#legacy-ghaly .g-tl li:last-child{padding-bottom:0}
-#legacy-ghaly .g-tl li::before{content:"";position:absolute;left:-1px;top:7px;width:13px;height:13px;transform:rotate(45deg);background:var(--midnight);border:2px solid var(--gold);box-shadow:0 0 0 4px var(--midnight),0 0 14px rgba(198,161,91,.4)}
-#legacy-ghaly .g-yr{font-family:'Cormorant Garamond',Georgia,serif;font-size:27px;font-weight:600;color:var(--gold);line-height:1;margin-bottom:5px;letter-spacing:.01em}
-#legacy-ghaly .g-tl h3{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-weight:600;font-size:22px;margin:2px 0 8px;color:#fff}
-#legacy-ghaly .g-tl p{font-size:15px;color:#c6cdda;margin:0;line-height:1.68;max-width:58ch}
+/* "A Legacy Across Generations" roadmap, 2026 -- replaces the plain
+   single ::before line + li::before diamond with a scroll-activated
+   version: a static low-opacity base line, a brighter progress line
+   that grows continuously with scroll position (via a cheap
+   rAF-throttled scroll handler, transform:scaleY so no layout-affecting
+   properties are animated), diamond nodes with three states
+   (upcoming/active/completed) driven by a single IntersectionObserver
+   using a thin center-band rootMargin, and a small moving light at the
+   progress line's tip. Kept under this section's own g- prefix and
+   named g-tl-* specifically so it can't collide with the unrelated
+   .timeline/.tl-item/.tl-progress classes the "Journey from Alexandria"
+   section already uses elsewhere on this same page. */
+#legacy-ghaly .g-tl-track{position:relative;max-width:790px;margin:0 auto}
+#legacy-ghaly .g-tl-base{position:absolute;left:5px;top:9px;bottom:9px;width:2px;background:var(--gold);opacity:.28;box-shadow:0 0 6px rgba(198,161,91,.25);transform-origin:top}
+#legacy-ghaly .g-tl-base.reveal{opacity:.28;transform:scaleY(0);transition:transform 1s var(--ease,ease)}
+#legacy-ghaly .g-tl-base.reveal.in{transform:scaleY(1)}
+#legacy-ghaly .g-tl-progress{position:absolute;left:5px;top:9px;height:calc(100% - 18px);width:2px;background:linear-gradient(180deg,var(--gold-soft),var(--gold));box-shadow:0 0 12px rgba(198,161,91,.55);transform-origin:top;transform:scaleY(0);transition:transform .2s ease-out}
+#legacy-ghaly .g-tl-light{position:absolute;left:1px;top:9px;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle,#fff 0%,var(--gold-soft) 45%,transparent 75%);opacity:0;transition:opacity .3s ease}
+#legacy-ghaly .g-tl-light.g-on{opacity:.9}
+
+#legacy-ghaly .g-tl{position:relative;padding-left:30px;list-style:none;margin:0}
+#legacy-ghaly .g-tl-item{position:relative;padding:0 0 44px 26px}
+#legacy-ghaly .g-tl-item:last-child{padding-bottom:0}
+#legacy-ghaly .g-tl-item[data-state="active"]::after{content:"";position:absolute;left:-44px;top:-30px;width:220px;height:220px;background:radial-gradient(circle,rgba(198,161,91,.1),transparent 70%);pointer-events:none;z-index:-1}
+
+#legacy-ghaly .g-tl-node{position:absolute;left:-1px;top:7px;width:13px;height:13px;transform:rotate(45deg) scale(.88);background:var(--midnight);border:2px solid rgba(198,161,91,.4);transition:transform .5s var(--ease,ease),border-color .5s var(--ease,ease),background .5s var(--ease,ease),box-shadow .5s var(--ease,ease)}
+#legacy-ghaly .g-tl-node::before{content:"";position:absolute;top:50%;left:100%;width:13px;height:1px;background:rgba(198,161,91,.32);transform:translateY(-.5px) rotate(-45deg);transform-origin:left}
+#legacy-ghaly .g-tl-node::after{content:"";position:absolute;inset:3px;background:transparent;transition:background .5s var(--ease,ease)}
+
+#legacy-ghaly .g-tl-card{position:relative;padding:18px 22px;border-radius:8px;background:linear-gradient(90deg,rgba(11,18,38,.34),rgba(11,18,38,.08));border:1px solid rgba(198,161,91,.08);opacity:.62;filter:brightness(.9);transform:translateY(22px);transition:opacity .6s var(--ease,ease),transform .6s var(--ease,ease),filter .6s var(--ease,ease),border-color .5s var(--ease,ease),box-shadow .5s var(--ease,ease)}
+#legacy-ghaly .g-tl-card .g-yr{font-family:'Cormorant Garamond',Georgia,serif;font-size:27px;font-weight:600;color:var(--gold);line-height:1;margin-bottom:5px;letter-spacing:.01em;transition:color .5s var(--ease,ease),text-shadow .5s var(--ease,ease)}
+#legacy-ghaly .g-tl-card h3{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-weight:600;font-size:22px;margin:2px 0 8px;color:#fff;transition:text-shadow .5s var(--ease,ease)}
+#legacy-ghaly .g-tl-card p{font-size:15px;color:#c6cdda;margin:0;line-height:1.68;max-width:58ch;transition:opacity .5s var(--ease,ease) .08s}
+
+@keyframes g-tl-pulse{0%{box-shadow:0 0 0 4px var(--midnight),0 0 22px rgba(198,161,91,.6),0 0 0 0 rgba(198,161,91,.45)}70%{box-shadow:0 0 0 4px var(--midnight),0 0 22px rgba(198,161,91,.6),0 0 0 14px rgba(198,161,91,0)}100%{box-shadow:0 0 0 4px var(--midnight),0 0 22px rgba(198,161,91,.6),0 0 0 0 rgba(198,161,91,0)}}
+#legacy-ghaly .g-tl-item[data-state="active"] .g-tl-node{transform:rotate(45deg) scale(1);border-color:var(--gold);background:var(--gold);box-shadow:0 0 0 4px var(--midnight),0 0 22px rgba(198,161,91,.6);animation:g-tl-pulse 1.8s var(--ease,ease) 1}
+#legacy-ghaly .g-tl-item[data-state="active"] .g-tl-node::after{background:#fff2d9}
+#legacy-ghaly .g-tl-item[data-state="active"] .g-tl-card{opacity:1;filter:none;transform:translateY(0);border-color:rgba(212,175,92,.32);box-shadow:0 18px 50px rgba(0,0,0,.18),0 0 30px rgba(203,163,76,.07)}
+#legacy-ghaly .g-tl-item[data-state="active"] .g-tl-card .g-yr{color:#fff;text-shadow:0 0 18px rgba(205,166,78,.35)}
+#legacy-ghaly .g-tl-item[data-state="active"] .g-tl-card h3{text-shadow:0 0 20px rgba(205,166,78,.16)}
+
+#legacy-ghaly .g-tl-item[data-state="completed"] .g-tl-node{border-color:var(--gold);background:var(--midnight);box-shadow:0 0 0 4px var(--midnight),0 0 10px rgba(198,161,91,.32)}
+#legacy-ghaly .g-tl-item[data-state="completed"] .g-tl-node::after{background:var(--gold-soft)}
+#legacy-ghaly .g-tl-item[data-state="completed"] .g-tl-card{opacity:1;filter:none;transform:translateY(0);border-color:rgba(198,161,91,.16)}
+
+/* final "Today" milestone: strongest but still restrained completion glow */
+#legacy-ghaly .g-tl-item[data-final="true"] .g-tl-node{box-shadow:0 0 0 4px var(--midnight),0 0 26px rgba(198,161,91,.68)}
+
+@media(prefers-reduced-motion:reduce){
+  #legacy-ghaly .g-tl-base.reveal{transform:scaleY(1);transition:none}
+  #legacy-ghaly .g-tl-progress{transition:none}
+  #legacy-ghaly .g-tl-light{display:none}
+  #legacy-ghaly .g-tl-node{transition:none;animation:none!important}
+  #legacy-ghaly .g-tl-card{transition:opacity .2s ease,border-color .2s ease;transform:none!important}
+}
+
+@media(max-width:640px){
+  #legacy-ghaly .g-tl{padding-left:24px}
+  #legacy-ghaly .g-tl-base,#legacy-ghaly .g-tl-progress,#legacy-ghaly .g-tl-light{left:3px}
+  #legacy-ghaly .g-tl-node{left:-3px;width:11px;height:11px}
+  #legacy-ghaly .g-tl-node::before{width:9px}
+  #legacy-ghaly .g-tl-item{padding-left:20px;padding-bottom:36px}
+  #legacy-ghaly .g-tl-card{padding:14px 16px}
+  #legacy-ghaly .g-tl-item[data-state="active"]::after{left:-30px;width:170px;height:170px}
+}
 #legacy-ghaly .g-close{max-width:770px;margin:70px auto 0;text-align:center}
 #legacy-ghaly .g-legacyline{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:clamp(19px,2.4vw,27px);color:#fff;line-height:1.5;margin:0}
 #legacy-ghaly .g-among{font-size:15px;color:#9aa3b6;font-style:italic;max-width:680px;margin:26px auto 0;line-height:1.7}
@@ -1249,28 +1306,45 @@ html[dir="rtl"] #main .form2{text-align:right}
  <div class="g-tlhead reveal">
   <h3 data-i18n="ghaly.tl.h">A Legacy Across Generations</h3>
  </div>
- <ol class="g-tl" aria-label="A timeline connecting Dr. Fouad Ghaly and Dr. Dalal Akoury">
-  <li class="reveal">
-   <div class="g-yr" data-i18n="ghaly.tl.1.yr">1960s</div>
-   <h3 data-i18n="ghaly.tl.1.h">An Egyptian physician begins an international journey</h3>
-   <p data-i18n="ghaly.tl.1.p">Dr. Fouad Ghaly leaves Egypt to continue his medical path in the United States.</p>
-  </li>
-  <li class="reveal">
-   <div class="g-yr" data-i18n="ghaly.tl.2.yr">1978</div>
-   <h3 data-i18n="ghaly.tl.2.h">Another physician emerges from Alexandria</h3>
-   <p data-i18n="ghaly.tl.2.p">Dr. Dalal Akoury completes her medical education at Alexandria University and begins building her own path.</p>
-  </li>
-  <li class="reveal">
-   <div class="g-yr" data-i18n="ghaly.tl.3.yr">2008</div>
-   <h3 data-i18n="ghaly.tl.3.h">A conversation changes a career</h3>
-   <p data-i18n="ghaly.tl.3.p">A conversation with Dr. Ghaly introduces Dr. Akoury more deeply to the possibilities of anti-aging, functional, longevity, and regenerative medicine.</p>
-  </li>
-  <li class="reveal">
-   <div class="g-yr" data-i18n="ghaly.tl.4.yr">Today</div>
-   <h3 data-i18n="ghaly.tl.4.h">Knowledge returns home</h3>
-   <p data-i18n="ghaly.tl.4.p">Dr. Akoury is working to connect global expertise, healthcare innovation, education, investment, and visionary leadership with Egypt&rsquo;s future.</p>
-  </li>
- </ol>
+ <div class="g-tl-track">
+  <div class="g-tl-base reveal" aria-hidden="true"></div>
+  <div class="g-tl-progress" aria-hidden="true"></div>
+  <div class="g-tl-light" aria-hidden="true"></div>
+  <ol class="g-tl" aria-label="A timeline connecting Dr. Fouad Ghaly and Dr. Dalal Akoury">
+   <li class="g-tl-item" data-state="active">
+    <span class="g-tl-node" aria-hidden="true"></span>
+    <div class="g-tl-card">
+     <div class="g-yr" data-i18n="ghaly.tl.1.yr">1960s</div>
+     <h3 data-i18n="ghaly.tl.1.h">An Egyptian physician begins an international journey</h3>
+     <p data-i18n="ghaly.tl.1.p">Dr. Fouad Ghaly leaves Egypt to continue his medical path in the United States.</p>
+    </div>
+   </li>
+   <li class="g-tl-item" data-state="upcoming">
+    <span class="g-tl-node" aria-hidden="true"></span>
+    <div class="g-tl-card">
+     <div class="g-yr" data-i18n="ghaly.tl.2.yr">1978</div>
+     <h3 data-i18n="ghaly.tl.2.h">Another physician emerges from Alexandria</h3>
+     <p data-i18n="ghaly.tl.2.p">Dr. Dalal Akoury completes her medical education at Alexandria University and begins building her own path.</p>
+    </div>
+   </li>
+   <li class="g-tl-item" data-state="upcoming">
+    <span class="g-tl-node" aria-hidden="true"></span>
+    <div class="g-tl-card">
+     <div class="g-yr" data-i18n="ghaly.tl.3.yr">2008</div>
+     <h3 data-i18n="ghaly.tl.3.h">A conversation changes a career</h3>
+     <p data-i18n="ghaly.tl.3.p">A conversation with Dr. Ghaly introduces Dr. Akoury more deeply to the possibilities of anti-aging, functional, longevity, and regenerative medicine.</p>
+    </div>
+   </li>
+   <li class="g-tl-item" data-state="upcoming" data-final="true">
+    <span class="g-tl-node" aria-hidden="true"></span>
+    <div class="g-tl-card">
+     <div class="g-yr" data-i18n="ghaly.tl.4.yr">Today</div>
+     <h3 data-i18n="ghaly.tl.4.h">Knowledge returns home</h3>
+     <p data-i18n="ghaly.tl.4.p">Dr. Akoury is working to connect global expertise, healthcare innovation, education, investment, and visionary leadership with Egypt&rsquo;s future.</p>
+    </div>
+   </li>
+  </ol>
+ </div>
 
  <div class="g-close reveal">
   <p class="g-legacyline" data-i18n="ghaly.close">Egypt has produced physicians whose influence has reached the world. Dr. Fouad Ghaly was one of them. I hope my work represents another chapter in that tradition &mdash; bringing knowledge, innovation, collaboration, and hope back to the country where my own journey began.</p>
@@ -1817,6 +1891,102 @@ html[dir="rtl"] #main .form2{text-align:right}
   }, { threshold: .4 });
 
   items.forEach(function(item){ io.observe(item); });
+})();
+</script>
+
+<script>
+(function(){
+  // "A Legacy Across Generations" roadmap (#legacy-ghaly .g-tl-track).
+  // Two independent jobs, kept separate since they update at different
+  // rates: (1) discrete upcoming/active/completed state per milestone,
+  // driven by a single IntersectionObserver whose rootMargin carves out
+  // a thin band near the viewport center -- whichever observed item is
+  // nearest that center becomes the sole "active" one, everything above
+  // it "completed", everything below "upcoming"; (2) a continuous
+  // scroll-position-driven fill of the progress line/moving light
+  // (rAF-throttled, animates only transform so nothing here triggers
+  // layout the way writing .style.height every frame would).
+  var track = document.querySelector('#legacy-ghaly .g-tl-track');
+  if (!track) return;
+  var items = Array.prototype.slice.call(track.querySelectorAll('.g-tl-item'));
+  if (!items.length) return;
+  var progressEl = track.querySelector('.g-tl-progress');
+  var lightEl = track.querySelector('.g-tl-light');
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  function nodeCenterY(item){
+    var node = item.querySelector('.g-tl-node');
+    var r = node.getBoundingClientRect();
+    var tr = track.getBoundingClientRect();
+    return (r.top - tr.top) + r.height / 2;
+  }
+
+  var activeIndex = -1;
+  function setStates(idx){
+    if (idx === activeIndex) return;
+    activeIndex = idx;
+    items.forEach(function(item, i){
+      item.setAttribute('data-state', i < idx ? 'completed' : (i === idx ? 'active' : 'upcoming'));
+    });
+  }
+
+  var hasIO = 'IntersectionObserver' in window;
+
+  if (reduced || !hasIO) {
+    // Reduced motion (or no IntersectionObserver support): show the
+    // whole roadmap as reached, no pulse, no moving light, no
+    // scroll-driven fill -- everything simply reads as complete.
+    setStates(items.length - 1);
+    if (progressEl) progressEl.style.transform = 'scaleY(1)';
+    return;
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    var candidates = entries.filter(function(e){ return e.isIntersecting; }).map(function(e){ return e.target; });
+    if (!candidates.length) return;
+    var vh = window.innerHeight, best = null, bestDist = Infinity;
+    candidates.forEach(function(item){
+      var node = item.querySelector('.g-tl-node');
+      var r = node.getBoundingClientRect();
+      var center = r.top + r.height / 2;
+      var d = Math.abs(center - vh / 2);
+      if (d < bestDist) { bestDist = d; best = item; }
+    });
+    if (best) setStates(items.indexOf(best));
+  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+  items.forEach(function(item){ io.observe(item); });
+
+  // Only run the continuous scroll math while the roadmap is actually
+  // on screen -- gated by its own IntersectionObserver rather than a
+  // permanently-attached scroll listener doing wasted work off-screen.
+  var sectionVisible = false;
+  var visIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ sectionVisible = e.isIntersecting; });
+  }, { threshold: 0 });
+  visIO.observe(track);
+
+  var ticking = false;
+  function updateProgress(){
+    ticking = false;
+    if (!sectionVisible || !progressEl) return;
+    var firstY = nodeCenterY(items[0]);
+    var lastY = nodeCenterY(items[items.length - 1]);
+    var trackRect = track.getBoundingClientRect();
+    var centerInTrack = (window.innerHeight / 2) - trackRect.top;
+    var span = lastY - firstY || 1;
+    var t = Math.max(0, Math.min(1, (centerInTrack - firstY) / span));
+    progressEl.style.transform = 'scaleY(' + t + ')';
+    if (lightEl) {
+      lightEl.style.transform = 'translateY(' + (firstY + t * span - 5) + 'px)';
+      lightEl.classList.toggle('g-on', t > 0.01 && t < 0.999);
+    }
+  }
+  function onScroll(){
+    if (!ticking) { ticking = true; requestAnimationFrame(updateProgress); }
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll, { passive: true });
+  onScroll();
 })();
 </script>
 
