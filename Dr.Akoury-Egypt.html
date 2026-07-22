@@ -807,12 +807,6 @@
 #audience .reveal.d4{transition-delay:.32s}
 #audience .reveal.d5{transition-delay:.4s}
 #audience .reveal.d6{transition-delay:.48s}
-#main .paths2{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media(max-width:860px){#main .paths2{grid-template-columns:1fr}}
-#main .path2{border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:6px;padding:20px 22px;background:#fff}
-#main .path2 h3{font-size:17.5px;color:var(--midnight);margin:0 0 6px}
-#main .path2 p{font-size:14px;color:var(--ink-soft);margin:0 0 12px}
-#main .path2 a{font-size:13px;font-weight:600}
 #main .voice2{font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;line-height:1.46;font-style:italic}
 #main .voice2 .sig{display:block;font-family:'Inter',sans-serif;font-size:12.5px;font-style:normal;letter-spacing:.08em;color:var(--gold-soft);margin-top:16px;text-transform:uppercase}
 
@@ -823,7 +817,7 @@ html[dir="rtl"] #main .tl-progress{left:auto;right:0}
 html[dir="rtl"] #main .tl-marker{left:auto;right:-34px}
 html[dir="rtl"] #main .tl-card:hover,html[dir="rtl"] #main .tl-card:focus-visible{transform:translateX(-6px)}
 @media(max-width:640px){html[dir="rtl"] #main .tl-marker{right:-26px}}
-html[dir="rtl"] #main .pull2,html[dir="rtl"] #main .path2{border-left:none;border-right:3px solid var(--gold);padding:20px 22px 20px 0}
+html[dir="rtl"] #main .pull2{border-left:none;border-right:3px solid var(--gold);padding:20px 22px 20px 0}
 html[dir="rtl"] #main .pull2{padding:4px 28px 4px 0}
 html[dir="rtl"] #main .invite2{border-left:none;border-right:2px solid rgba(198,161,91,.55);padding-left:0;padding-right:16px}
 html[dir="rtl"] #main .form2{text-align:right}
@@ -1456,17 +1450,104 @@ html[dir="rtl"] #main .form2{text-align:right}
   </div>
 </section>
 
-<section class="block" id="pathways" aria-labelledby="paths-h">
+<section class="block dark pathways-cinematic" id="pathways" aria-labelledby="paths-h">
+<style>
+/* ---- cinematic navy/heritage background for the collaboration cards ---- */
+#pathways{position:relative;overflow:hidden;padding:120px 0 128px}
+#pathways .pathways-cinematic__bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+#pathways .pathways-cinematic__bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;display:block;transform:scale(1.02);animation:pw-breathe 42s ease-in-out infinite}
+/* Single multi-stop wash stands in for the requested navy/heading/card
+   overlay layers (darker at top+bottom for text, lighter mid-band so the
+   carving still reads), plus one low-opacity warm-gold radial to tie the
+   image to the brand -- two composited layers instead of four separate
+   DOM nodes for the same visual result. */
+#pathways .pathways-cinematic__bg::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(4,13,30,.86) 0%,rgba(6,18,40,.74) 42%,rgba(4,12,26,.9) 100%)}
+#pathways .pathways-cinematic__bg::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(50% 46% at 84% 96%,rgba(198,161,91,.14),transparent 68%)}
+#pathways .wrap{position:relative;z-index:2}
+@keyframes pw-breathe{0%,100%{transform:scale(1.02)}50%{transform:scale(1.055)}}
+
+#pathways .paths2{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:8px}
+@media(max-width:980px){#pathways .paths2{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){#pathways .paths2{grid-template-columns:1fr}}
+
+#pathways .path2{position:relative;display:flex;flex-direction:column;min-height:220px;padding:24px 26px;border-radius:14px;overflow:hidden;text-decoration:none;
+  background:linear-gradient(145deg,rgba(12,29,58,.78),rgba(8,22,47,.62));
+  border:1px solid rgba(213,177,94,.24);
+  box-shadow:0 20px 50px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.04);
+  transition:transform 550ms cubic-bezier(.22,1,.36,1),border-color 450ms ease,box-shadow 550ms ease,background 450ms ease}
+/* pointer-following glow -- JS sets --pointer-x/--pointer-y per card;
+   the fallback (50%,0%) keeps it inert and centered until the first move */
+#pathways .path2::before{content:"";position:absolute;inset:0;z-index:0;opacity:0;pointer-events:none;background:radial-gradient(260px circle at var(--pointer-x,50%) var(--pointer-y,0%),rgba(218,180,94,.12),transparent 62%);transition:opacity .35s ease}
+#pathways .path2::after{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:2px;background:linear-gradient(180deg,var(--gold-deep),var(--gold));opacity:.55;transition:opacity .35s ease,box-shadow .35s ease}
+html[dir="rtl"] #pathways .path2::after{left:auto;right:0}
+#pathways .path2 h3,#pathways .path2 p,#pathways .path2__cta,#pathways .path2__sweep{position:relative;z-index:1}
+#pathways .path2 h3{font-size:18px;color:var(--ivory);margin:0 0 8px;line-height:1.32}
+#pathways .path2 p{font-size:14.5px;color:#c7cfdd;opacity:.86;margin:0 0 16px;line-height:1.62}
+#pathways .path2__cta{margin-top:auto;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--gold-soft);display:inline-block;transition:transform .35s cubic-bezier(.22,1,.36,1),color .35s ease}
+/* light-sweep: a real (aria-hidden) node rather than a third pseudo-element,
+   since ::before/::after are already the pointer-glow and accent line */
+#pathways .path2__sweep{position:absolute;inset:-40% -20%;z-index:0;pointer-events:none;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.09) 50%,transparent 60%);opacity:0}
+
+#pathways .path2:focus-visible{outline:2px solid rgba(221,184,100,.85);outline-offset:4px}
+/* the site-wide #main a:hover{text-decoration:underline} would otherwise
+   underline the whole card, since .path2 is now a single anchor */
+#pathways .path2:hover,#pathways .path2:focus-visible,#pathways .path2:active{text-decoration:none}
+
+@media(hover:hover){
+  #pathways .path2:hover,#pathways .path2:focus-visible{
+    transform:translateY(-7px) scale(1.012);
+    border-color:rgba(221,184,100,.6);
+    box-shadow:0 30px 66px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.06);
+    background:linear-gradient(145deg,rgba(15,34,66,.86),rgba(10,26,54,.72))
+  }
+  #pathways .path2:hover::before,#pathways .path2:focus-visible::before{opacity:1}
+  #pathways .path2:hover::after,#pathways .path2:focus-visible::after{opacity:1;box-shadow:0 0 14px rgba(221,184,100,.5)}
+  #pathways .path2:hover .path2__cta,#pathways .path2:focus-visible .path2__cta{color:var(--gold);transform:translateX(6px)}
+  #pathways .path2:hover .path2__sweep,#pathways .path2:focus-visible .path2__sweep{animation:pw-sweep .85s cubic-bezier(.22,1,.36,1) 1}
+}
+@keyframes pw-sweep{0%{opacity:0;transform:translateX(-30%)}14%{opacity:.5}55%{opacity:.35}100%{opacity:0;transform:translateX(30%)}}
+
+/* staggered entrance -- reuses the site-wide .reveal/.reveal.in system
+   (assets/app.js), just adding this section's own delay steps */
+#pathways .reveal.d1{transition-delay:0s}
+#pathways .reveal.d2{transition-delay:.08s}
+#pathways .reveal.d3{transition-delay:.16s}
+#pathways .reveal.d4{transition-delay:.24s}
+#pathways .reveal.d5{transition-delay:.32s}
+#pathways .reveal.d6{transition-delay:.4s}
+#pathways .reveal.d7{transition-delay:.48s}
+#pathways .reveal.d8{transition-delay:.56s}
+#pathways .reveal.d9{transition-delay:.64s}
+
+@media(max-width:860px){#pathways{padding:88px 0 96px}#pathways .pathways-cinematic__bg img{object-position:center center}}
+@media(max-width:560px){#pathways{padding:64px 0 72px}#pathways .pathways-cinematic__bg img{object-position:58% center;animation:none;transform:none}#pathways .path2{padding:22px 24px}}
+
+@media(prefers-reduced-motion:reduce){
+  #pathways .pathways-cinematic__bg img{animation:none;transform:none}
+  #pathways .path2{transition:border-color .3s ease,background .3s ease}
+  #pathways .path2:hover,#pathways .path2:focus-visible{transform:none}
+  #pathways .path2::before{transition:none}
+  #pathways .path2__cta{transition:color .3s ease}
+  #pathways .path2:hover .path2__cta,#pathways .path2:focus-visible .path2__cta{transform:none}
+  #pathways .path2__sweep{display:none}
+}
+</style>
+  <div class="pathways-cinematic__bg" aria-hidden="true">
+    <img src="images/blocks-egyptian-DalalAkoury-Homecoming.jpg" alt="" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'">
+  </div>
   <div class="wrap">
-    <div class="sec-head2"><span class="eyebrow2" data-i18n="pathways.eyebrow">From Vision to Conversation</span><h2 id="paths-h" data-i18n="pathways.h2">What Could We Explore Together?</h2></div>
-    <div class="lead2" style="margin-bottom:36px"><p data-i18n="pathways.lead">No single project defines this vision. The first purpose is simpler and more human: to find aligned people, understand real needs, and explore where complementary strengths might lead to something worth building. Each of these is a starting point for a conversation &mdash; not a finished or funded project.</p></div>
+    <div class="sec-head2">
+      <span class="eyebrow2 reveal d1" data-i18n="pathways.eyebrow">From Vision to Conversation</span>
+      <h2 id="paths-h" class="reveal d2" data-i18n="pathways.h2">What Could We Explore Together?</h2>
+    </div>
+    <div class="lead2 reveal d3" style="margin-bottom:36px"><p data-i18n="pathways.lead">No single project defines this vision. The first purpose is simpler and more human: to find aligned people, understand real needs, and explore where complementary strengths might lead to something worth building. Each of these is a starting point for a conversation &mdash; not a finished or funded project.</p></div>
     <div class="paths2">
-      <div class="path2"><h3 data-i18n="pathways.1.h">Physician Education &amp; Clinical Training</h3><p data-i18n="pathways.1.p">Sharing knowledge and raising clinical capability together &mdash; including integrative oncology education.</p><a href="#collaborate" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
-      <div class="path2"><h3 data-i18n="pathways.2.h">Healthcare &amp; Longevity Centers</h3><p data-i18n="pathways.2.p">Whole-person, preventive and longevity-focused models of care.</p><a href="#collaborate" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
-      <div class="path2"><h3 data-i18n="pathways.3.h">Medical &amp; Wellness Tourism</h3><p data-i18n="pathways.3.p">Pairing Egypt&rsquo;s hospitality and heritage with high-quality care.</p><a href="#collaborate" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
-      <div class="path2"><h3 data-i18n="pathways.4.h">AI-Enabled Health &amp; Education</h3><p data-i18n="pathways.4.p">Technology that extends access, learning and better decisions.</p><a href="#collaborate" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
-      <div class="path2"><h3 data-i18n="pathways.5.h">University &amp; Research Collaborations</h3><p data-i18n="pathways.5.p">Faculty exchange, joint research and shared programs.</p><a href="#collaborate" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
-      <div class="path2"><h3 data-i18n="pathways.6.h">Healthcare Real Estate &amp; Wellness Destinations</h3><p data-i18n="pathways.6.p">Campuses, hospitality and destinations designed around health and human performance.</p><a href="#collaborate" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</a></div>
+      <a class="path2 reveal d4" href="#collaborate"><span class="path2__sweep" aria-hidden="true"></span><h3 data-i18n="pathways.1.h">Physician Education &amp; Clinical Training</h3><p data-i18n="pathways.1.p">Sharing knowledge and raising clinical capability together &mdash; including integrative oncology education.</p><span class="path2__cta" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</span></a>
+      <a class="path2 reveal d5" href="#collaborate"><span class="path2__sweep" aria-hidden="true"></span><h3 data-i18n="pathways.2.h">Healthcare &amp; Longevity Centers</h3><p data-i18n="pathways.2.p">Whole-person, preventive and longevity-focused models of care.</p><span class="path2__cta" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</span></a>
+      <a class="path2 reveal d6" href="#collaborate"><span class="path2__sweep" aria-hidden="true"></span><h3 data-i18n="pathways.3.h">Medical &amp; Wellness Tourism</h3><p data-i18n="pathways.3.p">Pairing Egypt&rsquo;s hospitality and heritage with high-quality care.</p><span class="path2__cta" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</span></a>
+      <a class="path2 reveal d7" href="#collaborate"><span class="path2__sweep" aria-hidden="true"></span><h3 data-i18n="pathways.4.h">AI-Enabled Health &amp; Education</h3><p data-i18n="pathways.4.p">Technology that extends access, learning and better decisions.</p><span class="path2__cta" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</span></a>
+      <a class="path2 reveal d8" href="#collaborate"><span class="path2__sweep" aria-hidden="true"></span><h3 data-i18n="pathways.5.h">University &amp; Research Collaborations</h3><p data-i18n="pathways.5.p">Faculty exchange, joint research and shared programs.</p><span class="path2__cta" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</span></a>
+      <a class="path2 reveal d9" href="#collaborate"><span class="path2__sweep" aria-hidden="true"></span><h3 data-i18n="pathways.6.h">Healthcare Real Estate &amp; Wellness Destinations</h3><p data-i18n="pathways.6.p">Campuses, hospitality and destinations designed around health and human performance.</p><span class="path2__cta" data-i18n="pathways.link">I work in this area &mdash; start a conversation &rarr;</span></a>
     </div>
   </div>
 </section>
@@ -2019,6 +2100,36 @@ html[dir="rtl"] #main .form2{text-align:right}
   // information (aria-hidden, purely decorative backdrop).
   var v = document.querySelector('section[aria-labelledby="eco2-h"] .eco-bgvideo');
   if (v && window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches) v.pause();
+})();
+</script>
+
+<script>
+(function(){
+  // Pointer-following glow for the #pathways collaboration cards. Scoped
+  // to the card grid (not window/document), skipped entirely on
+  // touch/imprecise pointers and under prefers-reduced-motion so no
+  // listener is attached at all, and rAF-throttled to at most one style
+  // write per frame regardless of how often pointermove fires.
+  var grid = document.querySelector('#pathways .paths2');
+  if (!grid) return;
+  var fine = window.matchMedia && matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if (!fine || reduced) return;
+
+  var scheduled = false, lastCard = null, lastX = 0, lastY = 0;
+  function apply(){
+    scheduled = false;
+    if (!lastCard) return;
+    var r = lastCard.getBoundingClientRect();
+    lastCard.style.setProperty('--pointer-x', (lastX - r.left) + 'px');
+    lastCard.style.setProperty('--pointer-y', (lastY - r.top) + 'px');
+  }
+  grid.addEventListener('pointermove', function(e){
+    var card = e.target.closest('.path2');
+    if (!card) return;
+    lastCard = card; lastX = e.clientX; lastY = e.clientY;
+    if (!scheduled) { scheduled = true; requestAnimationFrame(apply); }
+  }, { passive: true });
 })();
 </script>
 <script>
