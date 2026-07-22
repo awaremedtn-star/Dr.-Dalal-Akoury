@@ -1429,9 +1429,36 @@ html[dir="rtl"] #main .form2{text-align:right}
 </section>
 
 <section class="block dark" aria-labelledby="moment-h">
+<style>
+/* ---- "Why Egypt -- and Why Now?" scroll-triggered video embed ---- */
+#moment-video{margin-bottom:26px}
+#moment-video .moment-video__frame{position:relative;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:linear-gradient(135deg,#16223f 0%,#0c1329 100%);border:1px solid rgba(198,161,91,.28);box-shadow:0 18px 45px rgba(0,0,0,.22)}
+#moment-video .moment-video__player{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .6s var(--ease,ease)}
+#moment-video .moment-video__player.is-ready{opacity:1}
+#moment-video .moment-video__player iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0}
+#moment-video .moment-video__mute{position:absolute;right:14px;bottom:14px;z-index:2;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(11,18,38,.62);border:1px solid rgba(217,189,130,.55);color:var(--gold-soft);cursor:pointer;padding:0;transition:transform .3s var(--ease,ease),border-color .3s var(--ease,ease),background .3s var(--ease,ease)}
+#moment-video .moment-video__mute:hover,#moment-video .moment-video__mute:focus-visible{border-color:var(--gold);background:rgba(11,18,38,.82);transform:scale(1.06)}
+#moment-video .moment-video__mute svg{width:18px;height:18px}
+#moment-video .moment-video__mute .ico-unmuted{display:none}
+#moment-video .moment-video__mute[aria-pressed="true"] .ico-muted{display:none}
+#moment-video .moment-video__mute[aria-pressed="true"] .ico-unmuted{display:block}
+@media(prefers-reduced-motion:reduce){#moment-video .moment-video__player,#moment-video .moment-video__mute{transition:none}}
+</style>
   <div class="wrap">
     <div class="sec-head2"><span class="eyebrow2" data-i18n="moment.eyebrow">Egypt&rsquo;s Strategic Moment</span><h2 id="moment-h" data-i18n="moment.h2">Why Egypt &mdash; and Why Now?</h2></div>
-    <figure style="margin-bottom:26px"><div class="ph ar-169"><img src="images/modern-egypt-future.webp" alt="Modern Egypt" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
+    <!-- Scroll-triggered YouTube embed (video a-oVrF5Q3rc): lazy-loaded via
+         the YouTube IFrame API, muted-autoplay is the only way scroll-driven
+         playback is allowed without a user gesture, so a custom unmute
+         toggle replaces the browser's blocked click-to-play affordance. -->
+    <div class="moment-video" id="moment-video">
+      <div class="moment-video__frame">
+        <div class="moment-video__player" id="moment-yt-player" data-video-id="a-oVrF5Q3rc"></div>
+        <button type="button" class="moment-video__mute" id="moment-mute-btn" aria-pressed="false" aria-label="Unmute video" title="Unmute video">
+          <svg class="ico-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M17 8l5 8M22 8l-5 8"/></svg>
+          <svg class="ico-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19.5 6a9 9 0 0 1 0 12"/></svg>
+        </button>
+      </div>
+    </div>
     <div class="lead2">
       <p data-i18n="moment.p1">Egypt sits at a rare intersection of geography, history and ambition. Its position bridges Africa, the Middle East and Europe; it is home to one of the largest and youngest populations in the region; and its universities and hospitals form a substantial base to build upon. Its cultural influence and hospitality traditions are known worldwide.</p>
       <p data-i18n="moment.p2">Add an emerging technology and entrepreneurial community, deep tourism strengths and a growing appetite for international collaboration, and the case becomes clear: this is a moment when Egyptian leadership connected to global knowledge can support meaningful opportunities in healthcare, education, wellness tourism and responsible economic development.</p>
@@ -1955,6 +1982,87 @@ html[dir="rtl"] #main .form2{text-align:right}
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', onScroll, { passive: true });
   onScroll();
+})();
+</script>
+
+<script>
+(function(){
+  // "Why Egypt -- and Why Now?" scroll-triggered YouTube embed. The
+  // YouTube IFrame API script and the player itself are only created
+  // once the section nears the viewport (perf), playback is then
+  // driven purely by IntersectionObserver -- play past ~50% visible,
+  // pause below that in either scroll direction. playVideo()/
+  // pauseVideo() never seek, so re-entering the viewport resumes from
+  // the same position rather than restarting.
+  var wrap = document.getElementById('moment-video');
+  if (!wrap) return;
+  var mount = document.getElementById('moment-yt-player');
+  var muteBtn = document.getElementById('moment-mute-btn');
+  var videoId = mount.getAttribute('data-video-id');
+  var player = null;
+  var apiRequested = false;
+  var wantPlaying = false;
+
+  function loadApiOnce(){
+    if (apiRequested) return;
+    apiRequested = true;
+    if (window.YT && window.YT.Player) { createPlayer(); return; }
+    var prevReady = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = function(){
+      if (typeof prevReady === 'function') prevReady();
+      createPlayer();
+    };
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  }
+
+  function createPlayer(){
+    player = new YT.Player(mount, {
+      videoId: videoId,
+      playerVars: {
+        autoplay: 0, mute: 1, controls: 0, rel: 0, playsinline: 1,
+        iv_load_policy: 3, modestbranding: 1, enablejsapi: 1,
+        origin: location.origin
+      },
+      events: {
+        onReady: function(){
+          mount.classList.add('is-ready');
+          if (wantPlaying) player.playVideo(); else player.pauseVideo();
+        }
+      }
+    });
+  }
+
+  if (muteBtn) {
+    muteBtn.addEventListener('click', function(){
+      if (!player || typeof player.isMuted !== 'function') return;
+      if (player.isMuted()) {
+        player.unMute();
+        muteBtn.setAttribute('aria-pressed', 'true');
+        muteBtn.setAttribute('aria-label', 'Mute video');
+        muteBtn.setAttribute('title', 'Mute video');
+      } else {
+        player.mute();
+        muteBtn.setAttribute('aria-pressed', 'false');
+        muteBtn.setAttribute('aria-label', 'Unmute video');
+        muteBtn.setAttribute('title', 'Unmute video');
+      }
+    });
+  }
+
+  if (!('IntersectionObserver' in window)) { loadApiOnce(); wantPlaying = true; return; }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.intersectionRatio > 0) loadApiOnce();
+      wantPlaying = entry.intersectionRatio >= .5;
+      if (player && typeof player.playVideo === 'function') {
+        if (wantPlaying) player.playVideo(); else player.pauseVideo();
+      }
+    });
+  }, { threshold: [0, .5], rootMargin: '200px 0px' });
+  io.observe(wrap);
 })();
 </script>
 
