@@ -1428,45 +1428,18 @@ html[dir="rtl"] #main .form2{text-align:right}
   </div>
 </section>
 
-<section class="block dark" aria-labelledby="moment-h">
+<section class="block dark egypt-feature-video" aria-label="Why Egypt and Why Now — featured video">
 <style>
-/* ---- "Why Egypt -- and Why Now?" scroll-triggered video embed ---- */
-#moment-video{margin-bottom:26px}
-#moment-video .moment-video__frame{position:relative;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:linear-gradient(135deg,#16223f 0%,#0c1329 100%);border:1px solid rgba(198,161,91,.28);box-shadow:0 18px 45px rgba(0,0,0,.22)}
-#moment-video .moment-video__player{position:absolute;inset:0;width:100%;height:100%}
-/* The YouTube IFrame API replaces #moment-yt-player with a plain
-   <iframe> (it doesn't carry over the div's class), so the fade-in and
-   sizing below target the <iframe> by tag, scoped to the still-present
-   .moment-video__frame ancestor, rather than a class that no longer
-   exists once the player is created. */
-#moment-video .moment-video__frame iframe{position:absolute;inset:0;width:100%!important;height:100%!important;display:block;border:0;opacity:0;transition:opacity .6s var(--ease,ease)}
-#moment-video.is-ready .moment-video__frame iframe{opacity:1}
-#moment-video .moment-video__mute{position:absolute;right:14px;bottom:14px;z-index:2;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(11,18,38,.62);border:1px solid rgba(217,189,130,.55);color:var(--gold-soft);cursor:pointer;padding:0;transition:transform .3s var(--ease,ease),border-color .3s var(--ease,ease),background .3s var(--ease,ease)}
-#moment-video .moment-video__mute:hover,#moment-video .moment-video__mute:focus-visible{border-color:var(--gold);background:rgba(11,18,38,.82);transform:scale(1.06)}
-#moment-video .moment-video__mute svg{width:18px;height:18px}
-#moment-video .moment-video__mute .ico-unmuted{display:none}
-#moment-video .moment-video__mute[aria-pressed="true"] .ico-muted{display:none}
-#moment-video .moment-video__mute[aria-pressed="true"] .ico-unmuted{display:block}
-@media(prefers-reduced-motion:reduce){#moment-video .moment-video__frame iframe,#moment-video .moment-video__mute{transition:none}}
+/* Plain, video-first presentation -- the video is the only content in
+   this section, so it just needs a restrained frame that reuses the
+   page's own navy/gold tokens. No autoplay/mute JS, no custom
+   overlays: this is a single lazy-loaded iframe with native controls. */
+.egypt-feature-video .egypt-feature-video__frame{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:10px;background:linear-gradient(135deg,#16223f 0%,#0c1329 100%);border:1px solid rgba(198,161,91,.18);box-shadow:0 24px 60px rgba(0,0,0,.22)}
+.egypt-feature-video .egypt-feature-video__frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
 </style>
   <div class="wrap">
-    <div class="sec-head2"><span class="eyebrow2" data-i18n="moment.eyebrow">Egypt&rsquo;s Strategic Moment</span><h2 id="moment-h" data-i18n="moment.h2">Why Egypt &mdash; and Why Now?</h2></div>
-    <!-- Scroll-triggered YouTube embed (video a-oVrF5Q3rc): lazy-loaded via
-         the YouTube IFrame API, muted-autoplay is the only way scroll-driven
-         playback is allowed without a user gesture, so a custom unmute
-         toggle replaces the browser's blocked click-to-play affordance. -->
-    <div class="moment-video" id="moment-video">
-      <div class="moment-video__frame">
-        <div class="moment-video__player" id="moment-yt-player" data-video-id="a-oVrF5Q3rc"></div>
-        <button type="button" class="moment-video__mute" id="moment-mute-btn" aria-pressed="false" aria-label="Unmute video" title="Unmute video">
-          <svg class="ico-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M17 8l5 8M22 8l-5 8"/></svg>
-          <svg class="ico-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19.5 6a9 9 0 0 1 0 12"/></svg>
-        </button>
-      </div>
-    </div>
-    <div class="lead2">
-      <p data-i18n="moment.p1">Egypt sits at a rare intersection of geography, history and ambition. Its position bridges Africa, the Middle East and Europe; it is home to one of the largest and youngest populations in the region; and its universities and hospitals form a substantial base to build upon. Its cultural influence and hospitality traditions are known worldwide.</p>
-      <p data-i18n="moment.p2">Add an emerging technology and entrepreneurial community, deep tourism strengths and a growing appetite for international collaboration, and the case becomes clear: this is a moment when Egyptian leadership connected to global knowledge can support meaningful opportunities in healthcare, education, wellness tourism and responsible economic development.</p>
+    <div class="egypt-feature-video__frame">
+      <iframe src="https://www.youtube-nocookie.com/embed/a-oVrF5Q3rc?playsinline=1&amp;rel=0" title="Why Egypt and Why Now video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
   </div>
 </section>
@@ -1989,88 +1962,6 @@ html[dir="rtl"] #main .form2{text-align:right}
   onScroll();
 })();
 </script>
-
-<script>
-(function(){
-  // "Why Egypt -- and Why Now?" scroll-triggered YouTube embed. The
-  // YouTube IFrame API script and the player itself are only created
-  // once the section nears the viewport (perf), playback is then
-  // driven purely by IntersectionObserver -- play past ~50% visible,
-  // pause below that in either scroll direction. playVideo()/
-  // pauseVideo() never seek, so re-entering the viewport resumes from
-  // the same position rather than restarting.
-  var wrap = document.getElementById('moment-video');
-  if (!wrap) return;
-  var mount = document.getElementById('moment-yt-player');
-  var muteBtn = document.getElementById('moment-mute-btn');
-  var videoId = mount.getAttribute('data-video-id');
-  var player = null;
-  var apiRequested = false;
-  var wantPlaying = false;
-
-  function loadApiOnce(){
-    if (apiRequested) return;
-    apiRequested = true;
-    if (window.YT && window.YT.Player) { createPlayer(); return; }
-    var prevReady = window.onYouTubeIframeAPIReady;
-    window.onYouTubeIframeAPIReady = function(){
-      if (typeof prevReady === 'function') prevReady();
-      createPlayer();
-    };
-    var tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    document.head.appendChild(tag);
-  }
-
-  function createPlayer(){
-    player = new YT.Player(mount, {
-      videoId: videoId,
-      playerVars: {
-        autoplay: 0, mute: 1, controls: 0, rel: 0, playsinline: 1,
-        iv_load_policy: 3, modestbranding: 1, enablejsapi: 1,
-        origin: location.origin
-      },
-      events: {
-        onReady: function(){
-          wrap.classList.add('is-ready');
-          if (wantPlaying) player.playVideo(); else player.pauseVideo();
-        }
-      }
-    });
-  }
-
-  if (muteBtn) {
-    muteBtn.addEventListener('click', function(){
-      if (!player || typeof player.isMuted !== 'function') return;
-      if (player.isMuted()) {
-        player.unMute();
-        muteBtn.setAttribute('aria-pressed', 'true');
-        muteBtn.setAttribute('aria-label', 'Mute video');
-        muteBtn.setAttribute('title', 'Mute video');
-      } else {
-        player.mute();
-        muteBtn.setAttribute('aria-pressed', 'false');
-        muteBtn.setAttribute('aria-label', 'Unmute video');
-        muteBtn.setAttribute('title', 'Unmute video');
-      }
-    });
-  }
-
-  if (!('IntersectionObserver' in window)) { loadApiOnce(); wantPlaying = true; return; }
-
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.intersectionRatio > 0) loadApiOnce();
-      wantPlaying = entry.intersectionRatio >= .5;
-      if (player && typeof player.playVideo === 'function') {
-        if (wantPlaying) player.playVideo(); else player.pauseVideo();
-      }
-    });
-  }, { threshold: [0, .5], rootMargin: '200px 0px' });
-  io.observe(wrap);
-})();
-</script>
-
 <script>
 window.I18N={ar:{},fr:{},es:{}};
 I18N.ar={"hero.eyebrow": "وُلدت في الإسكندرية · تشكّلت بين عالمَين · تعود بهدف", "hero.h1": "الدكتورة دلال عكوري تعود إلى مصر — بأربعين عامًا من الطب والقيادة والرؤية العالمية", "hero.lede": "بعد أكثر من أربعة عقود كرّستها للطب والبحث والتعليم وريادة الأعمال والشفاء الشامل للإنسان في الولايات المتحدة، تعيد الدكتورة دلال عكوري إلى الوطن عمرًا من الخبرة والعلاقات، رابطةً الرعاية الصحية بالتعليم والابتكار وفرصٍ مبنيّة على الثقة.", "hero.invite": "إذا كنت تؤمن بأن أعظم فرص مصر ستُبنى بجمع الأشخاص والمعرفة والموارد المناسبة معًا، تدعوك الدكتورة عكوري لاكتشاف الموضع الذي قد تناسبه خبرتك.", "hero.cta1": "اكتشف موضعك", "hero.cta2": "استكشف رؤية مصر", "hero.cta3": "تعرَّف على الدكتورة عكوري", "return.p": "غادرت مصر لتتعلّم من العالم. وتعود لأن ما تعلّمته يخصّ، في جانبٍ منه، البلد الذي شكّلها.", "return.tag": "العودة", "open.eyebrow": "بابٌ مفتوح", "open.h2": "لم تُوضع هذه الرؤية لتبنيها شخصٌ واحد", "open.p1": "لا تعود الدكتورة عكوري إلى مصر بمخطّطٍ مكتمل ولا بكل الإجابات، بل تعود بالخبرة والعلاقات والاستعداد للإصغاء — إلى الأطباء والمعلّمين ورواد الأعمال والمطوّرين والمبتكرين والمصريين في أنحاء العالم ممن يؤمنون بأن التقدّم الحقيقي يبدأ بالمحادثة الصحيحة.", "open.p2": "دورها ليس مجرد تقديم رؤية، بل المساعدة في جمع أشخاصٍ قد تتكامل معارفهم وقيمهم وقدراتهم.", "open.p3": "سيأتي بعضهم بالخبرة الطبية، وآخرون بالتقنية أو التعليم أو الأراضي أو خبرة التطوير أو الضيافة أو العلاقات أو وسائل الدعم. وسيأتي غيرهم بفهمٍ عميق لمصر وللمجتمعات التي يجب أن تخدمها أي مبادرة جادّة.", "open.cta": "اطّلع على كيفية المشاركة", "meet.eyebrow": "بكلماتها", "meet.h2": "تعرَّف على الدكتورة عكوري", "meet.quote": "«لا أعود إلى مصر لأنني أظن أن شخصًا واحدًا يستطيع تغيير بلد، بل أعود لأنني أمضيتُ عمرًا أرى ما يصبح ممكنًا حين يثق الأشخاص المناسبون ببعضهم، ويتشاركون ما يعرفون، ويبنون حول هدفٍ أكبر منهم.<br><br>مصر منحتني البداية، وأمريكا منحتني فرصة التعلّم والممارسة والتعليم والبناء. وهذا الفصل هو جمع هذين العالمين — والإصغاء إلى ما تحتاجه مصر الآن.»", "meet.sig": "الدكتورة دلال عكوري", "meet.foot": "أحيانًا يبدأ أهمّ عملٍ حين يلتقي أخيرًا شخصان كان يجدر بهما أن يعرف كلٌّ منهما الآخر.", "never.eyebrow": "فصلٌ من الإرث", "never.h2": "لم تترك مصر خلفها قط", "never.p1": "بقيت مصر حاضرةً في إيمان الدكتورة عكوري وصلابتها وطموحها وقيمها العائلية وقناعتها بأن الطب يجب أن يخدم الإنسان بكامله. وسّعت حياتها في أمريكا معرفتها وعلاقاتها، لكنها لم تمحُ يومًا المكان الذي بدأت فيه قصتها.", "never.p2": "عودتها للانخراط مع مصر ليست حنينًا، وليست تقاعدًا، وليست مجرّد زيارة رمزية. إنها بداية فصلٍ من الإرث — التقاء <strong>الهوية والخبرة والمسؤولية</strong>.", "matters.eyebrow": "لماذا تهمّ الدكتورة دلال عكوري لمصر", "matters.h2": "ماذا يمكن أن تُعيد أربعون عامًا من الخبرة العالمية إلى الوطن؟", "matters.1.k": "١", "matters.1.h": "خبرة طبية", "matters.1.p": "أكثر من أربعة عقود في الطب — تشمل الأورام والبحث والطوارئ وطب الأطفال والرعاية الشاملة للإنسان.", "matters.2.k": "٢", "matters.2.h": "التفكير في منظومات الرعاية الصحية", "matters.2.p": "خبرة في بناء منهجٍ يدرس كيفية تفاعل المرض والأيض والتغذية والهرمونات والمناعة والبيئة والحالة النفسية ونمط الحياة.", "matters.3.k": "٣", "matters.3.h": "التعليم الطبي", "matters.3.p": "التزامٌ بتعليم الأطباء والممارسين والمرضى وروّاد أعمال الرعاية الصحية.", "matters.4.k": "٤", "matters.4.h": "خبرة ريادية", "matters.4.p": "خبرة في إنشاء منصّات سريرية وتعليمية وتجارية — لا مجرّد الممارسة داخل مؤسسة قائمة.", "matters.5.k": "٥", "matters.5.h": "علاقات دولية", "matters.5.p": "روابط تمتدّ عبر الطب والتعليم وريادة الأعمال والاستثمار والقيادة الدولية.", "matters.6.k": "٦", "matters.6.h": "الهوية المصرية", "matters.6.p": "فهمٌ شخصي للثقافة والموهبة والصمود المصري — وللفرصة التي تنشأ حين تلتقي القيادة المحلية بالموارد العالمية.", "audience.eyebrow": "ربما تكون جزءًا من هذه القصة", "audience.h2": "من الذي تأمل الدكتورة عكوري في لقائه؟", "audience.lead": "تنمو هذه الرؤية بالناس. قد تجد نفسك في أحد هذه الأدوار — وإن كان كذلك، فقد يكون لك موضعٌ في المحادثة.", "audience.1.h": "الأطباء وقادة الرعاية الصحية", "audience.1.p": "إذا كنت تعمل على تحسين الرعاية أو تدريب الأطباء أو بناء أنظمة صحية أكثر ترابطًا، فقد يكون هناك مجالٌ مثمر لاستكشافه معًا.", "audience.2.h": "الجامعات والباحثون", "audience.2.p": "إذا رأيت فرصًا للتعليم أو البحث أو تبادل أعضاء هيئة التدريس أو التعاون الدولي، فالدكتورة عكوري ترحّب بالحوار.", "audience.3.h": "روّاد الأعمال وقادة التقنية", "audience.3.p": "إذا كنت تبني حلولًا مسؤولة في الذكاء الاصطناعي أو الصحة الرقمية أو التشخيص أو التعليم أو إشراك المرضى، فقد تكون مصر مكانًا قويًّا للتعاون.", "audience.4.h": "المصريون حول العالم", "audience.4.p": "إذا بقيت مصر جزءًا من هويتك ولديك معرفة أو علاقات أو خبرة تودّ أن تعيدها إلى الوطن، فهذه الدعوة لك أيضًا.", "audience.5.h": "الأطباء والمؤسِّسون المصريون الشباب", "audience.5.p": "إذا كنت تبني المستقبل من داخل مصر، فالدكتورة عكوري لا تريد أن تتحدث فحسب، بل أن تُصغي.", "audience.6.h": "صنّاع الروابط الاستراتيجية", "audience.6.p": "إذا كنت تعرف أشخاصًا ينبغي أن يجتمعوا لكنهم لم يلتقوا بعد، فقد تساعد في نسج العلاقة التي تغيّر ما يصبح ممكنًا.", "audience.cta": "أخبِرنا بما تضيفه إلى المحادثة", "journey.eyebrow": "المسيرة من الإسكندرية", "journey.h2": "دربٌ طاف العالم ثم قاد إلى الوطن", "journey.1.era": "الإسكندرية، مصر", "journey.1.h": "حيث تبدأ القصة", "journey.1.p": "وُلدت وتكوّنت في الإسكندرية — جذور الإيمان والصمود والطموح.", "journey.2.era": "التكوين", "journey.2.h": "التعليم الطبي والانتقال إلى أمريكا", "journey.2.p": "تعليمٌ طبي تأسيسي، ثم الرحلة إلى الولايات المتحدة للتدرّب على حدود الطب الأمريكي المتقدّم.", "journey.3.era": "التخصّص والعلم", "journey.3.h": "طب الأطفال والأورام والبحث", "journey.3.p": "تدريبٌ في طب الأطفال وأمراض الدم/الأورام لدى الأطفال، وبحثٌ أكاديمي ومخبري.", "journey.4.era": "نظرة أوسع", "journey.4.h": "من الرعاية في الخطوط الأمامية إلى طب الإنسان الكامل", "journey.4.p": "ممارسةٌ سريرية واسعة في طب الطوارئ والطب العام — والتوجُّه نحو مقاربات تكاملية ووظيفية تُعنى بالإنسان كاملًا.", "journey.5.era": "الآن", "journey.5.h": "تأسيس AWAREmed — والعودة إلى مصر", "journey.5.p": "تأسيس AWAREmed وتعليم جيلٍ جديد — والآن إعادة أربعة عقود من الخبرة والعلاقات إلى الوطن.", "forty.eyebrow": "أربعون عامًا من الطب", "forty.h2": "مسيرةٌ بُنيت عبر كامل سلسلة الصحة الإنسانية", "forty.lead": "منظور الدكتورة عكوري واسعٌ على نحوٍ غير معتاد — يمتدّ من الرعاية الحادّة إلى الوقاية، ومن الصغار جدًا إلى المسنّين، ومن المستوى الجزيئي إلى الإنسان كاملًا. وهذا الاتساع هو ما يتيح لها التفكير بالمنظومات لا بالتخصّصات المنفردة.", "forty.1.h": "طب الأطفال والأورام والبحث", "forty.1.p": "تدريبٌ مبكر في طب الأطفال وأمراض الدم/الأورام لدى الأطفال، وبحثٌ أكاديمي ومخبري في علم المرض.", "forty.2.h": "طب الطوارئ والطب السريري", "forty.2.p": "خبرةٌ في الخطوط الأمامية عبر الرعاية الحادّة والعامة — الأساس السريري الواسع لمسيرةٍ من أربعة عقود.", "forty.3.h": "الطب التكاملي والوظيفي", "forty.3.p": "مقارباتٌ تُعنى بالسبب الجذري وقائمة على المنظومات وتجديدية وأيضية — مع دعمٍ في الأورام التكاملية يكمّل الرعاية التقليدية ولا يحلّ محلّها أبدًا.", "forty.4.h": "طب طول العمر والإدمان", "forty.4.p": "شيخوخةٌ صحية وطول عمرٍ مبنيّان على الأدلة، واهتمامٌ سريري بطب الإدمان والبيولوجيا العصبية للتعافي.", "forty.5.h": "الرعاية الشاملة والحالات المعقّدة", "forty.5.p": "رعايةٌ للحالات المتراكبة وطويلة الأمد التي نادرًا ما تنتمي لتخصّصٍ واحد — الجسد والعقل والروح، مصمّمة لكل فرد.", "forty.note": "تُوصف المقاربات الناشئة والتكاملية هنا بوصفها مجالات ممارسة واهتمام، لا بوصفها مثبتة أو مضمونة عالميًا. وتختلف الاحتياجات والنتائج من شخصٍ لآخر.", "beyond.eyebrow": "ما وراء الرعاية الصحية", "beyond.h2": "الرعاية الصحية هي الأساس — لكن الفرصة أوسع بكثير", "beyond.lead": "تبدأ رؤيتها لمصر بالطب لكنها لا تنتهي عنده، فهي تربط الرعاية بالأنظمة والصناعات والعلاقات التي تُديم التقدّم — يعزّز كل مجالٍ منها الآخر. هذه توضيحية لهذه المجالات وليست تصويرًا لمشاريع نهائية.", "beyond.1.h": "الرعاية الصحية والتعليم الطبي", "beyond.1.p": "مراكز تميّز، ووقاية، وأورام تكاملية، وطول عمر، وتدريب الأطباء، وتعاون جامعي.", "beyond.2.h": "التقنية وريادة الأعمال", "beyond.2.p": "الذكاء الاصطناعي والصحة الرقمية والتطبيب عن بُعد — ودعمٌ للأطباء والمؤسِّسين في بناء مشاريع أخلاقية ومستدامة.", "beyond.3.h": "سياحة العافية والضيافة", "beyond.3.p": "ربط تراث مصر وجغرافيتها وضيافتها ببرامج ووجهات عافية مسؤولة وعالية الجودة.", "beyond.4.h": "العقارات والتنمية الاقتصادية", "beyond.4.p": "حرَمٌ ووجهات محورها الصحة، ومحادثاتٌ تجمع القادة والمطوّرين والشركاء المسؤولين.", "beyond.note": "<strong>هذه مجالات رؤية واستكشاف</strong> — وليست تأكيدًا بأن أي مشروع بعينه قد مُوِّل أو اعتُمد أو حظي بتأييد أو أُطلق.", "pathways.eyebrow": "من الرؤية إلى المحادثة", "pathways.h2": "ماذا يمكن أن نستكشف معًا؟", "pathways.lead": "لا يُعرَّف هذا الطموح بمشروعٍ واحد. الغاية الأولى أبسط وأكثر إنسانية: إيجاد أشخاص متوافقين، وفهم الاحتياجات الحقيقية، واستكشاف حيث قد تقود القوى المتكاملة إلى شيءٍ يستحقّ البناء. كلٌّ مما يلي نقطة انطلاق لمحادثة — لا مشروعًا منجزًا أو مموَّلًا.", "pathways.1.h": "تعليم الأطباء والتدريب السريري", "pathways.1.p": "تبادل المعرفة ورفع القدرة السريرية معًا — بما في ذلك التعليم في الأورام التكاملية.", "pathways.2.h": "مراكز الرعاية الصحية وطول العمر", "pathways.2.p": "نماذج رعاية شاملة ووقائية تركّز على طول العمر.", "pathways.3.h": "السياحة الطبية وسياحة العافية", "pathways.3.p": "المزج بين ضيافة مصر وتراثها ورعايةٍ عالية الجودة.", "pathways.4.h": "الصحة والتعليم بالذكاء الاصطناعي", "pathways.4.p": "تقنيةٌ توسّع الوصول والتعلّم واتخاذ قرارات أفضل.", "pathways.5.h": "التعاون الجامعي والبحثي", "pathways.5.p": "تبادل أعضاء هيئة التدريس والبحث المشترك والبرامج المشتركة.", "pathways.6.h": "عقارات الرعاية الصحية ووجهات العافية", "pathways.6.p": "حرَمٌ وضيافة ووجهات مصمَّمة حول الصحة والأداء الإنساني.", "pathways.link": "أعمل في هذا المجال — لنبدأ محادثة ←", "moment.eyebrow": "لحظة مصر الاستراتيجية", "moment.h2": "لماذا مصر — ولماذا الآن؟", "moment.p1": "تقع مصر عند مُلتقىً نادر من الجغرافيا والتاريخ والطموح. موقعها يصل بين إفريقيا والشرق الأوسط وأوروبا؛ وتضمّ واحدةً من أكبر وأصغر التركيبات السكانية سنًّا في المنطقة؛ وتشكّل جامعاتها ومستشفياتها قاعدةً متينة للبناء عليها. وتأثيرها الثقافي وتقاليد ضيافتها معروفةٌ في العالم أجمع.", "moment.p2": "أضِف إلى ذلك مجتمعًا ناشئًا في التقنية وريادة الأعمال، ومقوّمات سياحية عميقة، وشغفًا متناميًا بالتعاون الدولي، فتتّضح الصورة: هذه لحظةٌ تستطيع فيها القيادة المصرية، متّصلةً بالمعرفة العالمية، أن تدعم فرصًا حقيقية في الرعاية الصحية والتعليم وسياحة العافية والتنمية الاقتصادية المسؤولة.", "ecosys.eyebrow": "المنظومة التي بنتها", "ecosys.h2": "ليست عيادة واحدة — بل منظومة من الأفكار والتعليم والرعاية", "ecosys.lead": "لا تأتي الدكتورة عكوري بفكرةٍ وحدها، بل بمنظومةٍ عاملة تمتدّ عبر الرعاية والتعليم وتطوير الممارسة. ثلاثة أبرزها:", "ecosys.1.what": "المقر السريري", "ecosys.1.p": "مركز الرعاية التكاملية للإنسان كاملًا الذي أسّسته الدكتورة عكوري — أُنشئ لعلاج الإنسان لا التشخيص وحده.", "ecosys.2.what": "التعليم والتدريب", "ecosys.2.p": "معهدٌ يركّز على تطوير المعرفة الطبية التكاملية وتدريب الممارسين على مناهج تُعنى بالإنسان كاملًا.", "ecosys.3.what": "تطوير الممارسة", "ecosys.3.p": "برنامجٌ تعليمي لتطوير الممارسة يساعد الأطباء وروّاد أعمال الصحة على بناء ممارساتٍ أخلاقية ومنظّمة ومستدامة.", "ecosys.link": "اطّلع على المنظومة الكاملة على awaremed.com ←", "proof.eyebrow": "أدلّة لا مديحٌ أجوف", "proof.h2": "عملُ حياةٍ يمكن التحقّق منه", "proof.lead": "ينبغي أن تكون المكانة قابلة للتحقّق. تصفَّح كتب الدكتورة عكوري المنشورة، وأعمالها المحكَّمة، وملفها المهني، والمنظومة التي بنتها.", "proof.link1": "تصفّح الكتب", "proof.link2": "المنشورات على PubMed", "proof.link3": "الملف المهني", "proof.link4": "LinkedIn", "proof.link5": "AWAREmed", "woman.eyebrow": "المرأة وراء الرسالة", "woman.h2": "المكانة مهنية، أما الرسالة فشخصيةٌ إلى العمق.", "woman.p1": "خلف الشهادات إنسانةٌ متكاملة: وُلدت في مصر وتشكّلت في أمريكا؛ زوجةٌ وأم؛ امرأةٌ مؤمنة؛ مهاجرةٌ بنت شيئًا خاصًّا بها؛ طبيبةٌ ومؤسِّسة ومعلّمة ومرشدة؛ عرفت المرض من موقع المريض كما من موقع الطبيبة؛ وقبل كل شيء مُصغيةٌ — نصيرةٌ للجسد والعقل والروح معًا.", "woman.p2": "كثيرًا ما تتأمّل كيف علّمتها أكثر من أربعين عامًا الطريقةَ التي يغيّر بها المرض إنسانًا وعائلة وأحيانًا مستقبلًا بأكمله — وأن التقدّم الحقيقي يتطلّب أكثر من الطب؛ يتطلّب تعليمًا وأنظمة وعلاقات وشجاعة وأناسًا مستعدّين للبناء معًا. منحتها مصر بداية، وهي تأمل الآن أن تُسهم خبرة العمر في مستقبلها.", "network.eyebrow": "شبكتها العالمية", "network.h2": "علاقاتٌ نُسجت عبر عمرٍ في الطب والأعمال", "network.lead": "طوال مسيرتها، نسجت الدكتورة عكوري علاقاتٍ عبر عوالم عديدة — شبكةٌ تسخّرها الآن لخدمة فرصة مصر.", "network.chips": "<span>أطباء</span><span>باحثون</span><span>معلّمون</span><span>روّاد أعمال</span><span>قادة الأعمال</span><span>مستثمرون</span><span>مطوّرون</span><span>متحدّثون دوليون</span><span>مبتكرو الرعاية الصحية</span>", "network.h3": "ربط مصر برواد الأعمال العالميين والقادة الاستراتيجيين", "network.p1": "من بين علاقات الدكتورة عكوري الدولية العريقة صلتها برائد الأعمال والمتحدّث واستراتيجي الأعمال JT Foxx. تمتدّ علاقتهما نحو خمسة عشر عامًا وتقوم على الثقة والحوارات المشتركة والاحترام المتبادل. وهما يستكشفان كيف يمكن للعلاقات الدولية والحوار الاستراتيجي أن يساعدا في تعريف قادةٍ مؤهّلين بفرصٍ مرتبطة بمصر.", "network.p2": "يصف هذا علاقةً استكشافية فحسب، ولا يمثّل شراكةً رسمية أو استثمارًا ملتزَمًا أو تأييدًا لفرصةٍ بعينها أو اتفاقًا نهائيًا أو أي توقّعٍ لعوائد.", "network.link": "استكشف JT Foxx في مصر ←", "collab.eyebrow": "مكانٌ في المحادثة", "collab.h2": "هل يمكن أن تصبح خبرتك جزءًا من فصل مصر القادم؟", "collab.p1": "سواءٌ كنت تحمل معرفةً طبية أو قيادةً تعليمية أو تقنية أو خبرة تطوير أو ضيافة أو وسائل دعم أو فهمًا محليًا أو علاقةً دولية، فإن الخطوة الأولى ليست التزامًا، بل محادثةٌ متأنّية.", "collab.p2": "لا حاجة لأن تأتي بمقترحٍ رسمي. أخبِرنا مَن أنت، وما الذي يهمّك، وما تراه ممكنًا.", "collab.h3": "ابدأ بمحادثة", "collab.p3": "أخبِرنا قليلًا عن نفسك ولماذا يهمّك مستقبل مصر. سيراجع فريق الدكتورة عكوري كل استفسارٍ جادّ ويردّ عندما يبدو أن هناك توافقًا ذا معنى.", "form.name": "الاسم الكامل *", "form.email": "البريد الإلكتروني *", "form.org": "الجهة أو الدور", "form.interestlabel": "أين ترى نفسك في هذه الرؤية؟", "form.opt0": "اختر…", "form.opt1": "أنا طبيب أو قائد في الرعاية الصحية", "form.opt2": "أمثّل جامعة أو مؤسسة بحثية", "form.opt3": "أعمل في التقنية أو الذكاء الاصطناعي", "form.opt4": "أعمل في العقارات أو التطوير", "form.opt5": "أعمل في الضيافة أو سياحة العافية", "form.opt6": "أنا رائد أعمال", "form.opt7": "أمثّل جهة استثمار أو مكتب عائلي", "form.opt8": "أنا من المصريين في الخارج", "form.opt9": "أنا طبيب أو مؤسِّس مصري شاب", "form.opt10": "يمكنني تقديم تعارفٍ قيّم", "form.opt11": "لديّ فكرة أخرى", "form.message": "ما الذي تودّ أن تعرفه الدكتورة عكوري؟", "form.bring": "أي فرصة أو فكرة تودّ استكشافها؟ (اختياري)", "form.consent": "أُقرّ بأن المعلومات التي أقدّمها ستُستخدَم للردّ على استفساري، وفقًا لممارسات الخصوصية الخاصة بالدكتورة دلال عكوري / AWAREmed. *", "form.submit": "شارِك اهتمامك", "form.success": "شكرًا لك. كثيرًا ما يبدأ العمل ذو المعنى بمحادثةٍ واحدة. سيراجع فريق الدكتورة عكوري رسالتك ويردّ إن بدا أن هناك مسارًا مناسبًا لاستكشافه.", "legacy2.tag": "فصلٌ من الإرث", "legacy2.h2": "غادرت مصر لتبني حياة. وتعود لتساعد في بناء مستقبل.", "legacy2.cta": "ابدأ محادثة", "langbar": "نتحدث العربية والإنجليزية والفرنسية والإسبانية", "nav.home": "الرئيسية", "nav.home.group": "الرئيسية", "nav.meet": "د. دلال", "nav.why": "العودة إلى الوطن", "nav.eco": "المنظومة", "nav.interviews": "المقابلات", "nav.media": "الإعلام", "nav.invest": "الاستثمار", "nav.jtfoxx": "مصر تعود", "nav.foxx.partnership": "الشراكة", "nav.foxx.bio": "عن جيه تي فوكس", "nav.foxx.akoury": "عن الدكتورة عاقوري", "nav.events": "الفعاليات", "nav.vip.evening": "أمسية VIP", "nav.vip.dinner": "عشاء خاص", "nav.legacy": "الإرث", "drbio.nav.cta": "شاهد الشراكة مع جيه تي فوكس", "foot.about": "بناء مستقبل الرعاية الصحية بين مصر والعالم. امتداد طبيعي لمنظومة AWAREmed · جونسون سيتي، تينيسي · الولايات المتحدة.", "foot.explore": "استكشف", "foot.connect": "تواصل", "foot.disc": "أُعدّت للشركاء الاستراتيجيين والمستثمرين المحتملين. ليست عرضاً أو دعوة للاستثمار؛ النماذج التوضيحية للنقاش فحسب. خدمات AWAREmed مكمّلة، لا بديلة، عن الرعاية الطبية التقليدية.", "foot.conf": "سري — للمستلمين المصرّح لهم فقط.", "proof.book1.title": "<em>CANCER: Beyond the Cure</em>", "proof.book1.synopsis": "السرطان ضيفٌ غير مرحَّب به — لكنه لا يجب أن يبقى غريبًا. يواجه هذا الكتاب السرطان مباشرةً: فهم قوته، وتاريخه (الذي يعود إلى مصر القديمة)، وطبيعته، لتتمكن من مواجهة هذا العدو بشروطك الخاصة. لأن الروح تُهيّئ العقل، والعقل يُمهّد الطريق، والجسد يتبع. المعرفة هنا ليست مجرد قوة — إنها نجاة.", "proof.book1.cta": "احصل عليه على أمازون ←", "proof.book2.title": "<em>Breastfeeding Bonds Superheroes</em>", "proof.book2.synopsis": "كل أمّ تُرضع طفلها هي بطلة خارقة، والدكتورة دلال عكوري تُثبت ذلك. في كتابها <em>Breastfeeding Bonds Superheroes</em>، تمزج بين العلم والعاطفة، كاشفةً عن القوة الاستثنائية الكامنة في حليب الأم والرابطة التي لا تنكسر التي يخلقها بين الأم وطفلها. هذا الكتاب، بين الدليل العملي ونداء التحفيز، يمكّن الأمهات من امتلاك رحلتهنّ — رضعة بطولية في كل مرة.", "proof.book2.cta": "احصل عليه على أمازون ←", "proof.book3.title": "<em>Secrets of Healthy Aging</em>", "proof.book3.synopsis": "يعيش الناس اليوم أطول، لكنّ العيش الجيّد يتطلّب أكثر من الحظّ. يُظهر كتاب <em>Secrets of Healthy Aging</em> كيف يُعيد الطبّ الوظيفي، والشفاء من الجذور، وقدرة الجسد الذاتية على إصلاح نفسه، كتابة قواعد طول العمر من جديد. لأن السبعين هي الخمسون الجديدة، ويستحقّ الجميع نسخًا لأنفسهم وللأشخاص الذين يحبّونهم.", "proof.book3.cta": "احصل عليه على أمازون ←"};
