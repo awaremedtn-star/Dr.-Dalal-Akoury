@@ -1359,16 +1359,21 @@ html[dir="rtl"] #main .form2{text-align:right}
 /* ---- "Why Egypt -- and Why Now?" scroll-triggered video embed ---- */
 #moment-video{margin-bottom:26px}
 #moment-video .moment-video__frame{position:relative;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:linear-gradient(135deg,#16223f 0%,#0c1329 100%);border:1px solid rgba(198,161,91,.28);box-shadow:0 18px 45px rgba(0,0,0,.22)}
-#moment-video .moment-video__player{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .6s var(--ease,ease)}
-#moment-video .moment-video__player.is-ready{opacity:1}
-#moment-video .moment-video__player iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0}
+#moment-video .moment-video__player{position:absolute;inset:0;width:100%;height:100%}
+/* The YouTube IFrame API replaces #moment-yt-player with a plain
+   <iframe> (it doesn't carry over the div's class), so the fade-in and
+   sizing below target the <iframe> by tag, scoped to the still-present
+   .moment-video__frame ancestor, rather than a class that no longer
+   exists once the player is created. */
+#moment-video .moment-video__frame iframe{position:absolute;inset:0;width:100%!important;height:100%!important;display:block;border:0;opacity:0;transition:opacity .6s var(--ease,ease)}
+#moment-video.is-ready .moment-video__frame iframe{opacity:1}
 #moment-video .moment-video__mute{position:absolute;right:14px;bottom:14px;z-index:2;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(11,18,38,.62);border:1px solid rgba(217,189,130,.55);color:var(--gold-soft);cursor:pointer;padding:0;transition:transform .3s var(--ease,ease),border-color .3s var(--ease,ease),background .3s var(--ease,ease)}
 #moment-video .moment-video__mute:hover,#moment-video .moment-video__mute:focus-visible{border-color:var(--gold);background:rgba(11,18,38,.82);transform:scale(1.06)}
 #moment-video .moment-video__mute svg{width:18px;height:18px}
 #moment-video .moment-video__mute .ico-unmuted{display:none}
 #moment-video .moment-video__mute[aria-pressed="true"] .ico-muted{display:none}
 #moment-video .moment-video__mute[aria-pressed="true"] .ico-unmuted{display:block}
-@media(prefers-reduced-motion:reduce){#moment-video .moment-video__player,#moment-video .moment-video__mute{transition:none}}
+@media(prefers-reduced-motion:reduce){#moment-video .moment-video__frame iframe,#moment-video .moment-video__mute{transition:none}}
 </style>
   <div class="wrap">
     <div class="sec-head2"><span class="eyebrow2" data-i18n="moment.eyebrow">Egypt&rsquo;s Strategic Moment</span><h2 id="moment-h" data-i18n="moment.h2">Why Egypt &mdash; and Why Now?</h2></div>
@@ -1857,7 +1862,7 @@ html[dir="rtl"] #main .form2{text-align:right}
       },
       events: {
         onReady: function(){
-          mount.classList.add('is-ready');
+          wrap.classList.add('is-ready');
           if (wantPlaying) player.playVideo(); else player.pauseVideo();
         }
       }
