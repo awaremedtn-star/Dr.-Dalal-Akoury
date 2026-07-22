@@ -22,18 +22,132 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="assets/style.css"/>
-<style>body{background:var(--lapis-deep)}</style>
+<style>
+body{background:var(--lapis-deep)}
+/* The standard site nav now sits above .storynav (see body markup).
+   .storynav was a viewport-fixed overlay pinned to top:0 -- switched
+   to sticky with a top offset matching the nav's own height so it
+   settles in just below the sticky nav instead of overlapping it. */
+.storynav{position:sticky;top:124px}
+@media(max-width:760px){.storynav{top:92px}}
+</style>
 </head>
 <body>
 
+<!-- LANGUAGE BAR (standard site-wide bar; reused here so this page's
+     switcher isn't a one-off duplicate of the one below) -->
+<div class="langbar"><div class="wrap">
+  <span class="ar-badge">نتحدث العربية &nbsp;·&nbsp; <span data-i18n="langbar">We speak Arabic, French, Spanish &amp; English</span></span>
+  <div class="langsw">
+    <button class="on" onclick="setLang('en')" lang="en">EN</button>
+    <button onclick="setLang('ar')" lang="ar">AR</button>
+    <button onclick="setLang('fr')" lang="fr">FR</button>
+    <button onclick="setLang('es')" lang="es">ES</button>
+  </div>
+</div></div>
+
+<!-- HEADER / NAV -- same shared nav markup as index.html / jt-foxx-egypt.html -->
+<nav class="nav" id="nav"><div class="wrap">
+  <a class="nav-logo" href="index.html" aria-label="Dr. Dalal Akoury, MD">
+    <img src="assets/images/logo-full.jpg" alt="Dr. Dalal Akoury, MD"/>
+  </a>
+  <ul class="nav-links desk">
+    <li class="nav-drop nav-drop-home">
+      <span class="nav-drop-trigger">
+        <a href="index.html" class="nav-drop-label" data-i18n="nav.home.group">Home</a>
+        <button class="nav-drop-caret" aria-haspopup="true" aria-expanded="false" aria-label="Toggle Home menu">
+          <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </span>
+      <ul class="nav-drop-menu">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="index.html#why" data-i18n="nav.story">The Story</a></li>
+        <li><a href="index.html#questions" data-i18n="nav.questions">Questions</a></li>
+        <li><a href="index.html#philosophy" data-i18n="nav.philosophy">Philosophy</a></li>
+        <li><a href="index.html#journey" data-i18n="nav.journey">The Journey</a></li>
+        <li><a href="index.html#scholarship" data-i18n="nav.scholarship">Scholarship</a></li>
+        <li><a href="index.html#legacy" data-i18n="nav.legacy">Legacy</a></li>
+      </ul>
+    </li>
+    <li class="nav-drop">
+      <button class="nav-drop-trigger current" aria-haspopup="true" aria-expanded="false">
+        <span data-i18n="nav.jtfoxx">Egypt Coming Back</span>
+        <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <ul class="nav-drop-menu">
+        <li><a href="coming-home.html" class="current" data-i18n="nav.why">Coming Home</a></li>
+        <li><a href="Dr.Akoury-Egypt.html" data-i18n="nav.foxx.akoury">About Dr. Akoury</a></li>
+        <li><a href="jt-foxx-egypt.html" data-i18n="nav.foxx.bio">About JT Foxx</a></li>
+        <li><a href="jt-foxx.html" data-i18n="nav.foxx.partnership">The Partnership</a></li>
+        <li><a href="investment.html" data-i18n="nav.invest">Investment</a></li>
+      </ul>
+    </li>
+    <li class="nav-drop">
+      <button class="nav-drop-trigger" aria-haspopup="true" aria-expanded="false">
+        <span data-i18n="nav.events">Events</span>
+        <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <ul class="nav-drop-menu">
+        <li><a href="vip-event.html" data-i18n="nav.vip.evening">VIP Evening</a></li>
+        <li><a href="vip-dinner.html" data-i18n="nav.vip.dinner">Private Dinner</a></li>
+      </ul>
+    </li>
+    <li><a href="legacy.html" data-i18n="nav.legacy">Legacy</a></li>
+  </ul>
+  <a href="index.html#connect" class="nav-cta desk" data-i18n="nav.connect">Connect</a>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div>
+<div class="mnav" id="mnav">
+  <div class="mnav-group">
+    <span class="mnav-group-trigger">
+      <a href="index.html" class="mnav-group-label" data-i18n="nav.home.group">Home</a>
+      <button class="mnav-group-caret" aria-expanded="false" aria-label="Toggle Home menu">
+        <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </span>
+    <div class="mnav-submenu">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="index.html#why" data-i18n="nav.story">The Story</a>
+      <a href="index.html#questions" data-i18n="nav.questions">Questions</a>
+      <a href="index.html#philosophy" data-i18n="nav.philosophy">Philosophy</a>
+      <a href="index.html#journey" data-i18n="nav.journey">The Journey</a>
+      <a href="index.html#scholarship" data-i18n="nav.scholarship">Scholarship</a>
+      <a href="index.html#legacy" data-i18n="nav.legacy">Legacy</a>
+    </div>
+  </div>
+  <div class="mnav-group">
+    <button class="mnav-group-trigger current" aria-expanded="false">
+      <span data-i18n="nav.jtfoxx">Egypt Coming Back</span>
+      <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="mnav-submenu">
+      <a href="coming-home.html" class="current" data-i18n="nav.why">Coming Home</a>
+      <a href="Dr.Akoury-Egypt.html" data-i18n="nav.foxx.akoury">About Dr. Akoury</a>
+      <a href="jt-foxx-egypt.html" data-i18n="nav.foxx.bio">About JT Foxx</a>
+      <a href="jt-foxx.html" data-i18n="nav.foxx.partnership">The Partnership</a>
+      <a href="investment.html" data-i18n="nav.invest">Investment</a>
+    </div>
+  </div>
+  <div class="mnav-group">
+    <button class="mnav-group-trigger" aria-expanded="false">
+      <span data-i18n="nav.events">Events</span>
+      <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="mnav-submenu">
+      <a href="vip-event.html" data-i18n="nav.vip.evening">VIP Evening</a>
+      <a href="vip-dinner.html" data-i18n="nav.vip.dinner">Private Dinner</a>
+    </div>
+  </div>
+  <a href="legacy.html" data-i18n="nav.legacy">Legacy</a>
+  <a href="index.html#connect" style="color:var(--gold-lt)" data-i18n="nav.connect">Connect</a>
+</div>
+</nav>
+
+<!-- Secondary breadcrumb: kept below the standard nav rather than
+     replaced by it (see summary). Its own EN/AR/FR/ES switcher was
+     removed since the langbar above now covers that job. -->
 <div class="storynav">
   <a class="back" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 18l-6-6 6-6"/></svg><span data-i18n="return">Dr. Dalal Akoury</span></a>
-  <div class="langsw">
-    <button class="on" onclick="setLang('en')">EN</button>
-    <button onclick="setLang('ar')">AR</button>
-    <button onclick="setLang('fr')">FR</button>
-    <button onclick="setLang('es')">ES</button>
-  </div>
 </div>
 
 <div class="story-rail" aria-hidden="true">
@@ -106,7 +220,8 @@
 
 <script>
 window.I18N={ar:{},fr:{},es:{}};
-I18N.ar={"return":"د. دلال عاقوري","w.kick":"العودة إلى الوطن · بكلماتها",
+I18N.ar={"langbar":"نتحدث العربية والفرنسية والإسبانية والإنجليزية","nav.home":"الرئيسية","nav.home.group":"الرئيسية","nav.story":"القصة","nav.questions":"الأسئلة","nav.philosophy":"الفلسفة","nav.journey":"الرحلة","nav.scholarship":"البحث العلمي","nav.legacy":"الإرث","nav.jtfoxx":"مصر تعود","nav.foxx.partnership":"الشراكة","nav.foxx.akoury":"عن الدكتورة عكوري","nav.foxx.bio":"عن جي تي فوكس","nav.why":"العودة إلى الوطن","nav.invest":"الاستثمار","nav.events":"الفعاليات","nav.vip.evening":"أمسية كبار الشخصيات","nav.vip.dinner":"عشاء خاص","nav.connect":"تواصل",
+  "return":"د. دلال عاقوري","w.kick":"العودة إلى الوطن · بكلماتها",
   "w1":"وُلدتُ في الإسكندرية —<br/><span class=\"em\">حيث جاء العالم يوماً ليتعلّم.</span>",
   "w1b":"هناك بدأ كل شيء — حيث علّمني والداي أن <span class=\"em\">العلم هبةٌ يجب أن تُشارَك.</span>",
   "w2":"ثم رحلتُ — لأتعلّم من العالم.",
@@ -119,7 +234,8 @@ I18N.ar={"return":"د. دلال عاقوري","w.kick":"العودة إلى ال
   "w.close":"لأن كل ما بنيته يوماً <span class=\"em\">كان يُعِدّني لهذه اللحظة.</span>",
   "w.future":"وقد آن الأوان لأبني شيئاً يخصّ مصر — <span class=\"em\">ويخدم أجيالاً قادمة.</span>",
   "w.sig":"— د. دلال عاقوري","w.return":"العودة إلى الرئيسية","w.forward":"استكشف فرصة الاستثمار ←"};
-I18N.fr={"return":"Dre Dalal Akoury","w.kick":"Le retour au pays · Dans ses mots",
+I18N.fr={"langbar":"Nous parlons arabe, français, espagnol et anglais","nav.home":"Accueil","nav.home.group":"Accueil","nav.story":"L'Histoire","nav.questions":"Questions","nav.philosophy":"Philosophie","nav.journey":"Le Parcours","nav.scholarship":"Recherche","nav.legacy":"Héritage","nav.jtfoxx":"L'Égypte de Retour","nav.foxx.partnership":"Le Partenariat","nav.foxx.akoury":"À propos de la Dre Akoury","nav.foxx.bio":"À propos de JT Foxx","nav.why":"Le Retour","nav.invest":"Investissement","nav.events":"Événements","nav.vip.evening":"Soirée VIP","nav.vip.dinner":"Dîner Privé","nav.connect":"Contact",
+  "return":"Dre Dalal Akoury","w.kick":"Le retour au pays · Dans ses mots",
   "w1":"Je suis née à Alexandrie —<br/><span class=\"em\">là où le monde venait autrefois apprendre.</span>",
   "w1b":"Tout a commencé là — où mes parents m'ont appris que <span class=\"em\">le savoir est un don destiné à être partagé.</span>",
   "w2":"Puis je suis partie — apprendre du monde.",
@@ -132,7 +248,8 @@ I18N.fr={"return":"Dre Dalal Akoury","w.kick":"Le retour au pays · Dans ses mot
   "w.close":"Parce que tout ce que j'ai bâti <span class=\"em\">me préparait à cela.</span>",
   "w.future":"Il est temps de bâtir quelque chose qui appartient à l'Égypte — <span class=\"em\">et qui servira les générations à venir.</span>",
   "w.sig":"— Dre Dalal Akoury","w.return":"Retour à l'accueil","w.forward":"Découvrir l'investissement →"};
-I18N.es={"return":"Dra. Dalal Akoury","w.kick":"El regreso a casa · En sus palabras",
+I18N.es={"langbar":"Hablamos árabe, francés, español e inglés","nav.home":"Inicio","nav.home.group":"Inicio","nav.story":"La Historia","nav.questions":"Preguntas","nav.philosophy":"Filosofía","nav.journey":"El Recorrido","nav.scholarship":"Investigación","nav.legacy":"Legado","nav.jtfoxx":"Egipto Está de Vuelta","nav.foxx.partnership":"La Asociación","nav.foxx.akoury":"Sobre la Dra. Akoury","nav.foxx.bio":"Sobre JT Foxx","nav.why":"El Regreso","nav.invest":"Inversión","nav.events":"Eventos","nav.vip.evening":"Velada VIP","nav.vip.dinner":"Cena Privada","nav.connect":"Contacto",
+  "return":"Dra. Dalal Akoury","w.kick":"El regreso a casa · En sus palabras",
   "w1":"Nací en Alejandría —<br/><span class=\"em\">donde el mundo una vez vino a aprender.</span>",
   "w1b":"Todo comenzó allí — donde mis padres me enseñaron que <span class=\"em\">el saber es un regalo hecho para compartirse.</span>",
   "w2":"Luego me fui — a aprender del mundo.",
