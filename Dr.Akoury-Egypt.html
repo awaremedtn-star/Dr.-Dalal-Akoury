@@ -1576,6 +1576,49 @@ html[dir="rtl"] #main .form2{text-align:right}
 <!-- ============================================================= -->
 <section class="block dark" id="legacy-ghaly" aria-labelledby="ghaly-h">
 <style>
+/* Repeated Egyptian-blocks background across the complete Heritage &
+   Mentorship section (gallery through the closing CTA). Tiled vertically
+   at a controlled, near-native width -- min(100%,1600px) against a
+   1672px-wide source -- so every repeat stays sharp and is never
+   upscaled; a single continuous navy wash is drawn on top (listed first,
+   so it paints above the tile per normal background-layer stacking) and
+   does NOT repeat, so it fades gradually down the whole section instead
+   of banding at each tile boundary. Seams between tiles are hidden by
+   that wash's density rather than by matching pixel content at each
+   repeat -- safe here because the source is a uniform, non-repeating
+   hieroglyph relief carving with no single bright/dark focal point, so
+   every tile boundary falls on visually similar tone. background-color
+   is the fallback/edge fill on ultra-wide viewports where the
+   capped-width tile doesn't reach the section's edges -- reads as an
+   intentional vignette, not a gap, and is also what shows if the image
+   fails to load. */
+#main #legacy-ghaly{
+  position:relative;
+  background-color:var(--midnight);
+  background-image:
+    linear-gradient(180deg, rgba(11,18,38,.78) 0%, rgba(11,18,38,.85) 45%, rgba(11,18,38,.9) 100%),
+    url('images/blocks-egyptian-DalalAkoury-Homecoming.jpg');
+  background-repeat:no-repeat, repeat-y;
+  background-position:center top, center top;
+  background-size:auto, min(100%,1600px) auto;
+}
+#main #legacy-ghaly::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(560px 320px at 50% 8%, rgba(198,161,91,.1), transparent 62%),
+    radial-gradient(80% 46% at 50% 100%, rgba(11,18,38,.4), transparent 72%);
+}
+#main #legacy-ghaly > .wrap{position:relative;z-index:1}
+@media(max-width:1024px){#main #legacy-ghaly{background-size:auto, min(100%,1180px) auto}}
+@media(max-width:640px){
+  #main #legacy-ghaly{
+    background-image:
+      linear-gradient(180deg, rgba(11,18,38,.86) 0%, rgba(11,18,38,.9) 45%, rgba(11,18,38,.94) 100%),
+      url('images/blocks-egyptian-DalalAkoury-Homecoming.jpg');
+    background-size:auto, min(140%,760px) auto;
+  }
+}
+
 #legacy-ghaly .g-head{text-align:center;max-width:780px;margin:0 auto 48px}
 #legacy-ghaly .g-sub{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-style:italic;font-weight:500;font-size:clamp(19px,2.4vw,27px);color:var(--gold-soft);margin:4px 0 0;line-height:1.35}
 #legacy-ghaly .g-divider{width:62px;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-soft));margin:22px auto 0;position:relative}
