@@ -357,6 +357,19 @@
 #main .lead2 .pull2{border-left:3px solid var(--gold);padding:4px 0 4px 28px;margin:30px 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;line-height:1.4;font-style:italic;color:var(--midnight)}
 #main section.dark .pull2{color:#fff}
 
+/* woman-behind-the-mission editorial layout */
+#main section.block.alt[aria-labelledby="woman-h"]{padding:120px 0}
+#main section.block.alt[aria-labelledby="woman-h"] .sec-head2{max-width:750px;margin:0 auto 40px;text-align:center}
+#main section.block.alt[aria-labelledby="woman-h"] .eyebrow2{margin-bottom:30px}
+#main section.block.alt[aria-labelledby="woman-h"] .sec-head2 h2{margin-top:0}
+#main section.block.alt[aria-labelledby="woman-h"] .lead2{max-width:750px;margin:0 auto}
+#main section.block.alt[aria-labelledby="woman-h"] .lead2 p{margin:0}
+#main section.block.alt[aria-labelledby="woman-h"] .woman-figure{margin:70px auto 0;width:min(880px,100%)}
+#main section.block.alt[aria-labelledby="woman-h"] .woman-figure .ph{width:100%;border-radius:18px;border:1px solid #c8a86a;box-shadow:0 24px 60px rgba(11,18,38,.18)}
+#main section.block.alt[aria-labelledby="woman-h"] .woman-figure + .lead2{margin-top:70px}
+@media(max-width:980px){#main section.block.alt[aria-labelledby="woman-h"] .woman-figure{width:90%}}
+@media(max-width:640px){#main section.block.alt[aria-labelledby="woman-h"] .woman-figure{width:100%}}
+
 #main .cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 #main .cols-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 @media(max-width:860px){#main .cols-3,#main .cols-2{grid-template-columns:1fr}}
@@ -2114,16 +2127,12 @@ html[dir="rtl"] #pathways .path2::after{left:auto;right:0}
 <section class="block alt" aria-labelledby="woman-h">
   <div class="wrap">
     <div class="sec-head2"><span class="eyebrow2" data-i18n="woman.eyebrow">The Woman Behind the Mission</span><h2 id="woman-h" data-i18n="woman.h2">The Authority Is Professional. The Mission Is Deeply Personal.</h2></div>
-    <div class="split">
-      <div class="txt">
-        <div class="lead2">
-          <p data-i18n="woman.p1">Behind the credentials is a complete human being: Egyptian-born and America-shaped; a wife and mother; a woman of faith; an immigrant who built something of her own; a physician, founder, educator and mentor; someone who has known illness from the patient&rsquo;s side as well as the physician&rsquo;s; and, above all, a listener &mdash; an advocate for the body, the mind and the spirit together.</p>
-          <p class="pull2" data-i18n="woman.p2" style="border:none;padding:0;margin-top:18px">She often reflects that more than forty years have taught her how illness changes a person, a family and sometimes an entire future &mdash; and that real progress requires more than medicine. It requires education, systems, relationships, courage and people willing to build together. Egypt gave her a beginning; she now hopes the experience of a lifetime can contribute to its future.</p>
-        </div>
-      </div>
-      <div>
-        <figure><div class="ph ar-169"><img src="images/dr-dalal-akoury-personal-portrait.webp" alt="A personal portrait of Dr. Dalal Akoury" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
-      </div>
+    <div class="lead2">
+      <p data-i18n="woman.p1">Behind the credentials is a complete human being: Egyptian-born and America-shaped; a wife and mother; a woman of faith; an immigrant who built something of her own; a physician, founder, educator and mentor; someone who has known illness from the patient&rsquo;s side as well as the physician&rsquo;s; and, above all, a listener &mdash; an advocate for the body, the mind and the spirit together.</p>
+    </div>
+    <figure class="woman-figure"><div class="ph ar-169"><img src="images/dr-dalal-akoury-personal-portrait.webp" alt="A personal portrait of Dr. Dalal Akoury" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div></figure>
+    <div class="lead2">
+      <p class="pull2" data-i18n="woman.p2" style="border:none;padding:0;margin:0">She often reflects that more than forty years have taught her how illness changes a person, a family and sometimes an entire future &mdash; and that real progress requires more than medicine. It requires education, systems, relationships, courage and people willing to build together. Egypt gave her a beginning; she now hopes the experience of a lifetime can contribute to its future.</p>
     </div>
   </div>
 </section>
