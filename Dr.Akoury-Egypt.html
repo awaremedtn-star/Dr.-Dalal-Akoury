@@ -755,6 +755,118 @@
 @media(max-width:980px){#main .books-grid{grid-template-columns:repeat(2,1fr);row-gap:44px}}
 @media(max-width:560px){#main .books-grid{grid-template-columns:1fr;max-width:320px;margin-left:auto;margin-right:auto}}
 
+/* "A Life's Work That Can Be Examined" -- authority/proof showcase, 2026.
+   .evidence/.books-grid/.book-card/.book-cover/.bimg are only ever used in
+   this one section (confirmed via repo-wide search), so the rules below
+   restyle those classes directly; the section's own background, overlay
+   and heading get the [aria-labelledby="proof-h"] attribute scoping
+   already used elsewhere on this page, since section.block.dark is shared
+   with #meet, #journey-h and #why-now. Stacking order: .proof-bg (photo,
+   z0) < ::before (overlay gradients, z1) < .wrap (heading/buttons/books,
+   z2). Entrance reveal reuses the site-wide .reveal/.reveal.in mechanism
+   from assets/app.js -- no bespoke JS needed for the stagger, only the
+   per-step transition-delay below. */
+#main section.block.dark[aria-labelledby="proof-h"]{position:relative;overflow:hidden;padding-block:clamp(80px,9vw,132px)}
+#main section.block.dark[aria-labelledby="proof-h"] .proof-bg{
+  position:absolute;inset:0;z-index:0;
+  background-image:url('images/blocks-egyptian-DalalAkoury-Homecoming.jpg');
+  background-size:cover;background-repeat:no-repeat;background-position:center 42%;
+}
+@media(max-width:1024px){#main section.block.dark[aria-labelledby="proof-h"] .proof-bg{background-position:center center}}
+@media(max-width:640px){#main section.block.dark[aria-labelledby="proof-h"] .proof-bg{background-position:60% center}}
+#main section.block.dark[aria-labelledby="proof-h"]::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(640px 380px at 20% 16%, rgba(198,161,91,.15), transparent 60%),
+    linear-gradient(90deg, rgba(5,18,39,.95) 0%, rgba(5,18,39,.88) 38%, rgba(5,18,39,.8) 68%, rgba(5,18,39,.9) 100%),
+    linear-gradient(180deg, rgba(5,17,38,.4) 0%, rgba(5,17,38,.28) 30%, rgba(5,17,38,.62) 62%, rgba(5,17,38,.92) 100%);
+}
+@media(max-width:640px){
+  #main section.block.dark[aria-labelledby="proof-h"]::before{
+    background:
+      radial-gradient(420px 300px at 30% 10%, rgba(198,161,91,.12), transparent 60%),
+      linear-gradient(180deg, rgba(5,17,38,.9) 0%, rgba(5,17,38,.8) 40%, rgba(5,17,38,.94) 100%);
+  }
+}
+#main section.block.dark[aria-labelledby="proof-h"] .wrap{position:relative;z-index:2}
+
+#main section.block.dark[aria-labelledby="proof-h"] .sec-head2{max-width:700px;margin-bottom:26px}
+#main section.block.dark[aria-labelledby="proof-h"] .eyebrow2{display:flex;align-items:center;gap:10px;letter-spacing:.32em}
+#main section.block.dark[aria-labelledby="proof-h"] .eyebrow2::before{content:"";display:inline-block;width:26px;height:1px;background:var(--gold)}
+#main section.block.dark[aria-labelledby="proof-h"] .eyebrow2::after{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+#main section.block.dark[aria-labelledby="proof-h"] .sec-head2 h2{line-height:1.2;text-shadow:0 2px 26px rgba(198,161,91,.2)}
+#main section.block.dark[aria-labelledby="proof-h"] .lead2{max-width:600px}
+#main section.block.dark[aria-labelledby="proof-h"] .lead2 p{line-height:1.72;color:#dbe0ea}
+
+#main section.block.dark[aria-labelledby="proof-h"] .evidence{gap:14px;margin-top:28px;margin-bottom:56px}
+#main section.block.dark[aria-labelledby="proof-h"] .evidence a{
+  display:inline-flex;align-items:center;min-height:46px;
+  padding:0 22px;border-radius:8px;font-size:14px;letter-spacing:.02em;
+  background:rgba(9,17,36,.4);border-color:rgba(198,161,91,.45);
+  transition:background .3s var(--ease,ease),border-color .3s var(--ease,ease),color .3s var(--ease,ease),transform .3s var(--ease,ease),box-shadow .3s var(--ease,ease);
+}
+#main section.block.dark[aria-labelledby="proof-h"] .evidence a:hover,
+#main section.block.dark[aria-labelledby="proof-h"] .evidence a:focus-visible{
+  background:linear-gradient(135deg,var(--gold),var(--gold-soft));border-color:var(--gold-soft);
+  color:var(--midnight);transform:translateY(-3px);box-shadow:0 14px 28px rgba(0,0,0,.28);
+}
+#main section.block.dark[aria-labelledby="proof-h"] .evidence a:focus-visible{outline:2px solid var(--gold-soft);outline-offset:3px;border-radius:8px}
+
+#main section.block.dark[aria-labelledby="proof-h"] .books-grid{gap:32px;padding-top:38px;border-top:1px solid rgba(198,161,91,.18)}
+#main section.block.dark[aria-labelledby="proof-h"] .book-card{position:relative}
+#main section.block.dark[aria-labelledby="proof-h"] .book-cover{position:relative;border-radius:12px;transition:transform .4s var(--ease,ease)}
+#main section.block.dark[aria-labelledby="proof-h"] .bimg{
+  aspect-ratio:3/4;max-width:240px;border-radius:12px;padding:16px;
+  background:linear-gradient(135deg,rgba(21,37,69,.9),rgba(10,22,46,.85));
+  border:1px solid rgba(198,161,91,.32);
+  box-shadow:0 18px 40px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.04);
+  transition:border-color .4s var(--ease,ease),box-shadow .4s var(--ease,ease);
+}
+#main section.block.dark[aria-labelledby="proof-h"] .bimg::before{display:none}
+#main section.block.dark[aria-labelledby="proof-h"] .bimg::after{background:radial-gradient(70% 60% at 30% 18%,rgba(198,161,91,.14),transparent 68%)}
+#main section.block.dark[aria-labelledby="proof-h"] .bimg img{object-fit:contain}
+#main section.block.dark[aria-labelledby="proof-h"] .book-view-hint{
+  position:absolute;left:50%;bottom:14px;transform:translate(-50%,6px);z-index:3;
+  padding:6px 14px;border-radius:999px;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+  background:rgba(5,12,28,.86);color:var(--gold-soft);border:1px solid rgba(198,161,91,.4);
+  opacity:0;transition:opacity .3s ease,transform .3s var(--ease,ease);white-space:nowrap;pointer-events:none;
+}
+#main section.block.dark[aria-labelledby="proof-h"] .book-cover:hover,
+#main section.block.dark[aria-labelledby="proof-h"] .book-cover:focus-visible{transform:translateY(-7px) scale(1.03)}
+#main section.block.dark[aria-labelledby="proof-h"] .book-cover:hover .bimg,
+#main section.block.dark[aria-labelledby="proof-h"] .book-cover:focus-visible .bimg{
+  border-color:rgba(217,189,130,.65);
+  box-shadow:0 26px 54px rgba(0,0,0,.36),0 0 30px rgba(198,161,91,.12),inset 0 1px 0 rgba(255,255,255,.06);
+}
+#main section.block.dark[aria-labelledby="proof-h"] .book-cover:hover .book-view-hint,
+#main section.block.dark[aria-labelledby="proof-h"] .book-cover:focus-visible .book-view-hint{opacity:1;transform:translate(-50%,0)}
+#main section.block.dark[aria-labelledby="proof-h"] .book-cover:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+#main section.block.dark[aria-labelledby="proof-h"] .book-title{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-size:21px;margin:20px 0 8px}
+#main section.block.dark[aria-labelledby="proof-h"] .book-synopsis{max-width:34ch;margin-left:auto;margin-right:auto;opacity:.92}
+
+#main section.block.dark[aria-labelledby="proof-h"] .reveal.d1{transition-delay:0s}
+#main section.block.dark[aria-labelledby="proof-h"] .reveal.d2{transition-delay:.08s}
+#main section.block.dark[aria-labelledby="proof-h"] .reveal.d3{transition-delay:.16s}
+#main section.block.dark[aria-labelledby="proof-h"] .reveal.d4{transition-delay:.24s}
+#main section.block.dark[aria-labelledby="proof-h"] .reveal.d5{transition-delay:.3s}
+#main section.block.dark[aria-labelledby="proof-h"] .reveal.d6{transition-delay:.36s}
+#main section.block.dark[aria-labelledby="proof-h"] .reveal.d7{transition-delay:.42s}
+#main section.block.dark[aria-labelledby="proof-h"] .reveal.d8{transition-delay:.48s}
+#main section.block.dark[aria-labelledby="proof-h"] .reveal.d9{transition-delay:.56s}
+#main section.block.dark[aria-labelledby="proof-h"] .reveal.d10{transition-delay:.64s}
+#main section.block.dark[aria-labelledby="proof-h"] .reveal.d11{transition-delay:.72s}
+
+@media(max-width:980px){#main section.block.dark[aria-labelledby="proof-h"] .lead2{max-width:640px}}
+@media(max-width:560px){
+  #main section.block.dark[aria-labelledby="proof-h"] .evidence a{padding:0 18px;font-size:13.5px}
+  #main section.block.dark[aria-labelledby="proof-h"] .bimg{max-width:200px}
+}
+@media(prefers-reduced-motion:reduce){
+  #main section.block.dark[aria-labelledby="proof-h"] .book-cover,
+  #main section.block.dark[aria-labelledby="proof-h"] .evidence a{transition:background .2s ease,border-color .2s ease,color .2s ease;transform:none!important}
+  #main section.block.dark[aria-labelledby="proof-h"] .book-view-hint{transition:opacity .2s ease}
+}
+
 #main .chips2{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:20px}
 #main .chip2{border:1px solid var(--line);border-radius:999px;padding:8px 17px;font-size:13.5px;color:var(--midnight);background:#fff}
 #main section.dark .chip2{background:rgba(255,255,255,.06);border-color:rgba(198,161,91,.3);color:#fff}
@@ -1795,36 +1907,40 @@ html[dir="rtl"] #pathways .path2::after{left:auto;right:0}
 </section>
 
 <section class="block dark" aria-labelledby="proof-h">
+  <div class="proof-bg" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="sec-head2"><span class="eyebrow2" data-i18n="proof.eyebrow">Proof, Not Empty Praise</span><h2 id="proof-h" data-i18n="proof.h2">A Life&rsquo;s Work That Can Be Examined</h2></div>
-    <div class="lead2" style="margin-bottom:22px"><p data-i18n="proof.lead">Authority should be verifiable. Explore Dr. Akoury&rsquo;s published books, peer-reviewed work, professional profile and the ecosystem she built.</p></div>
+    <div class="sec-head2"><span class="eyebrow2 reveal d1" data-i18n="proof.eyebrow">Proof, Not Empty Praise</span><h2 id="proof-h" class="reveal d2" data-i18n="proof.h2">A Life&rsquo;s Work That Can Be Examined</h2></div>
+    <div class="lead2" style="margin-bottom:22px"><p class="reveal d3" data-i18n="proof.lead">Authority should be verifiable. Explore Dr. Akoury&rsquo;s published books, peer-reviewed work, professional profile and the ecosystem she built.</p></div>
     <div class="evidence">
-      <a href="https://www.amazon.com/stores/Dalal-Akoury-M.D./author/B072FSVBJB" data-i18n="proof.link1">View Books</a>
-      <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Akoury+DA" data-i18n="proof.link2">Publications on PubMed</a>
-      <a href="https://awaremed.com/dr-dalalakoury" data-i18n="proof.link3">Professional Profile</a>
-      <a href="https://www.linkedin.com/in/dalalakourymd/" data-i18n="proof.link4">LinkedIn</a>
-      <a href="https://awaremed.com" data-i18n="proof.link5">AWAREmed</a>
+      <a class="reveal d4" href="https://www.amazon.com/stores/Dalal-Akoury-M.D./author/B072FSVBJB" data-i18n="proof.link1">View Books</a>
+      <a class="reveal d5" href="https://pubmed.ncbi.nlm.nih.gov/?term=Akoury+DA" data-i18n="proof.link2">Publications on PubMed</a>
+      <a class="reveal d6" href="https://awaremed.com/dr-dalalakoury" data-i18n="proof.link3">Professional Profile</a>
+      <a class="reveal d7" href="https://www.linkedin.com/in/dalalakourymd/" data-i18n="proof.link4">LinkedIn</a>
+      <a class="reveal d8" href="https://awaremed.com" data-i18n="proof.link5">AWAREmed</a>
     </div>
     <div class="books-grid" aria-label="Published books">
-      <div class="book-card">
+      <div class="book-card reveal d9">
         <a class="book-cover" href="https://www.amazon.com/CANCER-Beyond-Cure-Dalal-Akoury-ebook/dp/B08NJFZ5JF/" aria-label="CANCER: Beyond the Cure by Dr. Dalal Akoury, on Amazon" target="_blank" rel="noopener noreferrer">
           <div class="ph bimg"><img src="images/cancer-beyond-the-cure.jpg" alt="CANCER: Beyond the Cure, a book by Dr. Dalal Akoury, MD" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div>
+          <span class="book-view-hint" aria-hidden="true">View Book</span>
         </a>
         <p class="book-title" data-i18n="proof.book1.title"><em>CANCER: Beyond the Cure</em></p>
         <p class="book-synopsis" data-i18n="proof.book1.synopsis">Cancer is an unwelcome guest &mdash; but it doesn&rsquo;t have to be a stranger. This book faces cancer head-on: understanding its power, its history (dating back to ancient Egypt), and its nature, so you can meet the enemy on your own terms. Because the spirit prepares the mind, the mind prepares the way, and the body follows. Knowledge isn&rsquo;t just power here &mdash; it&rsquo;s survival.</p>
         <p class="book-cta"><a href="https://www.amazon.com/CANCER-Beyond-Cure-Dalal-Akoury-ebook/dp/B08NJFZ5JF/" data-i18n="proof.book1.cta" target="_blank" rel="noopener noreferrer">Get it on Amazon &rarr;</a></p>
       </div>
-      <div class="book-card">
+      <div class="book-card reveal d10">
         <a class="book-cover" href="https://www.amazon.com/Breastfeeding-Bonds-Superheroes-Unleashing-Superpowers/dp/1637926286/ref=books_amazonstores_desktop_mfs_author_smart_catalog_unrecognized_1?_encoding=UTF8&pd_rd_w=aCb9F&content-id=amzn1.sym.47218010-ccda-4098-a91e-bc39e6d446f4&pf_rd_p=47218010-ccda-4098-a91e-bc39e6d446f4&pf_rd_r=146-1615039-5447613&pd_rd_wg=0qiZM&pd_rd_r=44d429f1-bb5a-4051-8f16-c2cdd2fb5b4e" aria-label="Breastfeeding Bonds Superheroes by Dr. Dalal Akoury, on Amazon" target="_blank" rel="noopener noreferrer">
           <div class="ph bimg"><img src="images/Breastfeeding-Bonds.jpg" alt="Breastfeeding Bonds Superheroes, a book by Dr. Dalal Akoury, MD" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div>
+          <span class="book-view-hint" aria-hidden="true">View Book</span>
         </a>
         <p class="book-title" data-i18n="proof.book2.title"><em>Breastfeeding Bonds Superheroes</em></p>
         <p class="book-synopsis" data-i18n="proof.book2.synopsis">Every mother who breastfeeds is a superhero, and Dr. Dalal Akoury proves it. In <em>Breastfeeding Bonds Superheroes</em>, she fuses science with heart, revealing the extraordinary power packed into breast milk and the unbreakable bond it forges between mother and child. Part guide, part rallying cry, this book empowers mothers to own their journey &mdash; one superheroic feed at a time.</p>
         <p class="book-cta"><a href="https://www.amazon.com/Breastfeeding-Bonds-Superheroes-Unleashing-Superpowers/dp/1637926286/ref=books_amazonstores_desktop_mfs_author_smart_catalog_unrecognized_1?_encoding=UTF8&pd_rd_w=aCb9F&content-id=amzn1.sym.47218010-ccda-4098-a91e-bc39e6d446f4&pf_rd_p=47218010-ccda-4098-a91e-bc39e6d446f4&pf_rd_r=146-1615039-5447613&pd_rd_wg=0qiZM&pd_rd_r=44d429f1-bb5a-4051-8f16-c2cdd2fb5b4e" data-i18n="proof.book2.cta" target="_blank" rel="noopener noreferrer">Get it on Amazon &rarr;</a></p>
       </div>
-      <div class="book-card">
+      <div class="book-card reveal d11">
         <a class="book-cover" href="https://www.amazon.com/SECRETS-HEALTHY-AGING-Dalal-Akoury-ebook/dp/B0CBL6TW5S/ref=books_amazonstores_desktop_mfs_author_smart_catalog_unrecognized_3?_encoding=UTF8&pd_rd_w=aCb9F&content-id=amzn1.sym.47218010-ccda-4098-a91e-bc39e6d446f4&pf_rd_p=47218010-ccda-4098-a91e-bc39e6d446f4&pf_rd_r=146-1615039-5447613&pd_rd_wg=0qiZM&pd_rd_r=44d429f1-bb5a-4051-8f16-c2cdd2fb5b4e" aria-label="Secrets of Healthy Aging by Dr. Dalal Akoury, on Amazon" target="_blank" rel="noopener noreferrer">
           <div class="ph bimg"><img src="images/Secretsofhealthy-aging.jpg" alt="Secrets of Healthy Aging, a book by Dr. Dalal Akoury, MD" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div>
+          <span class="book-view-hint" aria-hidden="true">View Book</span>
         </a>
         <p class="book-title" data-i18n="proof.book3.title"><em>Secrets of Healthy Aging</em></p>
         <p class="book-synopsis" data-i18n="proof.book3.synopsis">People are living longer, but living well takes more than luck. <em>Secrets of Healthy Aging</em> shows how functional medicine, root-cause healing, and the body&rsquo;s own power to repair itself are rewriting the rules of longevity. Because 70 is the new 50, and everyone deserves copies for themselves and the people they love.</p>
