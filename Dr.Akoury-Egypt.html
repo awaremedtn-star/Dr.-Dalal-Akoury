@@ -371,24 +371,72 @@
 #main .card2 p{font-size:15.5px;color:var(--ink-soft);margin:0}
 #main section.dark .card2 p{color:#c6cdda}
 
-/* "A Path That Circled the World and Led Home" -- premium refresh, 2026.
+/* "A Path That Circled the World and Led Home" -- cinematic refresh, 2026.
    .timeline/.tl-item/.era are only ever used in this one journey-h
    section (confirmed via repo-wide search), so the structural/card
    rules below restyle those classes directly; the section's own
    background and heading get the [aria-labelledby="journey-h"]
    attribute scoping already used elsewhere on this page, since
-   section.block.dark is shared with #meet, why-now and proof. */
+   section.block.dark is shared with #meet, why-now and proof.
+   Stacking order: .jr-bg (photo, z0) < ::before (overlay gradients, z1)
+   < .jr-route (decorative curve, z2) < .wrap (heading+timeline, z3). */
 #main section.block.dark[aria-labelledby="journey-h"]{position:relative;overflow:hidden}
-#main section.block.dark[aria-labelledby="journey-h"]::before{
-  content:"";position:absolute;inset:0;z-index:0;
-  background:radial-gradient(900px 520px at 50% 8%, rgba(198,161,91,.10), transparent 62%);
+#main section.block.dark[aria-labelledby="journey-h"] .jr-bg{
+  position:absolute;inset:0;z-index:0;
+  background-image:url('images/blocks-egyptian-DalalAkoury-Homecoming.jpg');
+  background-size:cover;background-repeat:no-repeat;background-position:center 42%;
+  transform:scale(1);transition:transform 12s linear;
 }
-/* Faint decorative route: a single curved gold line with a few points,
+#main section.block.dark[aria-labelledby="journey-h"] .jr-bg.jr-zoom{transform:scale(1.035)}
+@media(max-width:1024px){#main section.block.dark[aria-labelledby="journey-h"] .jr-bg{background-position:center center}}
+@media(max-width:640px){#main section.block.dark[aria-labelledby="journey-h"] .jr-bg{background-position:55% center}}
+/* Multi-layer navy overlay: a faint gold radial glow roughly behind
+   where the heading sits, a horizontal wash that keeps the left
+   (heading/timeline) side darker than the right (where the photo and
+   decorative route show through more), and a vertical wash that
+   deepens slightly toward the very top/bottom edges. */
+#main section.block.dark[aria-labelledby="journey-h"]::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(760px 420px at 20% 14%, rgba(198,161,91,.14), transparent 60%),
+    linear-gradient(90deg, rgba(5,16,37,.94) 0%, rgba(7,20,46,.84) 48%, rgba(5,16,36,.68) 100%),
+    linear-gradient(180deg, rgba(5,17,38,.72) 0%, rgba(5,17,38,.48) 45%, rgba(5,17,38,.86) 100%);
+}
+@media(max-width:640px){
+  /* Less of the image is visible per pixel of a narrow viewport and
+     there's no side margin left for the .jr-route curve to occupy, so
+     the wash goes flatter and a touch stronger to keep contrast solid. */
+  #main section.block.dark[aria-labelledby="journey-h"]::before{
+    background:
+      radial-gradient(500px 320px at 30% 10%, rgba(198,161,91,.12), transparent 60%),
+      linear-gradient(180deg, rgba(5,17,38,.88) 0%, rgba(5,17,38,.74) 45%, rgba(5,17,38,.92) 100%);
+  }
+}
+@media(prefers-reduced-motion:reduce){#main section.block.dark[aria-labelledby="journey-h"] .jr-bg{transition:none}}
+
+/* Decorative route: a single curved gold line with a few points,
    suggesting the Alexandria -> abroad -> home arc of the timeline
-   without any literal map or readable labels. Purely decorative. */
-#main section.block.dark[aria-labelledby="journey-h"] .jr-route{position:absolute;inset:0;z-index:0;width:100%;height:100%;opacity:.5}
-#main section.block.dark[aria-labelledby="journey-h"] .jr-route path{stroke:var(--gold-soft);stroke-width:1.2;fill:none}
-#main section.block.dark[aria-labelledby="journey-h"] .jr-route circle{fill:var(--gold-soft)}
+   without any literal map or readable labels. Reads as a continuation
+   of the roadmap toward the homecoming point rather than a
+   disconnected flourish: the path stays undrawn (stroke-dashoffset via
+   a normalized pathLength) until the final milestone is reached, at
+   which point JS adds .jr-final and it draws in with one small glowing
+   destination point -- no looping animation. */
+#main section.block.dark[aria-labelledby="journey-h"] .jr-route{position:absolute;inset:0;z-index:2;width:100%;height:100%;opacity:.4}
+#main section.block.dark[aria-labelledby="journey-h"] .jr-route path{
+  stroke:var(--gold-soft);stroke-width:1.2;fill:none;
+  stroke-dasharray:100;stroke-dashoffset:100;
+  transition:stroke-dashoffset 1.6s var(--ease,ease);
+}
+#main section.block.dark[aria-labelledby="journey-h"] .jr-route.jr-final path{stroke-dashoffset:0}
+#main section.block.dark[aria-labelledby="journey-h"] .jr-route circle{fill:var(--gold-soft);opacity:.55}
+#main section.block.dark[aria-labelledby="journey-h"] .jr-route-dest{
+  opacity:0;transition:opacity .8s ease .4s,r .8s ease .4s;
+  filter:drop-shadow(0 0 0 rgba(198,161,91,0));
+}
+#main section.block.dark[aria-labelledby="journey-h"] .jr-route.jr-final .jr-route-dest{
+  opacity:1;r:6;filter:drop-shadow(0 0 8px rgba(198,161,91,.7));
+}
 /* .timeline is centered with a max-width of 820px, so anything past
    roughly x=940 in this 1200-wide viewBox falls in the empty right
    margin -- confining the route there keeps it from ever crossing
@@ -396,67 +444,117 @@
    runs edge-to-edge (no margin left to route through), hide it outright
    rather than let it overlap content. */
 @media(max-width:1024px){#main section.block.dark[aria-labelledby="journey-h"] .jr-route{display:none}}
-#main section.block.dark[aria-labelledby="journey-h"] .wrap{position:relative;z-index:1}
+#main section.block.dark[aria-labelledby="journey-h"] .wrap{position:relative;z-index:3}
+@media(prefers-reduced-motion:reduce){
+  #main section.block.dark[aria-labelledby="journey-h"] .jr-route path,
+  #main section.block.dark[aria-labelledby="journey-h"] .jr-route-dest{transition:none}
+}
 
 /* Section intro */
-#main section.block.dark[aria-labelledby="journey-h"] .sec-head2{max-width:640px}
+#main section.block.dark[aria-labelledby="journey-h"] .sec-head2{max-width:700px}
 #main section.block.dark[aria-labelledby="journey-h"] .eyebrow2{display:flex;align-items:center;gap:10px;letter-spacing:.3em}
 #main section.block.dark[aria-labelledby="journey-h"] .eyebrow2::before{content:"";display:inline-block;width:26px;height:1px;background:var(--gold)}
 #main section.block.dark[aria-labelledby="journey-h"] .eyebrow2::after{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold)}
 #main section.block.dark[aria-labelledby="journey-h"] .sec-head2 h2{line-height:1.22;text-shadow:0 2px 28px rgba(198,161,91,.22)}
 
 /* Timeline track: a static low-opacity base line plus a separate
-   progress overlay (a real element, not a pseudo, since its height is
+   progress overlay (a real element, not a pseudo, since its fill is
    driven by JS as the reader scrolls) that grows and glows gold as
-   milestones activate. */
+   milestones activate. Grown via transform:scaleY rather than height
+   so the continuous scroll-driven update never triggers layout. */
 #main .timeline{position:relative;max-width:820px;margin:0 auto;padding-left:34px}
 #main .timeline::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:2px;background:rgba(198,161,91,.22)}
-#main .tl-progress{position:absolute;left:0;top:6px;width:2px;height:0;background:linear-gradient(180deg,var(--gold),var(--gold-soft));box-shadow:0 0 14px rgba(198,161,91,.55);transition:height .5s var(--ease,ease)}
+#main .tl-progress{position:absolute;left:0;top:6px;width:2px;height:calc(100% - 12px);transform-origin:top;transform:scaleY(0);background:linear-gradient(180deg,var(--gold),var(--gold-soft));box-shadow:0 0 14px rgba(198,161,91,.55);transition:transform .2s ease-out}
 #main .tl-item{position:relative;padding:0 0 40px}
 #main .tl-item:last-child{padding-bottom:0}
+#main .tl-item[data-state="active"]::before{content:"";position:absolute;left:-60px;top:-30px;width:240px;height:240px;background:radial-gradient(circle,rgba(198,161,91,.12),transparent 70%);pointer-events:none;z-index:-1}
+
 #main .tl-marker{
   position:absolute;left:-34px;top:2px;width:20px;height:20px;border-radius:50%;
-  background:var(--midnight);border:2px solid var(--gold);
-  display:flex;align-items:center;justify-content:center;color:var(--gold);
-  box-shadow:0 0 0 4px rgba(198,161,91,.10);
-  transition:background .4s var(--ease,ease),box-shadow .4s var(--ease,ease),color .4s var(--ease,ease);
+  background:var(--midnight);border:2px solid rgba(198,161,91,.4);
+  display:flex;align-items:center;justify-content:center;color:rgba(198,161,91,.65);
+  box-shadow:0 0 0 4px rgba(198,161,91,.08);
+  transition:background .4s var(--ease,ease),border-color .4s var(--ease,ease),box-shadow .4s var(--ease,ease),color .4s var(--ease,ease),transform .4s var(--ease,ease);
 }
 #main .tl-marker svg{width:11px;height:11px}
-#main .tl-item.in .tl-marker{background:var(--gold);color:var(--midnight);box-shadow:0 0 0 6px rgba(198,161,91,.18),0 0 18px rgba(198,161,91,.5)}
+@keyframes tl-pulse{
+  0%{box-shadow:0 0 0 4px var(--midnight),0 0 24px rgba(198,161,91,.6),0 0 0 0 rgba(198,161,91,.45)}
+  70%{box-shadow:0 0 0 4px var(--midnight),0 0 24px rgba(198,161,91,.6),0 0 0 14px rgba(198,161,91,0)}
+  100%{box-shadow:0 0 0 4px var(--midnight),0 0 24px rgba(198,161,91,.6),0 0 0 0 rgba(198,161,91,0)}
+}
+#main .tl-item[data-state="active"] .tl-marker{background:var(--gold);border-color:var(--gold);color:var(--midnight);box-shadow:0 0 0 4px var(--midnight),0 0 24px rgba(198,161,91,.6);transform:scale(1.08);animation:tl-pulse 1.8s var(--ease,ease) 1}
+#main .tl-item[data-state="completed"] .tl-marker{background:var(--midnight);border-color:var(--gold);color:var(--gold-soft);box-shadow:0 0 0 4px var(--midnight),0 0 10px rgba(198,161,91,.3)}
+
 #main .tl-card{
-  position:relative;
+  position:relative;overflow:hidden;
   padding:20px 24px;margin:-2px 0 0 -2px;
-  border-radius:12px;
-  border:1px solid rgba(198,161,91,.22);
-  background:rgba(255,255,255,.045);
-  opacity:0;transform:translateY(18px);
-  transition:opacity .6s var(--ease,ease),transform .6s var(--ease,ease),border-color .35s var(--ease,ease),background .35s var(--ease,ease);
+  border-radius:14px;
+  border:1px solid rgba(210,174,92,.22);
+  background:linear-gradient(135deg,rgba(21,37,69,.82),rgba(10,24,50,.66));
+  -webkit-backdrop-filter:blur(14px) saturate(115%);backdrop-filter:blur(14px) saturate(115%);
+  box-shadow:0 22px 55px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.035);
+  opacity:.82;transform:translateY(22px);
+  transition:opacity .65s var(--ease,ease),transform .65s var(--ease,ease),border-color .45s ease,box-shadow .55s ease,background .45s ease;
 }
-#main .tl-item.in .tl-card{opacity:1;transform:none}
-#main .tl-card:hover,#main .tl-card:focus-visible{
-  transform:translateX(6px);
-  border-color:rgba(198,161,91,.55);
-  background:rgba(255,255,255,.07);
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  #main .tl-card{background:rgba(13,24,50,.94)}
 }
-#main .tl-card:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-#main .tl-card:hover ~ .tl-marker,
-#main .tl-card:focus-visible ~ .tl-marker{background:var(--gold);color:var(--midnight);box-shadow:0 0 0 6px rgba(198,161,91,.18),0 0 18px rgba(198,161,91,.5)}
-#main .tl-item .era{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600}
-#main .tl-item h4{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-weight:600;font-size:22px;margin:6px 0 8px;color:#fff}
-#main .tl-item p{font-size:15px;color:#c6cdda;margin:0;line-height:1.68;max-width:52ch}
+/* Gold edge accent, connecting the card to its node -- a short soft
+   line rather than a solid stripe, brightening/lengthening on
+   hover/active rather than a static decoration. */
+#main .tl-card::before{
+  content:"";position:absolute;left:0;top:18%;width:2px;height:64%;
+  background:linear-gradient(180deg,transparent,rgba(213,177,92,.9),transparent);
+  opacity:.35;transition:opacity .45s ease,height .55s var(--ease,ease),top .55s var(--ease,ease);
+}
+/* Pointer-following glow (desktop/fine-pointer only, see script below);
+   --tl-px/--tl-py are set by JS on mousemove and default to the card's
+   own center so this is inert until JS actually updates them. */
+#main .tl-card::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(280px circle at var(--tl-px,50%) var(--tl-py,50%),rgba(217,179,91,.10),transparent 65%);
+  opacity:0;transition:opacity .3s ease;
+}
+#main .tl-item[data-state="active"] .tl-card{opacity:1;transform:translateY(-6px);border-color:rgba(213,177,92,.4);box-shadow:0 26px 60px rgba(0,0,0,.3),0 0 34px rgba(198,161,91,.12),inset 0 1px 0 rgba(255,255,255,.05)}
+#main .tl-item[data-state="active"] .tl-card::before{opacity:.75}
+#main .tl-item[data-state="completed"] .tl-card{opacity:1;transform:translateY(0);border-color:rgba(198,161,91,.3)}
+#main .tl-item[data-state="active"] h4,#main .tl-item[data-state="active"] .era{text-shadow:0 0 16px rgba(205,166,78,.3)}
+
+#main section.block.dark[aria-labelledby="journey-h"] .tl-card:hover,
+#main section.block.dark[aria-labelledby="journey-h"] .tl-card:focus-visible{
+  transform:translateY(-6px) translateX(-3px);
+  border-color:rgba(217,189,130,.6);
+  background:linear-gradient(135deg,rgba(28,47,84,.9),rgba(14,30,60,.78));
+  box-shadow:0 28px 64px rgba(0,0,0,.32),0 0 36px rgba(198,161,91,.14),inset 0 1px 0 rgba(255,255,255,.07);
+}
+#main section.block.dark[aria-labelledby="journey-h"] .tl-card:hover::before,
+#main section.block.dark[aria-labelledby="journey-h"] .tl-card:focus-visible::before{opacity:.9;height:80%;top:10%}
+#main section.block.dark[aria-labelledby="journey-h"] .tl-card:hover::after{opacity:1}
+#main section.block.dark[aria-labelledby="journey-h"] .tl-card:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+#main section.block.dark[aria-labelledby="journey-h"] .tl-card:hover ~ .tl-marker,
+#main section.block.dark[aria-labelledby="journey-h"] .tl-card:focus-visible ~ .tl-marker{background:var(--gold);color:var(--midnight);box-shadow:0 0 0 6px rgba(198,161,91,.18),0 0 18px rgba(198,161,91,.5)}
+
+#main .tl-item .era{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;transition:text-shadow .4s ease}
+#main .tl-item h4{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-weight:600;font-size:22px;margin:6px 0 8px;color:#fff;transition:text-shadow .4s ease}
+#main .tl-item p{font-size:15px;color:#c6cdda;margin:0;line-height:1.68;max-width:52ch;opacity:.92}
 
 @media(max-width:640px){
   #main .timeline{padding-left:26px}
   #main .tl-marker{left:-26px;width:17px;height:17px}
   #main .tl-marker svg{width:9px;height:9px}
   #main .tl-card{padding:16px 18px}
+  #main .tl-item[data-state="active"]::before{left:-40px;width:170px;height:170px}
+  #main section.block.dark[aria-labelledby="journey-h"] .tl-card:hover,
+  #main section.block.dark[aria-labelledby="journey-h"] .tl-card:focus-visible{transform:translateY(-4px)}
 }
 
 @media(prefers-reduced-motion:reduce){
   #main .tl-progress{transition:none}
-  #main .tl-card{transition:border-color .2s ease,background .2s ease}
-  #main .tl-card:hover,#main .tl-card:focus-visible{transform:none}
-  #main .tl-marker{transition:background .2s ease,color .2s ease}
+  #main .tl-card{transition:border-color .2s ease,background .2s ease;transform:none!important}
+  #main section.block.dark[aria-labelledby="journey-h"] .tl-card:hover,
+  #main section.block.dark[aria-labelledby="journey-h"] .tl-card:focus-visible{transform:none}
+  #main section.block.dark[aria-labelledby="journey-h"] .tl-card:hover::after{opacity:0}
+  #main .tl-marker{transition:background .2s ease,border-color .2s ease,color .2s ease;animation:none!important;transform:none!important}
 }
 
 /* Full-bleed image bridge between "Forty Years of Medicine" and "Beyond
@@ -1064,9 +1162,10 @@ html[dir="rtl"] #main .form2{text-align:right}
 </section>
 
 <section class="block dark" aria-labelledby="journey-h">
+  <div class="jr-bg" aria-hidden="true"></div>
   <svg class="jr-route" aria-hidden="true" viewBox="0 0 1200 600" preserveAspectRatio="none" focusable="false">
-    <path d="M1155 35 C 995 130, 1150 270, 1005 395 C 915 475, 1085 535, 1120 585"/>
-    <circle cx="1155" cy="35" r="4"/><circle cx="1005" cy="395" r="3"/><circle cx="1120" cy="585" r="4"/>
+    <path pathLength="100" d="M1155 35 C 995 130, 1150 270, 1005 395 C 915 475, 1085 535, 1120 585"/>
+    <circle cx="1155" cy="35" r="4"/><circle cx="1005" cy="395" r="3"/><circle class="jr-route-dest" cx="1120" cy="585" r="4"/>
   </svg>
   <div class="wrap">
     <div class="sec-head2" id="journey"><span class="eyebrow2 reveal" data-i18n="journey.eyebrow">The Journey from Alexandria</span><h2 id="journey-h" class="reveal d1" data-i18n="journey.h2">A Path That Circled the World and Led Home</h2></div>
@@ -2054,54 +2153,122 @@ html[dir="rtl"] #pathways .path2::after{left:auto;right:0}
 
 <script>
 (function(){
-  // "A Path That Circled the World and Led Home" timeline: activates
-  // each milestone (filling its marker gold and revealing its card) as
-  // it nears the viewport center, and grows the gold .tl-progress line
-  // to match the furthest-activated marker. Fires once per item, same
-  // as the site-wide .reveal observer in assets/app.js, but kept
-  // separate since it also drives the progress-line height, which that
-  // shared observer has no concept of.
-  var timeline = document.querySelector('[aria-labelledby="journey-h"] .timeline');
+  // "A Path That Circled the World and Led Home" timeline. Mirrors the
+  // #legacy-ghaly roadmap pattern below: a single IntersectionObserver
+  // with a thin center-band rootMargin picks the one milestone nearest
+  // the viewport's vertical center as "active", marks everything above
+  // it "completed" and below "upcoming" (data-state drives all the
+  // CSS), plus a separate rAF-throttled scroll handler that fills
+  // .tl-progress continuously via transform:scaleY (never .style.height,
+  // so it never triggers layout). Also owns three things unique to this
+  // section: a one-time background zoom on first view, revealing the
+  // decorative .jr-route stroke + destination glow once the final
+  // milestone activates, and a fine-pointer-only glow that tracks the
+  // cursor inside whichever card it's over.
+  var section = document.querySelector('section.block.dark[aria-labelledby="journey-h"]');
+  if (!section) return;
+  var timeline = section.querySelector('.timeline');
   if (!timeline) return;
-  var progress = timeline.querySelector('.tl-progress');
-  var items = timeline.querySelectorAll('.tl-item');
+  var items = Array.prototype.slice.call(timeline.querySelectorAll('.tl-item'));
+  if (!items.length) return;
+  var progressEl = timeline.querySelector('.tl-progress');
+  var bg = section.querySelector('.jr-bg');
+  var route = section.querySelector('.jr-route');
   var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-  function markerOffset(item){
-    // The marker is absolutely positioned against its own .tl-item (so
-    // it lines up with that item's card regardless of the card's
-    // height), so offsetTop alone is relative to the wrong ancestor --
-    // measure via getBoundingClientRect deltas against .timeline instead.
+  function nodeCenterY(item){
     var marker = item.querySelector('.tl-marker');
-    var mRect = marker.getBoundingClientRect();
-    var tRect = timeline.getBoundingClientRect();
-    return (mRect.top - tRect.top) + mRect.height / 2;
+    var r = marker.getBoundingClientRect();
+    var tr = timeline.getBoundingClientRect();
+    return (r.top - tr.top) + r.height / 2;
   }
 
-  if (reduced || !('IntersectionObserver' in window)) {
-    // No scroll-driven reveal or animated fill: show every milestone
-    // immediately and set the line to its full height in one step.
-    items.forEach(function(item){ item.classList.add('in'); });
-    if (progress && items.length) progress.style.height = markerOffset(items[items.length - 1]) + 'px';
+  var activeIndex = -1;
+  function setStates(idx){
+    if (idx === activeIndex) return;
+    activeIndex = idx;
+    items.forEach(function(item, i){
+      item.setAttribute('data-state', i < idx ? 'completed' : (i === idx ? 'active' : 'upcoming'));
+    });
+    if (route && idx === items.length - 1) route.classList.add('jr-final');
+  }
+
+  var hasIO = 'IntersectionObserver' in window;
+
+  if (reduced || !hasIO) {
+    // Reduced motion (or no IntersectionObserver support): show the
+    // whole timeline as reached, no pulse, no zoom, no moving line --
+    // everything simply reads as complete and fully visible.
+    setStates(items.length - 1);
+    if (progressEl) progressEl.style.transform = 'scaleY(1)';
+    if (bg) bg.classList.add('jr-zoom');
     return;
   }
 
   var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('in');
-      io.unobserve(entry.target);
-      // Only grow the line, never let a fast/out-of-order scroll retract
-      // it back up past an already-reached milestone.
-      if (progress){
-        var next = markerOffset(entry.target);
-        var current = parseFloat(progress.style.height) || 0;
-        progress.style.height = Math.max(current, next) + 'px';
-      }
+    var candidates = entries.filter(function(e){ return e.isIntersecting; }).map(function(e){ return e.target; });
+    if (!candidates.length) return;
+    var vh = window.innerHeight, best = null, bestDist = Infinity;
+    candidates.forEach(function(item){
+      var marker = item.querySelector('.tl-marker');
+      var r = marker.getBoundingClientRect();
+      var center = r.top + r.height / 2;
+      var d = Math.abs(center - vh / 2);
+      if (d < bestDist) { bestDist = d; best = item; }
     });
-  }, { threshold: .4 });
-
+    if (best) setStates(items.indexOf(best));
+  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
   items.forEach(function(item){ io.observe(item); });
+
+  // Only run the continuous scroll math while the section is actually
+  // on screen -- gated by its own IntersectionObserver rather than a
+  // permanently-attached scroll listener doing wasted work off-screen.
+  // The same gate triggers the one-time background zoom the first time
+  // the section comes into view.
+  var sectionVisible = false;
+  var zoomed = false;
+  var visIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      sectionVisible = e.isIntersecting;
+      if (e.isIntersecting && !zoomed && bg){ bg.classList.add('jr-zoom'); zoomed = true; }
+    });
+  }, { threshold: 0 });
+  visIO.observe(section);
+
+  var ticking = false;
+  function updateProgress(){
+    ticking = false;
+    if (!sectionVisible || !progressEl) return;
+    var firstY = nodeCenterY(items[0]);
+    var lastY = nodeCenterY(items[items.length - 1]);
+    var trackRect = timeline.getBoundingClientRect();
+    var centerInTrack = (window.innerHeight / 2) - trackRect.top;
+    var span = lastY - firstY || 1;
+    var t = Math.max(0, Math.min(1, (centerInTrack - firstY) / span));
+    progressEl.style.transform = 'scaleY(' + t + ')';
+  }
+  function onScroll(){
+    if (!ticking) { ticking = true; requestAnimationFrame(updateProgress); }
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll, { passive: true });
+  onScroll();
+
+  // Fine-pointer-only glow that follows the cursor inside whichever
+  // card it's currently over; only updates while the pointer is inside
+  // a specific card, never via a global mousemove tracker.
+  var finePointer = window.matchMedia && matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if (finePointer){
+    items.forEach(function(item){
+      var card = item.querySelector('.tl-card');
+      if (!card) return;
+      card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--tl-px', ((e.clientX - r.left) / r.width * 100) + '%');
+        card.style.setProperty('--tl-py', ((e.clientY - r.top) / r.height * 100) + '%');
+      });
+    });
+  }
 })();
 </script>
 
