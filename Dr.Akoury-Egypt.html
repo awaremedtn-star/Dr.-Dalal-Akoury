@@ -354,7 +354,7 @@
 #main .ar-32{aspect-ratio:3/2;border-radius:6px}
 #main .ar-169{aspect-ratio:16/9;border-radius:6px}
 
-#main .pull2{border-left:3px solid var(--gold);padding:4px 0 4px 28px;margin:30px 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;line-height:1.4;font-style:italic;color:var(--midnight)}
+#main .lead2 .pull2{border-left:3px solid var(--gold);padding:4px 0 4px 28px;margin:30px 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;line-height:1.4;font-style:italic;color:var(--midnight)}
 #main section.dark .pull2{color:#fff}
 
 #main .cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -1425,14 +1425,133 @@ html[dir="rtl"] #main .form2{text-align:right}
   </div>
 </section>
 
-<section class="block" aria-labelledby="forty-h">
+<section class="block forty-years" id="forty-years" aria-labelledby="forty-h">
+<style>
+/* ---- "Forty Years of Medicine" premium editorial redesign ---- */
+#forty-years{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--ivory) 0%,var(--paper) 48%,var(--ivory) 100%);padding:126px 0 138px}
+#forty-years::before{content:"";position:absolute;top:-120px;left:-80px;width:560px;height:560px;background:radial-gradient(circle,rgba(198,161,91,.1),transparent 70%);pointer-events:none;z-index:0}
+#forty-years::after{content:"";position:absolute;top:120px;right:-140px;width:680px;height:680px;background:radial-gradient(circle,rgba(11,18,38,.05),transparent 70%);pointer-events:none;z-index:0}
+#forty-years .wrap{position:relative;z-index:1}
+
+/* editorial introduction: heading column wider than the summary, the
+   summary aligned toward the base of the heading rather than stacked */
+/* align-items:end here would bottom-align the (shorter) summary
+   column against the (taller) heading column, floating it above the
+   grid's own top edge and under the sticky nav -- align-items:start
+   plus a top offset on the summary itself gets the "sits toward the
+   lower area of the heading" placement without that overflow. */
+#forty-years .forty-intro{position:relative;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);gap:64px;align-items:start;margin-bottom:52px}
+#forty-years .eyebrow2{display:flex;align-items:center;gap:12px}
+#forty-years .eyebrow2::before{content:"";display:inline-block;width:28px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+#forty-years .sec-head2{max-width:none;margin-bottom:0}
+#forty-years .sec-head2 h2{max-width:800px;font-size:clamp(32px,4.2vw,50px);line-height:1.12;letter-spacing:-.01em;color:var(--midnight);text-wrap:balance}
+#forty-years .forty-intro__summary{max-width:600px;padding-top:58px}
+#forty-years .forty-intro__summary p{font-size:18px;line-height:1.74;color:var(--ink-soft);margin:0;text-align:left}
+/* oversized decorative "40" behind the heading -- purely atmospheric */
+#forty-years .forty-40{position:absolute;top:-58px;left:-6px;font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(120px,16vw,240px);line-height:1;color:var(--midnight);opacity:.035;pointer-events:none;z-index:-1;user-select:none}
+
+/* restrained curved connector between the intro and the gallery, drawn
+   in once via the same reveal/IntersectionObserver as everything else */
+#forty-years .forty-connector{display:block;width:100%;height:44px;margin:0 0 -8px;overflow:visible}
+#forty-years .forty-connector path{fill:none;stroke:var(--gold);stroke-width:1;opacity:.4;stroke-dasharray:400;stroke-dashoffset:400;transition:stroke-dashoffset 1.1s var(--ease,ease) .1s}
+#forty-years .forty-connector.in path{stroke-dashoffset:0}
+
+#forty-years .career-gallery{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.9fr);grid-template-rows:repeat(2,minmax(0,1fr));gap:16px;min-height:620px}
+#forty-years .forty-tile{position:relative;overflow:hidden;isolation:isolate;border-radius:14px;border:1px solid rgba(177,136,58,.28);background:#0b1830;box-shadow:0 24px 60px rgba(10,22,43,.16),inset 0 0 0 1px rgba(255,255,255,.2);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1),filter .75s cubic-bezier(.22,1,.36,1),border-color .45s ease,box-shadow .6s ease}
+#forty-years .forty-tile--primary{grid-column:1;grid-row:1/3}
+#forty-years .forty-tile--research{grid-column:2;grid-row:1}
+#forty-years .forty-tile--leadership{grid-column:2;grid-row:2}
+#forty-years .forty-tile img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;display:block;transition:transform .85s cubic-bezier(.22,.9,.32,1),filter .6s ease}
+#forty-years .forty-tile--primary img{object-position:center 22%}
+#forty-years .forty-tile--research img{object-position:center 30%}
+#forty-years .forty-tile--leadership img{object-position:center 32%}
+/* pointer-following glow -- JS sets --pointer-x/--pointer-y per tile */
+#forty-years .forty-tile::before{content:"";position:absolute;inset:0;z-index:2;opacity:0;pointer-events:none;background:radial-gradient(300px circle at var(--pointer-x,50%) var(--pointer-y,0%),rgba(195,150,64,.12),transparent 68%);transition:opacity .35s ease}
+/* subtle navy footer gradient for cohesion -- never covers the subject */
+#forty-years .forty-tile::after{content:"";position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,transparent 54%,rgba(7,18,38,.25) 100%);pointer-events:none}
+#forty-years .forty-tile-sweep{position:absolute;top:-20%;bottom:-20%;left:-45%;width:28%;z-index:4;transform:skewX(-18deg);background:linear-gradient(90deg,transparent,rgba(255,247,232,.12),transparent);pointer-events:none;opacity:0}
+@keyframes forty-sweep{0%{opacity:0;transform:skewX(-18deg) translateX(0)}14%{opacity:1}55%{opacity:.55}100%{opacity:0;transform:skewX(-18deg) translateX(640%)}}
+#forty-years .forty-tile__label{position:absolute;left:14px;bottom:13px;z-index:5;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ivory);background:rgba(5,16,35,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:6px 11px;border-radius:20px}
+@media(hover:hover){
+  #forty-years .forty-tile.reveal.in:hover{transform:translateY(-6px);border-color:rgba(193,148,61,.62);box-shadow:0 32px 75px rgba(10,22,43,.22),0 0 30px rgba(189,145,61,.07)}
+  #forty-years .forty-tile:hover::before{opacity:1}
+  #forty-years .forty-tile:hover img{transform:scale(1.035);filter:brightness(1.035) contrast(1.01)}
+  #forty-years .forty-tile:hover .forty-tile-sweep{animation:forty-sweep .95s cubic-bezier(.22,1,.36,1) 1}
+}
+/* staggered entrance -- reuses the site-wide .reveal/.reveal.in
+   IntersectionObserver (assets/app.js) with this section's own delays */
+#forty-years .forty-tile.reveal{opacity:0;transform:translateY(24px);filter:brightness(.9)}
+#forty-years .forty-tile.reveal.in{opacity:1;transform:translateY(0);filter:brightness(1)}
+#forty-years .reveal.d1{transition-delay:0s}
+#forty-years .reveal.d2{transition-delay:.07s}
+#forty-years .reveal.d3{transition-delay:.14s}
+#forty-years .reveal.d4{transition-delay:.18s}
+#forty-years .reveal.d5{transition-delay:.27s}
+#forty-years .reveal.d6{transition-delay:.36s}
+@media(prefers-reduced-motion:reduce){
+  #forty-years .forty-tile{transition:border-color .3s ease,box-shadow .3s ease}
+  #forty-years .forty-tile.reveal{opacity:1;transform:none;filter:none;transition:none}
+  #forty-years .forty-tile img{transition:none}
+  #forty-years .forty-tile.reveal.in:hover{transform:none}
+  #forty-years .forty-tile:hover img{transform:none;filter:none}
+  #forty-years .forty-tile::before{transition:none}
+  #forty-years .forty-tile-sweep{display:none}
+  #forty-years .forty-connector path{stroke-dashoffset:0;transition:none}
+}
+@media(max-width:980px){
+  #forty-years{padding:96px 0 108px}
+  #forty-years .forty-intro{grid-template-columns:1fr;gap:22px;align-items:start}
+  #forty-years .forty-intro__summary{max-width:620px;padding-top:0}
+  #forty-years .career-gallery{min-height:560px;gap:12px}
+  #forty-years .forty-connector{display:none}
+}
+@media(max-width:820px){#forty-years .forty-40{display:none}}
+@media(max-width:640px){
+  #forty-years{padding:64px 0 76px}
+  #forty-years .career-gallery{grid-template-columns:repeat(2,1fr);grid-template-rows:auto auto;min-height:0;gap:10px}
+  #forty-years .forty-tile--primary{grid-column:1/3;grid-row:1;aspect-ratio:5/6}
+  #forty-years .forty-tile--research{grid-column:1;grid-row:2;aspect-ratio:1/1}
+  #forty-years .forty-tile--leadership{grid-column:2;grid-row:2;aspect-ratio:1/1}
+}
+@media(max-width:420px){
+  #forty-years .career-gallery{grid-template-columns:1fr;gap:8px}
+  #forty-years .forty-tile--primary{grid-column:1;grid-row:1;aspect-ratio:4/5}
+  #forty-years .forty-tile--research{grid-column:1;grid-row:2;aspect-ratio:4/3}
+  #forty-years .forty-tile--leadership{grid-column:1;grid-row:3;aspect-ratio:4/3}
+}
+</style>
   <div class="wrap">
-    <div class="sec-head2"><span class="eyebrow2" data-i18n="forty.eyebrow">Forty Years of Medicine</span><h2 id="forty-h" data-i18n="forty.h2">A Career Built Across the Full Continuum of Human Health</h2></div>
-    <div class="lead2" style="margin-bottom:30px"><p data-i18n="forty.lead">Dr. Akoury&rsquo;s perspective is unusually broad &mdash; spanning acute care and prevention, the very young and the aging, the molecular and the whole person. That breadth is what allows her to think in systems rather than single specialties.</p></div>
-    <div class="trio" style="margin-bottom:34px" aria-label="Documentary medical gallery">
-      <figure><div class="ph ar-32"><img src="images/newDr.AkourypageS1.jpg" alt="Dr. Dalal Akoury caring for a patient at the bedside, reviewing brain imaging results together" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
-      <figure><div class="ph ar-32"><img src="images/newDr.Akoury-pageS2N.jpg" alt="Dr. Dalal Akoury conducting laboratory research with a microscope alongside her research team" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
-      <figure><div class="ph ar-32"><img src="images/hero-bg/space-houston.jpg" alt="Dr. Dalal Akoury addressing an audience on stage at Space Center Houston" loading="lazy" decoding="async" style="object-position:center 32%" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
+    <div class="forty-intro">
+      <div class="forty-intro__heading">
+        <span class="eyebrow2 reveal d1" data-i18n="forty.eyebrow">Forty Years of Medicine</span>
+        <div class="sec-head2"><h2 id="forty-h" class="reveal d2" data-i18n="forty.h2">A Career Built Across the Full Continuum of Human Health</h2></div>
+      </div>
+      <div class="forty-intro__summary reveal d3">
+        <p data-i18n="forty.lead">Dr. Akoury&rsquo;s perspective is unusually broad &mdash; spanning acute care and prevention, the very young and the aging, the molecular and the whole person. That breadth is what allows her to think in systems rather than single specialties.</p>
+      </div>
+      <span class="forty-40" aria-hidden="true">40</span>
+    </div>
+
+    <svg class="forty-connector reveal d3" viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path d="M0,20 C50,0 150,40 200,20"/>
+    </svg>
+
+    <div class="career-gallery" style="margin-bottom:34px" aria-label="Documentary medical gallery">
+      <figure class="forty-tile forty-tile--primary reveal d4">
+        <img src="images/newDr.AkourypageS1.jpg" alt="Dr. Dalal Akoury caring for a patient at the bedside, reviewing brain imaging results together" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'">
+        <span class="forty-tile-sweep" aria-hidden="true"></span>
+        <span class="forty-tile__label" aria-hidden="true">Clinical Care</span>
+      </figure>
+      <figure class="forty-tile forty-tile--research reveal d5">
+        <img src="images/newDr.Akoury-pageS2N.jpg" alt="Dr. Dalal Akoury conducting laboratory research with a microscope alongside her research team" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'">
+        <span class="forty-tile-sweep" aria-hidden="true"></span>
+        <span class="forty-tile__label" aria-hidden="true">Research &amp; Innovation</span>
+      </figure>
+      <figure class="forty-tile forty-tile--leadership reveal d6">
+        <img src="images/hero-bg/space-houston.jpg" alt="Dr. Dalal Akoury addressing an audience on stage at Space Center Houston" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'">
+        <span class="forty-tile-sweep" aria-hidden="true"></span>
+        <span class="forty-tile__label" aria-hidden="true">Education &amp; Leadership</span>
+      </figure>
     </div>
     <div class="cols-3">
       <div class="card2"><h3 data-i18n="forty.1.h">Pediatrics, Oncology &amp; Research</h3><p data-i18n="forty.1.p">Early training in pediatrics and pediatric hematology/oncology, and academic and laboratory research into the science of disease.</p></div>
@@ -1960,7 +2079,7 @@ html[dir="rtl"] #pathways .path2::after{left:auto;right:0}
         </div>
       </div>
       <div>
-        <figure><div class="ph "><img src="images/dr-dalal-akoury-personal-portrait.webp" alt="A personal portrait of Dr. Dalal Akoury" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
+        <figure><div class="ph ar-169"><img src="images/dr-dalal-akoury-personal-portrait.webp" alt="A personal portrait of Dr. Dalal Akoury" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
       </div>
     </div>
   </div>
@@ -2003,7 +2122,7 @@ html[dir="rtl"] #pathways .path2::after{left:auto;right:0}
           <a class="btn2-line" style="color:var(--gold-deep);border-color:var(--gold-deep)" href="jt-foxx-egypt.html" data-i18n="network.link">Explore JT Foxx in Egypt &rarr;</a>
         </div>
         <div>
-          <figure><div class="ph ar-32 net-photo"><img src="images/dr-dalal-akoury-jt-foxx.webp" alt="Dr. Dalal Akoury with JT Foxx" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
+          <figure><div class="ph ar-32 net-photo"><img src="images/Dr.%20Akoury%20&amp;%20JT%20foxx.jpg" alt="Dr. Dalal Akoury with JT Foxx" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
         </div>
       </div>
     </div>
@@ -2079,8 +2198,6 @@ html[dir="rtl"] #pathways .path2::after{left:auto;right:0}
       <a href="index.html#meet" data-i18n="nav.meet">Dr. Dalal</a>
       <a href="coming-home.html" data-i18n="nav.why">Coming Home</a>
       <a href="index.html#eco" data-i18n="nav.eco">Ecosystem</a>
-      <a href="interviews.html" data-i18n="nav.interviews">Interviews</a>
-      <a href="media.html" data-i18n="nav.media">Media</a>
       <a href="investment.html" data-i18n="nav.invest">Investment</a>
       <a href="jt-foxx.html" data-i18n="nav.jtfoxx">Egypt Coming Back</a>
       <a href="Dr.Akoury-Egypt.html" class="current" data-i18n="nav.foxx.akoury">About Dr. Akoury</a>
@@ -2614,6 +2731,36 @@ html[dir="rtl"] #pathways .path2::after{left:auto;right:0}
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', onScroll, { passive: true });
   onScroll();
+})();
+</script>
+
+<script>
+(function(){
+  // Pointer-following glow for the #forty-years career gallery. Same
+  // approach as the #legacy-ghaly and #pathways glows: scoped to the
+  // gallery grid, skipped entirely (no listener attached) on
+  // touch/imprecise pointers and under prefers-reduced-motion,
+  // rAF-throttled to one style write per frame.
+  var grid = document.querySelector('#forty-years .career-gallery');
+  if (!grid) return;
+  var fine = window.matchMedia && matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if (!fine || reduced) return;
+
+  var scheduled = false, lastTile = null, lastX = 0, lastY = 0;
+  function apply(){
+    scheduled = false;
+    if (!lastTile) return;
+    var r = lastTile.getBoundingClientRect();
+    lastTile.style.setProperty('--pointer-x', (lastX - r.left) + 'px');
+    lastTile.style.setProperty('--pointer-y', (lastY - r.top) + 'px');
+  }
+  grid.addEventListener('pointermove', function(e){
+    var tile = e.target.closest('.forty-tile');
+    if (!tile) return;
+    lastTile = tile; lastX = e.clientX; lastY = e.clientY;
+    if (!scheduled) { scheduled = true; requestAnimationFrame(apply); }
+  }, { passive: true });
 })();
 </script>
 <script>
