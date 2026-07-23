@@ -357,6 +357,131 @@
 #main .lead2 .pull2{border-left:3px solid var(--gold);padding:4px 0 4px 28px;margin:30px 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;line-height:1.4;font-style:italic;color:var(--midnight)}
 #main section.dark .pull2{color:#fff}
 
+/* "The Woman Behind the Mission" personal-life slideshow -- replaces the
+   old single-portrait placeholder. .w- prefix keeps every rule below
+   unique to this component; #eg-lightbox (the "Beyond Healthcare" gallery
+   lightbox, below) is a separate, self-contained instance for the same
+   reason its own comment gives -- state isn't shared between the two, so
+   neither can affect the other. All six slides are absolutely stacked
+   or.. only one true at a time (opacity/transform/clip-path), so exactly
+   one full-resolution image is ever visibly composited. */
+#main section.block.alt[aria-labelledby="woman-h"] .w-slideshow{
+  position:relative;aspect-ratio:16/9;border-radius:20px;overflow:hidden;
+  border:1px solid rgba(184,138,59,.45);
+  box-shadow:0 24px 60px rgba(7,23,46,.15),0 6px 18px rgba(7,23,46,.1);
+  background:var(--midnight);
+}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slideshow.reveal{opacity:0;transform:scale(.97);transition:opacity .7s var(--ease,ease),transform .7s var(--ease,ease)}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slideshow.reveal.in{opacity:1;transform:scale(1)}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slides{position:absolute;inset:0}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slides::after{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,transparent 62%,rgba(7,18,38,.62) 100%);
+}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slide{
+  position:absolute;inset:0;opacity:0;pointer-events:none;
+  transition:opacity .9s var(--ease,ease),transform .9s var(--ease,ease);
+}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slide[data-effect="left"]{transform:translateX(-24px)}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slide[data-effect="right"]{transform:translateX(24px)}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slide[data-effect="up"]{transform:translateY(18px);clip-path:inset(0 0 100% 0);transition:opacity .9s var(--ease,ease),transform .9s var(--ease,ease),clip-path .9s var(--ease,ease)}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slide[data-effect="fade"],
+#main section.block.alt[aria-labelledby="woman-h"] .w-slide[data-effect="kenburns"]{transform:scale(1.015)}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slide[data-effect="kenburns"]{transform:scale(1.035)}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slide.is-active{
+  opacity:1;pointer-events:auto;transform:translate(0,0) scale(1);clip-path:inset(0 0 0% 0);
+}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slide[data-effect="glow"]::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;
+  background:radial-gradient(60% 60% at 50% 42%,rgba(232,196,120,.28),transparent 70%);
+}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slide[data-effect="glow"].is-active::after{
+  animation:w-glow 1.4s var(--ease,ease) 1;
+}
+@keyframes w-glow{0%{opacity:0}35%{opacity:1}100%{opacity:0}}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slide-btn{
+  display:block;width:100%;height:100%;padding:0;margin:0;border:0;background:none;font:inherit;cursor:pointer;
+}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slide-btn:focus-visible{outline:2px solid var(--gold);outline-offset:-3px;z-index:3;position:relative}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slide img{width:100%;height:100%;display:block;object-fit:cover}
+
+#main section.block.alt[aria-labelledby="woman-h"] .w-controls{
+  position:absolute;left:0;right:0;bottom:0;z-index:4;display:flex;align-items:center;gap:10px;
+  padding:10px 14px;
+}
+#main section.block.alt[aria-labelledby="woman-h"] .w-ctl{
+  flex:none;display:flex;align-items:center;justify-content:center;width:36px;height:36px;min-width:44px;min-height:44px;
+  border-radius:50%;border:1px solid rgba(217,189,130,.4);background:rgba(7,18,38,.55);color:var(--ivory);
+  cursor:pointer;transition:background .25s ease,border-color .25s ease,transform .25s ease;
+}
+#main section.block.alt[aria-labelledby="woman-h"] .w-ctl svg{width:16px;height:16px}
+#main section.block.alt[aria-labelledby="woman-h"] .w-ctl:hover{background:var(--gold);border-color:var(--gold);color:var(--midnight);transform:translateY(-1px)}
+#main section.block.alt[aria-labelledby="woman-h"] .w-ctl:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#main section.block.alt[aria-labelledby="woman-h"] .w-playpause .w-icon-play{display:none}
+#main section.block.alt[aria-labelledby="woman-h"] .w-playpause.is-paused .w-icon-pause{display:none}
+#main section.block.alt[aria-labelledby="woman-h"] .w-playpause.is-paused .w-icon-play{display:block}
+#main section.block.alt[aria-labelledby="woman-h"] .w-dots{display:flex;align-items:center;gap:6px;margin:0 auto}
+#main section.block.alt[aria-labelledby="woman-h"] .w-dot{
+  flex:none;width:18px;height:5px;min-height:44px;padding:19.5px 0;background:none;border:0;cursor:pointer;
+  display:flex;align-items:center;
+}
+#main section.block.alt[aria-labelledby="woman-h"] .w-dot::before{
+  content:"";display:block;width:100%;height:5px;border-radius:3px;background:rgba(247,241,230,.32);
+  transition:background .3s ease,width .3s ease;
+}
+#main section.block.alt[aria-labelledby="woman-h"] .w-dot:hover::before{background:rgba(247,241,230,.55)}
+#main section.block.alt[aria-labelledby="woman-h"] .w-dot.is-active::before{width:26px;background:var(--gold)}
+#main section.block.alt[aria-labelledby="woman-h"] .w-dot:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:3px}
+#main section.block.alt[aria-labelledby="woman-h"] .w-count{
+  flex:none;font-family:'Inter',sans-serif;font-size:11.5px;letter-spacing:.08em;color:var(--gold-soft);
+  background:rgba(7,18,38,.55);border:1px solid rgba(217,189,130,.3);border-radius:999px;padding:6px 11px;
+}
+#main .w-sr-status{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+@media(max-width:640px){
+  #main section.block.alt[aria-labelledby="woman-h"] .w-slideshow{border-radius:16px}
+  #main section.block.alt[aria-labelledby="woman-h"] .w-controls{padding:8px 10px;gap:6px}
+  #main section.block.alt[aria-labelledby="woman-h"] .w-count{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  #main section.block.alt[aria-labelledby="woman-h"] .w-slide{transition:opacity .25s ease!important;transform:none!important;clip-path:none!important}
+  #main section.block.alt[aria-labelledby="woman-h"] .w-slide[data-effect="glow"]::after{animation:none!important;opacity:0!important}
+}
+
+/* Lightbox for the personal-life slideshow -- same pattern as
+   #eg-lightbox (the "Beyond Healthcare" gallery below), duplicated with
+   a w- prefix rather than shared, since the two galleries keep fully
+   independent state. */
+#main .w-lightbox{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:max(24px,env(safe-area-inset-top)) max(24px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(24px,env(safe-area-inset-left))}
+#main .w-lightbox[hidden]{display:none}
+#main .w-lightbox__backdrop{position:absolute;inset:0;background:rgba(7,10,20,.88)}
+#main .w-lightbox__dialog{position:relative;z-index:1;max-width:100%;max-height:100%;opacity:0;transform:scale(.97);transition:opacity .28s var(--ease,ease),transform .28s var(--ease,ease)}
+#main .w-lightbox.w-open .w-lightbox__backdrop{animation:eg-fade .28s var(--ease,ease) forwards}
+#main .w-lightbox.w-open .w-lightbox__dialog{opacity:1;transform:scale(1)}
+#main .w-lightbox__figure{margin:0;display:flex;flex-direction:column;align-items:center}
+#main .w-lightbox__image{display:block;width:auto;height:auto;max-width:92vw;max-height:80vh;object-fit:contain;border-radius:2px;box-shadow:0 30px 70px rgba(0,0,0,.5)}
+#main .w-lightbox__caption{margin-top:14px;text-align:center;color:var(--ivory)}
+#main .w-lightbox__count{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.08em;color:var(--gold-soft)}
+#main .w-lightbox__close,#main .w-lightbox__nav{
+  position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;background:rgba(11,18,38,.55);border:1px solid rgba(217,189,130,.4);
+  color:var(--ivory);cursor:pointer;transition:background .2s ease,border-color .2s ease,color .2s ease;
+}
+#main .w-lightbox__close{top:max(20px,env(safe-area-inset-top));right:max(20px,env(safe-area-inset-right));transform:none}
+#main .w-lightbox__close svg,#main .w-lightbox__nav svg{width:20px;height:20px}
+#main .w-lightbox__close:hover,#main .w-lightbox__nav:hover{background:var(--gold);border-color:var(--gold);color:var(--midnight)}
+#main .w-lightbox__close:focus-visible,#main .w-lightbox__nav:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#main .w-lightbox__prev{left:max(16px,env(safe-area-inset-left))}
+#main .w-lightbox__next{right:max(16px,env(safe-area-inset-right))}
+@media(max-width:640px){
+  #main .w-lightbox__image{max-height:72vh}
+  #main .w-lightbox__close,#main .w-lightbox__nav{width:40px;height:40px}
+}
+@media(prefers-reduced-motion:reduce){
+  #main .w-lightbox__dialog{transition:none;transform:none}
+  #main .w-lightbox.w-open .w-lightbox__backdrop{animation:none}
+}
+
 #main .cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 #main .cols-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 @media(max-width:860px){#main .cols-3,#main .cols-2{grid-template-columns:1fr}}
@@ -2113,16 +2238,81 @@ html[dir="rtl"] #pathways .path2::after{left:auto;right:0}
 
 <section class="block alt" aria-labelledby="woman-h">
   <div class="wrap">
-    <div class="sec-head2"><span class="eyebrow2" data-i18n="woman.eyebrow">The Woman Behind the Mission</span><h2 id="woman-h" data-i18n="woman.h2">The Authority Is Professional. The Mission Is Deeply Personal.</h2></div>
+    <div class="sec-head2"><span class="eyebrow2 reveal" data-i18n="woman.eyebrow">The Woman Behind the Mission</span><h2 id="woman-h" class="reveal d1" data-i18n="woman.h2">The Authority Is Professional. The Mission Is Deeply Personal.</h2></div>
     <div class="split">
       <div class="txt">
         <div class="lead2">
-          <p data-i18n="woman.p1">Behind the credentials is a complete human being: Egyptian-born and America-shaped; a wife and mother; a woman of faith; an immigrant who built something of her own; a physician, founder, educator and mentor; someone who has known illness from the patient&rsquo;s side as well as the physician&rsquo;s; and, above all, a listener &mdash; an advocate for the body, the mind and the spirit together.</p>
-          <p class="pull2" data-i18n="woman.p2" style="border:none;padding:0;margin-top:18px">She often reflects that more than forty years have taught her how illness changes a person, a family and sometimes an entire future &mdash; and that real progress requires more than medicine. It requires education, systems, relationships, courage and people willing to build together. Egypt gave her a beginning; she now hopes the experience of a lifetime can contribute to its future.</p>
+          <p class="reveal d2" data-i18n="woman.p1">Behind the credentials is a complete human being: Egyptian-born and America-shaped; a wife and mother; a woman of faith; an immigrant who built something of her own; a physician, founder, educator and mentor; someone who has known illness from the patient&rsquo;s side as well as the physician&rsquo;s; and, above all, a listener &mdash; an advocate for the body, the mind and the spirit together.</p>
+          <p class="pull2 reveal d3" data-i18n="woman.p2" style="border:none;padding:0;margin-top:18px">She often reflects that more than forty years have taught her how illness changes a person, a family and sometimes an entire future &mdash; and that real progress requires more than medicine. It requires education, systems, relationships, courage and people willing to build together. Egypt gave her a beginning; she now hopes the experience of a lifetime can contribute to its future.</p>
         </div>
       </div>
       <div>
-        <figure><div class="ph ar-169"><img src="images/dr-dalal-akoury-personal-portrait.webp" alt="A personal portrait of Dr. Dalal Akoury" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
+        <div class="w-slideshow reveal d2" id="w-slideshow" role="region" aria-roledescription="carousel" aria-label="Personal moments from Dr. Dalal Akoury&rsquo;s life and mission">
+          <div class="w-slides">
+            <div class="w-slide is-active" data-effect="fade" role="group" aria-roledescription="slide" aria-label="1 of 6">
+              <button type="button" class="w-slide-btn" aria-label="View full image, slide 1 of 6">
+                <img src="images/Dr.akourypagemissionS1.jpg" alt="Dr. Dalal Akoury speaking at a podium at the New York Academy of Medicine" width="2400" height="1600" style="object-position:center 25%" loading="eager" fetchpriority="high" decoding="async">
+              </button>
+            </div>
+            <div class="w-slide" data-effect="left" role="group" aria-roledescription="slide" aria-label="2 of 6" aria-hidden="true">
+              <button type="button" class="w-slide-btn" tabindex="-1" aria-label="View full image, slide 2 of 6">
+                <img src="images/Dr.akourypagemissionS2.jpg" alt="Dr. Dalal Akoury receiving an award recognizing her as an outstanding speaker at the New York Academy of Medicine" width="2400" height="1600" style="object-position:center 30%" loading="eager" decoding="async">
+              </button>
+            </div>
+            <div class="w-slide" data-effect="right" role="group" aria-roledescription="slide" aria-label="3 of 6" aria-hidden="true">
+              <button type="button" class="w-slide-btn" tabindex="-1" aria-label="View full image, slide 3 of 6">
+                <img src="images/Dr.akourypagemissionS3.jpg" alt="Dr. Dalal Akoury during a media interview with a co-host" width="2400" height="1600" style="object-position:center 25%" loading="lazy" decoding="async">
+              </button>
+            </div>
+            <div class="w-slide" data-effect="up" role="group" aria-roledescription="slide" aria-label="4 of 6" aria-hidden="true">
+              <button type="button" class="w-slide-btn" tabindex="-1" aria-label="View full image, slide 4 of 6">
+                <img src="images/Dr.akourypagemissionS4.JPG" alt="A digital billboard above Times Square announcing Dr. Dalal Akoury as Top Oncologist of the Year" width="2400" height="1347" style="object-position:center 40%" loading="lazy" decoding="async">
+              </button>
+            </div>
+            <div class="w-slide" data-effect="kenburns" role="group" aria-roledescription="slide" aria-label="5 of 6" aria-hidden="true">
+              <button type="button" class="w-slide-btn" tabindex="-1" aria-label="View full image, slide 5 of 6">
+                <img src="images/Dr.akourypagemissionS5.jpg" alt="Dr. Dalal Akoury smiling alongside U.S. service members" width="1920" height="1080" style="object-position:center center" loading="lazy" decoding="async">
+              </button>
+            </div>
+            <div class="w-slide" data-effect="glow" role="group" aria-roledescription="slide" aria-label="6 of 6" aria-hidden="true">
+              <button type="button" class="w-slide-btn" tabindex="-1" aria-label="View full image, slide 6 of 6">
+                <img src="images/Dr.akourypagemissionS6.jpg" alt="Dr. Dalal Akoury in conversation with Dr. Oz at a panel event" width="2400" height="1600" style="object-position:center 30%" loading="lazy" decoding="async">
+              </button>
+            </div>
+          </div>
+
+          <div class="w-controls">
+            <button type="button" class="w-ctl w-prev" aria-label="Previous slide"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 8 12l7 7"/></svg></button>
+            <div class="w-dots" role="tablist" aria-label="Choose slide">
+              <button type="button" class="w-dot is-active" role="tab" aria-selected="true" aria-label="Show image 1 of 6" data-index="0"></button>
+              <button type="button" class="w-dot" role="tab" aria-selected="false" aria-label="Show image 2 of 6" data-index="1"></button>
+              <button type="button" class="w-dot" role="tab" aria-selected="false" aria-label="Show image 3 of 6" data-index="2"></button>
+              <button type="button" class="w-dot" role="tab" aria-selected="false" aria-label="Show image 4 of 6" data-index="3"></button>
+              <button type="button" class="w-dot" role="tab" aria-selected="false" aria-label="Show image 5 of 6" data-index="4"></button>
+              <button type="button" class="w-dot" role="tab" aria-selected="false" aria-label="Show image 6 of 6" data-index="5"></button>
+            </div>
+            <button type="button" class="w-ctl w-playpause" aria-label="Pause slideshow" aria-pressed="false">
+              <svg class="w-icon-pause" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+              <svg class="w-icon-play" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" hidden><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <button type="button" class="w-ctl w-next" aria-label="Next slide"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></button>
+            <span class="w-count" aria-hidden="true">01 / 06</span>
+          </div>
+          <p class="w-sr-status" aria-live="polite"></p>
+        </div>
+
+        <div class="w-lightbox" id="w-lightbox" hidden>
+          <div class="w-lightbox__backdrop"></div>
+          <div class="w-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Full-size image viewer">
+            <button type="button" class="w-lightbox__close" data-w-close aria-label="Close full image"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+            <button type="button" class="w-lightbox__nav w-lightbox__prev" aria-label="Previous image"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 8 12l7 7"/></svg></button>
+            <button type="button" class="w-lightbox__nav w-lightbox__next" aria-label="Next image"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></button>
+            <figure class="w-lightbox__figure">
+              <img class="w-lightbox__image" id="w-lightbox-img" src="" alt="">
+              <figcaption class="w-lightbox__caption"><span class="w-lightbox__count" aria-hidden="true"></span></figcaption>
+            </figure>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -2443,6 +2633,192 @@ html[dir="rtl"] #pathways .path2::after{left:auto;right:0}
     var dx = e.changedTouches[0].clientX - touchStartX;
     if (Math.abs(dx) > 45) go(dx > 0 ? -1 : 1);
     touchStartX = null;
+  });
+})();
+</script>
+
+<script>
+(function(){
+  // "The Woman Behind the Mission" personal-life slideshow. Autoplay is
+  // a recursive setTimeout (not setInterval) so pausing/resuming never
+  // needs drift correction -- resuming just arms one fresh full-length
+  // timer rather than catching up. Four independent conditions gate
+  // whether autoplay is allowed to run at all: the slideshow must be
+  // near the viewport (IntersectionObserver), the tab must be visible,
+  // the user must not be hovering/focused inside it, and reduced-motion
+  // must not be active (which also starts the whole thing paused).
+  var root = document.getElementById('w-slideshow');
+  if (!root) return;
+  var slides = Array.prototype.slice.call(root.querySelectorAll('.w-slide'));
+  if (!slides.length) return;
+  var dots = Array.prototype.slice.call(root.querySelectorAll('.w-dot'));
+  var prevBtn = root.querySelector('.w-prev');
+  var nextBtn = root.querySelector('.w-next');
+  var playBtn = root.querySelector('.w-playpause');
+  var countEl = root.querySelector('.w-count');
+  var statusEl = root.querySelector('.w-sr-status');
+
+  var reducedMotion = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var AUTOPLAY_MS = 6500;
+  var active = 0;
+  var timer = null;
+  var sectionVisible = false;
+  var hovering = false;
+  var focused = false;
+  var lightboxOpen = false;
+  var userPaused = reducedMotion;
+
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+
+  function canAutoplay(){
+    return !reducedMotion && !userPaused && sectionVisible && !hovering && !focused && !lightboxOpen && !document.hidden;
+  }
+
+  function stopTimer(){
+    if (timer) { clearTimeout(timer); timer = null; }
+  }
+
+  function armTimer(){
+    stopTimer();
+    if (!canAutoplay()) return;
+    timer = setTimeout(function(){ goTo((active + 1) % slides.length, { silent: true }); }, AUTOPLAY_MS);
+  }
+
+  function refresh(){ armTimer(); }
+
+  function goTo(index, opts){
+    opts = opts || {};
+    if (index === active) { armTimer(); return; }
+    var prev = slides[active];
+    var next = slides[index];
+    prev.classList.remove('is-active');
+    prev.setAttribute('aria-hidden', 'true');
+    prev.querySelector('.w-slide-btn').setAttribute('tabindex', '-1');
+    next.classList.add('is-active');
+    next.removeAttribute('aria-hidden');
+    next.querySelector('.w-slide-btn').removeAttribute('tabindex');
+    if (dots[active]) { dots[active].classList.remove('is-active'); dots[active].setAttribute('aria-selected', 'false'); }
+    if (dots[index]) { dots[index].classList.add('is-active'); dots[index].setAttribute('aria-selected', 'true'); }
+    active = index;
+    if (countEl) countEl.textContent = pad(index + 1) + ' / ' + pad(slides.length);
+    if (!opts.silent && statusEl) statusEl.textContent = 'Showing image ' + (index + 1) + ' of ' + slides.length;
+    if (lightboxOpen) renderLightbox();
+    armTimer();
+  }
+
+  function next(){ goTo((active + 1) % slides.length); }
+  function prev(){ goTo((active - 1 + slides.length) % slides.length); }
+
+  function setPaused(paused){
+    userPaused = paused;
+    playBtn.classList.toggle('is-paused', paused);
+    playBtn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+    playBtn.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow');
+    refresh();
+  }
+
+  prevBtn.addEventListener('click', prev);
+  nextBtn.addEventListener('click', next);
+  playBtn.addEventListener('click', function(){ setPaused(!userPaused); });
+  dots.forEach(function(dot, i){
+    dot.addEventListener('click', function(){ goTo(i); });
+  });
+  if (userPaused) setPaused(true);
+
+  // Pause on hover (fine-pointer desktop only) and while keyboard focus
+  // sits anywhere inside the carousel -- both resume with a fresh timer,
+  // never a fast-forward, per focusout/pointerleave below.
+  var fine = window.matchMedia && matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if (fine) {
+    root.addEventListener('pointerenter', function(){ hovering = true; refresh(); });
+    root.addEventListener('pointerleave', function(){ hovering = false; refresh(); });
+  }
+  root.addEventListener('focusin', function(){ focused = true; refresh(); });
+  root.addEventListener('focusout', function(){
+    if (!root.contains(document.activeElement)) { focused = false; refresh(); }
+  });
+  document.addEventListener('visibilitychange', refresh);
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ sectionVisible = e.isIntersecting; });
+    refresh();
+  }, { threshold: .3 });
+  io.observe(root);
+
+  // ---- Lightbox: same self-contained pattern as #eg-lightbox above,
+  // kept as its own instance since the two galleries never share state.
+  var modal = document.getElementById('w-lightbox');
+  if (!modal) return;
+  var dialog = modal.querySelector('.w-lightbox__dialog');
+  var imgEl = modal.querySelector('.w-lightbox__image');
+  var countLbEl = modal.querySelector('.w-lightbox__count');
+  var closeBtn = modal.querySelector('.w-lightbox__close');
+  var prevLbBtn = modal.querySelector('.w-lightbox__prev');
+  var nextLbBtn = modal.querySelector('.w-lightbox__next');
+  var focusables = [closeBtn, prevLbBtn, nextLbBtn];
+  var lastTrigger = null;
+
+  function renderLightbox(){
+    var img = slides[active].querySelector('img');
+    imgEl.src = img.currentSrc || img.src;
+    imgEl.alt = img.alt;
+    countLbEl.textContent = pad(active + 1) + ' / ' + pad(slides.length);
+  }
+
+  function openLightbox(trigger){
+    lightboxOpen = true;
+    refresh();
+    lastTrigger = trigger || document.activeElement;
+    renderLightbox();
+    modal.hidden = false;
+    modal.getBoundingClientRect();
+    modal.classList.add('w-open');
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', onLbKeydown);
+    closeBtn.focus();
+  }
+
+  function closeLightbox(){
+    modal.classList.remove('w-open');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onLbKeydown);
+    var finish = function(){ modal.hidden = true; dialog.removeEventListener('transitionend', finish); };
+    if (reducedMotion) finish();
+    else dialog.addEventListener('transitionend', finish);
+    lightboxOpen = false;
+    refresh();
+    if (lastTrigger) lastTrigger.focus();
+  }
+
+  function onLbKeydown(e){
+    if (e.key === 'Escape') { closeLightbox(); return; }
+    if (e.key === 'ArrowLeft') { prev(); return; }
+    if (e.key === 'ArrowRight') { next(); return; }
+    if (e.key === 'Tab') {
+      var i = focusables.indexOf(document.activeElement);
+      if (e.shiftKey && (i <= 0)) { e.preventDefault(); focusables[focusables.length - 1].focus(); }
+      else if (!e.shiftKey && (i === -1 || i === focusables.length - 1)) { e.preventDefault(); focusables[0].focus(); }
+    }
+  }
+
+  slides.forEach(function(slide){
+    slide.querySelector('.w-slide-btn').addEventListener('click', function(e){ openLightbox(e.currentTarget); });
+  });
+  closeBtn.addEventListener('click', closeLightbox);
+  prevLbBtn.addEventListener('click', prev);
+  nextLbBtn.addEventListener('click', next);
+  modal.addEventListener('click', function(e){
+    if (e.target.closest('.w-lightbox__image, .w-lightbox__nav, .w-lightbox__close')) return;
+    closeLightbox();
+  });
+
+  var touchStartLbX = null;
+  modal.addEventListener('touchstart', function(e){ touchStartLbX = e.changedTouches[0].clientX; }, { passive: true });
+  modal.addEventListener('touchend', function(e){
+    if (touchStartLbX === null) return;
+    var dx = e.changedTouches[0].clientX - touchStartLbX;
+    if (Math.abs(dx) > 45) (dx > 0 ? prev() : next());
+    touchStartLbX = null;
   });
 })();
 </script>
