@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>The Connector &amp; The Vision — JT Foxx × Dr. Dalal Akoury | Egypt Vision</title>
-<meta name="description" content="A global dealmaker, an Egyptian vision, and a conversation worth having — who JT Foxx is, what he does, and why a collaboration could matter for Egyptian enterprise."/>
+<title>The Partnership — A Strategic Vision for Egypt | JT Foxx × Dr. Dalal Akoury</title>
+<meta name="description" content="A private strategic-partnership presentation: how global relationships, medical authority and Egyptian opportunity could combine to build meaningful, responsible progress in Egypt. For qualified investors and strategic partners."/>
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large"/>
 <link rel="canonical" href="The-partnership.html"/>
 <link rel="alternate" hreflang="en" href="The-partnership.html"/>
@@ -13,17 +13,17 @@
 <link rel="alternate" hreflang="es" href="The-partnership.html?lang=es"/>
 <link rel="alternate" hreflang="x-default" href="The-partnership.html"/>
 <meta property="og:type" content="website"/>
-<meta property="og:title" content="The Connector &amp; The Vision — JT Foxx × Dr. Dalal Akoury"/>
-<meta property="og:description" content="Dr. Dalal Akoury's vision for Egypt calls for a rare kind of partner. This page explains who JT Foxx is, what he does, and why a collaboration could matter for Egyptian enterprise."/>
+<meta property="og:title" content="The Partnership — A Strategic Vision for Egypt"/>
+<meta property="og:description" content="Global relationships. Medical authority. Egyptian opportunity. How the collaboration between Dr. Dalal Akoury, JT Foxx and Egypt's leaders could build meaningful, responsible progress."/>
 <meta property="og:image" content="https://assets.cdn.filesafe.space/VICaX0SdHaI41cp5dwWa/media/696a90397f301bde2a82dd54.jpeg"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="The Connector &amp; The Vision — JT Foxx × Dr. Dalal Akoury"/>
-<meta name="twitter:description" content="A global dealmaker, an Egyptian vision, and a conversation worth having."/>
+<meta name="twitter:title" content="The Partnership — A Strategic Vision for Egypt"/>
+<meta name="twitter:description" content="Global relationships. Medical authority. Egyptian opportunity — a private strategic-partnership presentation."/>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org","@type":"WebPage",
-  "name":"The Connector & The Vision — JT Foxx × Dr. Dalal Akoury",
-  "about":"An exploratory conversation about global connection (JT Foxx) and Dr. Dalal Akoury's vision for Egyptian enterprise",
+  "name":"The Partnership — A Strategic Vision for Egypt",
+  "about":"A strategic-partnership presentation exploring how global relationships (JT Foxx) and medical/healthcare leadership (Dr. Dalal Akoury) could combine with Egyptian opportunity",
   "inLanguage":["en","ar","fr","es"],
   "isPartOf":{"@type":"WebSite","name":"Dr. Dalal Akoury — Egypt Vision","url":"https://awaremed.com"}
 }
@@ -34,7 +34,109 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700&family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/style.css"/>
+<style>
+/* ============================================================
+   THE PARTNERSHIP — page-scoped typography + components
+   Reuses assets/style.css's shared tokens/components (palette,
+   .card/.grid-3/.btn/.pull/.cine/.invite/.pil-grid/.opp-row/.st-row
+   etc.) wherever they fit, only adding new markup where no shared
+   component matches. Typography is scoped to .pv (this page's
+   content wrapper) via a local --font-d/--font-b override rather
+   than touching :root, so nothing here can leak into the shared
+   nav/langbar/footer that sit outside it — mirrors the exact
+   re-pin technique already used by jt-foxx-egypt.html, but via
+   containment instead of after-the-fact overrides. Matches
+   jt-foxx-egypt.html's own Playfair Display + Poppins pairing,
+   the page named as this redesign's typographic reference.
+   ============================================================ */
+.pv{
+  --font-d:'Playfair Display',Georgia,serif;
+  --font-b:'Poppins','Helvetica Neue',Arial,sans-serif;
+  font-family:var(--font-b);
+}
+html[dir="rtl"] .pv{--font-d:var(--font-ar);--font-b:var(--font-ar)}
+
+/* ---- hero ---- */
+.pv-hero{background:var(--lapis-deep);overflow:hidden}
+.pv-hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;padding-top:70px;padding-bottom:70px}
+@media(max-width:980px){.pv-hero .wrap{grid-template-columns:1fr;gap:40px;padding-top:56px;padding-bottom:56px}}
+.pv-hero h1{color:#fff;font-size:var(--fs-h1);font-weight:500;letter-spacing:-.015em;line-height:1.08;margin-bottom:22px}
+.pv-hero h1 .em{color:var(--gold-lt);font-style:italic;font-weight:400}
+html[dir="rtl"] .pv-hero h1 .em{font-style:normal}
+.pv-hero .lead{font-size:var(--fs-lead);color:rgba(255,255,255,.78);font-weight:300;line-height:1.7;max-width:52ch;margin-bottom:32px}
+.pv-hero .ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.pv-hero .fine{font-size:var(--fs-caption);color:rgba(255,255,255,.5);max-width:46ch;line-height:1.6}
+.pv-hero .fine a{color:rgba(255,255,255,.7);text-decoration:underline;text-underline-offset:2px}
+.pv-media{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/5;box-shadow:var(--shadow-lg);border:1px solid rgba(191,154,84,.3)}
+.pv-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pv-media .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:30px;background:linear-gradient(150deg,var(--lapis-mid),var(--lapis-deep));color:rgba(217,190,126,.65)}
+.pv-media .ph svg{width:34px;height:34px;opacity:.8}
+.pv-media .ph b{display:block;font-family:var(--font-b);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:6px}
+.pv-media .ph span{display:block;font-size:12.5px;line-height:1.6;max-width:32ch}
+.pv-media.ar-43{aspect-ratio:4/3}
+.pv-media.ar-32{aspect-ratio:3/2}
+
+/* ---- eyebrow row inside .card-icon (Section 2 pillars) ---- */
+.pv-icon{width:42px;height:42px;border-radius:50%;border:1px solid rgba(191,154,84,.4);display:flex;align-items:center;justify-content:center;margin-bottom:18px;color:var(--gold)}
+.pv-icon svg{width:20px;height:20px}
+html[dir="rtl"] .grid-3{direction:rtl}
+
+/* ---- editorial split (Section 3 + Section 4's six areas) ---- */
+.pv-split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.pv-split.rev .pv-media{order:2}
+@media(max-width:900px){.pv-split{grid-template-columns:1fr;gap:32px}.pv-split.rev .pv-media{order:-1}}
+.pv-split h3{font-size:var(--fs-h3);font-weight:600;margin-bottom:12px}
+.pv-split p{font-size:var(--fs-body);color:var(--muted);font-weight:300;line-height:1.75;margin-bottom:14px}
+.on-dark .pv-split p{color:rgba(255,255,255,.72)}
+.pv-illustrative{display:inline-block;font-size:var(--fs-caption);font-style:italic;color:var(--bronze);border-top:1px solid var(--border);padding-top:12px;margin-top:6px}
+.on-dark .pv-illustrative{color:var(--gold-lt);border-color:rgba(255,255,255,.16)}
+.pv-areas .pv-split{margin-bottom:88px}
+.pv-areas .pv-split:last-child{margin-bottom:0}
+
+/* ---- 4-col grid (Section 7 pathways) — assets/style.css has 2/3-col
+   grids only; this adds the one missing column count rather than
+   rewriting .grid-3 itself. */
+.pv-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+@media(max-width:980px){.pv-grid-4{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.pv-grid-4{grid-template-columns:1fr}}
+.pv-grid-4 .card{padding:28px 24px}
+.pv-grid-4 .card p{font-size:.95rem}
+.pv-grid-4 .card .note{display:block;font-size:12px;color:var(--bronze);font-style:italic;margin-top:12px}
+
+/* ---- process steps (Section 8) — reuses .opp-row's idx/h3/p
+   typography inside a new 4-col grid so desktop reads as a
+   horizontal sequence and mobile collapses to one readable column. */
+.pv-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:34px 28px}
+@media(max-width:980px){.pv-steps{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.pv-steps{grid-template-columns:1fr}}
+.pv-steps .opp-row{position:relative;padding-top:2px}
+
+/* ---- contribution cards (Section 6) reuse .st-row/.st-card as-is ---- */
+.pv-contrib .st-card ul{padding:0;margin:0}
+.pv-contrib .st-card li{list-style:none;position:relative;padding:9px 0 9px 20px;font-size:var(--fs-body);color:var(--muted);font-weight:300;border-bottom:1px solid var(--border);line-height:1.5}
+.pv-contrib .st-card li:last-child{border-bottom:none}
+.pv-contrib .st-card li::before{content:'';position:absolute;left:0;top:17px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+html[dir="rtl"] .pv-contrib .st-card li{padding:9px 20px 9px 0}
+html[dir="rtl"] .pv-contrib .st-card li::before{left:auto;right:0}
+.pv-contrib .st-card .note{display:block;font-size:var(--fs-caption);color:var(--bronze);font-style:italic;padding:14px 28px 0}
+
+/* ---- proof cards (Section 9) ---- */
+.pv-proof .card{text-align:left}
+html[dir="rtl"] .pv-proof .card{text-align:right}
+.pv-proof .card a.pv-link{display:inline-block;margin-top:14px;font-size:var(--fs-caption);font-weight:700;letter-spacing:.06em;color:var(--lapis);border-bottom:1px solid var(--gold);padding-bottom:2px}
+.pv-proof .card a.pv-link:hover{color:var(--bronze)}
+
+/* ---- reveal stagger (assets/style.css defines .reveal/.reveal.in but
+   no delay steps; add this page's own, matching jt-foxx-egypt.html's
+   .d1/.d2 convention) ---- */
+.pv .reveal.d1{transition-delay:.1s}
+.pv .reveal.d2{transition-delay:.18s}
+.pv .reveal.d3{transition-delay:.26s}
+.pv .reveal.d4{transition-delay:.34s}
+@media(prefers-reduced-motion:reduce){.pv .reveal{transition-delay:0s!important}}
+</style>
 </head>
 <body>
 
@@ -144,109 +246,310 @@
 </div>
 </nav>
 
-<!-- HERO -->
-<section class="section on-dark">
+<main class="pv">
+
+<!-- SECTION 1 — HERO -->
+<section class="pv-hero">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow light" data-i18n="jt.hero.kicker">The Connector &amp; The Vision</div>
-      <h1 data-i18n="jt.hero.h1">A global dealmaker, an Egyptian vision, and a <span class="em">conversation worth having</span>.</h1>
-      <p class="lead" data-i18n="jt.hero.lede">Dr. Dalal Akoury's vision for Egypt calls for a rare kind of partner — someone whose network crosses continents and whose business is opening doors. JT Foxx is one of the world's most connected entrepreneurs. This page explains who he is, what he does, and why a collaboration could matter for Egyptian enterprise.</p>
+    <div class="reveal">
+      <div class="eyebrow light" data-i18n="pv.hero.kicker">The Connector &amp; The Vision</div>
+      <h1 data-i18n="pv.hero.h1">A global dealmaker, an Egyptian vision, and a <span class="em">conversation worth having</span>.</h1>
+      <p class="lead" data-i18n="pv.hero.lede">Dr. Dalal Akoury&rsquo;s vision for Egypt calls for a rare kind of partnership &mdash; global relationships, medical authority and Egyptian opportunity, working together. This page explains who is involved, why the collaboration matters, and how qualified partners may begin a private conversation.</p>
+      <div class="ctas">
+        <a href="#connect" class="btn btn-gold" data-i18n="pv.hero.cta1">Request a Private Conversation</a>
+        <a href="#partnership" class="btn btn-line" data-i18n="pv.hero.cta2">Explore the Partnership</a>
+      </div>
+      <p class="fine" data-i18n="pv.hero.fine">Exploratory and illustrative. Nothing on this page is an offer or solicitation of investment &mdash; see <a href="#disclosures">Important Disclosures</a>.</p>
+    </div>
+    <div class="pv-media reveal d1" aria-hidden="true">
+      <div class="ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg>
+        <b data-i18n="pv.hero.ph.label">Image Needed &mdash; Partnership Hero</b>
+        <span data-i18n="pv.hero.ph.desc">Dr. Dalal Akoury and JT Foxx in a high-level strategic conversation with Egyptian and international leaders, inside an elegant boardroom overlooking Cairo and the Nile.</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- THE TWO NAMES -->
-<section class="section bg-limestone">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow" data-i18n="jt.names.eyebrow">The Two Names</div>
-      <h2 data-i18n="jt.names.h2">Vision needs a connector.</h2>
-    </div>
-    <div class="dr-list reveal">
-      <div class="dr-item"><div>
-        <div style="font-size:var(--fs-caption);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze);margin-bottom:8px" data-i18n="jt.names.vision.role">The Vision</div>
-        <h3 style="font-family:var(--font-d);font-size:var(--fs-h3);font-weight:600;margin-bottom:8px" data-i18n="jt.names.vision.name">Dr. Dalal Akoury</h3>
-        <p data-i18n="jt.names.vision.desc">Physician and founder, building a healthcare and legacy vision rooted in Egypt.</p>
-      </div></div>
-      <div class="dr-item"><div>
-        <div style="font-size:var(--fs-caption);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze);margin-bottom:8px" data-i18n="jt.names.connector.role">The Connector</div>
-        <h3 style="font-family:var(--font-d);font-size:var(--fs-h3);font-weight:600;margin-bottom:8px" data-i18n="jt.names.connector.name">JT Foxx</h3>
-        <p data-i18n="jt.names.connector.desc">Global entrepreneur, investor and dealmaker operating across dozens of countries.</p>
-      </div></div>
-    </div>
-    <p class="prose reveal" style="margin-top:34px" data-i18n="jt.names.close">Great ideas rarely fail for lack of ambition. They fail for lack of the right people in the room. Dr. Akoury brings a vision for Egypt — in healthcare, development and legacy. A connector like JT Foxx represents the kind of global reach that can carry that vision to partners, capital and platforms far beyond Egypt's borders.</p>
-  </div>
-</section>
-
-<!-- WHO IS JT FOXX -->
-<section class="section on-dark">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow light" data-i18n="jt.who.eyebrow">Who Is JT Foxx</div>
-      <h2 data-i18n="jt.who.h2">What he does, in his own public terms.</h2>
-    </div>
-    <p class="lead reveal" style="color:rgba(255,255,255,.85);margin-bottom:18px" data-i18n="jt.who.lead">JT Foxx describes himself as the world's #1 wealth and business coach — a global entrepreneur, investor and dealmaker who does business across dozens of countries and owns or partners with a large portfolio of companies spanning AI, technology, real estate, hospitality and entertainment.</p>
-    <p class="prose reveal" style="color:rgba(255,255,255,.72)" data-i18n="jt.who.body">Publicly, he is best known for three things: <strong style="color:var(--gold-lt);font-weight:600">connection</strong> — his events, among them Mega Success and Mega One, are described as gatherings of billionaires, investors and internationally recognized figures; <strong style="color:var(--gold-lt);font-weight:600">dealmaking</strong> — he built a mergers-and-acquisitions approach he calls the M7A model, focused on scaling and partnering with companies; and <strong style="color:var(--gold-lt);font-weight:600">capital</strong> — he publicly promotes co-investing in and funding deals. More recently he has focused on artificial intelligence for business.</p>
-    <div class="stats-row reveal" style="margin-top:34px">
-      <div class="stat"><div class="n" data-i18n="jt.who.s1">50+</div><div class="l" data-i18n="jt.who.s1l">Countries where he reports doing business</div></div>
-      <div class="stat"><div class="n" data-i18n="jt.who.s2">80+</div><div class="l" data-i18n="jt.who.s2l">Companies he reports owning or partnering with</div></div>
-      <div class="stat"><div class="n" data-i18n="jt.who.s3">Mega</div><div class="l" data-i18n="jt.who.s3l">Flagship events convening global entrepreneurs &amp; investors</div></div>
-      <div class="stat"><div class="n" data-i18n="jt.who.s4">M7A</div><div class="l" data-i18n="jt.who.s4l">His signature partnership &amp; acquisitions model</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY IT MATTERS FOR EGYPT -->
-<section class="section bg-papyrus">
+<!-- SECTION 2 — THE PARTNERSHIP IN ONE SENTENCE -->
+<section class="section bg-limestone" id="partnership">
   <div class="wrap">
     <div class="sec-head center reveal">
-      <div class="eyebrow" style="justify-content:center" data-i18n="jt.why.eyebrow">Why It Matters for Egypt</div>
-      <h2 data-i18n="jt.why.h2">What a global connector can bring to Egyptian enterprise.</h2>
-      <p class="lead" data-i18n="jt.why.lead">Egypt has world-class opportunity and a proven base of home-grown enterprise. What global connectors add is reach — access to international capital, partners and platforms that turn national opportunity into global scale.</p>
+      <div class="eyebrow" style="justify-content:center" data-i18n="pv.pillars3.eyebrow">The Partnership</div>
+      <h2 data-i18n="pv.pillars3.h2">Global Relationships. Medical Authority. Egyptian Opportunity.</h2>
+      <p class="lead" data-i18n="pv.pillars3.lead">Three strengths, brought together: a physician&rsquo;s vision for whole-person healthcare, a connector&rsquo;s access to global capital and enterprise, and Egypt&rsquo;s own talent, scale and ambition.</p>
     </div>
     <div class="grid-3 reveal">
-      <div class="card"><div class="pn" data-i18n="jt.why.1n">01</div><h3 data-i18n="jt.why.1h">Access to Capital</h3><p data-i18n="jt.why.1p">Introductions to international investors and funding structures that complement Egypt's own capital.</p></div>
-      <div class="card"><div class="pn" data-i18n="jt.why.2n">02</div><h3 data-i18n="jt.why.2h">Global Partners</h3><p data-i18n="jt.why.2p">Relationships across dozens of markets — the kind that open doors for Egyptian ventures abroad.</p></div>
-      <div class="card"><div class="pn" data-i18n="jt.why.3n">03</div><h3 data-i18n="jt.why.3h">Deal Structuring</h3><p data-i18n="jt.why.3p">Experience scaling, partnering and acquiring — turning promising ventures into larger enterprises.</p></div>
-      <div class="card"><div class="pn" data-i18n="jt.why.4n">04</div><h3 data-i18n="jt.why.4h">Global Stage</h3><p data-i18n="jt.why.4p">Platforms and events that put Egyptian opportunity in front of an international audience.</p></div>
+      <div class="card">
+        <div class="pv-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-8.5C.8 8.7 2.4 5 6 5c2 0 3.3 1 4 2 .7-1 2-2 4-2 3.6 0 5.2 3.7 3.5 7.5C19 16.65 12 21 12 21Z"/></svg></div>
+        <h3 data-i18n="pv.pillars3.1h">Medical and Human Vision</h3>
+        <p data-i18n="pv.pillars3.1p">Dr. Akoury brings medical expertise, an integrative healthcare model, education and a personal, lifelong commitment to Egypt.</p>
+      </div>
+      <div class="card">
+        <div class="pv-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"/></svg></div>
+        <h3 data-i18n="pv.pillars3.2h">Global Access and Enterprise</h3>
+        <p data-i18n="pv.pillars3.2p">JT Foxx brings international business relationships, strategic introductions, entrepreneurship and investor access.</p>
+      </div>
+      <div class="card">
+        <div class="pv-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V10l8-6 8 6v11"/><path d="M9 21v-6h6v6"/></svg></div>
+        <h3 data-i18n="pv.pillars3.3h">Egyptian Opportunity and Execution</h3>
+        <p data-i18n="pv.pillars3.3p">Egypt brings talent, location, scale, heritage and a long-term ambition ready to be matched with the right partners.</p>
+      </div>
     </div>
-    <p class="prose reveal" style="margin-top:34px" data-i18n="jt.why.close">The benefit is to Egyptian enterprise broadly — its entrepreneurs, its investors, and the opportunities its economy now offers to the world. This is about widening the circle, not any single arrangement.</p>
   </div>
 </section>
 
-<!-- WHERE THINGS STAND -->
-<section class="section on-dark">
+<!-- SECTION 3 — WHY THIS PARTNERSHIP MATTERS -->
+<section class="section on-dark" id="why-matters">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow light" data-i18n="jt.stand.eyebrow">Where Things Stand</div>
-      <h2 data-i18n="jt.stand.h2">An honest word on this collaboration.</h2>
-    </div>
-    <div class="opp-rows reveal">
-      <div class="opp-row"><div class="idx" data-i18n="jt.stand.1k">01</div><h3 style="color:#fff" data-i18n="jt.stand.1h">A shared vision</h3><p style="color:rgba(255,255,255,.72)" data-i18n="jt.stand.1p">Both believe global connection can accelerate opportunity — for Egypt, and for those who build with it.</p></div>
-      <div class="opp-row"><div class="idx" data-i18n="jt.stand.2k">02</div><h3 style="color:#fff" data-i18n="jt.stand.2h">An open conversation</h3><p style="color:rgba(255,255,255,.72)" data-i18n="jt.stand.2p">Dr. Akoury and JT Foxx's teams are in early, exploratory discussion. Nothing here represents a finalized agreement.</p></div>
-      <div class="opp-row"><div class="idx" data-i18n="jt.stand.3k">03</div><h3 style="color:#fff" data-i18n="jt.stand.3h">An invitation</h3><p style="color:rgba(255,255,255,.72)" data-i18n="jt.stand.3p">Partners, investors and institutions who share the vision are invited to a private conversation about what could be built.</p></div>
+    <div class="pv-split">
+      <div class="reveal">
+        <div class="eyebrow light" data-i18n="pv.why.eyebrow">Why This Partnership Matters</div>
+        <h2 style="color:#fff" data-i18n="pv.why.h2">Two Different Strengths, Aimed at the Same Opportunity.</h2>
+        <p style="color:rgba(255,255,255,.72)" data-i18n="pv.why.p1">Dr. Akoury&rsquo;s work is medicine, whole-person healthcare, education, scientific leadership and a mission focused on Egypt. JT Foxx&rsquo;s work is entrepreneurship, strategic relationships, international capital networks and business development.</p>
+        <p style="color:rgba(255,255,255,.72)" data-i18n="pv.why.p2">Neither strength alone builds an ecosystem. Medical authority without global access stays local. Global access without medical authority has nothing credible to introduce. Together, the two could open a serious conversation about what Egypt builds next &mdash; without either party guaranteeing the outcome.</p>
+        <blockquote class="pull" style="margin-top:26px">
+          <p data-i18n="pv.why.quote">Great ideas rarely fail for lack of ambition. They fail for lack of the right people in the room.</p>
+        </blockquote>
+      </div>
+      <div class="reveal d1" style="display:grid;gap:20px">
+        <div class="pv-media ar-43">
+          <div class="ph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-4.35-9.5-8.5C.8 8.7 2.4 5 6 5c2 0 3.3 1 4 2 .7-1 2-2 4-2 3.6 0 5.2 3.7 3.5 7.5C19 16.65 12 21 12 21Z"/></svg>
+            <b data-i18n="pv.why.ph1.label">Image Needed</b>
+            <span data-i18n="pv.why.ph1.desc">Dr. Akoury leading a medical or scientific discussion.</span>
+          </div>
+        </div>
+        <div class="pv-media ar-43">
+          <div class="ph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"/></svg>
+            <b data-i18n="pv.why.ph2.label">Image Needed</b>
+            <span data-i18n="pv.why.ph2.desc">JT Foxx in a global business or investor environment.</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- QUOTE -->
-<section class="cine">
+<!-- SECTION 4 — THE INVESTOR CASE FOR EGYPT -->
+<section class="section bg-papyrus" id="egypt-case">
   <div class="wrap">
-    <p data-i18n="jt.quote">"Information doesn't build wealth. People do. Relationships do."</p>
-    <div class="cite" data-i18n="jt.quote.cite">A theme of JT Foxx's public message</div>
+    <div class="sec-head center reveal">
+      <div class="eyebrow" style="justify-content:center" data-i18n="pv.case.eyebrow">The Investor Case for Egypt</div>
+      <h2 data-i18n="pv.case.h2">Why Egypt Can Become a Platform for the Next Era of Growth.</h2>
+      <p class="lead" data-i18n="pv.case.lead">Six areas where Egypt&rsquo;s talent, geography and momentum could support serious, well-structured partnership &mdash; each at a different stage of concept, exploration or early validation.</p>
+    </div>
+    <div class="pv-areas" style="margin-top:56px">
+
+      <div class="pv-split reveal">
+        <div class="pv-media ar-43"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-4.35-9.5-8.5C.8 8.7 2.4 5 6 5c2 0 3.3 1 4 2 .7-1 2-2 4-2 3.6 0 5.2 3.7 3.5 7.5C19 16.65 12 21 12 21Z"/></svg><b data-i18n="pv.case.ph.label">Image Needed</b><span data-i18n="pv.case.1.ph">An advanced Egyptian medical and research campus.</span></div></div>
+        <div>
+          <h3 data-i18n="pv.case.1.h">Healthcare and Longevity</h3>
+          <p data-i18n="pv.case.1.p">A whole-person, evidence-based model of care &mdash; centers of excellence built to a global standard, with Egyptian physicians trained and equipped to lead them.</p>
+          <span class="pv-illustrative" data-i18n="pv.illustrative">Illustrative vision &mdash; subject to feasibility, approvals, financing, and final partnership structure.</span>
+        </div>
+      </div>
+
+      <div class="pv-split rev reveal">
+        <div class="pv-media ar-43"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 9h8M8 13h5"/></svg><b data-i18n="pv.case.ph.label">Image Needed</b><span data-i18n="pv.case.2.ph">An AI-enabled healthcare innovation laboratory.</span></div></div>
+        <div>
+          <h3 data-i18n="pv.case.2.h">Artificial Intelligence and Digital Health</h3>
+          <p data-i18n="pv.case.2.p">Tools that could let excellent care and diagnosis reach far more people than a clinic ever could alone &mdash; explored as a multiplier for Egyptian healthcare and education, not a replacement for physicians.</p>
+          <span class="pv-illustrative" data-i18n="pv.illustrative">Illustrative vision &mdash; subject to feasibility, approvals, financing, and final partnership structure.</span>
+        </div>
+      </div>
+
+      <div class="pv-split reveal">
+        <div class="pv-media ar-43"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 19V9l8-5 8 5v10"/><path d="M9 19v-5h6v5M4 19h16"/></svg><b data-i18n="pv.case.ph.label">Image Needed</b><span data-i18n="pv.case.3.ph">An Egyptian medical university and leadership academy.</span></div></div>
+        <div>
+          <h3 data-i18n="pv.case.3.h">Education and Leadership Development</h3>
+          <p data-i18n="pv.case.3.p">Training the physicians, founders and administrators who could carry this model forward &mdash; mentorship and curriculum, not a single facility.</p>
+          <span class="pv-illustrative" data-i18n="pv.illustrative">Illustrative vision &mdash; subject to feasibility, approvals, financing, and final partnership structure.</span>
+        </div>
+      </div>
+
+      <div class="pv-split rev reveal">
+        <div class="pv-media ar-43"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"/><circle cx="12" cy="12" r="9"/></svg><b data-i18n="pv.case.ph.label">Image Needed</b><span data-i18n="pv.case.4.ph">A premium wellness and medical-tourism destination.</span></div></div>
+        <div>
+          <h3 data-i18n="pv.case.4.h">Medical and Wellness Tourism</h3>
+          <p data-i18n="pv.case.4.p">Egypt&rsquo;s heritage, geography and hospitality already draw the world &mdash; paired with credible, high-quality medical and wellness programming, that draw could extend to care itself.</p>
+          <span class="pv-illustrative" data-i18n="pv.illustrative">Illustrative vision &mdash; subject to feasibility, approvals, financing, and final partnership structure.</span>
+        </div>
+      </div>
+
+      <div class="pv-split reveal">
+        <div class="pv-media ar-43"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg><b data-i18n="pv.case.ph.label">Image Needed</b><span data-i18n="pv.case.5.ph">A health-centered mixed-use development.</span></div></div>
+        <div>
+          <h3 data-i18n="pv.case.5.h">Real Estate and Health-Centered Infrastructure</h3>
+          <p data-i18n="pv.case.5.p">The physical ground a healthcare and education ecosystem needs &mdash; campuses, clinics and mixed-use development built around wellbeing rather than added to it.</p>
+          <span class="pv-illustrative" data-i18n="pv.illustrative">Illustrative vision &mdash; subject to feasibility, approvals, financing, and final partnership structure.</span>
+        </div>
+      </div>
+
+      <div class="pv-split rev reveal">
+        <div class="pv-media ar-43"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="7" width="18" height="12" rx="1.5"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg><b data-i18n="pv.case.ph.label">Image Needed</b><span data-i18n="pv.case.6.ph">An Egyptian manufacturing, innovation and export corridor.</span></div></div>
+        <div>
+          <h3 data-i18n="pv.case.6.h">Entrepreneurship, Manufacturing and Technology</h3>
+          <p data-i18n="pv.case.6.p">Founders and manufacturers building for both the domestic market and export &mdash; the enterprise layer that could employ, train and scale alongside healthcare and education.</p>
+          <span class="pv-illustrative" data-i18n="pv.illustrative">Illustrative vision &mdash; subject to feasibility, approvals, financing, and final partnership structure.</span>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<!-- CTA -->
+<!-- SECTION 5 — WHAT COULD BE BUILT -->
+<section class="chap on-dark" id="ecosystem" style="background:var(--lapis-deep);padding:108px 0">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <div class="eyebrow light" style="justify-content:center" data-i18n="pv.eco.eyebrow">What Could Be Built</div>
+      <h2 style="color:#fff" data-i18n="pv.eco.h2">From One Partnership to an Ecosystem of Opportunity.</h2>
+      <p class="lead" style="color:rgba(255,255,255,.72)" data-i18n="pv.eco.lead">No sector here stands alone. Healthcare gives the ecosystem its credibility; each pillar after it reinforces the ones around it.</p>
+    </div>
+    <div class="pil-grid cols-4 reveal" style="margin-top:44px">
+      <div class="pil-card"><div class="pn">01</div><h3 data-i18n="pv.eco.1h">Healthcare and Longevity</h3><p data-i18n="pv.eco.1p">The anchor &mdash; a world-class, scalable model of whole-person care.</p></div>
+      <div class="pil-card"><div class="pn">02</div><h3 data-i18n="pv.eco.2h">Medical Education</h3><p data-i18n="pv.eco.2p">The physicians and leaders who could carry the model forward.</p></div>
+      <div class="pil-card"><div class="pn">03</div><h3 data-i18n="pv.eco.3h">AI and Digital Health</h3><p data-i18n="pv.eco.3p">The multiplier that could let excellent care reach further.</p></div>
+      <div class="pil-card"><div class="pn">04</div><h3 data-i18n="pv.eco.4h">Medical Tourism</h3><p data-i18n="pv.eco.4p">The world visiting Egypt for care, where heritage already draws it.</p></div>
+      <div class="pil-card"><div class="pn">05</div><h3 data-i18n="pv.eco.5h">Smart Real Estate</h3><p data-i18n="pv.eco.5p">The physical ground the ecosystem could be built on.</p></div>
+      <div class="pil-card"><div class="pn">06</div><h3 data-i18n="pv.eco.6h">Research and Biotechnology</h3><p data-i18n="pv.eco.6p">The scientific base that could keep the model advancing.</p></div>
+      <div class="pil-card"><div class="pn">07</div><h3 data-i18n="pv.eco.7h">Entrepreneurship and Franchising</h3><p data-i18n="pv.eco.7p">One proven model, licensed and repeated rather than rebuilt.</p></div>
+      <div class="pil-card"><div class="pn">08</div><h3 data-i18n="pv.eco.8h">Global Investment and Partnerships</h3><p data-i18n="pv.eco.8p">The capital and relationships that could connect it all to the world.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6 — WHAT EACH PARTY CONTRIBUTES -->
+<section class="section bg-limestone pv-contrib" id="contributions">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <div class="eyebrow" style="justify-content:center" data-i18n="pv.contrib.eyebrow">What Each Party Contributes</div>
+      <h2 data-i18n="pv.contrib.h2">Complementary Roles, Not a Competition.</h2>
+      <p class="lead" data-i18n="pv.contrib.lead">Every contribution below is a potential role, based on how each participant chooses to engage &mdash; subject to formal agreement, not a binding commitment.</p>
+    </div>
+    <div class="st-row reveal" style="margin-top:44px">
+      <div class="st-card">
+        <div class="top"><div class="idx" data-i18n="pv.contrib.a.k">Dr. Dalal Akoury</div><h3 data-i18n="pv.contrib.a.h">Medical and Educational Leadership</h3></div>
+        <div class="body">
+          <ul>
+            <li data-i18n="pv.contrib.a.1">Medical and clinical leadership</li>
+            <li data-i18n="pv.contrib.a.2">Healthcare model development</li>
+            <li data-i18n="pv.contrib.a.3">Education and mentorship</li>
+            <li data-i18n="pv.contrib.a.4">Scientific and clinical direction</li>
+            <li data-i18n="pv.contrib.a.5">International healthcare relationships</li>
+            <li data-i18n="pv.contrib.a.6">A personal, cultural commitment to Egypt</li>
+          </ul>
+        </div>
+      </div>
+      <div class="st-card">
+        <div class="top"><div class="idx" data-i18n="pv.contrib.b.k">JT Foxx</div><h3 data-i18n="pv.contrib.b.h">Global Network and Enterprise</h3></div>
+        <div class="body">
+          <ul>
+            <li data-i18n="pv.contrib.b.1">An international entrepreneurial network</li>
+            <li data-i18n="pv.contrib.b.2">Strategic introductions</li>
+            <li data-i18n="pv.contrib.b.3">Investor and business relationships</li>
+            <li data-i18n="pv.contrib.b.4">Commercialization experience</li>
+            <li data-i18n="pv.contrib.b.5">Global visibility and platforms</li>
+            <li data-i18n="pv.contrib.b.6">A business-scaling perspective</li>
+          </ul>
+        </div>
+      </div>
+      <div class="st-card">
+        <div class="top"><div class="idx" data-i18n="pv.contrib.c.k">Egyptian &amp; International Partners</div><h3 data-i18n="pv.contrib.c.h">Local Knowledge and Capacity</h3></div>
+        <div class="body">
+          <ul>
+            <li data-i18n="pv.contrib.c.1">Local knowledge and market understanding</li>
+            <li data-i18n="pv.contrib.c.2">Capital</li>
+            <li data-i18n="pv.contrib.c.3">Land or infrastructure</li>
+            <li data-i18n="pv.contrib.c.4">Institutional participation</li>
+            <li data-i18n="pv.contrib.c.5">Regulatory and operational expertise</li>
+            <li data-i18n="pv.contrib.c.6">Technology, research and development capacity</li>
+          </ul>
+        </div>
+        <span class="note" data-i18n="pv.contrib.note">Potential contribution &mdash; subject to formal agreement and the role of each participating party.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7 — INVESTOR PARTICIPATION PATHWAYS -->
+<section class="section on-dark" id="pathways">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <div class="eyebrow light" style="justify-content:center" data-i18n="pv.path.eyebrow">Investor Participation Pathways</div>
+      <h2 style="color:#fff" data-i18n="pv.path.h2">Where Strategic Partners May Enter the Conversation.</h2>
+      <p class="lead" style="color:rgba(255,255,255,.72)" data-i18n="pv.path.lead">Eight ways serious partners could relate to this vision. Every pathway below is a starting point for discussion, not a solicitation.</p>
+    </div>
+    <div class="pv-grid-4 reveal" style="margin-top:44px">
+      <div class="card"><h3 data-i18n="pv.path.1h">Strategic Capital</h3><p data-i18n="pv.path.1p">Investors and family offices open to funding structures aligned with a long-term Egyptian healthcare and enterprise vision.</p><span class="note" data-i18n="pv.path.dd">Subject to due diligence.</span></div>
+      <div class="card"><h3 data-i18n="pv.path.2h">Healthcare Development</h3><p data-i18n="pv.path.2p">Operators and clinical groups who could help design or run world-standard centers of care.</p><span class="note" data-i18n="pv.path.dd">Subject to due diligence.</span></div>
+      <div class="card"><h3 data-i18n="pv.path.3h">Technology and AI</h3><p data-i18n="pv.path.3p">Technology partners exploring how digital health and AI could extend Egyptian care and education.</p><span class="note" data-i18n="pv.path.dd">Subject to due diligence.</span></div>
+      <div class="card"><h3 data-i18n="pv.path.4h">Education and Research</h3><p data-i18n="pv.path.4p">Academic and research institutions interested in medical education and leadership development in Egypt.</p><span class="note" data-i18n="pv.path.dd">Subject to due diligence.</span></div>
+      <div class="card"><h3 data-i18n="pv.path.5h">Real Estate and Infrastructure</h3><p data-i18n="pv.path.5p">Developers with experience building health-centered or mixed-use infrastructure at scale.</p><span class="note" data-i18n="pv.path.dd">Subject to due diligence.</span></div>
+      <div class="card"><h3 data-i18n="pv.path.6h">Hospitality and Medical Tourism</h3><p data-i18n="pv.path.6p">Hospitality operators who could pair Egypt&rsquo;s heritage with credible wellness and medical programming.</p><span class="note" data-i18n="pv.path.dd">Subject to due diligence.</span></div>
+      <div class="card"><h3 data-i18n="pv.path.7h">Manufacturing and Commercialization</h3><p data-i18n="pv.path.7p">Manufacturers and commercialization partners who could scale proven products and models.</p><span class="note" data-i18n="pv.path.dd">Subject to due diligence.</span></div>
+      <div class="card"><h3 data-i18n="pv.path.8h">Philanthropic or Institutional Collaboration</h3><p data-i18n="pv.path.8p">Foundations and institutions aligned with education, healthcare access and Egyptian development.</p><span class="note" data-i18n="pv.path.dd">Subject to due diligence.</span></div>
+    </div>
+    <div class="reveal" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:44px">
+      <a href="#connect" class="btn btn-gold" data-i18n="pv.path.cta1">Explore Strategic Alignment</a>
+      <a href="#connect" class="btn btn-line" data-i18n="pv.path.cta2">Begin a Confidential Conversation</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8 — RESPONSIBLE DEVELOPMENT PROCESS -->
+<section class="section bg-papyrus" id="process">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <div class="eyebrow" style="justify-content:center" data-i18n="pv.proc.eyebrow">Responsible Development Process</div>
+      <h2 data-i18n="pv.proc.h2">Vision Must Be Matched by Due Diligence.</h2>
+      <p class="lead" data-i18n="pv.proc.lead">Large ventures require discipline. No step below is presented as already complete &mdash; this is the process any serious opportunity here would be expected to follow.</p>
+    </div>
+    <div class="pv-steps reveal" style="margin-top:48px">
+      <div class="opp-row"><div class="idx" data-i18n="pv.proc.1k">01</div><h3 data-i18n="pv.proc.1h">Strategic Introduction</h3><p data-i18n="pv.proc.1p">An initial, private introduction between the relevant parties.</p></div>
+      <div class="opp-row"><div class="idx" data-i18n="pv.proc.2k">02</div><h3 data-i18n="pv.proc.2h">Mutual Fit and Confidentiality</h3><p data-i18n="pv.proc.2p">Establishing alignment and confidentiality before any detail is shared.</p></div>
+      <div class="opp-row"><div class="idx" data-i18n="pv.proc.3k">03</div><h3 data-i18n="pv.proc.3h">Opportunity Definition</h3><p data-i18n="pv.proc.3p">Defining the specific opportunity, scope and role of each party.</p></div>
+      <div class="opp-row"><div class="idx" data-i18n="pv.proc.4k">04</div><h3 data-i18n="pv.proc.4h">Feasibility and Local Validation</h3><p data-i18n="pv.proc.4p">Testing the concept against real conditions on the ground in Egypt.</p></div>
+      <div class="opp-row"><div class="idx" data-i18n="pv.proc.5k">05</div><h3 data-i18n="pv.proc.5h">Legal and Regulatory Review</h3><p data-i18n="pv.proc.5p">Confirming the opportunity can proceed within applicable law and regulation.</p></div>
+      <div class="opp-row"><div class="idx" data-i18n="pv.proc.6k">06</div><h3 data-i18n="pv.proc.6h">Financial and Operating Structure</h3><p data-i18n="pv.proc.6p">Building the structure that would govern capital, roles and operations.</p></div>
+      <div class="opp-row"><div class="idx" data-i18n="pv.proc.7k">07</div><h3 data-i18n="pv.proc.7h">Formal Partner Approval</h3><p data-i18n="pv.proc.7p">Written agreement from every party before any commitment is made.</p></div>
+      <div class="opp-row"><div class="idx" data-i18n="pv.proc.8k">08</div><h3 data-i18n="pv.proc.8h">Phased Execution</h3><p data-i18n="pv.proc.8p">Building in stages, with progress reviewed at every phase.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9 — PROOF, EXPERIENCE, AND LEADERSHIP -->
+<section class="section bg-limestone pv-proof" id="proof">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <div class="eyebrow" style="justify-content:center" data-i18n="pv.proof.eyebrow">Proof, Experience and Leadership</div>
+      <h2 data-i18n="pv.proof.h2">Credibility That Can Be Examined.</h2>
+      <p class="lead" data-i18n="pv.proof.lead">Serious partners deserve evidence, not just claims. Explore the record behind this partnership.</p>
+    </div>
+    <div class="grid-3 reveal" style="margin-top:44px">
+      <div class="card"><h3 data-i18n="pv.proof.1h">Medical Leadership</h3><p data-i18n="pv.proof.1p">Dr. Akoury&rsquo;s medical background, training and integrative-care philosophy.</p><a class="pv-link" href="Dr.Akoury-Egypt.html" data-i18n="pv.proof.1link">About Dr. Akoury &rarr;</a></div>
+      <div class="card"><h3 data-i18n="pv.proof.2h">Published Work</h3><p data-i18n="pv.proof.2p">Peer-reviewed publications and professional research.</p><a class="pv-link" href="https://pubmed.ncbi.nlm.nih.gov/?term=Akoury+DA" target="_blank" rel="noopener" data-i18n="pv.proof.2link">Publications on PubMed &rarr;</a></div>
+      <div class="card"><h3 data-i18n="pv.proof.3h">Global Entrepreneurship</h3><p data-i18n="pv.proof.3p">JT Foxx&rsquo;s public record as an entrepreneur, investor and dealmaker.</p><a class="pv-link" href="jt-foxx-egypt.html" data-i18n="pv.proof.3link">About JT Foxx &rarr;</a></div>
+      <div class="card"><h3 data-i18n="pv.proof.4h">International Network</h3><p data-i18n="pv.proof.4p">Relationships built over decades across business, investment and public life.</p><a class="pv-link" href="jt-foxx-egypt.html" data-i18n="pv.proof.4link">The Network &rarr;</a></div>
+      <div class="card"><h3 data-i18n="pv.proof.5h">Healthcare Ecosystem</h3><p data-i18n="pv.proof.5p">AWAREmed and the wider ecosystem Dr. Akoury has built in whole-person care.</p><a class="pv-link" href="https://awaremed.com" target="_blank" rel="noopener" data-i18n="pv.proof.5link">Visit AWAREmed &rarr;</a></div>
+      <div class="card"><h3 data-i18n="pv.proof.6h">Egypt Vision</h3><p data-i18n="pv.proof.6p">The fuller story of why Dr. Akoury is bringing this vision home to Egypt.</p><a class="pv-link" href="coming-home.html" data-i18n="pv.proof.6link">Coming Home &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 10 — SELECTIVE INVITATION -->
 <section class="invite section" id="connect">
   <div class="wrap">
-    <div class="eyebrow light reveal" style="justify-content:center" data-i18n="jt.cta.eyebrow">The Next Step</div>
-    <h2 class="reveal" data-i18n="jt.cta.h2">Start the conversation.</h2>
-    <p class="reveal" data-i18n="jt.cta.p">If Egypt's opportunity and a global network belong in the same room, so do we. Reach out — privately and seriously.</p>
+    <div class="eyebrow light reveal" style="justify-content:center" data-i18n="pv.cta.eyebrow">The Next Step</div>
+    <h2 class="reveal" data-i18n="pv.cta.h2">The Right Partnership Begins With the Right Conversation.</h2>
+    <p class="reveal" data-i18n="pv.cta.p">This initiative is seeking serious, aligned, capable participants &mdash; not general public investment. If Egypt&rsquo;s opportunity and your network, expertise or capital belong in the same room, so do we.</p>
     <div class="reveal" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-      <a href="mailto:legacy@dalalakourymd.com?subject=JT%20Foxx%20%C3%97%20Akoury%20%E2%80%94%20A%20Conversation" class="btn btn-gold" data-i18n="jt.cta.btn1">Request a Meeting</a>
-      <a href="egypt-builders-circle.html" class="btn btn-line" data-i18n="jt.cta.btn2">Meet Egypt's Builders</a>
+      <a href="mailto:legacy@dalalakourymd.com?subject=The%20Partnership%20%E2%80%94%20A%20Private%20Strategic%20Conversation" class="btn btn-gold" data-i18n="pv.cta.btn1">Request a Private Strategic Conversation</a>
+      <a href="#disclosures" class="btn btn-line" data-i18n="pv.cta.btn2">Review Important Disclosures</a>
     </div>
+    <p class="mark reveal" data-i18n="pv.cta.mark">Prepared for prospective strategic partners and qualified investors. Not an offer or solicitation of investment.</p>
   </div>
 </section>
 
@@ -254,11 +557,15 @@
 <section class="section bg-limestone" id="disclosures">
   <div class="wrap">
     <div class="card reveal" style="max-width:900px;margin:0 auto;padding:38px 36px">
-      <h3 style="font-size:var(--fs-h3);margin-bottom:16px" data-i18n="jt.disc.h">Important Disclosures</h3>
-      <p style="font-size:var(--fs-caption);color:var(--muted);line-height:1.8" data-i18n="jt.disc.p">JT Foxx is described here using publicly available information from his own websites and public materials. This page reflects an exploratory discussion only; it does not represent a finalized partnership, agreement, or endorsement, and figures cited (countries, companies, events) are as publicly stated by JT Foxx. References to Egyptian enterprise and investment are general and do not imply the involvement or endorsement of any specific individual or company.</p>
+      <h3 style="font-size:var(--fs-h3);margin-bottom:16px" data-i18n="pv.disc.h">Important Disclosures</h3>
+      <p style="font-size:var(--fs-caption);color:var(--muted);line-height:1.85;margin-bottom:14px" data-i18n="pv.disc.p1">JT Foxx is described here using publicly available information from his own websites and public materials, which has not been independently verified by Dr. Akoury, AWAREmed or this website. This page reflects an exploratory discussion only; it does not represent a finalized partnership, agreement or endorsement, and figures cited (countries, companies, events) are as publicly stated by JT Foxx.</p>
+      <p style="font-size:var(--fs-caption);color:var(--muted);line-height:1.85;margin-bottom:14px" data-i18n="pv.disc.p2">Everything on this page describing sectors, opportunities, an ecosystem or potential contributions is illustrative and aspirational, and is presented as concept or exploration &mdash; not a finalized, approved or funded project. Nothing here constitutes an offer or solicitation to buy or sell any security or investment, and no financial return, government approval, or investment commitment is promised or guaranteed. Any eventual roles, contributions or terms would be defined only by formal written agreement following due diligence.</p>
+      <p style="font-size:var(--fs-caption);color:var(--muted);line-height:1.85" data-i18n="pv.disc.p3">References to Egyptian enterprise and investment are general and do not imply the involvement or endorsement of any specific individual, company or institution. AWAREmed&rsquo;s services are complementary to, and not a replacement for, conventional medical care.</p>
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -297,138 +604,24 @@ window.I18N={ar:{},fr:{},es:{}};
 I18N.ar={
   "langbar":"نتحدث العربية والإنجليزية والفرنسية والإسبانية",
   "nav.home":"الرئيسية","nav.home.group":"الرئيسية","nav.meet":"د. دلال","nav.eco":"المنظومة","nav.why":"العودة إلى الوطن","nav.interviews":"المقابلات","nav.media":"الإعلام","nav.press":"الصحافة والصور","nav.invest":"الاستثمار","nav.jtfoxx":"مصر تعود","nav.foxx.partnership":"الشراكة","nav.foxx.bio":"عن جيه تي فوكس","nav.foxx.akoury":"عن الدكتورة عاقوري","nav.events":"الفعاليات","nav.vip.evening":"أمسية VIP","nav.vip.dinner":"عشاء خاص","nav.legacy":"الإرث",
-  "jt.hero.kicker":"حلقة الوصل والرؤية",
-  "jt.hero.h1":"عاقد صفقاتٍ عالمي، ورؤيةٌ مصرية، و<span class=\"em\" style=\"font-style:normal\">حوارٌ يستحق أن يُخاض</span>.",
-  "jt.hero.lede":"تستدعي رؤية الدكتورة دلال عاقوري لمصر شريكًا نادرًا؛ شخصًا تعبر شبكته القارات وعمله فتح الأبواب. وجيه تي فوكس من أكثر رواد الأعمال ارتباطًا بالعالم. تشرح هذه الصفحة من هو، وما الذي يفعله، ولماذا قد يكون التعاون مهمًا للمشاريع المصرية.",
-  "jt.names.eyebrow":"الاسمان",
-  "jt.names.h2":"الرؤية تحتاج إلى حلقة وصل.",
-  "jt.names.vision.role":"الرؤية","jt.names.vision.name":"د. دلال عاقوري","jt.names.vision.desc":"طبيبة ومؤسِّسة، تبني رؤيةً في الرعاية الصحية والإرث متجذّرة في مصر.",
-  "jt.names.connector.role":"حلقة الوصل","jt.names.connector.name":"جيه تي فوكس","jt.names.connector.desc":"رائد أعمالٍ ومستثمرٌ وعاقد صفقاتٍ عالمي يعمل عبر عشرات الدول.",
-  "jt.names.close":"نادرًا ما تفشل الأفكار العظيمة لنقص الطموح، بل تفشل لغياب الأشخاص المناسبين في الغرفة. تحمل الدكتورة عاقوري رؤيةً لمصر في الصحة والتعمير والإرث. وحلقة وصلٍ مثل جيه تي فوكس تمثّل نوع الامتداد العالمي القادر على حمل تلك الرؤية إلى شركاء ورؤوس أموالٍ ومنصّاتٍ تتجاوز حدود مصر.",
-  "jt.who.eyebrow":"من هو جيه تي فوكس",
-  "jt.who.h2":"ما الذي يفعله، بحسب وصفه العلني.",
-  "jt.who.lead":"يصف جيه تي فوكس نفسه بأنه مدرّب الثروة والأعمال الأول في العالم؛ رائد أعمالٍ ومستثمرٌ وعاقد صفقاتٍ عالمي يعمل عبر عشرات الدول، ويملك أو يشارك في حافظةٍ كبيرة من الشركات تمتد في الذكاء الاصطناعي والتكنولوجيا والعقارات والضيافة والترفيه.",
-  "jt.who.body":"يُعرف علنًا بثلاثة أمور: <strong style=\"color:var(--gold-lt);font-weight:600\">الربط</strong>؛ إذ تُوصف فعالياته، ومنها Mega Success وMega One، بأنها تجمعاتٌ لمليارديرات ومستثمرين وشخصياتٍ معروفة عالميًا. و<strong style=\"color:var(--gold-lt);font-weight:600\">عقد الصفقات</strong>؛ فقد طوّر نهجًا للاندماج والاستحواذ يسمّيه نموذج M7A، يركّز على تنمية الشركات والشراكة معها. و<strong style=\"color:var(--gold-lt);font-weight:600\">رأس المال</strong>؛ إذ يروّج علنًا للاستثمار المشترك وتمويل الصفقات. وقد ركّز مؤخرًا على الذكاء الاصطناعي للأعمال.",
-  "jt.who.s1":"+٥٠","jt.who.s1l":"دولة يقول إنه يعمل فيها",
-  "jt.who.s2":"+٨٠","jt.who.s2l":"شركة يقول إنه يملكها أو يشارك فيها",
-  "jt.who.s3":"Mega","jt.who.s3l":"فعالياته الكبرى التي تجمع رواد أعمال ومستثمرين عالميين",
-  "jt.who.s4":"M7A","jt.who.s4l":"نموذجه المميّز للشراكة والاستحواذ",
-  "jt.why.eyebrow":"لماذا يهمّ ذلك مصر",
-  "jt.why.h2":"ما الذي تجلبه حلقة وصلٍ عالمية للمشاريع المصرية.",
-  "jt.why.lead":"تملك مصر فرصًا من الطراز الأول وقاعدةً راسخة من المشاريع المحلية. وما تضيفه حلقات الوصل العالمية هو الامتداد؛ الوصول إلى رأس المال والشركاء والمنصّات الدولية التي تحوّل الفرصة الوطنية إلى نطاقٍ عالمي.",
-  "jt.why.1n":"٠١","jt.why.1h":"الوصول إلى رأس المال","jt.why.1p":"تعريفٌ بمستثمرين دوليين وبِنى تمويلٍ تكمّل رأس مال مصر نفسه.",
-  "jt.why.2n":"٠٢","jt.why.2h":"شركاء عالميون","jt.why.2p":"علاقاتٌ عبر عشرات الأسواق، من النوع الذي يفتح أبوابًا للمشاريع المصرية في الخارج.",
-  "jt.why.3n":"٠٣","jt.why.3h":"هيكلة الصفقات","jt.why.3p":"خبرةٌ في التنمية والشراكة والاستحواذ، تحوّل المشاريع الواعدة إلى كياناتٍ أكبر.",
-  "jt.why.4n":"٠٤","jt.why.4h":"منصّة عالمية","jt.why.4p":"منصّاتٌ وفعالياتٌ تضع الفرصة المصرية أمام جمهورٍ دولي.",
-  "jt.why.close":"المنفعة للمشاريع المصرية على اتساعها؛ لروّادها ومستثمريها وللفرص التي يقدّمها اقتصادها اليوم للعالم. الأمر يتعلق بتوسيع الدائرة، لا بأي ترتيبٍ بعينه.",
-  "jt.stand.eyebrow":"أين تقف الأمور",
-  "jt.stand.h2":"كلمةٌ صادقة عن هذا التعاون.",
-  "jt.stand.1k":"٠١","jt.stand.1h":"رؤيةٌ مشتركة","jt.stand.1p":"كلاهما يؤمن بأن الربط العالمي يمكن أن يسرّع الفرصة، لمصر ولمن يبني معها.",
-  "jt.stand.2k":"٠٢","jt.stand.2h":"حوارٌ مفتوح","jt.stand.2p":"فريقا الدكتورة عاقوري وجيه تي فوكس في مرحلة نقاشٍ أوّلي استكشافي. ولا شيء هنا يمثّل اتفاقًا نهائيًا.",
-  "jt.stand.3k":"٠٣","jt.stand.3h":"دعوة","jt.stand.3p":"الشركاء والمستثمرون والمؤسسات ممن يشاركون الرؤية مدعوّون إلى حوارٍ خاص حول ما يمكن بناؤه.",
-  "jt.quote":"«المعلومات لا تبني الثروة. الناس يبنونها. والعلاقات تبنيها.»",
-  "jt.quote.cite":"من موضوعات خطاب جيه تي فوكس العلني",
-  "jt.cta.eyebrow":"الخطوة التالية",
-  "jt.cta.h2":"ابدأ الحوار.",
-  "jt.cta.p":"إن كانت فرصة مصر وشبكةٌ عالمية تنتميان إلى الغرفة نفسها، فنحن كذلك. تواصل معنا، بخصوصيةٍ وجدية.",
-  "jt.cta.btn1":"اطلب لقاءً","jt.cta.btn2":"تعرّف على بُناة مصر",
-  "jt.disc.h":"إفصاحاتٌ هامة",
-  "jt.disc.p":"وُصف جيه تي فوكس هنا بالاعتماد على معلوماتٍ متاحة علنًا من مواقعه ومواده العامة. تعكس هذه الصفحة نقاشًا استكشافيًا فقط، ولا تمثّل شراكةً نهائية أو اتفاقًا أو تأييدًا، والأرقام المذكورة (الدول والشركات والفعاليات) هي كما يذكرها جيه تي فوكس علنًا. والإشارات إلى المشاريع والاستثمار في مصر عامةٌ ولا تعني مشاركة أو تأييد أي فردٍ أو شركةٍ بعينها.",
-  "foot.about":"بناء مستقبل الرعاية الصحية بين مصر والعالم. امتداد طبيعي لمنظومة AWAREmed · جونسون سيتي، تينيسي · الولايات المتحدة.",
+  "jt.cta.btn1":"اطلب لقاءً","foot.about":"بناء مستقبل الرعاية الصحية بين مصر والعالم. امتداد طبيعي لمنظومة AWAREmed · جونسون سيتي، تينيسي · الولايات المتحدة.",
   "foot.explore":"استكشف","foot.connect":"تواصل",
   "foot.disc":"أُعدّت للشركاء الاستراتيجيين والمستثمرين المحتملين. ليست عرضاً أو دعوة للاستثمار؛ النماذج التوضيحية للنقاش فحسب. خدمات AWAREmed مكمّلة، لا بديلة، عن الرعاية الطبية التقليدية.",
-  "foot.conf":"سري — للمستلمين المصرّح لهم فقط."
-};
+  "foot.conf":"سري — للمستلمين المصرّح لهم فقط.", "pv.hero.kicker": "حلقة الوصل والرؤية", "pv.hero.h1": "عاقد صفقاتٍ عالمي، ورؤيةٌ مصرية، و<span class=\"em\" style=\"font-style:normal\">حوارٌ يستحق أن يُخاض</span>.", "pv.hero.lede": "تستدعي رؤية الدكتورة دلال عاقوري لمصر شراكةً نادرة — علاقاتٌ عالمية، وسلطةٌ طبية، وفرصةٌ مصرية، تعمل معًا. تشرح هذه الصفحة من المعنيّون بها، ولماذا يهمّ هذا التعاون، وكيف يمكن للشركاء المؤهَّلين بدء حوارٍ خاص.", "pv.hero.cta1": "اطلب حوارًا خاصًا", "pv.hero.cta2": "استكشف الشراكة", "pv.hero.fine": "استكشافيةٌ وتوضيحية. لا شيء في هذه الصفحة يمثّل عرضًا أو دعوة للاستثمار — راجع <a href=\"#disclosures\">الإفصاحات الهامة</a>.", "pv.hero.ph.label": "صورة مطلوبة — واجهة الشراكة", "pv.hero.ph.desc": "الدكتورة دلال عاقوري وجيه تي فوكس في حوارٍ استراتيجي رفيع المستوى مع قادة مصريين ودوليين، داخل قاعة اجتماعاتٍ أنيقة تُطلّ على القاهرة والنيل.", "pv.pillars3.eyebrow": "الشراكة", "pv.pillars3.h2": "علاقاتٌ عالمية. سلطةٌ طبية. فرصةٌ مصرية.", "pv.pillars3.lead": "ثلاث قوًى تلتقي: رؤية طبيبةٍ للرعاية الصحية الشاملة للإنسان، ووصول حلقة وصلٍ إلى رأس المال والمشاريع العالمية، وموهبة مصر ونطاقها وطموحها.", "pv.pillars3.1h": "الرؤية الطبية والإنسانية", "pv.pillars3.1p": "تحمل الدكتورة عاقوري خبرةً طبية، ونموذجًا تكامليًا للرعاية الصحية، وتعليمًا، والتزامًا شخصيًا مدى الحياة تجاه مصر.", "pv.pillars3.2h": "الوصول العالمي وريادة الأعمال", "pv.pillars3.2p": "يحمل جيه تي فوكس علاقات أعمالٍ دولية، وتعريفاتٍ استراتيجية، وريادة أعمال، ووصولًا إلى المستثمرين.", "pv.pillars3.3h": "الفرصة المصرية والتنفيذ", "pv.pillars3.3p": "تحمل مصر موهبةً وموقعًا ونطاقًا وإرثًا وطموحًا طويل الأمد، جاهزًا لأن يلتقي بالشركاء المناسبين.", "pv.why.eyebrow": "لماذا تهمّ هذه الشراكة", "pv.why.h2": "قوّتان مختلفتان، تصوّبان نحو الفرصة ذاتها.", "pv.why.p1": "عمل الدكتورة عاقوري هو الطب، والرعاية الصحية الشاملة للإنسان، والتعليم، والقيادة العلمية، ورسالةٌ تركّز على مصر. وعمل جيه تي فوكس هو ريادة الأعمال، والعلاقات الاستراتيجية، وشبكات رأس المال الدولية، وتطوير الأعمال.", "pv.why.p2": "لا تبني أيٌّ من القوّتين وحدها منظومة. فالسلطة الطبية دون وصولٍ عالمي تبقى محلية. والوصول العالمي دون سلطةٍ طبية لا يملك ما يُعرِّف به بمصداقية. ومعًا، قد تفتح القوّتان حوارًا جادًا حول ما تبنيه مصر تاليًا — دون أن يضمن أيّ طرفٍ النتيجة.", "pv.why.quote": "نادرًا ما تفشل الأفكار العظيمة لنقص الطموح، بل تفشل لغياب الأشخاص المناسبين في الغرفة.", "pv.why.ph1.label": "صورة مطلوبة", "pv.why.ph1.desc": "الدكتورة عاقوري تقود نقاشًا طبيًا أو علميًا.", "pv.why.ph2.label": "صورة مطلوبة", "pv.why.ph2.desc": "جيه تي فوكس في بيئة أعمالٍ أو استثمارٍ عالمية.", "pv.case.eyebrow": "الحجة الاستثمارية لمصر", "pv.case.h2": "لماذا يمكن أن تصبح مصر منصّة للحقبة القادمة من النمو.", "pv.case.lead": "ستة مجالاتٍ يمكن أن تدعم فيها موهبة مصر وموقعها وزخمها شراكةً جادّةً ومنظّمة — كلٌّ منها في مرحلةٍ مختلفة من الفكرة أو الاستكشاف أو التحقّق الأوّلي.", "pv.case.ph.label": "صورة مطلوبة", "pv.case.1.ph": "حرمٌ طبي وبحثي مصري متقدّم.", "pv.case.1.h": "الرعاية الصحية وطول العمر", "pv.case.1.p": "نموذج رعايةٍ قائم على الأدلة يشمل الإنسان كاملًا — مراكز تميّزٍ تُبنى وفق معيارٍ عالمي، بأطباء مصريين مدرَّبين ومؤهَّلين لقيادتها.", "pv.case.2.ph": "مختبر ابتكار للرعاية الصحية مدعوم بالذكاء الاصطناعي.", "pv.case.2.h": "الذكاء الاصطناعي والصحة الرقمية", "pv.case.2.p": "أدواتٌ يمكن أن تتيح للرعاية والتشخيص الممتازَين الوصول إلى أناسٍ أكثر بكثير مما تستطيعه عيادةٌ وحدها — تُستكشف كمضاعِفٍ للرعاية الصحية والتعليم في مصر، لا كبديلٍ عن الأطباء.", "pv.case.3.ph": "جامعة طبية مصرية وأكاديمية قيادة.", "pv.case.3.h": "التعليم وتنمية القيادة", "pv.case.3.p": "تدريب الأطباء والمؤسِّسين والإداريين القادرين على حمل هذا النموذج إلى الأمام — إرشادٌ ومنهج، لا منشأةٌ واحدة.", "pv.case.4.ph": "وجهة سياحة عافيةٍ وطبية فاخرة.", "pv.case.4.h": "السياحة الطبية وسياحة العافية", "pv.case.4.p": "إرث مصر وموقعها الجغرافي وضيافتها تجذب العالم أصلًا — إذا اقترنت ببرامج رعايةٍ وعافيةٍ عاليةِ الجودة وموثوقة، فقد يمتد ذلك الجذب إلى الرعاية نفسها.", "pv.case.5.ph": "تطويرٌ عقاري مختلط الاستخدام محوره الصحة.", "pv.case.5.h": "العقارات والبنية التحتية المرتكزة على الصحة", "pv.case.5.p": "الأرض المادية التي تحتاجها منظومة رعايةٍ صحية وتعليمية — حرمٌ جامعي وعياداتٌ وتطويرٌ مختلط الاستخدام يُبنى حول الرفاه لا يُضاف إليه لاحقًا.", "pv.case.6.ph": "ممرّ مصري للتصنيع والابتكار والتصدير.", "pv.case.6.h": "ريادة الأعمال والتصنيع والتكنولوجيا", "pv.case.6.p": "مؤسِّسون ومصنّعون يبنون للسوق المحلية والتصدير معًا — طبقة المشاريع التي يمكن أن توظّف وتدرّب وتنمو جنبًا إلى جنب مع الرعاية الصحية والتعليم.", "pv.illustrative": "رؤيةٌ توضيحية — تخضع لدراسة الجدوى والموافقات والتمويل وهيكل الشراكة النهائي.", "pv.eco.eyebrow": "ما الذي يمكن بناؤه", "pv.eco.h2": "من شراكةٍ واحدة إلى منظومة فرص.", "pv.eco.lead": "لا يقف أيّ مجالٍ هنا وحده. الرعاية الصحية تمنح المنظومة مصداقيتها؛ وكل ركيزةٍ بعدها تعزّز ما حولها.", "pv.eco.1h": "الرعاية الصحية وطول العمر", "pv.eco.1p": "الركيزة — نموذج رعايةٍ شاملة للإنسان عالمي المستوى وقابل للتوسّع.", "pv.eco.2h": "التعليم الطبي", "pv.eco.2p": "الأطباء والقادة القادرون على حمل النموذج إلى الأمام.", "pv.eco.3h": "الذكاء الاصطناعي والصحة الرقمية", "pv.eco.3p": "المضاعِف الذي يمكن أن يتيح للرعاية الممتازة الوصول إلى نطاقٍ أوسع.", "pv.eco.4h": "السياحة الطبية", "pv.eco.4p": "العالم يزور مصر طلبًا للرعاية، حيث يجذبه الإرث أصلًا.", "pv.eco.5h": "العقارات الذكية", "pv.eco.5p": "الأرض المادية التي يمكن أن تُبنى عليها المنظومة.", "pv.eco.6h": "البحث والتقنية الحيوية", "pv.eco.6p": "القاعدة العلمية التي يمكن أن تُبقي النموذج متقدّمًا.", "pv.eco.7h": "ريادة الأعمال والامتياز التجاري", "pv.eco.7p": "نموذجٌ واحد مُثبَت، يُرخَّص ويتكرّر بدل أن يُعاد بناؤه.", "pv.eco.8h": "الاستثمار والشراكات العالمية", "pv.eco.8p": "رأس المال والعلاقات التي يمكن أن تربط كل ذلك بالعالم.", "pv.contrib.eyebrow": "ما الذي يساهم به كل طرف", "pv.contrib.h2": "أدوارٌ متكاملة، لا منافسة.", "pv.contrib.lead": "كل مساهمةٍ أدناه دورٌ محتمل، بحسب اختيار كل مشارِكٍ للانخراط — تخضع لاتفاقٍ رسمي، وليست التزامًا مُلزِمًا.", "pv.contrib.a.k": "الدكتورة دلال عاقوري", "pv.contrib.a.h": "القيادة الطبية والتعليمية", "pv.contrib.a.1": "القيادة الطبية والسريرية", "pv.contrib.a.2": "تطوير نموذج الرعاية الصحية", "pv.contrib.a.3": "التعليم والإرشاد", "pv.contrib.a.4": "التوجيه العلمي والسريري", "pv.contrib.a.5": "علاقاتٌ دولية في الرعاية الصحية", "pv.contrib.a.6": "التزامٌ شخصي وثقافي تجاه مصر", "pv.contrib.b.k": "جيه تي فوكس", "pv.contrib.b.h": "الشبكة العالمية وريادة الأعمال", "pv.contrib.b.1": "شبكة ريادة أعمالٍ دولية", "pv.contrib.b.2": "تعريفاتٌ استراتيجية", "pv.contrib.b.3": "علاقاتٌ مع مستثمرين ورجال أعمال", "pv.contrib.b.4": "خبرةٌ في التسويق التجاري", "pv.contrib.b.5": "حضورٌ عالمي ومنصّات", "pv.contrib.b.6": "منظورٌ في توسيع الأعمال", "pv.contrib.c.k": "الشركاء المصريون والدوليون", "pv.contrib.c.h": "المعرفة المحلية والقدرات", "pv.contrib.c.1": "معرفةٌ محلية وفهمٌ للسوق", "pv.contrib.c.2": "رأس المال", "pv.contrib.c.3": "أراضٍ أو بنية تحتية", "pv.contrib.c.4": "مشاركةٌ مؤسسية", "pv.contrib.c.5": "خبرةٌ تنظيمية وتشغيلية", "pv.contrib.c.6": "تكنولوجيا وقدرات بحثٍ وتطوير", "pv.contrib.note": "مساهمةٌ محتملة — تخضع لاتفاقٍ رسمي ولدور كل طرفٍ مشارك.", "pv.path.eyebrow": "مسارات مشاركة المستثمرين", "pv.path.h2": "أين يمكن للشركاء الاستراتيجيين الدخول في الحوار.", "pv.path.lead": "ثماني طرقٍ يمكن للشركاء الجادّين أن يرتبطوا بها بهذه الرؤية. كل مسارٍ أدناه نقطة انطلاقٍ للنقاش، لا دعوةٌ للاستثمار.", "pv.path.1h": "رأس المال الاستراتيجي", "pv.path.1p": "مستثمرون ومكاتب عائلية منفتحون على هياكل تمويلٍ متوافقة مع رؤيةٍ مصرية طويلة الأمد للرعاية الصحية وريادة الأعمال.", "pv.path.2h": "تطوير الرعاية الصحية", "pv.path.2p": "مشغّلون ومجموعاتٌ سريرية يمكن أن تساعد في تصميم أو إدارة مراكز رعايةٍ بمعيارٍ عالمي.", "pv.path.3h": "التكنولوجيا والذكاء الاصطناعي", "pv.path.3p": "شركاء تقنيون يستكشفون كيف يمكن للصحة الرقمية والذكاء الاصطناعي أن يوسّعا الرعاية والتعليم في مصر.", "pv.path.4h": "التعليم والبحث", "pv.path.4p": "مؤسساتٌ أكاديمية وبحثية مهتمة بالتعليم الطبي وتنمية القيادة في مصر.", "pv.path.5h": "العقارات والبنية التحتية", "pv.path.5p": "مطوّرون ذوو خبرةٍ في بناء بنيةٍ تحتية مرتكزة على الصحة أو مختلطة الاستخدام على نطاقٍ واسع.", "pv.path.6h": "الضيافة والسياحة الطبية", "pv.path.6p": "مشغّلو ضيافةٍ يمكن أن يقرنوا إرث مصر ببرامج عافيةٍ وطبيةٍ موثوقة.", "pv.path.7h": "التصنيع والتسويق التجاري", "pv.path.7p": "مصنّعون وشركاء تسويقٍ تجاري يمكن أن يوسّعوا منتجاتٍ ونماذج مُثبَتة.", "pv.path.8h": "التعاون الخيري أو المؤسسي", "pv.path.8p": "مؤسساتٌ وهيئاتٌ متوافقة مع التعليم، والوصول إلى الرعاية الصحية، والتنمية المصرية.", "pv.path.dd": "يخضع لدراسة العناية الواجبة.", "pv.path.cta1": "استكشف التوافق الاستراتيجي", "pv.path.cta2": "ابدأ حوارًا سريًا", "pv.proc.eyebrow": "عملية التطوير المسؤولة", "pv.proc.h2": "يجب أن تُقابَل الرؤية بالعناية الواجبة.", "pv.proc.lead": "تتطلّب المشاريع الكبرى انضباطًا. لا تُقدَّم أيّ خطوةٍ أدناه على أنها مُنجَزةٌ بالفعل — هذه هي العملية التي يُتوقَّع أن تتبعها أيّ فرصةٍ جادّة هنا.", "pv.proc.1k": "٠١", "pv.proc.1h": "تعريفٌ استراتيجي", "pv.proc.1p": "تعريفٌ أوّلي وخاص بين الأطراف المعنية.", "pv.proc.2k": "٠٢", "pv.proc.2h": "التوافق والسرية", "pv.proc.2p": "ترسيخ التوافق والسرية قبل مشاركة أيّ تفصيل.", "pv.proc.3k": "٠٣", "pv.proc.3h": "تحديد الفرصة", "pv.proc.3p": "تحديد الفرصة المحدَّدة ونطاقها ودور كل طرف.", "pv.proc.4k": "٠٤", "pv.proc.4h": "دراسة الجدوى والتحقّق المحلي", "pv.proc.4p": "اختبار الفكرة في ضوء الظروف الفعلية على أرض مصر.", "pv.proc.5k": "٠٥", "pv.proc.5h": "المراجعة القانونية والتنظيمية", "pv.proc.5p": "التأكّد من إمكان المضيّ بالفرصة ضمن القانون والتنظيم المعمول بهما.", "pv.proc.6k": "٠٦", "pv.proc.6h": "الهيكل المالي والتشغيلي", "pv.proc.6p": "بناء الهيكل الذي يحكم رأس المال والأدوار والعمليات.", "pv.proc.7k": "٠٧", "pv.proc.7h": "الموافقة الرسمية للشركاء", "pv.proc.7p": "اتفاقٌ خطّي من كل طرفٍ قبل أيّ التزام.", "pv.proc.8k": "٠٨", "pv.proc.8h": "التنفيذ على مراحل", "pv.proc.8p": "البناء على مراحل، مع مراجعة التقدّم في كل مرحلة.", "pv.proof.eyebrow": "الدليل والخبرة والقيادة", "pv.proof.h2": "مصداقيةٌ يمكن فحصها.", "pv.proof.lead": "يستحق الشركاء الجادّون دليلًا، لا مجرّد ادّعاءات. استكشف السجلّ الذي تستند إليه هذه الشراكة.", "pv.proof.1h": "القيادة الطبية", "pv.proof.1p": "خلفية الدكتورة عاقوري الطبية وتدريبها وفلسفتها في الرعاية التكاملية.", "pv.proof.1link": "عن الدكتورة عاقوري ←", "pv.proof.2h": "الأعمال المنشورة", "pv.proof.2p": "منشوراتٌ محكَّمة وأبحاثٌ مهنية.", "pv.proof.2link": "المنشورات على PubMed ←", "pv.proof.3h": "ريادة الأعمال العالمية", "pv.proof.3p": "السجلّ العلني لجيه تي فوكس كرائد أعمالٍ ومستثمرٍ وعاقد صفقات.", "pv.proof.3link": "عن جيه تي فوكس ←", "pv.proof.4h": "الشبكة الدولية", "pv.proof.4p": "علاقاتٌ بُنيت عبر عقودٍ في الأعمال والاستثمار والحياة العامة.", "pv.proof.4link": "الشبكة ←", "pv.proof.5h": "منظومة الرعاية الصحية", "pv.proof.5p": "AWAREmed والمنظومة الأوسع التي بنتها الدكتورة عاقوري في الرعاية الشاملة للإنسان.", "pv.proof.5link": "زيارة AWAREmed ←", "pv.proof.6h": "رؤية مصر", "pv.proof.6p": "القصة الأوفى وراء إعادة الدكتورة عاقوري هذه الرؤية إلى وطنها مصر.", "pv.proof.6link": "العودة إلى الوطن ←", "pv.cta.eyebrow": "الخطوة التالية", "pv.cta.h2": "الشراكة الصحيحة تبدأ بالحوار الصحيح.", "pv.cta.p": "تسعى هذه المبادرة إلى مشاركين جادّين ومتوافقين وقادرين — لا إلى استثمارٍ عام. إن كانت فرصة مصر وشبكتك أو خبرتك أو رأس مالك تنتمي إلى الغرفة نفسها، فنحن كذلك.", "pv.cta.btn1": "اطلب حوارًا استراتيجيًا خاصًا", "pv.cta.btn2": "راجع الإفصاحات الهامة", "pv.cta.mark": "أُعدّت للشركاء الاستراتيجيين المحتملين والمستثمرين المؤهَّلين. ليست عرضًا أو دعوةً للاستثمار.", "pv.disc.h": "إفصاحاتٌ هامة", "pv.disc.p1": "وُصف جيه تي فوكس هنا بالاعتماد على معلوماتٍ متاحة علنًا من مواقعه ومواده العامة، ولم تتحقّق منها الدكتورة عاقوري أو AWAREmed أو هذا الموقع بشكلٍ مستقل. تعكس هذه الصفحة نقاشًا استكشافيًا فقط، ولا تمثّل شراكةً نهائية أو اتفاقًا أو تأييدًا، والأرقام المذكورة (الدول والشركات والفعاليات) هي كما يذكرها جيه تي فوكس علنًا.", "pv.disc.p2": "كل ما ورد في هذه الصفحة من قطاعاتٍ أو فرصٍ أو منظومةٍ أو مساهماتٍ محتملة هو توضيحيٌّ وطموح، ويُقدَّم كفكرةٍ أو استكشاف — لا كمشروعٍ نهائي أو معتمَد أو مموَّل. لا يمثّل شيءٌ هنا عرضًا أو دعوة لبيع أو شراء أيّ ورقةٍ مالية أو استثمار، ولا يُوعَد بأيّ عائدٍ مالي أو موافقةٍ حكومية أو التزامٍ استثماري ولا يُضمَن. وأيّ أدوارٍ أو مساهماتٍ أو شروطٍ نهائية لن تُحدَّد إلا باتفاقٍ خطّي رسمي بعد دراسة العناية الواجبة.", "pv.disc.p3": "والإشارات إلى المشاريع والاستثمار في مصر عامةٌ ولا تعني مشاركة أو تأييد أيّ فردٍ أو شركةٍ أو مؤسسةٍ بعينها. وخدمات AWAREmed مكمّلة، لا بديلة، عن الرعاية الطبية التقليدية."};
 I18N.fr={
   "langbar":"Nous parlons arabe, français, espagnol et anglais",
   "nav.home":"Accueil","nav.home.group":"Accueil","nav.meet":"Dre Dalal","nav.eco":"Écosystème","nav.why":"Le retour","nav.interviews":"Interviews","nav.media":"Médias","nav.press":"Presse &amp; Photos","nav.invest":"Investissement","nav.jtfoxx":"Le Retour de l'Égypte","nav.foxx.partnership":"Le Partenariat","nav.foxx.bio":"À Propos de JT Foxx","nav.foxx.akoury":"À Propos de la Dre Akoury","nav.events":"Événements","nav.vip.evening":"Soirée VIP","nav.vip.dinner":"Dîner Privé","nav.legacy":"Héritage",
-  "jt.hero.kicker":"Le Connecteur &amp; la Vision",
-  "jt.hero.h1":"Un négociateur mondial, une vision égyptienne, et une <span class=\"em\">conversation qui vaut la peine</span>.",
-  "jt.hero.lede":"La vision de la Dre Dalal Akoury pour l'Égypte appelle un partenaire rare — quelqu'un dont le réseau traverse les continents et dont le métier est d'ouvrir des portes. JT Foxx est l'un des entrepreneurs les plus connectés au monde. Cette page explique qui il est, ce qu'il fait, et pourquoi une collaboration pourrait compter pour l'entreprise égyptienne.",
-  "jt.names.eyebrow":"Les Deux Noms",
-  "jt.names.h2":"La vision a besoin d'un connecteur.",
-  "jt.names.vision.role":"La Vision","jt.names.vision.name":"Dre Dalal Akoury","jt.names.vision.desc":"Médecin et fondatrice, bâtissant une vision de santé et d'héritage enracinée en Égypte.",
-  "jt.names.connector.role":"Le Connecteur","jt.names.connector.name":"JT Foxx","jt.names.connector.desc":"Entrepreneur, investisseur et négociateur mondial actif dans des dizaines de pays.",
-  "jt.names.close":"Les grandes idées échouent rarement par manque d'ambition. Elles échouent par manque des bonnes personnes dans la pièce. La Dre Akoury porte une vision pour l'Égypte — santé, développement, héritage. Un connecteur comme JT Foxx représente le type de portée mondiale capable de porter cette vision vers des partenaires, des capitaux et des plateformes bien au-delà des frontières de l'Égypte.",
-  "jt.who.eyebrow":"Qui Est JT Foxx",
-  "jt.who.h2":"Ce qu'il fait, selon ses propres termes publics.",
-  "jt.who.lead":"JT Foxx se présente comme le coach en richesse et en affaires n°1 au monde — un entrepreneur, investisseur et négociateur mondial actif dans des dizaines de pays, qui possède ou s'associe à un large portefeuille d'entreprises couvrant l'IA, la technologie, l'immobilier, l'hôtellerie et le divertissement.",
-  "jt.who.body":"Publiquement, il est surtout connu pour trois choses : la <strong style=\"color:var(--gold-lt);font-weight:600\">connexion</strong> — ses événements, dont Mega Success et Mega One, sont décrits comme des rassemblements de milliardaires, d'investisseurs et de figures reconnues ; le <strong style=\"color:var(--gold-lt);font-weight:600\">montage de transactions</strong> — il a bâti une approche de fusions-acquisitions qu'il appelle le modèle M7A ; et le <strong style=\"color:var(--gold-lt);font-weight:600\">capital</strong> — il promeut publiquement le co-investissement et le financement d'opérations. Plus récemment, il s'est concentré sur l'intelligence artificielle pour les entreprises.",
-  "jt.who.s1":"50+","jt.who.s1l":"Pays où il déclare faire des affaires",
-  "jt.who.s2":"80+","jt.who.s2l":"Entreprises qu'il déclare posséder ou avec lesquelles il s'associe",
-  "jt.who.s3":"Mega","jt.who.s3l":"Événements phares réunissant entrepreneurs et investisseurs mondiaux",
-  "jt.who.s4":"M7A","jt.who.s4l":"Son modèle signature de partenariat et d'acquisitions",
-  "jt.why.eyebrow":"Pourquoi Cela Compte pour l'Égypte",
-  "jt.why.h2":"Ce qu'un connecteur mondial apporte à l'entreprise égyptienne.",
-  "jt.why.lead":"L'Égypte offre des opportunités de classe mondiale et une base éprouvée d'entreprises locales. Ce que les connecteurs mondiaux ajoutent, c'est la portée — l'accès à des capitaux, des partenaires et des plateformes internationales qui transforment l'opportunité nationale en échelle mondiale.",
-  "jt.why.1n":"01","jt.why.1h":"Accès aux Capitaux","jt.why.1p":"Des introductions à des investisseurs internationaux et à des structures de financement qui complètent les capitaux propres de l'Égypte.",
-  "jt.why.2n":"02","jt.why.2h":"Partenaires Mondiaux","jt.why.2p":"Des relations sur des dizaines de marchés — de celles qui ouvrent des portes aux entreprises égyptiennes à l'étranger.",
-  "jt.why.3n":"03","jt.why.3h":"Montage d'Opérations","jt.why.3p":"Une expérience de croissance, de partenariat et d'acquisition — pour transformer des projets prometteurs en entreprises plus vastes.",
-  "jt.why.4n":"04","jt.why.4h":"Scène Mondiale","jt.why.4p":"Des plateformes et des événements qui placent l'opportunité égyptienne devant un public international.",
-  "jt.why.close":"Le bénéfice va à l'entreprise égyptienne au sens large — ses entrepreneurs, ses investisseurs et les opportunités que son économie offre désormais au monde. Il s'agit d'élargir le cercle, non d'un quelconque arrangement particulier.",
-  "jt.stand.eyebrow":"Où en Sont les Choses",
-  "jt.stand.h2":"Un mot honnête sur cette collaboration.",
-  "jt.stand.1k":"01","jt.stand.1h":"Une vision partagée","jt.stand.1p":"Tous deux croient que la connexion mondiale peut accélérer l'opportunité — pour l'Égypte et pour ceux qui bâtissent avec elle.",
-  "jt.stand.2k":"02","jt.stand.2h":"Une conversation ouverte","jt.stand.2p":"Les équipes de la Dre Akoury et de JT Foxx sont en discussion préliminaire et exploratoire. Rien ici ne représente un accord finalisé.",
-  "jt.stand.3k":"03","jt.stand.3h":"Une invitation","jt.stand.3p":"Les partenaires, investisseurs et institutions qui partagent la vision sont invités à une conversation privée sur ce qui pourrait être bâti.",
-  "jt.quote":"« L'information ne bâtit pas la richesse. Les gens le font. Les relations le font. »",
-  "jt.quote.cite":"Un thème du message public de JT Foxx",
-  "jt.cta.eyebrow":"La Prochaine Étape",
-  "jt.cta.h2":"Entamer la conversation.",
-  "jt.cta.p":"Si l'opportunité de l'Égypte et un réseau mondial ont leur place dans la même pièce, nous aussi. Écrivez-nous — en privé et sérieusement.",
-  "jt.cta.btn1":"Demander une Rencontre","jt.cta.btn2":"Rencontrer les Bâtisseurs d'Égypte",
-  "jt.disc.h":"Divulgations importantes",
-  "jt.disc.p":"JT Foxx est décrit ici à partir d'informations publiquement disponibles issues de ses propres sites et documents publics. Cette page reflète une discussion exploratoire uniquement ; elle ne représente pas un partenariat finalisé, un accord ou une approbation, et les chiffres cités (pays, entreprises, événements) sont ceux déclarés publiquement par JT Foxx. Les références à l'entreprise et à l'investissement égyptiens sont générales et n'impliquent la participation ou l'approbation d'aucun individu ni d'aucune société en particulier.",
-  "foot.about":"Bâtir l'avenir de la santé entre l'Égypte et le monde. Une extension naturelle de l'écosystème AWAREmed · Johnson City, Tennessee · USA.",
+  "jt.cta.btn1":"Demander une Rencontre","foot.about":"Bâtir l'avenir de la santé entre l'Égypte et le monde. Une extension naturelle de l'écosystème AWAREmed · Johnson City, Tennessee · USA.",
   "foot.explore":"Explorer","foot.connect":"Contact",
   "foot.disc":"Préparé pour des partenaires stratégiques et investisseurs potentiels. Ni offre ni sollicitation d'investissement ; les modèles illustratifs servent la discussion. Les services AWAREmed complètent, sans les remplacer, les soins médicaux conventionnels.",
-  "foot.conf":"Confidentiel — réservé aux destinataires autorisés."
-};
+  "foot.conf":"Confidentiel — réservé aux destinataires autorisés.", "pv.hero.kicker": "Le Connecteur &amp; la Vision", "pv.hero.h1": "Un n&eacute;gociateur mondial, une vision &eacute;gyptienne, et une <span class=\"em\">conversation qui vaut la peine</span>.", "pv.hero.lede": "La vision de la Dre Dalal Akoury pour l&rsquo;&Eacute;gypte appelle un type rare de partenariat &mdash; des relations mondiales, une autorit&eacute; m&eacute;dicale et une opportunit&eacute; &eacute;gyptienne, travaillant ensemble. Cette page explique qui est impliqu&eacute;, pourquoi cette collaboration compte, et comment des partenaires qualifi&eacute;s peuvent entamer une conversation priv&eacute;e.", "pv.hero.cta1": "Demander une Conversation Priv&eacute;e", "pv.hero.cta2": "Explorer le Partenariat", "pv.hero.fine": "Exploratoire et illustratif. Rien sur cette page ne constitue une offre ou une sollicitation d&rsquo;investissement &mdash; voir les <a href=\"#disclosures\">Divulgations Importantes</a>.", "pv.hero.ph.label": "Image N&eacute;cessaire &mdash; H&eacute;ros du Partenariat", "pv.hero.ph.desc": "La Dre Dalal Akoury et JT Foxx dans une conversation strat&eacute;gique de haut niveau avec des dirigeants &eacute;gyptiens et internationaux, dans une salle de r&eacute;union &eacute;l&eacute;gante surplombant Le Caire et le Nil.", "pv.pillars3.eyebrow": "Le Partenariat", "pv.pillars3.h2": "Relations Mondiales. Autorit&eacute; M&eacute;dicale. Opportunit&eacute; &Eacute;gyptienne.", "pv.pillars3.lead": "Trois forces r&eacute;unies&nbsp;: la vision d&rsquo;une m&eacute;decin pour une sant&eacute; globale de la personne, l&rsquo;acc&egrave;s d&rsquo;un connecteur au capital et aux entreprises mondiales, et le talent, l&rsquo;&eacute;chelle et l&rsquo;ambition propres &agrave; l&rsquo;&Eacute;gypte.", "pv.pillars3.1h": "Vision M&eacute;dicale et Humaine", "pv.pillars3.1p": "La Dre Akoury apporte une expertise m&eacute;dicale, un mod&egrave;le de sant&eacute; int&eacute;grative, l&rsquo;&eacute;ducation et un engagement personnel de toujours envers l&rsquo;&Eacute;gypte.", "pv.pillars3.2h": "Acc&egrave;s Mondial et Entreprise", "pv.pillars3.2p": "JT Foxx apporte des relations d&rsquo;affaires internationales, des pr&eacute;sentations strat&eacute;giques, l&rsquo;entrepreneuriat et l&rsquo;acc&egrave;s aux investisseurs.", "pv.pillars3.3h": "Opportunit&eacute; &Eacute;gyptienne et Ex&eacute;cution", "pv.pillars3.3p": "L&rsquo;&Eacute;gypte apporte talent, situation g&eacute;ographique, &eacute;chelle, h&eacute;ritage et une ambition de long terme, pr&ecirc;te &agrave; rencontrer les bons partenaires.", "pv.why.eyebrow": "Pourquoi Ce Partenariat Compte", "pv.why.h2": "Deux Forces Diff&eacute;rentes, Vis&eacute;es sur la M&ecirc;me Opportunit&eacute;.", "pv.why.p1": "Le travail de la Dre Akoury, c&rsquo;est la m&eacute;decine, la sant&eacute; globale de la personne, l&rsquo;&eacute;ducation, le leadership scientifique et une mission centr&eacute;e sur l&rsquo;&Eacute;gypte. Le travail de JT Foxx, c&rsquo;est l&rsquo;entrepreneuriat, les relations strat&eacute;giques, les r&eacute;seaux de capitaux internationaux et le d&eacute;veloppement commercial.", "pv.why.p2": "Aucune des deux forces ne construit une &eacute;cosyst&egrave;me &agrave; elle seule. L&rsquo;autorit&eacute; m&eacute;dicale sans acc&egrave;s mondial reste locale. L&rsquo;acc&egrave;s mondial sans autorit&eacute; m&eacute;dicale n&rsquo;a rien de cr&eacute;dible &agrave; pr&eacute;senter. Ensemble, les deux pourraient ouvrir une v&eacute;ritable conversation sur ce que l&rsquo;&Eacute;gypte b&acirc;tit ensuite &mdash; sans qu&rsquo;aucune des parties ne garantisse le r&eacute;sultat.", "pv.why.quote": "Les grandes id&eacute;es &eacute;chouent rarement par manque d&rsquo;ambition. Elles &eacute;chouent par manque des bonnes personnes dans la pi&egrave;ce.", "pv.why.ph1.label": "Image N&eacute;cessaire", "pv.why.ph1.desc": "La Dre Akoury dirigeant une discussion m&eacute;dicale ou scientifique.", "pv.why.ph2.label": "Image N&eacute;cessaire", "pv.why.ph2.desc": "JT Foxx dans un environnement d&rsquo;affaires ou d&rsquo;investissement mondial.", "pv.case.eyebrow": "L&rsquo;Argument d&rsquo;Investissement pour l&rsquo;&Eacute;gypte", "pv.case.h2": "Pourquoi l&rsquo;&Eacute;gypte Peut Devenir une Plateforme pour la Prochaine &Egrave;re de Croissance.", "pv.case.lead": "Six domaines o&ugrave; le talent, la g&eacute;ographie et l&rsquo;&eacute;lan de l&rsquo;&Eacute;gypte pourraient soutenir un partenariat s&eacute;rieux et bien structur&eacute; &mdash; chacun &agrave; un stade diff&eacute;rent de concept, d&rsquo;exploration ou de validation pr&eacute;coce.", "pv.case.ph.label": "Image N&eacute;cessaire", "pv.case.1.ph": "Un campus m&eacute;dical et de recherche &eacute;gyptien de pointe.", "pv.case.1.h": "Sant&eacute; et Longévit&eacute;", "pv.case.1.p": "Un mod&egrave;le de soins fond&eacute; sur les preuves et centr&eacute; sur la personne enti&egrave;re &mdash; des centres d&rsquo;excellence b&acirc;tis selon une norme mondiale, avec des m&eacute;decins &eacute;gyptiens form&eacute;s et &eacute;quip&eacute;s pour les diriger.", "pv.case.2.ph": "Un laboratoire d&rsquo;innovation en sant&eacute; propuls&eacute; par l&rsquo;IA.", "pv.case.2.h": "Intelligence Artificielle et Sant&eacute; Num&eacute;rique", "pv.case.2.p": "Des outils qui pourraient permettre &agrave; des soins et diagnostics d&rsquo;excellence d&rsquo;atteindre bien plus de personnes qu&rsquo;une seule clinique &mdash; explor&eacute;s comme un multiplicateur pour la sant&eacute; et l&rsquo;&eacute;ducation &eacute;gyptiennes, non comme un substitut aux m&eacute;decins.", "pv.case.3.ph": "Une universit&eacute; m&eacute;dicale &eacute;gyptienne et une acad&eacute;mie de leadership.", "pv.case.3.h": "&Eacute;ducation et D&eacute;veloppement du Leadership", "pv.case.3.p": "Former les m&eacute;decins, fondateurs et administrateurs capables de porter ce mod&egrave;le plus loin &mdash; du mentorat et un curriculum, pas une installation unique.", "pv.case.4.ph": "Une destination haut de gamme de bien-&ecirc;tre et de tourisme m&eacute;dical.", "pv.case.4.h": "Tourisme M&eacute;dical et de Bien-&Ecirc;tre", "pv.case.4.p": "Le patrimoine, la g&eacute;ographie et l&rsquo;hospitalit&eacute; de l&rsquo;&Eacute;gypte attirent d&eacute;j&agrave; le monde &mdash; associ&eacute;s &agrave; une programmation de soins et de bien-&ecirc;tre cr&eacute;dible et de haute qualit&eacute;, cet attrait pourrait s&rsquo;&eacute;tendre aux soins eux-m&ecirc;mes.", "pv.case.5.ph": "Un am&eacute;nagement immobilier mixte centr&eacute; sur la sant&eacute;.", "pv.case.5.h": "Immobilier et Infrastructure Centr&eacute;e sur la Sant&eacute;", "pv.case.5.p": "Le terrain physique dont un &eacute;cosyst&egrave;me de sant&eacute; et d&rsquo;&eacute;ducation a besoin &mdash; campus, cliniques et am&eacute;nagements mixtes construits autour du bien-&ecirc;tre plut&ocirc;t qu&rsquo;ajout&eacute;s apr&egrave;s coup.", "pv.case.6.ph": "Un corridor &eacute;gyptien de fabrication, d&rsquo;innovation et d&rsquo;exportation.", "pv.case.6.h": "Entrepreneuriat, Fabrication et Technologie", "pv.case.6.p": "Des fondateurs et fabricants b&acirc;tissant &agrave; la fois pour le march&eacute; national et l&rsquo;exportation &mdash; la couche entrepreneuriale qui pourrait employer, former et se d&eacute;velopper aux c&ocirc;t&eacute;s de la sant&eacute; et de l&rsquo;&eacute;ducation.", "pv.illustrative": "Vision illustrative &mdash; sous r&eacute;serve de faisabilit&eacute;, d&rsquo;autorisations, de financement et de la structure finale du partenariat.", "pv.eco.eyebrow": "Ce Qui Pourrait &Ecirc;tre B&acirc;ti", "pv.eco.h2": "D&rsquo;un Partenariat &agrave; un &Eacute;cosyst&egrave;me d&rsquo;Opportunit&eacute;s.", "pv.eco.lead": "Aucun secteur ici n&rsquo;existe isol&eacute;ment. La sant&eacute; donne &agrave; l&rsquo;&eacute;cosyst&egrave;me sa cr&eacute;dibilit&eacute;&nbsp;; chaque pilier suivant renforce ceux qui l&rsquo;entourent.", "pv.eco.1h": "Sant&eacute; et Longévit&eacute;", "pv.eco.1p": "L&rsquo;ancrage &mdash; un mod&egrave;le de soins centr&eacute; sur la personne, mondial et &eacute;volutif.", "pv.eco.2h": "&Eacute;ducation M&eacute;dicale", "pv.eco.2p": "Les m&eacute;decins et dirigeants capables de porter le mod&egrave;le plus loin.", "pv.eco.3h": "IA et Sant&eacute; Num&eacute;rique", "pv.eco.3p": "Le multiplicateur qui pourrait &eacute;tendre la port&eacute;e de soins d&rsquo;excellence.", "pv.eco.4h": "Tourisme M&eacute;dical", "pv.eco.4p": "Le monde se rendant en &Eacute;gypte pour se soigner, l&agrave; o&ugrave; le patrimoine attire d&eacute;j&agrave;.", "pv.eco.5h": "Immobilier Intelligent", "pv.eco.5p": "Le terrain physique sur lequel l&rsquo;&eacute;cosyst&egrave;me pourrait &ecirc;tre b&acirc;ti.", "pv.eco.6h": "Recherche et Biotechnologie", "pv.eco.6p": "La base scientifique qui pourrait maintenir le mod&egrave;le &agrave; la pointe.", "pv.eco.7h": "Entrepreneuriat et Franchise", "pv.eco.7p": "Un mod&egrave;le &eacute;prouv&eacute;, sous licence et r&eacute;p&eacute;t&eacute; plut&ocirc;t que reconstruit &agrave; chaque fois.", "pv.eco.8h": "Investissement et Partenariats Mondiaux", "pv.eco.8p": "Le capital et les relations qui pourraient relier le tout au monde.", "pv.contrib.eyebrow": "Ce Que Chaque Partie Apporte", "pv.contrib.h2": "Des R&ocirc;les Compl&eacute;mentaires, Pas une Comp&eacute;tition.", "pv.contrib.lead": "Chaque contribution ci-dessous est un r&ocirc;le potentiel, selon la fa&ccedil;on dont chaque participant choisit de s&rsquo;engager &mdash; sous r&eacute;serve d&rsquo;un accord formel, non un engagement contraignant.", "pv.contrib.a.k": "Dre Dalal Akoury", "pv.contrib.a.h": "Leadership M&eacute;dical et &Eacute;ducatif", "pv.contrib.a.1": "Leadership m&eacute;dical et clinique", "pv.contrib.a.2": "D&eacute;veloppement du mod&egrave;le de soins", "pv.contrib.a.3": "&Eacute;ducation et mentorat", "pv.contrib.a.4": "Direction scientifique et clinique", "pv.contrib.a.5": "Relations internationales en sant&eacute;", "pv.contrib.a.6": "Un engagement personnel et culturel envers l&rsquo;&Eacute;gypte", "pv.contrib.b.k": "JT Foxx", "pv.contrib.b.h": "R&eacute;seau Mondial et Entreprise", "pv.contrib.b.1": "Un r&eacute;seau entrepreneurial international", "pv.contrib.b.2": "Des pr&eacute;sentations strat&eacute;giques", "pv.contrib.b.3": "Des relations avec investisseurs et entrepreneurs", "pv.contrib.b.4": "Une exp&eacute;rience de commercialisation", "pv.contrib.b.5": "Une visibilit&eacute; et des plateformes mondiales", "pv.contrib.b.6": "Une perspective de mise &agrave; l&rsquo;&eacute;chelle des entreprises", "pv.contrib.c.k": "Partenaires &Eacute;gyptiens et Internationaux", "pv.contrib.c.h": "Connaissance Locale et Capacit&eacute;", "pv.contrib.c.1": "Connaissance locale et compr&eacute;hension du march&eacute;", "pv.contrib.c.2": "Capital", "pv.contrib.c.3": "Terrain ou infrastructure", "pv.contrib.c.4": "Participation institutionnelle", "pv.contrib.c.5": "Expertise r&eacute;glementaire et op&eacute;rationnelle", "pv.contrib.c.6": "Technologie et capacit&eacute; de recherche et d&eacute;veloppement", "pv.contrib.note": "Contribution potentielle &mdash; sous r&eacute;serve d&rsquo;un accord formel et du r&ocirc;le de chaque partie participante.", "pv.path.eyebrow": "Voies de Participation des Investisseurs", "pv.path.h2": "O&ugrave; les Partenaires Strat&eacute;giques Peuvent Entrer dans la Conversation.", "pv.path.lead": "Huit fa&ccedil;ons dont des partenaires s&eacute;rieux pourraient se rattacher &agrave; cette vision. Chaque voie ci-dessous est un point de d&eacute;part pour la discussion, non une sollicitation.", "pv.path.1h": "Capital Strat&eacute;gique", "pv.path.1p": "Des investisseurs et family offices ouverts &agrave; des structures de financement align&eacute;es sur une vision &eacute;gyptienne de long terme pour la sant&eacute; et l&rsquo;entreprise.", "pv.path.2h": "D&eacute;veloppement de la Sant&eacute;", "pv.path.2p": "Des op&eacute;rateurs et groupes cliniques qui pourraient aider &agrave; concevoir ou &agrave; g&eacute;rer des centres de soins de niveau mondial.", "pv.path.3h": "Technologie et IA", "pv.path.3p": "Des partenaires technologiques explorant comment la sant&eacute; num&eacute;rique et l&rsquo;IA pourraient &eacute;tendre les soins et l&rsquo;&eacute;ducation en &Eacute;gypte.", "pv.path.4h": "&Eacute;ducation et Recherche", "pv.path.4p": "Des institutions acad&eacute;miques et de recherche int&eacute;ress&eacute;es par l&rsquo;&eacute;ducation m&eacute;dicale et le d&eacute;veloppement du leadership en &Eacute;gypte.", "pv.path.5h": "Immobilier et Infrastructure", "pv.path.5p": "Des promoteurs exp&eacute;riment&eacute;s dans la construction d&rsquo;infrastructures centr&eacute;es sur la sant&eacute; ou mixtes &agrave; grande &eacute;chelle.", "pv.path.6h": "Hospitalit&eacute; et Tourisme M&eacute;dical", "pv.path.6p": "Des op&eacute;rateurs hoteliers qui pourraient associer le patrimoine &eacute;gyptien &agrave; une programmation de bien-&ecirc;tre et m&eacute;dicale cr&eacute;dible.", "pv.path.7h": "Fabrication et Commercialisation", "pv.path.7p": "Des fabricants et partenaires de commercialisation qui pourraient mettre &agrave; l&rsquo;&eacute;chelle des produits et mod&egrave;les &eacute;prouv&eacute;s.", "pv.path.8h": "Collaboration Philanthropique ou Institutionnelle", "pv.path.8p": "Des fondations et institutions align&eacute;es sur l&rsquo;&eacute;ducation, l&rsquo;acc&egrave;s aux soins et le d&eacute;veloppement &eacute;gyptien.", "pv.path.dd": "Sous r&eacute;serve d&rsquo;une diligence raisonnable.", "pv.path.cta1": "Explorer l&rsquo;Alignement Strat&eacute;gique", "pv.path.cta2": "Entamer une Conversation Confidentielle", "pv.proc.eyebrow": "Processus de D&eacute;veloppement Responsable", "pv.proc.h2": "La Vision Doit &Ecirc;tre &Eacute;gal&eacute;e par la Diligence Raisonnable.", "pv.proc.lead": "Les grands projets exigent de la discipline. Aucune &eacute;tape ci-dessous n&rsquo;est pr&eacute;sent&eacute;e comme d&eacute;j&agrave; accomplie &mdash; c&rsquo;est le processus que toute opportunit&eacute; s&eacute;rieuse ici devrait suivre.", "pv.proc.1k": "01", "pv.proc.1h": "Pr&eacute;sentation Strat&eacute;gique", "pv.proc.1p": "Une pr&eacute;sentation initiale et priv&eacute;e entre les parties concern&eacute;es.", "pv.proc.2k": "02", "pv.proc.2h": "Compatibilit&eacute; Mutuelle et Confidentialit&eacute;", "pv.proc.2p": "&Eacute;tablir l&rsquo;alignement et la confidentialit&eacute; avant tout partage de d&eacute;tails.", "pv.proc.3k": "03", "pv.proc.3h": "D&eacute;finition de l&rsquo;Opportunit&eacute;", "pv.proc.3p": "D&eacute;finir l&rsquo;opportunit&eacute; sp&eacute;cifique, sa port&eacute;e et le r&ocirc;le de chaque partie.", "pv.proc.4k": "04", "pv.proc.4h": "Faisabilit&eacute; et Validation Locale", "pv.proc.4p": "Tester le concept face aux conditions r&eacute;elles sur le terrain en &Eacute;gypte.", "pv.proc.5k": "05", "pv.proc.5h": "Revue Juridique et R&eacute;glementaire", "pv.proc.5p": "Confirmer que l&rsquo;opportunit&eacute; peut avancer dans le cadre du droit et de la r&eacute;glementation applicables.", "pv.proc.6k": "06", "pv.proc.6h": "Structure Financi&egrave;re et Op&eacute;rationnelle", "pv.proc.6p": "B&acirc;tir la structure qui r&eacute;girait le capital, les r&ocirc;les et les op&eacute;rations.", "pv.proc.7k": "07", "pv.proc.7h": "Approbation Formelle des Partenaires", "pv.proc.7p": "Un accord &eacute;crit de chaque partie avant tout engagement.", "pv.proc.8k": "08", "pv.proc.8h": "Ex&eacute;cution par Phases", "pv.proc.8p": "B&acirc;tir par &eacute;tapes, avec un examen des progr&egrave;s &agrave; chaque phase.", "pv.proof.eyebrow": "Preuves, Exp&eacute;rience et Leadership", "pv.proof.h2": "Une Cr&eacute;dibilit&eacute; qui Peut &Ecirc;tre Examin&eacute;e.", "pv.proof.lead": "Les partenaires s&eacute;rieux m&eacute;ritent des preuves, pas seulement des affirmations. Explorez le parcours qui sous-tend ce partenariat.", "pv.proof.1h": "Leadership M&eacute;dical", "pv.proof.1p": "La formation, le parcours et la philosophie de soins int&eacute;gratifs de la Dre Akoury.", "pv.proof.1link": "&Agrave; Propos de la Dre Akoury &rarr;", "pv.proof.2h": "Travaux Publi&eacute;s", "pv.proof.2p": "Publications revues par des pairs et recherche professionnelle.", "pv.proof.2link": "Publications sur PubMed &rarr;", "pv.proof.3h": "Entrepreneuriat Mondial", "pv.proof.3p": "Le parcours public de JT Foxx en tant qu&rsquo;entrepreneur, investisseur et n&eacute;gociateur.", "pv.proof.3link": "&Agrave; Propos de JT Foxx &rarr;", "pv.proof.4h": "R&eacute;seau International", "pv.proof.4p": "Des relations b&acirc;ties au fil des d&eacute;cennies dans les affaires, l&rsquo;investissement et la vie publique.", "pv.proof.4link": "Le R&eacute;seau &rarr;", "pv.proof.5h": "&Eacute;cosyst&egrave;me de Sant&eacute;", "pv.proof.5p": "AWAREmed et l&rsquo;&eacute;cosyst&egrave;me plus large que la Dre Akoury a b&acirc;ti autour de la sant&eacute; globale de la personne.", "pv.proof.5link": "Visiter AWAREmed &rarr;", "pv.proof.6h": "Vision pour l&rsquo;&Eacute;gypte", "pv.proof.6p": "L&rsquo;histoire compl&egrave;te de pourquoi la Dre Akoury ram&egrave;ne cette vision chez elle, en &Eacute;gypte.", "pv.proof.6link": "Le Retour &rarr;", "pv.cta.eyebrow": "La Prochaine &Eacute;tape", "pv.cta.h2": "Le Bon Partenariat Commence par la Bonne Conversation.", "pv.cta.p": "Cette initiative recherche des participants s&eacute;rieux, align&eacute;s et capables &mdash; non un investissement public g&eacute;n&eacute;ral. Si l&rsquo;opportunit&eacute; de l&rsquo;&Eacute;gypte et votre r&eacute;seau, votre expertise ou votre capital ont leur place dans la m&ecirc;me pi&egrave;ce, nous aussi.", "pv.cta.btn1": "Demander une Conversation Strat&eacute;gique Priv&eacute;e", "pv.cta.btn2": "Consulter les Divulgations Importantes", "pv.cta.mark": "Pr&eacute;par&eacute; pour des partenaires strat&eacute;giques potentiels et des investisseurs qualifi&eacute;s. Ni offre ni sollicitation d&rsquo;investissement.", "pv.disc.h": "Divulgations Importantes", "pv.disc.p1": "JT Foxx est d&eacute;crit ici &agrave; partir d&rsquo;informations publiquement disponibles issues de ses propres sites et documents publics, qui n&rsquo;ont pas &eacute;t&eacute; v&eacute;rifi&eacute;es de mani&egrave;re ind&eacute;pendante par la Dre Akoury, AWAREmed ou ce site. Cette page refl&egrave;te une discussion exploratoire uniquement&nbsp;; elle ne repr&eacute;sente pas un partenariat finalis&eacute;, un accord ou une approbation, et les chiffres cit&eacute;s (pays, entreprises, &eacute;v&eacute;nements) sont ceux d&eacute;clar&eacute;s publiquement par JT Foxx.", "pv.disc.p2": "Tout ce qui, sur cette page, d&eacute;crit des secteurs, des opportunit&eacute;s, un &eacute;cosyst&egrave;me ou des contributions potentielles est illustratif et aspirationnel, et pr&eacute;sent&eacute; comme concept ou exploration &mdash; non comme un projet finalis&eacute;, approuv&eacute; ou financ&eacute;. Rien ici ne constitue une offre ou une sollicitation d&rsquo;achat ou de vente de titres ou d&rsquo;investissement, et aucun rendement financier, approbation gouvernementale ou engagement d&rsquo;investissement n&rsquo;est promis ni garanti. Tout r&ocirc;le, contribution ou condition &eacute;ventuels ne seraient d&eacute;finis que par un accord &eacute;crit formel &agrave; l&rsquo;issue d&rsquo;une diligence raisonnable.", "pv.disc.p3": "Les r&eacute;f&eacute;rences &agrave; l&rsquo;entreprise et &agrave; l&rsquo;investissement &eacute;gyptiens sont g&eacute;n&eacute;rales et n&rsquo;impliquent la participation ou l&rsquo;approbation d&rsquo;aucun individu, soci&eacute;t&eacute; ou institution en particulier. Les services d&rsquo;AWAREmed compl&egrave;tent, sans les remplacer, les soins m&eacute;dicaux conventionnels."};
 I18N.es={
   "langbar":"Hablamos árabe, francés, español e inglés",
   "nav.home":"Inicio","nav.home.group":"Inicio","nav.meet":"Dra. Dalal","nav.eco":"Ecosistema","nav.why":"El regreso","nav.interviews":"Entrevistas","nav.media":"Medios","nav.press":"Prensa y Fotos","nav.invest":"Inversión","nav.jtfoxx":"El Regreso de Egipto","nav.foxx.partnership":"La Alianza","nav.foxx.bio":"Sobre JT Foxx","nav.foxx.akoury":"Sobre la Dra. Akoury","nav.events":"Eventos","nav.vip.evening":"Velada VIP","nav.vip.dinner":"Cena Privada","nav.legacy":"Legado",
-  "jt.hero.kicker":"El Conector y la Visión",
-  "jt.hero.h1":"Un negociador global, una visión egipcia, y una <span class=\"em\">conversación que vale la pena</span>.",
-  "jt.hero.lede":"La visión de la Dra. Dalal Akoury para Egipto exige un socio poco común — alguien cuya red cruza continentes y cuyo oficio es abrir puertas. JT Foxx es uno de los emprendedores más conectados del mundo. Esta página explica quién es, qué hace y por qué una colaboración podría importar para la empresa egipcia.",
-  "jt.names.eyebrow":"Los Dos Nombres",
-  "jt.names.h2":"La visión necesita un conector.",
-  "jt.names.vision.role":"La Visión","jt.names.vision.name":"Dra. Dalal Akoury","jt.names.vision.desc":"Médica y fundadora, construyendo una visión de salud y legado arraigada en Egipto.",
-  "jt.names.connector.role":"El Conector","jt.names.connector.name":"JT Foxx","jt.names.connector.desc":"Emprendedor, inversor y negociador global que opera en decenas de países.",
-  "jt.names.close":"Las grandes ideas rara vez fracasan por falta de ambición. Fracasan por falta de las personas adecuadas en la sala. La Dra. Akoury aporta una visión para Egipto — salud, desarrollo y legado. Un conector como JT Foxx representa el tipo de alcance global capaz de llevar esa visión a socios, capital y plataformas mucho más allá de las fronteras de Egipto.",
-  "jt.who.eyebrow":"Quién Es JT Foxx",
-  "jt.who.h2":"Lo que hace, en sus propios términos públicos.",
-  "jt.who.lead":"JT Foxx se describe como el coach de riqueza y negocios n.º 1 del mundo — un emprendedor, inversor y negociador global que hace negocios en decenas de países y posee o se asocia con una amplia cartera de empresas que abarca IA, tecnología, bienes raíces, hostelería y entretenimiento.",
-  "jt.who.body":"Públicamente se le conoce sobre todo por tres cosas: <strong style=\"color:var(--gold-lt);font-weight:600\">conexión</strong> — sus eventos, entre ellos Mega Success y Mega One, se describen como encuentros de multimillonarios, inversores y figuras reconocidas internacionalmente; <strong style=\"color:var(--gold-lt);font-weight:600\">cierre de acuerdos</strong> — desarrolló un enfoque de fusiones y adquisiciones que llama el modelo M7A; y <strong style=\"color:var(--gold-lt);font-weight:600\">capital</strong> — promueve públicamente la coinversión y la financiación de operaciones. Más recientemente se ha centrado en la inteligencia artificial para los negocios.",
-  "jt.who.s1":"50+","jt.who.s1l":"Países donde declara hacer negocios",
-  "jt.who.s2":"80+","jt.who.s2l":"Empresas que declara poseer o con las que se asocia",
-  "jt.who.s3":"Mega","jt.who.s3l":"Eventos insignia que reúnen a emprendedores e inversores globales",
-  "jt.who.s4":"M7A","jt.who.s4l":"Su modelo característico de asociación y adquisiciones",
-  "jt.why.eyebrow":"Por Qué Importa para Egipto",
-  "jt.why.h2":"Lo que un conector global aporta a la empresa egipcia.",
-  "jt.why.lead":"Egipto ofrece oportunidades de primer nivel y una base probada de empresa local. Lo que añaden los conectores globales es alcance — acceso a capital, socios y plataformas internacionales que convierten la oportunidad nacional en escala global.",
-  "jt.why.1n":"01","jt.why.1h":"Acceso a Capital","jt.why.1p":"Presentaciones a inversores internacionales y estructuras de financiación que complementan el capital propio de Egipto.",
-  "jt.why.2n":"02","jt.why.2h":"Socios Globales","jt.why.2p":"Relaciones en decenas de mercados — de las que abren puertas a los proyectos egipcios en el extranjero.",
-  "jt.why.3n":"03","jt.why.3h":"Estructuración de Acuerdos","jt.why.3p":"Experiencia en crecer, asociarse y adquirir — para convertir proyectos prometedores en empresas mayores.",
-  "jt.why.4n":"04","jt.why.4h":"Escenario Global","jt.why.4p":"Plataformas y eventos que sitúan la oportunidad egipcia ante un público internacional.",
-  "jt.why.close":"El beneficio es para la empresa egipcia en general — sus emprendedores, sus inversores y las oportunidades que su economía ofrece ahora al mundo. Se trata de ampliar el círculo, no de ningún acuerdo particular.",
-  "jt.stand.eyebrow":"Cómo Están las Cosas",
-  "jt.stand.h2":"Una palabra honesta sobre esta colaboración.",
-  "jt.stand.1k":"01","jt.stand.1h":"Una visión compartida","jt.stand.1p":"Ambos creen que la conexión global puede acelerar la oportunidad — para Egipto y para quienes construyen con él.",
-  "jt.stand.2k":"02","jt.stand.2h":"Una conversación abierta","jt.stand.2p":"Los equipos de la Dra. Akoury y de JT Foxx están en conversaciones preliminares y exploratorias. Nada aquí representa un acuerdo cerrado.",
-  "jt.stand.3k":"03","jt.stand.3h":"Una invitación","jt.stand.3p":"Los socios, inversores e instituciones que comparten la visión están invitados a una conversación privada sobre lo que podría construirse.",
-  "jt.quote":"«La información no construye riqueza. La construyen las personas. Las relaciones.»",
-  "jt.quote.cite":"Un tema del mensaje público de JT Foxx",
-  "jt.cta.eyebrow":"El Siguiente Paso",
-  "jt.cta.h2":"Iniciar la conversación.",
-  "jt.cta.p":"Si la oportunidad de Egipto y una red global pertenecen a la misma sala, nosotros también. Escríbanos — en privado y con seriedad.",
-  "jt.cta.btn1":"Solicitar una Reunión","jt.cta.btn2":"Conocer a los Constructores de Egipto",
-  "jt.disc.h":"Divulgaciones importantes",
-  "jt.disc.p":"JT Foxx se describe aquí a partir de información disponible públicamente de sus propios sitios y materiales públicos. Esta página refleja únicamente una conversación exploratoria; no representa una asociación cerrada, un acuerdo ni un respaldo, y las cifras citadas (países, empresas, eventos) son las declaradas públicamente por JT Foxx. Las referencias a la empresa y la inversión egipcias son generales y no implican la participación ni el respaldo de ningún individuo o compañía en particular.",
-  "foot.about":"Construyendo el futuro de la salud entre Egipto y el mundo. Una extensión natural del ecosistema AWAREmed · Johnson City, Tennessee · EE.UU.",
+  "jt.cta.btn1":"Solicitar una Reunión","foot.about":"Construyendo el futuro de la salud entre Egipto y el mundo. Una extensión natural del ecosistema AWAREmed · Johnson City, Tennessee · EE.UU.",
   "foot.explore":"Explorar","foot.connect":"Contacto",
   "foot.disc":"Preparado para socios estratégicos e inversores potenciales. Ni oferta ni solicitud de inversión; los modelos ilustrativos sirven a la discusión. Los servicios de AWAREmed complementan, y no reemplazan, la atención médica convencional.",
-  "foot.conf":"Confidencial — solo para destinatarios autorizados."
-};
+  "foot.conf":"Confidencial — solo para destinatarios autorizados.", "pv.hero.kicker": "El Conector y la Visión", "pv.hero.h1": "Un negociador global, una visión egipcia, y una <span class=\"em\">conversación que vale la pena</span>.", "pv.hero.lede": "La visión de la Dra. Dalal Akoury para Egipto exige un tipo poco común de alianza — relaciones globales, autoridad médica y oportunidad egipcia, trabajando juntas. Esta página explica quién está involucrado, por qué importa esta colaboración y cómo los socios calificados pueden iniciar una conversación privada.", "pv.hero.cta1": "Solicitar una Conversación Privada", "pv.hero.cta2": "Explorar la Alianza", "pv.hero.fine": "Exploratorio e ilustrativo. Nada en esta página constituye una oferta o solicitud de inversión — consulte las <a href=\"#disclosures\">Divulgaciones Importantes</a>.", "pv.hero.ph.label": "Imagen Necesaria — Portada de la Alianza", "pv.hero.ph.desc": "La Dra. Dalal Akoury y JT Foxx en una conversación estratégica de alto nivel con líderes egipcios e internacionales, dentro de una elegante sala de juntas con vista a El Cairo y el Nilo.", "pv.pillars3.eyebrow": "La Alianza", "pv.pillars3.h2": "Relaciones Globales. Autoridad Médica. Oportunidad Egipcia.", "pv.pillars3.lead": "Tres fortalezas que se unen: la visión de una médica para una atención integral de la persona, el acceso de un conector al capital y la empresa globales, y el talento, la escala y la ambición propios de Egipto.", "pv.pillars3.1h": "Visión Médica y Humana", "pv.pillars3.1p": "La Dra. Akoury aporta experiencia médica, un modelo integrativo de atención, educación y un compromiso personal de toda la vida con Egipto.", "pv.pillars3.2h": "Acceso Global y Empresa", "pv.pillars3.2p": "JT Foxx aporta relaciones comerciales internacionales, presentaciones estratégicas, emprendimiento y acceso a inversores.", "pv.pillars3.3h": "Oportunidad Egipcia y Ejecución", "pv.pillars3.3p": "Egipto aporta talento, ubicación, escala, herencia y una ambición de largo plazo, lista para encontrarse con los socios adecuados.", "pv.why.eyebrow": "Por Qué Importa Esta Alianza", "pv.why.h2": "Dos Fortalezas Distintas, Apuntando a la Misma Oportunidad.", "pv.why.p1": "El trabajo de la Dra. Akoury es la medicina, la atención integral de la persona, la educación, el liderazgo científico y una misión centrada en Egipto. El trabajo de JT Foxx es el emprendimiento, las relaciones estratégicas, las redes internacionales de capital y el desarrollo de negocios.", "pv.why.p2": "Ninguna de las dos fortalezas por sí sola construye un ecosistema. La autoridad médica sin acceso global permanece local. El acceso global sin autoridad médica no tiene nada creíble que presentar. Juntas, ambas podrían abrir una conversación seria sobre lo que Egipto construye a continuación — sin que ninguna de las partes garantice el resultado.", "pv.why.quote": "Las grandes ideas rara vez fracasan por falta de ambición. Fracasan por falta de las personas adecuadas en la sala.", "pv.why.ph1.label": "Imagen Necesaria", "pv.why.ph1.desc": "La Dra. Akoury liderando una discusión médica o científica.", "pv.why.ph2.label": "Imagen Necesaria", "pv.why.ph2.desc": "JT Foxx en un entorno de negocios o inversión global.", "pv.case.eyebrow": "El Argumento de Inversión para Egipto", "pv.case.h2": "Por Qué Egipto Puede Convertirse en una Plataforma para la Próxima Era de Crecimiento.", "pv.case.lead": "Seis áreas donde el talento, la geografía y el impulso de Egipto podrían sostener una alianza seria y bien estructurada — cada una en una etapa distinta de concepto, exploración o validación temprana.", "pv.case.ph.label": "Imagen Necesaria", "pv.case.1.ph": "Un campus médico y de investigación egipcio de vanguardia.", "pv.case.1.h": "Salud y Longevidad", "pv.case.1.p": "Un modelo de atención basado en evidencia y centrado en la persona completa — centros de excelencia construidos según un estándar global, con médicos egipcios formados y preparados para dirigirlos.", "pv.case.2.ph": "Un laboratorio de innovación en salud impulsado por IA.", "pv.case.2.h": "Inteligencia Artificial y Salud Digital", "pv.case.2.p": "Herramientas que podrían permitir que una atención y un diagnóstico excelentes lleguen a muchas más personas de las que una sola clínica podría alcanzar — exploradas como un multiplicador para la salud y la educación egipcias, no como un sustituto de los médicos.", "pv.case.3.ph": "Una universidad médica egipcia y una academia de liderazgo.", "pv.case.3.h": "Educación y Desarrollo de Liderazgo", "pv.case.3.p": "Formar a los médicos, fundadores y administradores capaces de llevar este modelo hacia adelante — mentoría y un plan de estudios, no una sola instalación.", "pv.case.4.ph": "Un destino de bienestar y turismo médico de primer nivel.", "pv.case.4.h": "Turismo Médico y de Bienestar", "pv.case.4.p": "La herencia, la geografía y la hospitalidad de Egipto ya atraen al mundo — combinadas con una programación de atención y bienestar creíble y de alta calidad, ese atractivo podría extenderse a la atención misma.", "pv.case.5.ph": "Un desarrollo inmobiliario de uso mixto centrado en la salud.", "pv.case.5.h": "Bienes Raíces e Infraestructura Centrada en la Salud", "pv.case.5.p": "El terreno físico que necesita un ecosistema de salud y educación — campus, clínicas y desarrollos de uso mixto construidos en torno al bienestar en lugar de añadirse después.", "pv.case.6.ph": "Un corredor egipcio de manufactura, innovación y exportación.", "pv.case.6.h": "Emprendimiento, Manufactura y Tecnología", "pv.case.6.p": "Fundadores y fabricantes construyendo tanto para el mercado nacional como para la exportación — la capa empresarial que podría emplear, formar y crecer junto a la salud y la educación.", "pv.illustrative": "Visión ilustrativa — sujeta a estudios de viabilidad, aprobaciones, financiamiento y la estructura final de la alianza.", "pv.eco.eyebrow": "Lo Que Podría Construirse", "pv.eco.h2": "De una Alianza a un Ecosistema de Oportunidades.", "pv.eco.lead": "Ningún sector aquí existe por sí solo. La salud da al ecosistema su credibilidad; cada pilar posterior refuerza a los que lo rodean.", "pv.eco.1h": "Salud y Longevidad", "pv.eco.1p": "El ancla — un modelo de atención integral de la persona, de nivel mundial y escalable.", "pv.eco.2h": "Educación Médica", "pv.eco.2p": "Los médicos y líderes capaces de llevar el modelo hacia adelante.", "pv.eco.3h": "IA y Salud Digital", "pv.eco.3p": "El multiplicador que podría permitir que la atención excelente llegue más lejos.", "pv.eco.4h": "Turismo Médico", "pv.eco.4p": "El mundo visitando Egipto en busca de atención, donde la herencia ya atrae.", "pv.eco.5h": "Bienes Raíces Inteligentes", "pv.eco.5p": "El terreno físico sobre el que podría construirse el ecosistema.", "pv.eco.6h": "Investigación y Biotecnología", "pv.eco.6p": "La base científica que podría mantener el modelo a la vanguardia.", "pv.eco.7h": "Emprendimiento y Franquicias", "pv.eco.7p": "Un modelo probado, licenciado y repetido en lugar de reconstruido cada vez.", "pv.eco.8h": "Inversión y Alianzas Globales", "pv.eco.8p": "El capital y las relaciones que podrían conectar todo con el mundo.", "pv.contrib.eyebrow": "Lo Que Aporta Cada Parte", "pv.contrib.h2": "Roles Complementarios, No una Competencia.", "pv.contrib.lead": "Cada aporte a continuación es un rol potencial, según cómo elija participar cada parte — sujeto a un acuerdo formal, no un compromiso vinculante.", "pv.contrib.a.k": "Dra. Dalal Akoury", "pv.contrib.a.h": "Liderazgo Médico y Educativo", "pv.contrib.a.1": "Liderazgo médico y clínico", "pv.contrib.a.2": "Desarrollo del modelo de atención", "pv.contrib.a.3": "Educación y mentoría", "pv.contrib.a.4": "Dirección científica y clínica", "pv.contrib.a.5": "Relaciones internacionales en salud", "pv.contrib.a.6": "Un compromiso personal y cultural con Egipto", "pv.contrib.b.k": "JT Foxx", "pv.contrib.b.h": "Red Global y Empresa", "pv.contrib.b.1": "Una red empresarial internacional", "pv.contrib.b.2": "Presentaciones estratégicas", "pv.contrib.b.3": "Relaciones con inversores y empresarios", "pv.contrib.b.4": "Experiencia en comercialización", "pv.contrib.b.5": "Visibilidad y plataformas globales", "pv.contrib.b.6": "Una perspectiva de escalamiento empresarial", "pv.contrib.c.k": "Socios Egipcios e Internacionales", "pv.contrib.c.h": "Conocimiento Local y Capacidad", "pv.contrib.c.1": "Conocimiento local y comprensión del mercado", "pv.contrib.c.2": "Capital", "pv.contrib.c.3": "Terreno o infraestructura", "pv.contrib.c.4": "Participación institucional", "pv.contrib.c.5": "Experiencia regulatoria y operativa", "pv.contrib.c.6": "Tecnología y capacidad de investigación y desarrollo", "pv.contrib.note": "Aporte potencial — sujeto a un acuerdo formal y al rol de cada parte participante.", "pv.path.eyebrow": "Vías de Participación para Inversores", "pv.path.h2": "Dónde Pueden los Socios Estratégicos Entrar en la Conversación.", "pv.path.lead": "Ocho formas en que socios serios podrían relacionarse con esta visión. Cada vía a continuación es un punto de partida para la conversación, no una solicitud.", "pv.path.1h": "Capital Estratégico", "pv.path.1p": "Inversores y family offices abiertos a estructuras de financiamiento alineadas con una visión egipcia de largo plazo para la salud y la empresa.", "pv.path.2h": "Desarrollo de Salud", "pv.path.2p": "Operadores y grupos clínicos que podrían ayudar a diseñar o gestionar centros de atención de nivel mundial.", "pv.path.3h": "Tecnología e IA", "pv.path.3p": "Socios tecnológicos que exploran cómo la salud digital y la IA podrían ampliar la atención y la educación en Egipto.", "pv.path.4h": "Educación e Investigación", "pv.path.4p": "Instituciones académicas y de investigación interesadas en la educación médica y el desarrollo de liderazgo en Egipto.", "pv.path.5h": "Bienes Raíces e Infraestructura", "pv.path.5p": "Desarrolladores con experiencia en construir infraestructura centrada en la salud o de uso mixto a gran escala.", "pv.path.6h": "Hostelería y Turismo Médico", "pv.path.6p": "Operadores hoteleros que podrían combinar la herencia de Egipto con una programación de bienestar y médica creíble.", "pv.path.7h": "Manufactura y Comercialización", "pv.path.7p": "Fabricantes y socios de comercialización que podrían escalar productos y modelos probados.", "pv.path.8h": "Colaboración Filantrópica o Institucional", "pv.path.8p": "Fundaciones e instituciones alineadas con la educación, el acceso a la salud y el desarrollo egipcio.", "pv.path.dd": "Sujeto a la debida diligencia.", "pv.path.cta1": "Explorar la Alineación Estratégica", "pv.path.cta2": "Iniciar una Conversación Confidencial", "pv.proc.eyebrow": "Proceso de Desarrollo Responsable", "pv.proc.h2": "La Visión Debe Ir Acompañada de la Debida Diligencia.", "pv.proc.lead": "Los grandes proyectos exigen disciplina. Ningún paso a continuación se presenta como ya completado — este es el proceso que se esperaría que siguiera cualquier oportunidad seria aquí.", "pv.proc.1k": "01", "pv.proc.1h": "Presentación Estratégica", "pv.proc.1p": "Una presentación inicial y privada entre las partes relevantes.", "pv.proc.2k": "02", "pv.proc.2h": "Afinidad Mutua y Confidencialidad", "pv.proc.2p": "Establecer alineación y confidencialidad antes de compartir cualquier detalle.", "pv.proc.3k": "03", "pv.proc.3h": "Definición de la Oportunidad", "pv.proc.3p": "Definir la oportunidad específica, su alcance y el rol de cada parte.", "pv.proc.4k": "04", "pv.proc.4h": "Viabilidad y Validación Local", "pv.proc.4p": "Poner a prueba el concepto frente a las condiciones reales sobre el terreno en Egipto.", "pv.proc.5k": "05", "pv.proc.5h": "Revisión Legal y Regulatoria", "pv.proc.5p": "Confirmar que la oportunidad puede avanzar dentro de la ley y la regulación aplicables.", "pv.proc.6k": "06", "pv.proc.6h": "Estructura Financiera y Operativa", "pv.proc.6p": "Construir la estructura que regiría el capital, los roles y las operaciones.", "pv.proc.7k": "07", "pv.proc.7h": "Aprobación Formal de los Socios", "pv.proc.7p": "Un acuerdo escrito de cada parte antes de cualquier compromiso.", "pv.proc.8k": "08", "pv.proc.8h": "Ejecución por Fases", "pv.proc.8p": "Construir por etapas, con revisión del progreso en cada fase.", "pv.proof.eyebrow": "Evidencia, Experiencia y Liderazgo", "pv.proof.h2": "Una Credibilidad Que Puede Examinarse.", "pv.proof.lead": "Los socios serios merecen evidencia, no solo afirmaciones. Explore el historial detrás de esta alianza.", "pv.proof.1h": "Liderazgo Médico", "pv.proof.1p": "La formación, trayectoria y filosofía de atención integrativa de la Dra. Akoury.", "pv.proof.1link": "Sobre la Dra. Akoury →", "pv.proof.2h": "Trabajo Publicado", "pv.proof.2p": "Publicaciones revisadas por pares e investigación profesional.", "pv.proof.2link": "Publicaciones en PubMed →", "pv.proof.3h": "Emprendimiento Global", "pv.proof.3p": "La trayectoria pública de JT Foxx como emprendedor, inversor y negociador.", "pv.proof.3link": "Sobre JT Foxx →", "pv.proof.4h": "Red Internacional", "pv.proof.4p": "Relaciones construidas a lo largo de décadas en los negocios, la inversión y la vida pública.", "pv.proof.4link": "La Red →", "pv.proof.5h": "Ecosistema de Salud", "pv.proof.5p": "AWAREmed y el ecosistema más amplio que la Dra. Akoury ha construido en torno a la atención integral de la persona.", "pv.proof.5link": "Visitar AWAREmed →", "pv.proof.6h": "Visión para Egipto", "pv.proof.6p": "La historia completa de por qué la Dra. Akoury trae esta visión de vuelta a su Egipto natal.", "pv.proof.6link": "El Regreso →", "pv.cta.eyebrow": "El Siguiente Paso", "pv.cta.h2": "La Alianza Correcta Comienza con la Conversación Correcta.", "pv.cta.p": "Esta iniciativa busca participantes serios, alineados y capaces — no una inversión pública general. Si la oportunidad de Egipto y su red, experiencia o capital pertenecen a la misma sala, nosotros también.", "pv.cta.btn1": "Solicitar una Conversación Estratégica Privada", "pv.cta.btn2": "Revisar las Divulgaciones Importantes", "pv.cta.mark": "Preparado para posibles socios estratégicos e inversores calificados. Ni oferta ni solicitud de inversión.", "pv.disc.h": "Divulgaciones Importantes", "pv.disc.p1": "JT Foxx se describe aquí a partir de información disponible públicamente de sus propios sitios y materiales públicos, que no ha sido verificada de forma independiente por la Dra. Akoury, AWAREmed o este sitio web. Esta página refleja únicamente una discusión exploratoria; no representa una alianza finalizada, un acuerdo ni un respaldo, y las cifras citadas (países, empresas, eventos) son las declaradas públicamente por JT Foxx.", "pv.disc.p2": "Todo lo que en esta página describe sectores, oportunidades, un ecosistema o aportes potenciales es ilustrativo y aspiracional, y se presenta como concepto o exploración — no como un proyecto finalizado, aprobado o financiado. Nada aquí constituye una oferta o solicitud de compra o venta de valores o inversión, y no se promete ni garantiza ningún retorno financiero, aprobación gubernamental o compromiso de inversión. Cualquier rol, aporte o término eventual solo se definiría mediante un acuerdo escrito formal tras la debida diligencia.", "pv.disc.p3": "Las referencias a la empresa y la inversión egipcias son generales y no implican la participación ni el respaldo de ningún individuo, compañía o institución en particular. Los servicios de AWAREmed complementan, y no reemplazan, la atención médica convencional."};
 </script>
 <script src="assets/app.js"></script>
 </body>
