@@ -721,6 +721,11 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 /* Chapter 07 only - same reasoning: wide stage shot with the subject well
    off-center-right, so bias the crop horizontally toward her */
 .jmedia-future img{object-position:88% 50%}
+/* Chapter 02 only - title overlay burned into the live HTML (not the image
+   pixels) so it stays crawlable/accessible; scrim sits low enough to clear
+   her face in the source photo. */
+.jimg-scrim{position:absolute;bottom:0;left:0;right:0;padding:26px 22px 16px;background:linear-gradient(to top,rgba(10,22,40,.85),transparent);border-radius:0 0 3px 3px;z-index:1;pointer-events:none}
+.jimg-scrim .jimg-title{font-family:var(--display);font-weight:500;font-size:1.05rem;line-height:1.35;color:var(--white)}
 .jphase{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:14px}
 .jchap h3{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.15;color:var(--navy);margin-bottom:16px}
 .jchap p{font-size:14.5px;line-height:1.95;color:var(--text);margin-bottom:20px}
@@ -730,7 +735,7 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
    applied under the photo itself rather than in the copy column. */
 .jcap{margin-top:12px;font-size:11.5px;letter-spacing:.04em;color:var(--gold-deep);text-align:center}
 .jcap b{font-family:var(--display);font-style:italic;font-weight:400;font-size:1rem;color:var(--navy);margin-right:6px}
-@media(max-width:900px){.jchap{grid-template-columns:1fr;gap:32px;padding:44px 0}.jchap.alt .jmedia{order:0}.jmedia img{height:400px}.jmedia .jnum{font-size:4rem;top:-18px}}
+@media(max-width:900px){.jchap{grid-template-columns:1fr;gap:32px;padding:44px 0}.jchap.alt .jmedia{order:0}.jmedia img{height:400px}.jmedia .jnum{font-size:4rem;top:-18px}.jimg-scrim .jimg-title{font-size:.92rem}}
 
 /* #research reuses the shared Oxford stage photo (also used as the #why
    background) — object-position only, so the shared file itself and the
@@ -1380,7 +1385,7 @@ html[dir="rtl"] .qframe{padding:64px 52px}
       </div>
 
       <div class="jchap alt reveal">
-        <div class="jmedia"><div class="jnum">02</div><img src="assets/images/caring-for-children.jpg" alt="Dr. Dalal Akoury speaking on stage" loading="lazy"></div>
+        <div class="jmedia"><div class="jnum">02</div><img src="assets/images/caring-for-children.jpg" alt="Dr. Dalal Akoury Speaks at the Royal Society of Medicine on Integrative, Holistic Medicine" title="Dr. Dalal Akoury Speaks at the Royal Society of Medicine on Integrative, Holistic Medicine" loading="lazy"><div class="jimg-scrim"><div class="jimg-title">Dr. Dalal Akoury Speaks at the Royal Society of Medicine on Integrative, Holistic Medicine</div></div></div>
         <div>
           <div class="jphase" data-i18n="journey.2.phase">Caring for Children with Cancer</div>
           <h3 data-i18n="journey.2.h">Learning that curing and healing are not the same</h3>
