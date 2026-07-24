@@ -95,6 +95,9 @@
 #main .ph::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 30% 20%, rgba(198,161,91,.16), transparent 70%);pointer-events:none}
 #main .ph::before{content:"";position:absolute;left:50%;top:50%;width:44px;height:44px;transform:translate(-50%,-50%);border:1px solid rgba(217,189,130,.35);border-radius:50%;opacity:.55}
 #main .ph img{position:relative;z-index:2;width:100%;height:100%;object-fit:cover;display:block}
+#main .ph .img-scrim{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:22px 20px 14px;background:linear-gradient(to top,rgba(10,22,40,.85),transparent);pointer-events:none}
+#main .ph .img-scrim-title{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:500;font-size:1.05rem;line-height:1.35;color:#fff}
+@media(max-width:600px){#main .ph .img-scrim{padding:16px 14px 10px}#main .ph .img-scrim-title{font-size:.82rem;line-height:1.3}}
 #main figure{margin:0}
 #main figcaption{font-size:12.5px;color:var(--ink-soft);margin-top:9px;letter-spacing:.01em}
 #main section.dark figcaption{color:#a7afc0}
@@ -1450,7 +1453,7 @@ html[dir="rtl"] #main .form2{text-align:right}
          originally sized for -- swapped .ar-43 for the page's existing
          .ar-32 class so the image displays at its own ratio instead of
          being cropped to fit a narrower frame. -->
-    <figure style="max-width:600px;margin:6px auto 0"><div class="ph ar-32"><img src="images/wimpole need on image 2.jpg" alt="Dr. Dalal Akoury addressing an audience at Wimpole Street, London, to applause" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption style="text-align:center">&nbsp;</figcaption></figure>
+    <figure style="max-width:600px;margin:6px auto 0"><div class="ph ar-32"><img src="images/wimpole need on image 2.jpg" alt="Dr. Dalal Akoury Speaks at the Royal Society of Medicine on Integrative, Holistic Medicine" title="Dr. Dalal Akoury Speaks at the Royal Society of Medicine on Integrative, Holistic Medicine" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"><div class="img-scrim"><div class="img-scrim-title">Dr. Dalal Akoury Speaks at the Royal Society of Medicine on Integrative, Holistic Medicine</div></div></div><figcaption style="text-align:center">&nbsp;</figcaption></figure>
   </div>
 </section>
 
