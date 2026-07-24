@@ -1770,6 +1770,18 @@ html[dir="rtl"] #main .form2{text-align:right}
    since ::before/::after are already the pointer-glow and the vignette */
 #legacy-ghaly .g-tile-sweep{position:absolute;top:-20%;bottom:-20%;left:-45%;width:28%;z-index:4;transform:skewX(-18deg);background:linear-gradient(90deg,transparent,rgba(255,243,211,.1),transparent);pointer-events:none;opacity:0}
 @keyframes g-sweep{0%{opacity:0;transform:skewX(-18deg) translateX(0)}14%{opacity:1}55%{opacity:.6}100%{opacity:0;transform:skewX(-18deg) translateX(640%)}}
+/* SEO title + description overlay, sat above the vignette/glow/sweep
+   layers (z-index 5) so it stays readable on every tile. Real HTML
+   text (not baked into the photo) so it's crawlable and accessible. */
+#legacy-ghaly .g-cap{position:absolute;left:0;right:0;bottom:0;z-index:5;padding:20px 18px 14px;background:linear-gradient(to top,rgba(10,22,40,.85),transparent);pointer-events:none}
+#legacy-ghaly .g-cap-title{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-weight:600;font-size:1.05rem;line-height:1.3;color:#fff}
+#legacy-ghaly .g-cap-desc{margin-top:5px;font-family:'Inter',sans-serif;font-size:.72rem;line-height:1.4;letter-spacing:.01em;color:var(--gold-soft)}
+/* tile-2/tile-3 share the narrower right-hand column (roughly a third
+   of tile-1's width even on desktop), so their caption text needs to
+   start smaller to avoid a tall scrim creeping up over the photo */
+#legacy-ghaly .g-tile-2 .g-cap,#legacy-ghaly .g-tile-3 .g-cap{padding:14px 14px 10px}
+#legacy-ghaly .g-tile-2 .g-cap-title,#legacy-ghaly .g-tile-3 .g-cap-title{font-size:.86rem;line-height:1.25}
+#legacy-ghaly .g-tile-2 .g-cap-desc,#legacy-ghaly .g-tile-3 .g-cap-desc{font-size:.66rem;line-height:1.35}
 @media(hover:hover){
   /* .reveal.in{transform:translateY(0)} outweighs a plain :hover on
      specificity (3 classes vs 1 class+pseudo), so the lift would never
@@ -1914,6 +1926,9 @@ html[dir="rtl"] #legacy-ghaly .g-tl-node::before{left:auto;right:100%;transform:
   #legacy-ghaly .g-tile-1{grid-column:1/3;grid-row:1;aspect-ratio:5/6}
   #legacy-ghaly .g-tile-2{grid-column:1/2;grid-row:2;aspect-ratio:4/5}
   #legacy-ghaly .g-tile-3{grid-column:2/3;grid-row:2;aspect-ratio:4/5}
+  #legacy-ghaly .g-cap{padding:14px 12px 10px}
+  #legacy-ghaly .g-cap-title{font-size:.78rem;line-height:1.25}
+  #legacy-ghaly .g-cap-desc{font-size:.6rem;line-height:1.35}
 }
 /* narrow phones: two side-by-side supporting tiles get too tight to keep
    both faces readable, so stack all three in one column instead */
@@ -1936,16 +1951,19 @@ html[dir="rtl"] #legacy-ghaly .g-tl-node::before{left:auto;right:100%;transform:
  <div class="split">
   <div class="g-gallery">
    <div class="g-tile g-tile-1 reveal d1">
-    <img src="images/DR.Ghaly.jpg" alt="Portrait of Dr. Fouad Ghaly" loading="lazy" decoding="async" width="1254" height="1254" data-fallback onerror="this.style.visibility='hidden'">
+    <img src="images/DR.Ghaly.jpg" alt="Dr. Fouad Ghaly, the mentor whose work in regenerative and longevity medicine inspired Dr. Dalal Akoury's own path" title="Dr. Fouad Ghaly &mdash; Inspiration Behind Dr. Dalal Akoury's Journey" loading="lazy" decoding="async" width="1254" height="1254" data-fallback onerror="this.style.visibility='hidden'">
     <span class="g-tile-sweep" aria-hidden="true"></span>
+    <div class="g-cap"><div class="g-cap-title" data-i18n="ghaly.tile1.title">Dr. Fouad Ghaly &mdash; Inspiration Behind Dr. Dalal Akoury's Journey</div><div class="g-cap-desc" data-i18n="ghaly.tile1.desc">Dr. Dalal Akoury credits her cousin and mentor, Dr. Fouad Ghaly, with inspiring her path into regenerative and longevity medicine.</div></div>
    </div>
    <div class="g-tile g-tile-2 reveal d2">
-    <img src="images/Dr.Ghaly%20&amp;%20Dr.AkouryS1.jpg" alt="Dr. Fouad Ghaly and Dr. Dalal Akoury together" loading="lazy" decoding="async" width="1448" height="1086" data-fallback onerror="this.style.visibility='hidden'">
+    <img src="images/Dr.Ghaly%20&amp;%20Dr.AkouryS1.jpg" alt="Dr. Dalal Akoury sharing a warm moment with her cousin and mentor, Dr. Fouad Ghaly" title="Dr. Dalal Akoury with Her Mentor, Dr. Fouad Ghaly" loading="lazy" decoding="async" width="1448" height="1086" data-fallback onerror="this.style.visibility='hidden'">
     <span class="g-tile-sweep" aria-hidden="true"></span>
+    <div class="g-cap"><div class="g-cap-title" data-i18n="ghaly.tile2.title">Dr. Dalal Akoury with Her Mentor, Dr. Fouad Ghaly</div><div class="g-cap-desc" data-i18n="ghaly.tile2.desc">Dr. Dalal Akoury and Dr. Fouad Ghaly share a family bond that helped shape her medical career.</div></div>
    </div>
    <div class="g-tile g-tile-3 reveal d4">
-    <img src="images/Dr.Ghaly&amp;Dr.AkouryS2.jpg" alt="Dr. Fouad Ghaly with Dr. Dalal Akoury at a professional event" loading="lazy" decoding="async" width="1448" height="1086" data-fallback onerror="this.style.visibility='hidden'">
+    <img src="images/Dr.Ghaly&amp;Dr.AkouryS2.jpg" alt="Dr. Fouad Ghaly addressing fellow physicians at the National Academy of Medicine in Mexico, with Dr. Dalal Akoury seated on the panel" title="Dr. Fouad Ghaly Speaking, the Physician Who Shaped Dr. Dalal Akoury's Path" loading="lazy" decoding="async" width="1448" height="1086" data-fallback onerror="this.style.visibility='hidden'">
     <span class="g-tile-sweep" aria-hidden="true"></span>
+    <div class="g-cap"><div class="g-cap-title" data-i18n="ghaly.tile3.title">Dr. Fouad Ghaly, Shaping Dr. Dalal Akoury's Path</div><div class="g-cap-desc" data-i18n="ghaly.tile3.desc">An early influence on Dr. Dalal Akoury, addressing physicians in Mexico.</div></div>
    </div>
   </div>
 
