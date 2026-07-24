@@ -517,24 +517,24 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
    caption - but as a uniform grid rather than a masonry layout, since
    these 18 tiles are meant to read as one even photo wall). ---- */
 .icons-gallery{padding:110px 0}
-.icons-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:52px}
+.icons-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:52px}
 .icon-tile{position:relative;aspect-ratio:4/5;border-radius:8px;overflow:hidden;background:rgba(201,165,92,.07);border:1px solid rgba(201,165,92,.22);box-shadow:0 10px 24px rgba(15,27,51,.12);transition:transform .35s var(--ease),box-shadow .35s var(--ease);cursor:pointer}
 .icon-tile:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .icon-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
 .icon-tile:hover img{transform:scale(1.05)}
-.icon-tile .cap{position:absolute;left:0;right:0;bottom:0;padding:12px 14px;background:linear-gradient(0deg,rgba(10,20,37,.88) 0%,rgba(10,20,37,0) 100%);font-size:12px;letter-spacing:.02em;color:#fff;font-weight:600}
-/* Six-step stagger cycling per row so the reveal reads as a wave
-   across the grid rather than everything fading in at once - reuses
-   the shared .reveal/.in mechanism from assets/app.js, only the
-   transition-delay is scoped here. */
-#icons .icon-tile.reveal:nth-child(6n+2){transition-delay:.05s}
-#icons .icon-tile.reveal:nth-child(6n+3){transition-delay:.1s}
-#icons .icon-tile.reveal:nth-child(6n+4){transition-delay:.15s}
-#icons .icon-tile.reveal:nth-child(6n+5){transition-delay:.2s}
-#icons .icon-tile.reveal:nth-child(6n+6){transition-delay:.25s}
+.icon-tile .cap{position:absolute;left:0;right:0;bottom:0;padding:16px 18px;background:linear-gradient(0deg,rgba(10,20,37,.9) 0%,rgba(10,20,37,.5) 55%,transparent 100%)}
+.icon-tile .cap-title{font-size:13.5px;letter-spacing:.02em;color:#fff;font-weight:600;line-height:1.3}
+.icon-tile .cap-desc{margin-top:5px;font-size:11px;letter-spacing:.01em;color:var(--gold-pale);line-height:1.4;font-weight:400}
+/* Four-step stagger cycling per row (grid is 4 columns) so the reveal
+   reads as a wave across the grid rather than everything fading in at
+   once - reuses the shared .reveal/.in mechanism from assets/app.js,
+   only the transition-delay is scoped here. */
+#icons .icon-tile.reveal:nth-child(4n+2){transition-delay:.05s}
+#icons .icon-tile.reveal:nth-child(4n+3){transition-delay:.1s}
+#icons .icon-tile.reveal:nth-child(4n+4){transition-delay:.15s}
 @media(prefers-reduced-motion:reduce){.icon-tile:hover img{transform:none}.icon-tile{transition:box-shadow .35s var(--ease)}}
-@media(max-width:980px){.icons-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:560px){.icons-grid{grid-template-columns:repeat(2,1fr);gap:12px}.icons-gallery{padding:80px 0}}
+@media(max-width:980px){.icons-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.icons-grid{grid-template-columns:1fr;gap:16px}.icons-gallery{padding:80px 0}}
 
 /* Click-to-enlarge lightbox for the icons gallery - same overlay/
    close-button/Escape/click-outside conventions as #videoModal above,
@@ -546,6 +546,7 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 .ilightbox img{max-width:88vw;max-height:82vh;object-fit:contain;border-radius:8px;box-shadow:0 40px 90px rgba(0,0,0,.5);transform:scale(.9) translateY(26px);transition:transform .4s var(--ease)}
 .ilightbox.open img{transform:scale(1) translateY(0)}
 .ilightbox-cap{position:absolute;bottom:30px;left:0;right:0;text-align:center;color:#fff;font-family:var(--display);font-size:1.15rem;letter-spacing:.02em;opacity:0;transform:translateY(10px);transition:opacity .4s var(--ease) .1s,transform .4s var(--ease) .1s}
+.ilightbox-cap-desc{display:block;margin-top:6px;font-family:var(--body);font-size:.62em;letter-spacing:.04em;color:var(--gold-pale)}
 .ilightbox.open .ilightbox-cap{opacity:1;transform:translateY(0)}
 .ilightbox-close{position:absolute;top:20px;right:24px;background:none;border:none;color:#fff;font-size:2.2rem;line-height:1;cursor:pointer;padding:8px 14px;z-index:2}
 .ilightbox-close:hover{color:var(--gold-light)}
@@ -1610,10 +1611,15 @@ html[dir="rtl"] .qframe{padding:64px 52px}
      inferred by this editor); "Charley Sheen and D" -> "Charlie
      Sheen"; "Great Laughter Miel Giebson" -> "Mel Gibson"; "J Noonan &
      Dalal" -> captioned "Peggy Noonan" per instruction, but the
-     filename's initial "J" doesn't match "Peggy" - worth confirming
-     who this actually is; "Myrtle&Dr.Dalal-Akoury" -> "Myrtle",
-     surname unknown; "Randy Zacherberg" -> "Randi Zuckerberg";
-     "Wosniac 3 Dolly" -> "Steve Wozniak". -->
+     filename's initial "J" doesn't match "Peggy" and the photo (a
+     woman in USA athletic wear) doesn't match the columnist either -
+     confirmed with the site owner to keep the "Peggy Noonan" label
+     as-is but avoid asserting unverified specifics in the description;
+     "Myrtle&Dr.Dalal-Akoury" -> confirmed with the site owner to be
+     George H. Ross (same photo already identified as Ross elsewhere
+     on this page), recaptioned accordingly - "Myrtle" was this
+     photo's old surname-unknown placeholder label; "Randy Zacherberg"
+     -> "Randi Zuckerberg"; "Wosniac 3 Dolly" -> "Steve Wozniak". -->
 <section class="block bg-cream icons-gallery" id="icons">
   <div class="container">
     <div class="center">
@@ -1621,24 +1627,24 @@ html[dir="rtl"] .qframe{padding:64px 52px}
       <h2 class="sh">The World's Most Influential <em>Leaders &amp; Icons</em></h2>
     </div>
     <div class="icons-grid">
-      <div class="icon-tile reveal"><img src="images/Al Pacino.jpg" alt="Al Pacino" loading="lazy"><div class="cap">Al Pacino</div></div>
-      <div class="icon-tile reveal"><img src="images/Brett Michael .jpg" alt="Bret Michaels" loading="lazy"><div class="cap">Bret Michaels</div></div>
-      <div class="icon-tile reveal"><img src="images/Charley Sheen and D.jpg" alt="Charlie Sheen" loading="lazy"><div class="cap">Charlie Sheen</div></div>
-      <div class="icon-tile reveal"><img src="images/Christie Brinkley Dalal.jpg" alt="Christie Brinkley" loading="lazy"><div class="cap">Christie Brinkley</div></div>
-      <div class="icon-tile reveal"><img src="images/Dr. Nido R. Qubein.jpg" alt="Dr. Nido Qubein" loading="lazy"><div class="cap">Dr. Nido Qubein</div></div>
-      <div class="icon-tile reveal"><img src="images/Dr.Robert Goldman.jpg" alt="Dr. Robert Goldman" loading="lazy"><div class="cap">Dr. Robert Goldman</div></div>
-      <div class="icon-tile reveal"><img src="images/DrDalal-and-Dr-Phil.png" alt="Dr. Phil" loading="lazy"><div class="cap">Dr. Phil</div></div>
-      <div class="icon-tile reveal"><img src="images/Gene Simons.jpg" alt="Gene Simmons" loading="lazy"><div class="cap">Gene Simmons</div></div>
-      <div class="icon-tile reveal"><img src="images/George Ross MegaSuccess 2017.jpg" alt="George Ross" loading="lazy"><div class="cap">George Ross</div></div>
-      <div class="icon-tile reveal"><img src="images/Great Laughter Miel Giebson.jpg" alt="Mel Gibson" loading="lazy"><div class="cap">Mel Gibson</div></div>
-      <div class="icon-tile reveal"><img src="images/Holyfield &amp;Dalal.jpg" alt="Evander Holyfield" loading="lazy"><div class="cap">Evander Holyfield</div></div>
-      <div class="icon-tile reveal"><img src="images/J Noonan &amp; Dalal.jpg" alt="Peggy Noonan" loading="lazy"><div class="cap">Peggy Noonan</div></div>
-      <div class="icon-tile reveal"><img src="images/Mark Wahrburd Dalal4.jpg" alt="Mark Wahlberg" loading="lazy"><div class="cap">Mark Wahlberg</div></div>
-      <div class="icon-tile reveal"><img src="images/Myrtle&amp;Dr.Dalal-Akoury.jpg" alt="Myrtle" loading="lazy"><div class="cap">Myrtle</div></div>
-      <div class="icon-tile reveal"><img src="images/Oprah Dalal  Transparent background copy.jpg" alt="Oprah Winfrey" loading="lazy"><div class="cap">Oprah Winfrey</div></div>
-      <div class="icon-tile reveal"><img src="images/Randy Zacherberg .jpg" alt="Randi Zuckerberg" loading="lazy"><div class="cap">Randi Zuckerberg</div></div>
-      <div class="icon-tile reveal"><img src="images/Travolta Dolly.jpg" alt="John Travolta" loading="lazy"><div class="cap">John Travolta</div></div>
-      <div class="icon-tile reveal"><img src="images/Wosniac 3 Dolly.jpg" alt="Steve Wozniak" loading="lazy"><div class="cap">Steve Wozniak</div></div>
+      <div class="icon-tile reveal"><img src="images/Al Pacino.jpg" alt="Dr. Dalal Akoury shares a warm moment with acclaimed actor Al Pacino at an industry event" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with Al Pacino</div><div class="cap-desc">Dr. Dalal Akoury shares a warm moment with acclaimed actor Al Pacino at an industry event.</div></div></div>
+      <div class="icon-tile reveal"><img src="images/Brett Michael .jpg" alt="Dr. Dalal Akoury greets rock icon Bret Michaels at the Mega Success conference" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with Bret Michaels</div><div class="cap-desc">Dr. Dalal Akoury greets rock icon Bret Michaels at the Mega Success conference.</div></div></div>
+      <div class="icon-tile reveal"><img src="images/Charley Sheen and D.jpg" alt="Dr. Dalal Akoury interviews actor Charlie Sheen on stage at the Mega Success conference" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with Charlie Sheen</div><div class="cap-desc">Dr. Dalal Akoury interviews actor Charlie Sheen on stage at the Mega Success conference.</div></div></div>
+      <div class="icon-tile reveal"><img src="images/Christie Brinkley Dalal.jpg" alt="Dr. Dalal Akoury poses with supermodel Christie Brinkley at the Mega Success conference" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with Christie Brinkley</div><div class="cap-desc">Dr. Dalal Akoury poses with supermodel Christie Brinkley at the Mega Success conference.</div></div></div>
+      <div class="icon-tile reveal"><img src="images/Dr. Nido R. Qubein.jpg" alt="Dr. Dalal Akoury connects with business leader Dr. Nido Qubein at a JT Foxx business conference" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with Dr. Nido Qubein</div><div class="cap-desc">Dr. Dalal Akoury connects with business leader Dr. Nido Qubein at a JT Foxx business conference.</div></div></div>
+      <div class="icon-tile reveal"><img src="images/Dr.Robert Goldman.jpg" alt="Dr. Dalal Akoury meets Dr. Robert Goldman, a leading voice in anti-aging medicine, at a medical conference" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with Dr. Robert Goldman</div><div class="cap-desc">Dr. Dalal Akoury meets Dr. Robert Goldman, a leading voice in anti-aging medicine, at a medical conference.</div></div></div>
+      <div class="icon-tile reveal"><img src="images/DrDalal-and-Dr-Phil.png" alt="Dr. Dalal Akoury shares a moment with television host Dr. Phil McGraw" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with Dr. Phil</div><div class="cap-desc">Dr. Dalal Akoury shares a moment with television host Dr. Phil McGraw.</div></div></div>
+      <div class="icon-tile reveal"><img src="images/Gene Simons.jpg" alt="Dr. Dalal Akoury poses with KISS legend Gene Simmons at the Mega Success conference" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with Gene Simmons</div><div class="cap-desc">Dr. Dalal Akoury poses with KISS legend Gene Simmons at the Mega Success conference.</div></div></div>
+      <div class="icon-tile reveal"><img src="images/George Ross MegaSuccess 2017.jpg" alt="Dr. Dalal Akoury meets Trump Organization executive George H. Ross at the 2017 Mega Success conference" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with George H. Ross</div><div class="cap-desc">Dr. Dalal Akoury meets Trump Organization executive George H. Ross at the 2017 Mega Success conference.</div></div></div>
+      <div class="icon-tile reveal"><img src="images/Great Laughter Miel Giebson.jpg" alt="Dr. Dalal Akoury shares a laugh with actor and director Mel Gibson at the Mega Success conference" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with Mel Gibson</div><div class="cap-desc">Dr. Dalal Akoury shares a laugh with actor and director Mel Gibson at the Mega Success conference.</div></div></div>
+      <div class="icon-tile reveal"><img src="images/Holyfield &amp;Dalal.jpg" alt="Dr. Dalal Akoury shares a playful moment with boxing champion Evander Holyfield" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with Evander Holyfield</div><div class="cap-desc">Dr. Dalal Akoury shares a playful moment with boxing champion Evander Holyfield.</div></div></div>
+      <div class="icon-tile reveal"><img src="images/J Noonan &amp; Dalal.jpg" alt="Dr. Dalal Akoury poses with Peggy Noonan at an industry event" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with Peggy Noonan</div><div class="cap-desc">Dr. Dalal Akoury poses with Peggy Noonan at an industry event.</div></div></div>
+      <div class="icon-tile reveal"><img src="images/Mark Wahrburd Dalal4.jpg" alt="Dr. Dalal Akoury interviews actor Mark Wahlberg on stage at the Mega Success conference" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with Mark Wahlberg</div><div class="cap-desc">Dr. Dalal Akoury interviews actor Mark Wahlberg on stage at the Mega Success conference.</div></div></div>
+      <div class="icon-tile reveal"><img src="images/Myrtle&amp;Dr.Dalal-Akoury.jpg" alt="Dr. Dalal Akoury shares a laugh with George H. Ross, Trump Organization executive and The Apprentice advisor, at the Mega Success conference" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with George H. Ross</div><div class="cap-desc">Dr. Dalal Akoury shares a laugh with George H. Ross, Trump Organization executive and The Apprentice advisor, at the Mega Success conference.</div></div></div>
+      <div class="icon-tile reveal"><img src="images/Oprah Dalal  Transparent background copy.jpg" alt="Dr. Dalal Akoury shares a joyful moment with media icon Oprah Winfrey" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with Oprah Winfrey</div><div class="cap-desc">Dr. Dalal Akoury shares a joyful moment with media icon Oprah Winfrey.</div></div></div>
+      <div class="icon-tile reveal"><img src="images/Randy Zacherberg .jpg" alt="Dr. Dalal Akoury connects with entrepreneur Randi Zuckerberg at the JT Foxx Family First Reunion" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with Randi Zuckerberg</div><div class="cap-desc">Dr. Dalal Akoury connects with entrepreneur Randi Zuckerberg at the JT Foxx Family First Reunion.</div></div></div>
+      <div class="icon-tile reveal"><img src="images/Travolta Dolly.jpg" alt="Dr. Dalal Akoury poses with actor John Travolta at the Mega Success conference" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with John Travolta</div><div class="cap-desc">Dr. Dalal Akoury poses with actor John Travolta at the Mega Success conference.</div></div></div>
+      <div class="icon-tile reveal"><img src="images/Wosniac 3 Dolly.jpg" alt="Dr. Dalal Akoury interviews Apple co-founder Steve Wozniak on stage at the Mega Success conference" loading="lazy"><div class="cap"><div class="cap-title">Dr. Dalal Akoury with Steve Wozniak</div><div class="cap-desc">Dr. Dalal Akoury interviews Apple co-founder Steve Wozniak on stage at the Mega Success conference.</div></div></div>
     </div>
   </div>
 </section>
@@ -1932,10 +1938,17 @@ I18N.es={"langbar": "Hablamos árabe, francés, español e inglés", "nav.home":
     tiles.forEach((tile) => {
       tile.addEventListener('click', () => {
         const img = tile.querySelector('img');
-        const cap = tile.querySelector('.cap');
+        const capTitle = tile.querySelector('.cap-title');
+        const capDesc = tile.querySelector('.cap-desc');
         lightboxImg.src = img.src;
         lightboxImg.alt = img.alt;
-        lightboxCap.textContent = cap ? cap.textContent : '';
+        lightboxCap.textContent = capTitle ? capTitle.textContent : '';
+        if (capDesc) {
+          const descEl = document.createElement('span');
+          descEl.className = 'ilightbox-cap-desc';
+          descEl.textContent = capDesc.textContent;
+          lightboxCap.appendChild(descEl);
+        }
         lightbox.classList.add('open');
         lightbox.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
