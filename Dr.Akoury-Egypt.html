@@ -436,10 +436,29 @@
 }
 #main .w-sr-status{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
+/* SEO title + description overlay per slide, same gradient-scrim
+   convention used elsewhere on this page (Wimpole St photo, Ghaly
+   gallery, Beyond Healthcare mosaic). Nested inside each .w-slide so
+   it crossfades with that slide's own opacity transition -- no extra
+   JS needed to keep captions in sync with the active slide. Sits at
+   z-index:3, above .w-slides::after's subtle overall scrim (2) but
+   below .w-controls (4), and is offset up from the very bottom so it
+   never overlaps the prev/next/dots/counter row. */
+#main section.block.alt[aria-labelledby="woman-h"] .w-slide-cap{
+  position:absolute;left:0;right:0;bottom:58px;z-index:3;
+  padding:14px 20px 10px;background:linear-gradient(to top,rgba(10,22,40,.85),transparent);
+  pointer-events:none;
+}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slide-cap-title{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-weight:600;font-size:1.05rem;line-height:1.3;color:#fff}
+#main section.block.alt[aria-labelledby="woman-h"] .w-slide-cap-desc{margin-top:4px;font-family:'Inter',sans-serif;font-size:.72rem;line-height:1.4;letter-spacing:.01em;color:var(--gold-soft)}
+
 @media(max-width:640px){
   #main section.block.alt[aria-labelledby="woman-h"] .w-slideshow{border-radius:16px}
   #main section.block.alt[aria-labelledby="woman-h"] .w-controls{padding:8px 10px;gap:6px}
   #main section.block.alt[aria-labelledby="woman-h"] .w-count{display:none}
+  #main section.block.alt[aria-labelledby="woman-h"] .w-slide-cap{bottom:52px;padding:10px 14px 8px}
+  #main section.block.alt[aria-labelledby="woman-h"] .w-slide-cap-title{font-size:.82rem;line-height:1.25}
+  #main section.block.alt[aria-labelledby="woman-h"] .w-slide-cap-desc{font-size:.62rem;line-height:1.3}
 }
 @media(prefers-reduced-motion:reduce){
   #main section.block.alt[aria-labelledby="woman-h"] .w-slide{transition:opacity .25s ease!important;transform:none!important;animation:none!important}
@@ -2319,33 +2338,39 @@ html[dir="rtl"] #pathways .path2::after{left:auto;right:0}
           <div class="w-slides">
             <div class="w-slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 6">
               <button type="button" class="w-slide-btn" aria-label="View full image, slide 1 of 6">
-                <img src="images/Dr.akourypagemissionS1.jpg" alt="Dr. Dalal Akoury speaking at a podium at the New York Academy of Medicine" width="2400" height="1600" style="object-position:center 25%" loading="eager" fetchpriority="high" decoding="async">
+                <img src="images/Dr.akourypagemissionS1.jpg" alt="Dr. Dalal Akoury speaking at a podium at the New York Academy of Medicine, addressing fellow physicians" width="2400" height="1600" style="object-position:center 25%" loading="eager" fetchpriority="high" decoding="async">
               </button>
+              <div class="w-slide-cap"><div class="w-slide-cap-title" data-i18n="woman.slide1.title">Dr. Dalal Akoury at the New York Academy of Medicine</div><div class="w-slide-cap-desc" data-i18n="woman.slide1.desc">Dr. Dalal Akoury addresses fellow physicians at the New York Academy of Medicine.</div></div>
             </div>
             <div class="w-slide" role="group" aria-roledescription="slide" aria-label="2 of 6" aria-hidden="true">
               <button type="button" class="w-slide-btn" tabindex="-1" aria-label="View full image, slide 2 of 6">
                 <img src="images/Dr.akourypagemissionS2.jpg" alt="Dr. Dalal Akoury receiving an award recognizing her as an outstanding speaker at the New York Academy of Medicine" width="2400" height="1600" style="object-position:center 30%" loading="eager" decoding="async">
               </button>
+              <div class="w-slide-cap"><div class="w-slide-cap-title" data-i18n="woman.slide2.title">Dr. Dalal Akoury Honored as Outstanding Speaker</div><div class="w-slide-cap-desc" data-i18n="woman.slide2.desc">Dr. Dalal Akoury receives recognition as an outstanding speaker from the New York Academy of Medicine.</div></div>
             </div>
             <div class="w-slide" role="group" aria-roledescription="slide" aria-label="3 of 6" aria-hidden="true">
               <button type="button" class="w-slide-btn" tabindex="-1" aria-label="View full image, slide 3 of 6">
-                <img src="images/Dr.akourypagemissionS3.jpg" alt="Dr. Dalal Akoury during a media interview with a co-host" width="2400" height="1600" style="object-position:center 25%" loading="lazy" decoding="async">
+                <img src="images/Dr.akourypagemissionS3.jpg" alt="Dr. Dalal Akoury during a national media interview with a co-host, discussing integrative medicine" width="2400" height="1600" style="object-position:center 25%" loading="lazy" decoding="async">
               </button>
+              <div class="w-slide-cap"><div class="w-slide-cap-title" data-i18n="woman.slide3.title">Dr. Dalal Akoury in a National Media Interview</div><div class="w-slide-cap-desc" data-i18n="woman.slide3.desc">Dr. Dalal Akoury shares her perspective on integrative medicine during a televised media interview.</div></div>
             </div>
             <div class="w-slide" role="group" aria-roledescription="slide" aria-label="4 of 6" aria-hidden="true">
               <button type="button" class="w-slide-btn" tabindex="-1" aria-label="View full image, slide 4 of 6">
                 <img src="images/Dr.akourypagemissionS4.JPG" alt="A digital billboard above Times Square announcing Dr. Dalal Akoury as Top Oncologist of the Year" width="2400" height="1347" style="object-position:center 40%" loading="lazy" decoding="async">
               </button>
+              <div class="w-slide-cap"><div class="w-slide-cap-title" data-i18n="woman.slide4.title">Dr. Dalal Akoury Named Top Oncologist of the Year</div><div class="w-slide-cap-desc" data-i18n="woman.slide4.desc">Dr. Dalal Akoury's recognition as Top Oncologist of the Year is celebrated on a digital billboard above Times Square.</div></div>
             </div>
             <div class="w-slide" role="group" aria-roledescription="slide" aria-label="5 of 6" aria-hidden="true">
               <button type="button" class="w-slide-btn" tabindex="-1" aria-label="View full image, slide 5 of 6">
-                <img src="images/Dr.akourypagemissionS5.jpg" alt="Dr. Dalal Akoury smiling alongside U.S. service members" width="1920" height="1080" style="object-position:center center" loading="lazy" decoding="async">
+                <img src="images/Dr.akourypagemissionS5.jpg" alt="Dr. Dalal Akoury smiling alongside U.S. service members, reflecting her commitment to those who serve" width="1920" height="1080" style="object-position:center center" loading="lazy" decoding="async">
               </button>
+              <div class="w-slide-cap"><div class="w-slide-cap-title" data-i18n="woman.slide5.title">Dr. Dalal Akoury with U.S. Service Members</div><div class="w-slide-cap-desc" data-i18n="woman.slide5.desc">Dr. Dalal Akoury shares a proud moment with U.S. service members, reflecting her commitment to those who serve.</div></div>
             </div>
             <div class="w-slide" role="group" aria-roledescription="slide" aria-label="6 of 6" aria-hidden="true">
               <button type="button" class="w-slide-btn" tabindex="-1" aria-label="View full image, slide 6 of 6">
-                <img src="images/Dr.akourypagemissionS6.jpg" alt="Dr. Dalal Akoury in conversation with Dr. Oz at a panel event" width="2400" height="1600" style="object-position:center 30%" loading="lazy" decoding="async">
+                <img src="images/Dr.akourypagemissionS6.jpg" alt="Dr. Dalal Akoury in conversation with Dr. Oz at a panel event, discussing integrative medicine" width="2400" height="1600" style="object-position:center 30%" loading="lazy" decoding="async">
               </button>
+              <div class="w-slide-cap"><div class="w-slide-cap-title" data-i18n="woman.slide6.title">Dr. Dalal Akoury on The Dr. Oz Show</div><div class="w-slide-cap-desc" data-i18n="woman.slide6.desc">Dr. Dalal Akoury shares her expertise in integrative medicine during a national media appearance alongside Dr. Oz.</div></div>
             </div>
           </div>
 
