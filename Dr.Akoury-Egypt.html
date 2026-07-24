@@ -1593,7 +1593,19 @@ html[dir="rtl"] #main .form2{text-align:right}
 #forty-years .forty-tile::after{content:"";position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,transparent 54%,rgba(7,18,38,.25) 100%);pointer-events:none}
 #forty-years .forty-tile-sweep{position:absolute;top:-20%;bottom:-20%;left:-45%;width:28%;z-index:4;transform:skewX(-18deg);background:linear-gradient(90deg,transparent,rgba(255,247,232,.12),transparent);pointer-events:none;opacity:0}
 @keyframes forty-sweep{0%{opacity:0;transform:skewX(-18deg) translateX(0)}14%{opacity:1}55%{opacity:.55}100%{opacity:0;transform:skewX(-18deg) translateX(640%)}}
-#forty-years .forty-tile__label{position:absolute;left:14px;bottom:13px;z-index:5;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ivory);background:rgba(5,16,35,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:6px 11px;border-radius:20px}
+/* Caption wrapper -- the existing category pill (.forty-tile__label) now
+   sits above a title + one-line SEO description instead of floating alone,
+   all inside one bottom-anchored gradient scrim so the badge doesn't need
+   its own separate positioning any more. */
+#forty-years .forty-tile__cap{position:absolute;left:0;right:0;bottom:0;z-index:5;padding:46px 16px 14px;background:linear-gradient(0deg,rgba(5,16,35,.88) 0%,rgba(5,16,35,.5) 50%,transparent 100%);display:flex;flex-direction:column;align-items:flex-start;gap:7px;pointer-events:none}
+#forty-years .forty-tile__label{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ivory);background:rgba(255,255,255,.15);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:6px 11px;border-radius:20px}
+#forty-years .forty-tile__title{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-weight:600;font-size:1.2rem;line-height:1.28;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+#forty-years .forty-tile__desc{font-family:'Inter',sans-serif;font-size:11.5px;line-height:1.55;color:rgba(247,241,230,.82);max-width:38ch}
+@media(max-width:560px){
+  #forty-years .forty-tile__cap{padding:34px 14px 12px;gap:5px}
+  #forty-years .forty-tile__title{font-size:1.05rem}
+  #forty-years .forty-tile__desc{font-size:11px;max-width:none}
+}
 @media(hover:hover){
   #forty-years .forty-tile.reveal.in:hover{transform:translateY(-6px);border-color:rgba(193,148,61,.62);box-shadow:0 32px 75px rgba(10,22,43,.22),0 0 30px rgba(189,145,61,.07)}
   #forty-years .forty-tile:hover::before{opacity:1}
@@ -1660,19 +1672,31 @@ html[dir="rtl"] #main .form2{text-align:right}
 
     <div class="career-gallery" style="margin-bottom:34px" aria-label="Documentary medical gallery">
       <figure class="forty-tile forty-tile--primary reveal d4">
-        <img src="images/newDr.AkourypageS1.jpg" alt="Dr. Dalal Akoury caring for a patient at the bedside, reviewing brain imaging results together" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'">
+        <img src="images/newDr.AkourypageS1.jpg" alt="Dr. Dalal Akoury reviewing diagnostic brain imaging with a patient at the bedside" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'">
         <span class="forty-tile-sweep" aria-hidden="true"></span>
-        <span class="forty-tile__label" aria-hidden="true">Clinical Care</span>
+        <div class="forty-tile__cap" aria-hidden="true">
+          <span class="forty-tile__label" aria-hidden="true">Clinical Care</span>
+          <span class="forty-tile__title">Dr. Dalal Akoury Reviewing Diagnostic Imaging</span>
+          <span class="forty-tile__desc">Dr. Dalal Akoury reviews advanced diagnostic imaging as part of her whole-person approach to patient care.</span>
+        </div>
       </figure>
       <figure class="forty-tile forty-tile--research reveal d5">
         <img src="images/newDr.Akoury-pageS2N.jpg" alt="Dr. Dalal Akoury conducting laboratory research with a microscope alongside her research team" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'">
         <span class="forty-tile-sweep" aria-hidden="true"></span>
-        <span class="forty-tile__label" aria-hidden="true">Research &amp; Innovation</span>
+        <div class="forty-tile__cap" aria-hidden="true">
+          <span class="forty-tile__label" aria-hidden="true">Research &amp; Innovation</span>
+          <span class="forty-tile__title">Dr. Dalal Akoury in the Research Laboratory</span>
+          <span class="forty-tile__desc">Dr. Dalal Akoury conducts hands-on laboratory research, grounding her clinical practice in molecular science.</span>
+        </div>
       </figure>
       <figure class="forty-tile forty-tile--leadership reveal d6">
         <img src="images/hero-bg/space-houston.jpg" alt="Dr. Dalal Akoury addressing an audience on stage at Space Center Houston" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'">
         <span class="forty-tile-sweep" aria-hidden="true"></span>
-        <span class="forty-tile__label" aria-hidden="true">Education &amp; Leadership</span>
+        <div class="forty-tile__cap" aria-hidden="true">
+          <span class="forty-tile__label" aria-hidden="true">Education &amp; Leadership</span>
+          <span class="forty-tile__title">Dr. Dalal Akoury Speaking at Space Center Houston</span>
+          <span class="forty-tile__desc">Dr. Dalal Akoury shares four decades of medical insight through education and leadership on the international stage.</span>
+        </div>
       </figure>
     </div>
     <div class="cols-3">
