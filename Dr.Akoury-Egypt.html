@@ -1092,6 +1092,19 @@
 #main section.block[aria-labelledby="network-h"] .net-strategic{padding-top:0;margin-top:0;border-top:none}
 #main section.block[aria-labelledby="network-h"] .net-h3{font-size:26px;color:var(--midnight);margin:0 0 18px}
 #main section.block[aria-labelledby="network-h"] .net-photo{border:1px solid rgba(110,79,26,.4);box-shadow:0 20px 46px rgba(35,26,10,.16)}
+/* Persistent title overlay on the JT Foxx photo -- same bottom-anchored
+   gradient-scrim + serif-title treatment used elsewhere on this page,
+   sized for this landscape 3:2 crop. */
+#main .net-photo-cap{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:44px 18px 14px;background:linear-gradient(0deg,rgba(5,16,35,.88) 0%,rgba(5,16,35,.5) 55%,transparent 100%);pointer-events:none}
+#main .net-photo-cap span{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-weight:600;font-size:1.02rem;line-height:1.32;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.4);display:block}
+@media(max-width:860px){
+  #main .net-photo-cap{padding:34px 16px 12px}
+  #main .net-photo-cap span{font-size:.98rem}
+}
+@media(max-width:480px){
+  #main .net-photo-cap{padding:28px 14px 10px}
+  #main .net-photo-cap span{font-size:.9rem;line-height:1.28}
+}
 
 #main section.block[aria-labelledby="network-h"] .reveal.d1{transition-delay:0s}
 #main section.block[aria-labelledby="network-h"] .reveal.d2{transition-delay:.07s}
@@ -2403,7 +2416,7 @@ html[dir="rtl"] #pathways .path2::after{left:auto;right:0}
           <a class="btn2-line" style="color:var(--gold-deep);border-color:var(--gold-deep)" href="jt-foxx-egypt.html" data-i18n="network.link">Explore JT Foxx in Egypt &rarr;</a>
         </div>
         <div>
-          <figure><div class="ph ar-32 net-photo"><img src="images/Dr.%20Akoury%20&amp;%20JT%20foxx.jpg" alt="Dr. Dalal Akoury with JT Foxx" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"></div><figcaption>&nbsp;</figcaption></figure>
+          <figure><div class="ph ar-32 net-photo"><img src="images/Dr.%20Akoury%20&amp;%20JT%20foxx.jpg" alt="Dr. Dalal Akoury with entrepreneur, speaker, and business strategist JT Foxx, exploring international relationships that may help introduce qualified global leaders to opportunities connected with Egypt." title="Dr. Dalal Akoury and JT Foxx — Connecting Egypt with Global Entrepreneurs and Strategic Leaders" loading="lazy" decoding="async" data-fallback onerror="this.style.visibility='hidden'"><div class="net-photo-cap" aria-hidden="true"><span>Dr. Dalal Akoury and JT Foxx — Connecting Egypt with Global Entrepreneurs and Strategic Leaders</span></div></div><figcaption>&nbsp;</figcaption></figure>
         </div>
       </div>
     </div>
