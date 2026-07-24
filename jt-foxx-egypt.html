@@ -249,10 +249,17 @@
   .netfeature:last-of-type{padding-bottom:24px}
   .netfeature-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
   .netfeature-media{position:relative;aspect-ratio:5/4;border-radius:14px;overflow:hidden;box-shadow:0 26px 54px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.25);border:1px solid rgba(220,193,137,.35);transition:box-shadow .4s cubic-bezier(.2,.7,.2,1)}
-  .netfeature-media img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  .netfeature-media img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1);position:relative;z-index:1}
   .netfeature-media:hover{box-shadow:0 28px 56px rgba(0,0,0,.42),0 0 0 1px rgba(220,193,137,.5)}
   .netfeature-media:hover img{transform:scale(1.045)}
   @media(prefers-reduced-motion:reduce){.netfeature-media:hover img{transform:none}}
+  /* SEO trust-chain title, overlaid on the photo itself (not the
+     .netfeature-copy column) so the existing who/line/sub marketing
+     copy stays untouched. Same gradient-scrim convention used
+     site-wide for on-image titles. */
+  .netfeature-media .nf-trust{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:14px 16px 10px;background:linear-gradient(to top,rgba(10,22,40,.85),transparent);pointer-events:none}
+  .netfeature-media .nf-trust span{font-family:var(--sans);font-size:12.5px;line-height:1.4;color:#fff;font-weight:500}
+  @media(max-width:760px){.netfeature-media .nf-trust span{font-size:11.5px}}
   .netfeature-copy{max-width:560px}
   .netfeature-copy .who{font-family:var(--sans);text-transform:uppercase;letter-spacing:.22em;font-size:12.5px;color:var(--gold-soft);font-weight:600;margin-bottom:14px}
   .netfeature-copy .line{font-family:var(--serif);font-weight:600;font-size:clamp(22px,2.6vw,32px);color:#fff;line-height:1.25}
@@ -306,6 +313,7 @@
   .netcard .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:22px}
   .netcard .name{font-family:var(--serif);font-weight:700;font-size:20px;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.5)}
   .netcard .role{font-family:var(--sans);font-size:13px;color:#dbe3ee;font-weight:300;margin-top:4px;letter-spacing:.02em}
+  .netcard .trust{font-family:var(--sans);font-size:11px;color:var(--gold-soft);margin-top:8px;line-height:1.4;font-weight:400}
   @media(max-width:900px){.netcards{grid-template-columns:repeat(2,1fr);gap:28px}}
   @media(max-width:520px){.netcards{grid-template-columns:1fr;max-width:340px}}
   @media(prefers-reduced-motion:reduce){.netcard:hover img{transform:none}.netcard .imgwrap,.netcard img{transition:box-shadow .3s ease,filter .3s ease}}
@@ -697,7 +705,8 @@
 <div class="netfeature">
   <div class="netfeature-grid">
     <div class="netfeature-media reveal">
-      <img src="assets/images/jt-foxx/billionaires-03.jpg" alt="JT Foxx and Alec Gores" loading="lazy">
+      <img src="assets/images/jt-foxx/billionaires-03.jpg" alt="Investor Alec Gores Trusts JT Foxx — And JT Foxx Trusts Dr. Dalal Akoury" title="Investor Alec Gores Trusts JT Foxx — And JT Foxx Trusts Dr. Dalal Akoury" loading="lazy">
+      <div class="nf-trust"><span>Investor Alec Gores Trusts JT Foxx — And JT Foxx Trusts Dr. Dalal Akoury</span></div>
     </div>
     <div class="netfeature-copy reveal d1">
       <div class="who">With Alec Gores · The Gores Group</div>
@@ -710,7 +719,8 @@
 <div class="netfeature">
   <div class="netfeature-grid rev">
     <div class="netfeature-media reveal">
-      <img src="assets/images/jt-foxx/ceos-04.jpg" alt="JT Foxx and Mark Cuban" loading="lazy">
+      <img src="assets/images/jt-foxx/ceos-04.jpg" alt="Investor Mark Cuban Trusts JT Foxx, Who Trusts Dr. Dalal Akoury" title="Investor Mark Cuban Trusts JT Foxx, Who Trusts Dr. Dalal Akoury" loading="lazy">
+      <div class="nf-trust"><span>Investor Mark Cuban Trusts JT Foxx, Who Trusts Dr. Dalal Akoury</span></div>
     </div>
     <div class="netfeature-copy reveal d1">
       <div class="who">With Mark Cuban · Investor</div>
@@ -723,7 +733,8 @@
 <div class="netfeature">
   <div class="netfeature-grid">
     <div class="netfeature-media reveal">
-      <img src="assets/images/jt-foxx/billionaires-06.jpg" alt="JT Foxx and Oprah Winfrey" loading="lazy">
+      <img src="assets/images/jt-foxx/billionaires-06.jpg" alt="Oprah Winfrey Trusts JT Foxx; JT Foxx Trusts Dr. Dalal Akoury" title="Oprah Winfrey Trusts JT Foxx; JT Foxx Trusts Dr. Dalal Akoury" loading="lazy">
+      <div class="nf-trust"><span>Oprah Winfrey Trusts JT Foxx; JT Foxx Trusts Dr. Dalal Akoury</span></div>
     </div>
     <div class="netfeature-copy reveal d1">
       <div class="who">With Oprah Winfrey · Harpo / OWN</div>
@@ -736,7 +747,8 @@
 <div class="netfeature">
   <div class="netfeature-grid rev">
     <div class="netfeature-media reveal">
-      <img src="images/CEO-Brian-Smith.jpg" alt="JT Foxx and Brian Smith" loading="lazy">
+      <img src="images/CEO-Brian-Smith.jpg" alt="CEO Brian Smith Trusts JT Foxx, Who Trusts Dr. Dalal Akoury" title="CEO Brian Smith Trusts JT Foxx, Who Trusts Dr. Dalal Akoury" loading="lazy">
+      <div class="nf-trust"><span>CEO Brian Smith Trusts JT Foxx, Who Trusts Dr. Dalal Akoury</span></div>
     </div>
     <div class="netfeature-copy reveal d1">
       <div class="who">With Brian Smith · CEO</div>
@@ -749,7 +761,8 @@
 <div class="netfeature">
   <div class="netfeature-grid">
     <div class="netfeature-media reveal">
-      <img src="images/CEO-JT and Anna Wintour.png" alt="JT Foxx and Anna Wintour" loading="lazy">
+      <img src="images/CEO-JT and Anna Wintour.png" alt="Vogue's Anna Wintour Trusts JT Foxx — And JT Foxx Trusts Dr. Dalal Akoury" title="Vogue's Anna Wintour Trusts JT Foxx — And JT Foxx Trusts Dr. Dalal Akoury" loading="lazy">
+      <div class="nf-trust"><span>Vogue's Anna Wintour Trusts JT Foxx — And JT Foxx Trusts Dr. Dalal Akoury</span></div>
     </div>
     <div class="netfeature-copy reveal d1">
       <div class="who">With Anna Wintour · Vogue</div>
@@ -762,7 +775,8 @@
 <div class="netfeature">
   <div class="netfeature-grid rev">
     <div class="netfeature-media reveal">
-      <img src="images/CEO-JT and Donna Karan .jpg" alt="JT Foxx and Donna Karan" loading="lazy">
+      <img src="images/CEO-JT and Donna Karan .jpg" alt="Designer Donna Karan Trusts JT Foxx, Who Also Trusts Dr. Dalal Akoury" title="Designer Donna Karan Trusts JT Foxx, Who Also Trusts Dr. Dalal Akoury" loading="lazy">
+      <div class="nf-trust"><span>Designer Donna Karan Trusts JT Foxx, Who Also Trusts Dr. Dalal Akoury</span></div>
     </div>
     <div class="netfeature-copy reveal d1">
       <div class="who">With Donna Karan · Designer</div>
@@ -775,7 +789,8 @@
 <div class="netfeature">
   <div class="netfeature-grid">
     <div class="netfeature-media reveal">
-      <img src="images/Hollywood-jt and dr phil 2.jpg" alt="JT Foxx and Dr. Phil McGraw" loading="lazy">
+      <img src="images/Hollywood-jt and dr phil 2.jpg" alt="Dr. Phil McGraw Trusts JT Foxx; JT Foxx Trusts Dr. Dalal Akoury" title="Dr. Phil McGraw Trusts JT Foxx; JT Foxx Trusts Dr. Dalal Akoury" loading="lazy">
+      <div class="nf-trust"><span>Dr. Phil McGraw Trusts JT Foxx; JT Foxx Trusts Dr. Dalal Akoury</span></div>
     </div>
     <div class="netfeature-copy reveal d1">
       <div class="who">With Dr. Phil McGraw · Media</div>
@@ -788,7 +803,8 @@
 <div class="netfeature">
   <div class="netfeature-grid rev">
     <div class="netfeature-media reveal">
-      <img src="images/Hollywood-jt and michael douglas-1.png" alt="JT Foxx and Michael Douglas" loading="lazy">
+      <img src="images/Hollywood-jt and michael douglas-1.png" alt="Actor Michael Douglas Trusts JT Foxx — And JT Foxx Trusts Dr. Dalal Akoury" title="Actor Michael Douglas Trusts JT Foxx — And JT Foxx Trusts Dr. Dalal Akoury" loading="lazy">
+      <div class="nf-trust"><span>Actor Michael Douglas Trusts JT Foxx — And JT Foxx Trusts Dr. Dalal Akoury</span></div>
     </div>
     <div class="netfeature-copy reveal d1">
       <div class="who">With Michael Douglas · Actor</div>
@@ -801,7 +817,8 @@
 <div class="netfeature">
   <div class="netfeature-grid">
     <div class="netfeature-media reveal">
-      <img src="images/Hollywood-jt and gabriel macht.jpg" alt="JT Foxx and Gabriel Macht" loading="lazy">
+      <img src="images/Hollywood-jt and gabriel macht.jpg" alt="Actor Gabriel Macht Trusts JT Foxx, Who Trusts Dr. Dalal Akoury" title="Actor Gabriel Macht Trusts JT Foxx, Who Trusts Dr. Dalal Akoury" loading="lazy">
+      <div class="nf-trust"><span>Actor Gabriel Macht Trusts JT Foxx, Who Trusts Dr. Dalal Akoury</span></div>
     </div>
     <div class="netfeature-copy reveal d1">
       <div class="who">With Gabriel Macht · Actor</div>
@@ -815,12 +832,12 @@
 <div class="more">
   <div class="h reveal">And a lifetime of others — the network now within Egypt's reach</div>
   <div class="netcards reveal">
-    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/billionaires-01.jpg" alt="JT Foxx with John Catsimatidis of Red Apple Group"><div class="cap"><div class="name">John Catsimatidis</div><div class="role">Red Apple Group</div></div></div></div>
-    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/billionaires-02.jpg" alt="JT Foxx with Tommy Hilfiger"><div class="cap"><div class="name">Tommy Hilfiger</div><div class="role">Designer</div></div></div></div>
-    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/billionaires-05.jpg" alt="JT Foxx with Howard Schultz of Starbucks"><div class="cap"><div class="name">Howard Schultz</div><div class="role">Starbucks</div></div></div></div>
-    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/ceos-05.jpeg" alt="JT Foxx with former Disney CEO Michael Eisner"><div class="cap"><div class="name">Michael Eisner</div><div class="role">Former CEO, Disney</div></div></div></div>
-    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/ceos-06.jpeg" alt="JT Foxx with Apple co-founder Steve Wozniak"><div class="cap"><div class="name">Steve Wozniak</div><div class="role">Co-founder, Apple</div></div></div></div>
-    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/hollywood-03.jpg" alt="JT Foxx with actor John Travolta"><div class="cap"><div class="name">John Travolta</div><div class="role">Actor</div></div></div></div>
+    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/billionaires-01.jpg" alt="Business Leader John Catsimatidis Trusts JT Foxx; JT Foxx Trusts Dr. Dalal Akoury" title="Business Leader John Catsimatidis Trusts JT Foxx; JT Foxx Trusts Dr. Dalal Akoury"><div class="cap"><div class="name">John Catsimatidis</div><div class="role">Red Apple Group</div><div class="trust">Trusts JT Foxx; JT Foxx Trusts Dr. Dalal Akoury</div></div></div></div>
+    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/billionaires-02.jpg" alt="Designer Tommy Hilfiger Trusts JT Foxx, Who Trusts Dr. Dalal Akoury" title="Designer Tommy Hilfiger Trusts JT Foxx, Who Trusts Dr. Dalal Akoury"><div class="cap"><div class="name">Tommy Hilfiger</div><div class="role">Designer</div><div class="trust">Trusts JT Foxx, who trusts Dr. Dalal Akoury</div></div></div></div>
+    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/billionaires-05.jpg" alt="Starbucks' Howard Schultz Trusts JT Foxx — And JT Foxx Trusts Dr. Dalal Akoury" title="Starbucks' Howard Schultz Trusts JT Foxx — And JT Foxx Trusts Dr. Dalal Akoury"><div class="cap"><div class="name">Howard Schultz</div><div class="role">Starbucks</div><div class="trust">Trusts JT Foxx — and JT Foxx trusts Dr. Dalal Akoury</div></div></div></div>
+    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/ceos-05.jpeg" alt="Former Disney CEO Michael Eisner's Trust in JT Foxx, Who Trusts Dr. Dalal Akoury" title="Former Disney CEO Michael Eisner's Trust in JT Foxx, Who Trusts Dr. Dalal Akoury"><div class="cap"><div class="name">Michael Eisner</div><div class="role">Former CEO, Disney</div><div class="trust">Trusts JT Foxx, who trusts Dr. Dalal Akoury</div></div></div></div>
+    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/ceos-06.jpeg" alt="Apple Co-founder Steve Wozniak Trusts JT Foxx; JT Foxx Trusts Dr. Dalal Akoury" title="Apple Co-founder Steve Wozniak Trusts JT Foxx; JT Foxx Trusts Dr. Dalal Akoury"><div class="cap"><div class="name">Steve Wozniak</div><div class="role">Co-founder, Apple</div><div class="trust">Trusts JT Foxx; JT Foxx trusts Dr. Dalal Akoury</div></div></div></div>
+    <div class="netcard"><div class="imgwrap"><img src="assets/images/jt-foxx/hollywood-03.jpg" alt="Actor John Travolta Trusts JT Foxx — And JT Foxx Trusts Dr. Dalal Akoury" title="Actor John Travolta Trusts JT Foxx — And JT Foxx Trusts Dr. Dalal Akoury"><div class="cap"><div class="name">John Travolta</div><div class="role">Actor</div><div class="trust">Trusts JT Foxx — and JT Foxx trusts Dr. Dalal Akoury</div></div></div></div>
   </div>
 </div>
 
