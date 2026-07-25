@@ -344,6 +344,15 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
    back to a line count that fits; the gallery's other captions are
    short enough not to hit the same ceiling at this width. */
 @media(max-width:340px){#moments .g-d .gtag,#moments .g-f .gtag{font-size:.85rem}}
+/* g-g only - its title (118 characters) is far longer than any other
+   tile's, so the same problem hits over a much wider range (up to
+   ~420px, not just ~340px) and needs a bigger font reduction to
+   clear it: at 280px-wide phones, even .85rem still clipped by ~68px,
+   and .7rem still clipped by ~13-20px. .65rem with a tighter 1.2
+   line-height (vs. the shared 1.3) is the smallest step that clears
+   the worst case (280px) with real margin (~25px), confirmed clean
+   across the full 280-420px range this tile needs it for. */
+@media(max-width:429px){#moments .g-g .gtag{font-size:.65rem;line-height:1.2}}
 
 /* ---- Training ---- */
 .training{max-width:840px;margin:52px auto 0;display:grid;gap:2px}
@@ -1379,8 +1388,8 @@ html[dir="rtl"] .qframe{padding:64px 52px}
       <div class="gitem g-c reveal"><img src="images/Dr.Dalal-Akoury-Billionaires-1.jpg" alt="Dr. Dalal Akoury: Connecting with Leaders in Integrative Medicine" title="Dr. Dalal Akoury: Connecting with Leaders in Integrative Medicine"><div class="goverlay"><div class="gtag" data-i18n="moments.2.tag">Dr. Dalal Akoury: Connecting with Leaders in Integrative Medicine</div><div class="gcap" data-i18n="moments.2.cap">With fellow physicians in integrative medicine</div></div></div>
       <div class="gitem g-d reveal"><img src="images/Dr.Dalal-Akoury-author-4.jpg" alt="Two Experts, One Goal: Dr. Dalal Akoury &amp; Dr. Joseph A. Michelli on Client Experience" title="Two Experts, One Goal: Dr. Dalal Akoury &amp; Dr. Joseph A. Michelli on Client Experience"><div class="goverlay"><div class="gtag" data-i18n="moments.3.tag">Two Experts, One Goal: Dr. Dalal Akoury &amp; Dr. Joseph A. Michelli on Client Experience</div><div class="gcap" data-i18n="moments.3.cap">Trading ideas — and books — with a colleague</div></div></div>
       <div class="gitem g-f reveal"><img src="images/Dr.Dalal-Akoury-Billionaires-2.jpg" alt="Dr. Dalal Akoury &amp; George Ross Talk Addiction Recovery and How to Help" title="Dr. Dalal Akoury &amp; George Ross Talk Addiction Recovery and How to Help"><div class="goverlay"><div class="gtag" data-i18n="moments.4.tag">Dr. Dalal Akoury &amp; George Ross Talk Addiction Recovery and How to Help</div><div class="gcap" data-i18n="moments.4.cap">Discussing the future of physician education</div></div></div>
-      <div class="gitem g-g reveal"><img src="images/Dr.DalalAkoury-Speaker-Functional-Medicine.jpg" alt="Dr. Dalal Akoury addressing a full auditorium of physicians at a functional medicine conference"><div class="goverlay"><div class="gtag" data-i18n="moments.5.tag">Dr. Dalal Akoury — Conference Appearance</div><div class="gcap" data-i18n="moments.5.cap">Physicians gathered to learn</div></div></div>
-      <div class="gitem g-h reveal"><img src="images/Miel-Gibson-with-Dr.Dalal.jpg" alt="Dr. Dalal Akoury with Mel Gibson, Academy Award-Winning Actor and Director" title="Dr. Dalal Akoury with Mel Gibson, Academy Award-Winning Actor and Director"><div class="jimg-scrim"><div class="jimg-title">Dr. Dalal Akoury with Mel Gibson, Academy Award-Winning Actor and Director</div></div></div>
+      <div class="gitem g-g reveal"><img src="images/Dr.DalalAkoury-Speaker-Functional-Medicine.jpg" alt="Dr. Dalal Akoury Speaks to 4,000 Entrepreneurs in Johannesburg, South Africa on Integrative Medicine &amp; Peak Performance" title="Dr. Dalal Akoury Speaks to 4,000 Entrepreneurs in Johannesburg, South Africa on Integrative Medicine &amp; Peak Performance"><div class="goverlay"><div class="gtag" data-i18n="moments.5.tag">Dr. Dalal Akoury Speaks to 4,000 Entrepreneurs in Johannesburg, South Africa on Integrative Medicine &amp; Peak Performance</div><div class="gcap" data-i18n="moments.5.cap">Physicians gathered to learn</div></div></div>
+      <div class="gitem g-h reveal"><img src="images/Miel-Gibson-with-Dr.Dalal.jpg" alt="Mind, Meditation, and the Brain: Dr. Dalal Akoury Talks with Mel Gibson" title="Mind, Meditation, and the Brain: Dr. Dalal Akoury Talks with Mel Gibson"><div class="jimg-scrim"><div class="jimg-title">Mind, Meditation, and the Brain: Dr. Dalal Akoury Talks with Mel Gibson</div></div></div>
       <div class="gitem g-i reveal"><img src="images/Myrtle&amp;Dr.Dalal-Akoury.jpg" alt="Dr. Dalal Akoury with George H. Ross, Trump Organization Executive and The Apprentice Advisor" title="Dr. Dalal Akoury with George H. Ross, Trump Organization Executive and The Apprentice Advisor"><div class="jimg-scrim"><div class="jimg-title">Dr. Dalal Akoury with George H. Ross, Trump Organization Executive and The Apprentice Advisor</div></div></div>
     </div>
   </div>
