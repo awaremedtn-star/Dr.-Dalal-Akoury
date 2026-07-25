@@ -335,6 +335,15 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
    to stay legible, so these two specifically go full-width/stacked instead
    of staying side-by-side. */
 @media(max-width:600px){#moments .g-h,#moments .g-i{grid-column:span 2;grid-row:span 2}}
+/* g-d and g-f only - these two titles are long enough that on the
+   narrowest phones (below ~340px, where these half-width tiles drop
+   to ~126px wide) the text needs more lines than the fixed 180px
+   tile height + flex-end anchoring can hold, pushing the top line
+   above the tile and getting clipped by .gitem's overflow:hidden.
+   Shrinking the font on just these two tiles is enough to bring them
+   back to a line count that fits; the gallery's other captions are
+   short enough not to hit the same ceiling at this width. */
+@media(max-width:340px){#moments .g-d .gtag,#moments .g-f .gtag{font-size:.85rem}}
 
 /* ---- Training ---- */
 .training{max-width:840px;margin:52px auto 0;display:grid;gap:2px}
@@ -1368,8 +1377,8 @@ html[dir="rtl"] .qframe{padding:64px 52px}
     <div class="gallery">
       <div class="gitem g-a reveal"><img src="images/Dr.Dalal-Akoury-podium-5.jpg" alt="Dr. Dalal Akoury Speaks at The College of Physicians of Philadelphia: 40+ Years in Integrative Medicine" title="Dr. Dalal Akoury Speaks at The College of Physicians of Philadelphia: 40+ Years in Integrative Medicine"><div class="goverlay"><div class="gtag" data-i18n="moments.1.tag">Dr. Dalal Akoury Speaks at The College of Physicians of Philadelphia: 40+ Years in Integrative Medicine</div><div class="gcap" data-i18n="moments.1.cap">Teaching the terrain-based approach to disease</div></div></div>
       <div class="gitem g-c reveal"><img src="images/Dr.Dalal-Akoury-Billionaires-1.jpg" alt="Dr. Dalal Akoury: Connecting with Leaders in Integrative Medicine" title="Dr. Dalal Akoury: Connecting with Leaders in Integrative Medicine"><div class="goverlay"><div class="gtag" data-i18n="moments.2.tag">Dr. Dalal Akoury: Connecting with Leaders in Integrative Medicine</div><div class="gcap" data-i18n="moments.2.cap">With fellow physicians in integrative medicine</div></div></div>
-      <div class="gitem g-d reveal"><img src="images/Dr.Dalal-Akoury-author-4.jpg" alt="Dr. Dalal Akoury presenting her published books during a conversation with a colleague"><div class="goverlay"><div class="gtag" data-i18n="moments.3.tag">Dr. Dalal Akoury — Book Presentation</div><div class="gcap" data-i18n="moments.3.cap">Trading ideas — and books — with a colleague</div></div></div>
-      <div class="gitem g-f reveal"><img src="images/Dr.Dalal-Akoury-Billionaires-2.jpg" alt="Dr. Dalal Akoury seated in conversation with a colleague between conference sessions"><div class="goverlay"><div class="gtag" data-i18n="moments.4.tag">Dr. Dalal Akoury in Conversation</div><div class="gcap" data-i18n="moments.4.cap">Discussing the future of physician education</div></div></div>
+      <div class="gitem g-d reveal"><img src="images/Dr.Dalal-Akoury-author-4.jpg" alt="Two Experts, One Goal: Dr. Dalal Akoury &amp; Dr. Joseph A. Michelli on Client Experience" title="Two Experts, One Goal: Dr. Dalal Akoury &amp; Dr. Joseph A. Michelli on Client Experience"><div class="goverlay"><div class="gtag" data-i18n="moments.3.tag">Two Experts, One Goal: Dr. Dalal Akoury &amp; Dr. Joseph A. Michelli on Client Experience</div><div class="gcap" data-i18n="moments.3.cap">Trading ideas — and books — with a colleague</div></div></div>
+      <div class="gitem g-f reveal"><img src="images/Dr.Dalal-Akoury-Billionaires-2.jpg" alt="Dr. Dalal Akoury &amp; George Ross Talk Addiction Recovery and How to Help" title="Dr. Dalal Akoury &amp; George Ross Talk Addiction Recovery and How to Help"><div class="goverlay"><div class="gtag" data-i18n="moments.4.tag">Dr. Dalal Akoury &amp; George Ross Talk Addiction Recovery and How to Help</div><div class="gcap" data-i18n="moments.4.cap">Discussing the future of physician education</div></div></div>
       <div class="gitem g-g reveal"><img src="images/Dr.DalalAkoury-Speaker-Functional-Medicine.jpg" alt="Dr. Dalal Akoury addressing a full auditorium of physicians at a functional medicine conference"><div class="goverlay"><div class="gtag" data-i18n="moments.5.tag">Dr. Dalal Akoury — Conference Appearance</div><div class="gcap" data-i18n="moments.5.cap">Physicians gathered to learn</div></div></div>
       <div class="gitem g-h reveal"><img src="images/Miel-Gibson-with-Dr.Dalal.jpg" alt="Dr. Dalal Akoury with Mel Gibson, Academy Award-Winning Actor and Director" title="Dr. Dalal Akoury with Mel Gibson, Academy Award-Winning Actor and Director"><div class="jimg-scrim"><div class="jimg-title">Dr. Dalal Akoury with Mel Gibson, Academy Award-Winning Actor and Director</div></div></div>
       <div class="gitem g-i reveal"><img src="images/Myrtle&amp;Dr.Dalal-Akoury.jpg" alt="Dr. Dalal Akoury with George H. Ross, Trump Organization Executive and The Apprentice Advisor" title="Dr. Dalal Akoury with George H. Ross, Trump Organization Executive and The Apprentice Advisor"><div class="jimg-scrim"><div class="jimg-title">Dr. Dalal Akoury with George H. Ross, Trump Organization Executive and The Apprentice Advisor</div></div></div>
