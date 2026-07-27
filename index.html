@@ -504,11 +504,14 @@ h2.sh em{font-style:italic;color:var(--gold-deep)}
 .b-meta{position:absolute;left:0;right:0;bottom:0;padding:16px;background:linear-gradient(0deg,rgba(10,20,37,.85),transparent);z-index:2}
 .b-tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);display:block}
 .b-tile.b-feature .b-tag{font-size:10.5px}
+.b-title{font-family:var(--display);font-weight:500;font-size:.92rem;line-height:1.32;color:var(--white);text-shadow:0 1px 6px rgba(0,0,0,.45);display:block}
+.b-tile.b-feature .b-title{font-size:1.15rem}
 @media(max-width:900px){
   .bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
   .b-tile,.b-tile.b-feature{grid-column:span 1;grid-row:span 1}
+  .b-title,.b-tile.b-feature .b-title{font-size:.8rem;line-height:1.3}
 }
-@media(max-width:520px){.bento{grid-template-columns:1fr}}
+@media(max-width:520px){.bento{grid-template-columns:1fr}.b-meta{padding:12px}.b-title,.b-tile.b-feature .b-title{font-size:.78rem}}
 
 /* ---- Photo Journal — bento gallery ----
    .bento-ph (placeholder icon/label) is kept below in case a future
@@ -1876,7 +1879,7 @@ I18N.es={"langbar": "Hablamos árabe, francés, español e inglés", "nav.home":
   // from the neutral placeholder state to a real YouTube thumbnail; no
   // other code needs to change.
   const WATCH_VIDEOS = [
-    { id: '3NX4SkULAF0',    tag: 'Keynote',      title: 'Video Title Placeholder' },
+    { id: '3NX4SkULAF0',    title: 'Dr. Nido Qubein, of High Point University Endorses Dr. Dalal & AwareMed Clinic' },
     { id: 'WNagrj1hkC8',  tag: 'Interview',    title: 'Video Title Placeholder' },
     { id: '-nIXq9mgY7M',  tag: 'Conversation', title: 'Video Title Placeholder' },
     { id: 'C3hGYeuOwUk',  tag: 'Lecture',      title: 'Video Title Placeholder' },
@@ -1906,16 +1909,37 @@ I18N.es={"langbar": "Hablamos árabe, francés, español e inglés", "nav.home":
     if (!grid || !modal) return;
 
     const isReal = (id) => !!id && !id.startsWith('PLACEHOLDER');
+    const escapeHtml = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    // A real, curated title (anything past the generic placeholder) replaces
+    // the category tag entirely, matching the persistent-caption treatment
+    // used by the moments gallery's .gtag.
+    const hasCustomTitle = (v) => !!v.title && v.title !== 'Video Title Placeholder';
 
     WATCH_VIDEOS.forEach((v, i) => {
       const tile = document.createElement('button');
       tile.type = 'button';
       tile.className = 'b-tile reveal' + (i % 5 === 0 ? ' b-feature' : '');
       tile.setAttribute('aria-label', 'Play video: ' + v.title);
+      const showTitle = hasCustomTitle(v);
       tile.innerHTML =
-        (isReal(v.id) ? '<img src="https://img.youtube.com/vi/' + v.id + '/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src=\'https://img.youtube.com/vi/' + v.id + '/hqdefault.jpg\'">' : '') +
         '<span class="b-play" aria-hidden="true"></span>' +
-        '<span class="b-meta"><span class="b-tag">' + v.tag + '</span></span>';
+        '<span class="b-meta">' + (showTitle ? '<span class="b-title">' + escapeHtml(v.title) + '</span>' : '<span class="b-tag">' + v.tag + '</span>') + '</span>';
+      if (isReal(v.id)) {
+        const img = document.createElement('img');
+        img.loading = 'lazy';
+        img.alt = showTitle ? v.title : '';
+        if (showTitle) img.title = v.title;
+        img.src = 'https://img.youtube.com/vi/' + v.id + '/maxresdefault.jpg';
+        // First failure: fall back to the lower-res thumbnail. Second
+        // failure: fade the (now permanently broken) image out rather than
+        // let the browser paint its alt text as giant fallback content over
+        // the title caption.
+        img.onerror = () => {
+          img.onerror = () => { img.style.opacity = '0'; };
+          img.src = 'https://img.youtube.com/vi/' + v.id + '/hqdefault.jpg';
+        };
+        tile.prepend(img);
+      }
       tile.addEventListener('click', () => openVideo(v));
       grid.appendChild(tile);
     });
