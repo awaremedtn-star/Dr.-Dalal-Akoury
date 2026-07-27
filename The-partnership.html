@@ -114,6 +114,11 @@ html[dir="rtl"] .grid-3{direction:rtl}
 .pv-steps .opp-row{position:relative;padding-top:2px}
 
 /* ---- contribution cards (Section 6) reuse .st-row/.st-card as-is ---- */
+/* Swap the section's solid .bg-limestone fill for the hieroglyph-relief
+   photo, with a limestone-tinted scrim (same --limestone tone as the
+   fill it replaces) behind it so the existing navy/gold/muted text
+   colors keep their original contrast instead of needing new colors. */
+#contributions{background:linear-gradient(rgba(243,236,221,.86),rgba(243,236,221,.86)),url('images/blocks-egyptian-DalalAkoury-Homecoming.jpg') center/cover no-repeat}
 .pv-contrib .st-card ul{padding:0;margin:0}
 .pv-contrib .st-card li{list-style:none;position:relative;padding:9px 0 9px 20px;font-size:var(--fs-body);color:var(--muted);font-weight:300;border-bottom:1px solid var(--border);line-height:1.5}
 .pv-contrib .st-card li:last-child{border-bottom:none}
