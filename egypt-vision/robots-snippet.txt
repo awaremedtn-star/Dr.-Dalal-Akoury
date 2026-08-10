@@ -1,0 +1,7 @@
+# Add to the site's /robots.txt while circulation is private:
+
+User-agent: *
+Disallow: /egypt-vision/
+
+# Remove these two lines at public launch, and swap the robots meta tag
+# in index.html (and re-run: node build-pathways.js).
