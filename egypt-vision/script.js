@@ -46,13 +46,12 @@ const CONFIG = {
      Photographic slots. A slot with an empty string renders the labelled
      placeholder already in the HTML and makes NO network request.
      Fill in a path to go live. Below-the-fold images lazy-load.
-     Full subject briefs and licensing status: ASSET-CHECKLIST.md             */
+     Full subject briefs and licensing status: ASSET-CHECKLIST.md
+
+     The hero background is no longer one of these slots — it's a plain CSS
+     background-image on .hero-bg in styles.css (see the file for the path),
+     not a JS-loaded <img>, so there is nothing to configure here for it.   */
   ASSETS: {
-    hero: {
-      src: "",                      // 2400 × 1350 · 16:9 · JPG, ≤300 KB
-      alt: "Modern Cairo at dusk, seen across the Nile",
-      eager: true
-    },
     vision: {
       src: "",                      // 1200 × 1500 · 4:5 · JPG, ≤220 KB
       alt: "Contemporary Egyptian architecture and new urban development"

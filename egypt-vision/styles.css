@@ -259,10 +259,10 @@ h3.sh3{font-family:var(--display);font-weight:500;font-size:clamp(1.45rem,2.4vw,
 
 /* ------------------------------------------------------------- 5. HERO */
 .hero{position:relative;display:flex;align-items:center;color:var(--white);overflow:hidden;background:var(--navy-deep);min-height:clamp(520px,72vh,760px)}
-.hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg .plate{height:100%;border:0;border-radius:0}
-.hero-bg .plate img{width:100%;height:100%;object-fit:cover;object-position:center 22%;opacity:.5}
-.hero-bg::after{content:'';position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,rgba(10,20,37,.94) 0%,rgba(10,20,37,.74) 46%,rgba(10,20,37,.44) 100%),linear-gradient(0deg,rgba(10,20,37,.92),transparent 42%)}
+.hero-bg{position:absolute;inset:0;z-index:0;background-image:url("/images/blocks-egyptian-DalalAkoury-Homecoming.jpg");background-size:cover;background-position:center;background-repeat:no-repeat}
+/* Even navy scrim across the whole width — the hero copy is centered, so the
+   overlay is no longer weighted to one side the way a left-aligned hero's was. */
+.hero-bg::after{content:'';position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(10,15,30,.86) 0%,rgba(10,15,30,.74) 45%,rgba(10,15,30,.88) 100%)}
 .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);z-index:3}
 .hero-inner{position:relative;z-index:2;max-width:var(--maxw);width:100%;margin:0 auto;padding:84px 28px 90px;text-align:center}
 .hero-eyebrow{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-light);margin:0 auto 26px;max-width:100%}
@@ -293,10 +293,6 @@ h3.sh3{font-family:var(--display);font-weight:500;font-size:clamp(1.45rem,2.4vw,
 .plate-note .pt{font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(1rem,1.4vw,1.25rem);color:rgba(255,255,255,.92);line-height:1.45;max-width:26ch}
 .plate-note .pd{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,224,213,.65)}
 .plate:not(.is-pending) .plate-note{display:none}
-.hero-bg .plate.is-pending::after{display:none}
-.hero-bg .plate-note{align-items:flex-end;justify-content:flex-end;text-align:right;padding:0 clamp(24px,4vw,52px) clamp(24px,4vw,40px) 0;gap:7px}
-.hero-bg .plate-note .pt{font-size:.9rem;max-width:24ch;color:rgba(232,224,213,.6)}
-@media(max-width:900px){.hero-bg .plate-note{display:none}}
 
 figure.fig{margin:0;position:relative}
 figure.fig figcaption{margin-top:14px;font-family:var(--display);font-style:italic;font-size:1.05rem;color:var(--text);line-height:1.6}
