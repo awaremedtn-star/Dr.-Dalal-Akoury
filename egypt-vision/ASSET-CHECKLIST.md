@@ -80,11 +80,22 @@ to confirm before the link is sent:
 | “Working relationships across medicine, leadership, entrepreneurship and international business” | Correct, and deliberately non-specific — no third party is named anywhere on this page |
 | **The personal quotation** — “I did not come home merely to build another clinic…” | ⚠️ **Requires Dr. Akoury's explicit authorisation of the exact wording before publication.** It is presented as a direct quotation from her |
 
-**Not on the page, by design:** no statistics, no market-size figures, no revenue
-projections, no patient volumes, no growth percentages, no named hospitals, no named
-individuals other than Dr. Akoury, no institutional logos. If verified figures are later
-supplied with a citable source, they can be added — but unsourced numbers would undermine
-exactly the audience this page is written for.
+**Originally not on the page, by design** — ~~no statistics, no market-size figures, no
+revenue projections, no patient volumes, no growth percentages~~ — no named hospitals, no
+named individuals other than Dr. Akoury, no institutional logos remain absent. **This
+changed at the owner's explicit direction** (see §G): the stats band under the hero now
+carries four real-world sector figures. Confirm a citable source for each before this page
+goes to a minister, physician or investor:
+
+| Figure | Claim | Source |
+|---|---|---|
+| 440,000+ | Healthcare professionals (in Egypt, presumably) | ⚠️ **Unsourced** |
+| 1,850+ | Hospitals across Egypt | ⚠️ **Unsourced** |
+| 50+ | Medical specialties | ⚠️ **Unsourced** |
+| 35,000 | Medical tourists in 2025 | ⚠️ **Unsourced** — also note 2025 isn't finished at time of writing, so this reads as either a projection or a partial-year count; whichever it is should be stated on the page |
+
+If any of these can't be sourced to something citable, the original guidance still applies:
+an unsourced number in this band would undermine exactly the audience it's written for.
 
 ---
 
@@ -135,6 +146,9 @@ Before the link goes to a minister, a physician of standing, a developer or an i
 - [ ] Dr. Akoury has approved her biography and authorised her personal quotation verbatim
 - [x] `robots.txt` disallows `/egypt-vision/` while circulation is private — done at integration (see §G)
 - [ ] The correct pathway URL is sent to each recipient (see `RECIPIENT-PATHWAYS.md`)
+- [ ] The four stats-band figures (440,000+ healthcare professionals, 1,850+ hospitals,
+      50+ specialties, 35,000 medical tourists in 2025) are confirmed against a citable
+      source, and the 2025 figure's projected-vs-actual status is clarified — see §D
 
 ---
 
@@ -214,3 +228,19 @@ repository, not part of the original delivery package:
   `Airplane-Egypt-Tourism.jpg`, was rejected before being wired in anywhere
   because it visibly showed United Airlines' wordmark and tail livery; this
   file is the same photograph with that branding removed.
+- **Stats band changed from structural counts to sector statistics, at the
+  owner's explicit direction — reverses a documented no-unsourced-numbers
+  decision.** The four figures under the hero were originally "6 strategic
+  pillars / 10 proposed components / 90 days to first findings / 1 governed
+  pilot pathway" — counts of the proposal's own structure, called out in
+  both the in-file HTML comment ("qualitative, no invented figures") and
+  `QA-REPORT.md` §2 as deliberately containing zero market/patient/revenue
+  numbers, precisely because this page goes to ministers, physicians and
+  investors who would discount an unsourced statistic. They're now
+  440,000+ healthcare professionals, 1,850+ hospitals, 50+ specialties,
+  and 35,000 medical tourists in 2025 — real sector claims with no source
+  attached on the page. The fourth figure is styled in red (`#ff5c5c`,
+  ~6:1 against `--navy-deep`) as an intentional "flagged metric," per the
+  request. See §D for the per-figure sourcing table and §F for the
+  pre-send checklist item — none of these should go out to the page's
+  actual audience unsourced.
