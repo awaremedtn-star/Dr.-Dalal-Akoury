@@ -65,6 +65,11 @@
 
 <link rel="stylesheet" href="/egypt-vision/styles.css">
 
+<!-- Sphinx Gate hero intro — preload both guardian illustrations so the
+     opening choreography never starts on half-loaded artwork. -->
+<link rel="preload" as="image" href="/images/sphinxleft.jpg">
+<link rel="preload" as="image" href="/images/sphinxRight.jpg">
+
 <!-- Structured data. Deliberately conservative: a Person and a CreativeWork
      describing the proposal document. The initiative is NOT declared as an
      Organization — no legal entity, partnership or affiliation exists. -->
@@ -116,6 +121,13 @@
 </head>
 
 <body id="top" data-pathway="media">
+
+<!-- Sphinx Gate hero intro — safety-net FOUC guard. Adds `sg-js` before the
+     hero paints so the CSS-hidden intro states (styles.css §5b) apply from
+     the first frame instead of flashing visible-then-hidden. Self-clears
+     after 4.5s no matter what, so a blocked/erroring script.js can never
+     leave the hero permanently hidden. -->
+<script>(function(h){h.classList.add('sg-js');setTimeout(function(){h.classList.remove('sg-js')},4500)})(document.documentElement)</script>
 
 <a class="skip" href="#main">Skip to main content</a>
 
@@ -264,10 +276,19 @@
        above it legible. -->
   <div class="hero-bg" aria-hidden="true"></div>
 
+  <!-- Sphinx Gate intro — two guardian illustrations facing each other,
+       parting like ceremonial curtains to reveal the copy below. Purely a
+       transition layer: decorative, non-interactive, self-removing.
+       See styles.css §5b and script.js "SPHINX GATE INTRO" for the timing. -->
+  <div class="sphinx-gate" aria-hidden="true">
+    <img class="sphinx-gate-fig sphinx-gate-left" src="/images/sphinxleft.jpg" alt="" loading="eager" decoding="async" fetchpriority="high">
+    <img class="sphinx-gate-fig sphinx-gate-right" src="/images/sphinxRight.jpg" alt="" loading="eager" decoding="async" fetchpriority="high">
+  </div>
+
   <div class="hero-inner">
     <p class="hero-eyebrow" data-i18n="hero.eyebrow" data-pw="hero-eyebrow">A National Vision for Global Leadership</p>
 
-    <h1 id="hero-h" data-i18n="hero.h1">Egypt's Next Global Opportunity: <em>Health, Longevity, Medical Tourism &amp; Human Potential</em></h1>
+    <h1 id="hero-h" data-i18n="hero.h1"><span class="sg-line-mask"><span class="sg-line">Egypt's Next Global Opportunity:</span></span> <span class="sg-line-mask"><span class="sg-line"><em>Health, Longevity, Medical Tourism &amp; Human Potential</em></span></span></h1>
 
     <p class="hero-lead" data-i18n="hero.lead" data-pw="hero-lead">A strategic initiative to unite Egypt's medical excellence, hospitality, development, innovation and timeless global identity into one internationally recognised health and longevity ecosystem.</p>
 
