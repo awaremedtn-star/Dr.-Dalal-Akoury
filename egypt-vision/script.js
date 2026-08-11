@@ -406,6 +406,27 @@ const CONFIG = {
     update();
   })();
 
+  /* ------------------------------------------- 5c. ASSET GRID CASCADE
+     Nine cards, one entrance trigger. All per-card/per-element timing is
+     CSS transition-delay (see .asset-card/.ac-rule/.an/h3/p in styles.css)
+     — this just flips one class, once, when the grid comes into view. */
+  (function initAssetCascade() {
+    const grid = $(".assetgrid");
+    if (!grid) return;
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          grid.classList.add("in");
+          io.unobserve(entry.target);
+        });
+      }, { threshold: 0, rootMargin: "0px 0px -22% 0px" });
+      io.observe(grid);
+    } else {
+      grid.classList.add("in");
+    }
+  })();
+
   /* ------------------------------------------------ 6. STAKEHOLDER TABS
      Full ARIA tab pattern with arrow-key / Home / End navigation. */
   const tabs   = $$(".stake-tab");
