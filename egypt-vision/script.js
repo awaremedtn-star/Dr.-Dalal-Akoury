@@ -267,6 +267,33 @@ const CONFIG = {
     }
   })();
 
+  /* ------------------------------------------- 1c. CENTRAL IDEA VIDEO BG
+     Loops a muted background video behind the "Central Idea" pull-quote
+     only. The source is picked once here, at load, based on viewport width
+     — not via <source media="...">, which Safari evaluates inconsistently
+     — and is never re-swapped on resize (that would restart playback and
+     read as a glitch). Skipped entirely under prefers-reduced-motion: no
+     <source> is ever appended, so the video element stays sourceless and
+     the aside's existing navy background/pattern is the finished state. */
+  (function centralIdeaVideoBg() {
+    const video = $(".quoteband-video-el");
+    if (!video || reduceMotion) return;
+
+    const src = window.matchMedia("(max-width: 768px)").matches
+      ? "/assets/healing-bg-mobile.mp4"
+      : "/assets/healing-bg-1080.mp4";
+
+    const source = document.createElement("source");
+    source.type = "video/mp4";
+    source.src = src;
+    video.appendChild(source);
+    video.load();
+    video.play().catch(function () {
+      // Autoplay blocked (e.g. iOS Low Power Mode) — the section's navy
+      // background and scrim already stand on their own with no video.
+    });
+  })();
+
   /* ------------------------------------------------------- 2. ASSET SLOTS
      Renders an <img> only for slots with a real path. Pending slots keep the
      labelled placeholder and issue no network request — no 404s, ever. */

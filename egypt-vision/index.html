@@ -361,7 +361,14 @@
 </section>
 
 <!-- =============== PULL QUOTE =============== -->
-<aside class="quoteband" aria-label="Guiding statement">
+<!-- Looping video background, this aside only — source is chosen in JS at
+     load (script.js "CENTRAL IDEA VIDEO BACKGROUND"), never via <source
+     media>. No poster: assets/healing-bg-poster.jpg doesn't exist yet, so
+     the aside's own navy gradient is the first-paint / no-JS / reduced-
+     motion background — never black. See styles.css §quoteband-video. -->
+<aside class="quoteband quoteband-video" aria-label="Guiding statement">
+  <video class="quoteband-video-el" autoplay muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1"></video>
+  <div class="quoteband-scrim" aria-hidden="true"></div>
   <div class="container">
     <p class="qk" data-i18n="quote.k">The Central Idea</p>
     <blockquote data-i18n="quote.q">Egypt does not need to become another destination. It can define a <em>new global category</em> of its own.</blockquote>
