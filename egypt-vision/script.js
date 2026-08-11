@@ -434,24 +434,56 @@ const CONFIG = {
   })();
 
   /* ------------------------------------------- 5c. ASSET GRID CASCADE
-     Nine cards, one entrance trigger. All per-card/per-element timing is
-     CSS transition-delay (see .asset-card/.ac-rule/.an/h3/p in styles.css)
-     — this just flips one class, once, when the grid comes into view. */
+     Nine cards. All per-card/per-element timing is CSS transition-delay
+     (see .asset-card/.ac-rule/.an/h3/p in styles.css) — this only ever
+     decides WHEN to add `.in` to each card; the choreography itself is
+     pure CSS.
+
+     Desktop/tablet: the 3x3 (or 2-col) grid fits within roughly a screen
+     or two, so one grid-level trigger reveals all nine at once and their
+     nth-child --card-delay values carry the cross-card wave.
+
+     Mobile (<=660px, matches the CSS breakpoint): nine stacked cards run
+     several screens tall, so batch-triggering off the grid would finish
+     the whole cascade off-screen long before a visitor scrolls that far —
+     each card is observed individually instead and reveals as it enters,
+     with its own --card-delay zeroed out first so it starts immediately
+     rather than waiting out a cross-card offset that no longer means
+     anything once cards trigger on their own. DOM order still guarantees
+     1-9 reading order either way. */
   (function initAssetCascade() {
-    const grid = $(".assetgrid");
-    if (!grid) return;
-    if ("IntersectionObserver" in window) {
+    const cards = $$(".asset-card");
+    if (!cards.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+      cards.forEach(function (c) { c.classList.add("in"); });
+      return;
+    }
+
+    const isStackedMobile = window.matchMedia("(max-width: 660px)").matches;
+
+    if (!isStackedMobile) {
+      const grid = $(".assetgrid");
       const io = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (!entry.isIntersecting) return;
-          grid.classList.add("in");
+          cards.forEach(function (c) { c.classList.add("in"); });
           io.unobserve(entry.target);
         });
       }, { threshold: 0, rootMargin: "0px 0px -22% 0px" });
       io.observe(grid);
-    } else {
-      grid.classList.add("in");
+      return;
     }
+
+    const io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.style.setProperty("--card-delay", "0s");
+        entry.target.classList.add("in");
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0, rootMargin: "0px 0px -12% 0px" });
+    cards.forEach(function (c) { io.observe(c); });
   })();
 
   /* ------------------------------------------------ 6. STAKEHOLDER TABS
