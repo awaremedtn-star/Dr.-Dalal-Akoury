@@ -12,7 +12,7 @@ what turns a complete draft into a document ready to send to a minister.
 
 | Slot | Subject brief | Ratio | Pixels | File name to use | Status |
 |---|---|---|---|---|---|
-| `hero` | Modern Cairo at dusk — the Nile corniche or the New Administrative Capital. Cinematic, wide, contemporary. **No monuments, no pyramids.** Must read well behind text at 40% opacity. | 16:9 | 2400 × 1350, ≤300 KB | `assets/images/egypt/cairo-skyline-dusk.jpg` | ⚠️ Pending — needs licence |
+| `hero` | ~~Modern Cairo at dusk — the Nile corniche or the New Administrative Capital. Cinematic, wide, contemporary. No monuments, no pyramids.~~ Superseded at the owner's explicit direction: wired to an existing repo photo of hieroglyphic wall relief instead (see note below). | 16:9 | 1672 × 941 | wired to `/images/blocks-egyptian-DalalAkoury-Homecoming.jpg` | ✅ Live — see deviation note |
 | `vision` | Contemporary Egyptian architecture or new urban development. Vertical, restrained, human-scale. | 4:5 | 1200 × 1500, ≤220 KB | `assets/images/egypt/new-capital-architecture.jpg` | ⚠️ Pending — needs licence |
 | `portrait` | Authentic professional photograph of Dr. Dalal Akoury. **An AI-generated or stock substitute for her face is not permitted under any circumstance.** | 4:5 | 1200 × 1500, ≤220 KB | wired to `/images/Dr_Dalal_Akoury_johnsoncity_TN_USA_Integrative_Medicine_Board-Certified_Physician.jpg` | ✅ **Verified rendering** — the file exists in the repo (1122 × 1402) and was confirmed loading in the built page |
 | `og:image` | Social/share card. Wordmark and initiative name over a modern Egypt image or the navy/gold field. Legible at thumbnail size. | 1.91:1 | 1200 × 630, ≤200 KB | `assets/og/egypt-vision-share-1200x630.jpg` | ⚠️ Pending |
@@ -168,3 +168,18 @@ repository, not part of the original delivery package:
   separate approval. This page's own nav copy already marks itself current in
   the "Egypt Coming Back" dropdown, which is enough for anyone who lands on
   it directly to navigate the rest of the site.
+- **Hero background wired to an existing repo photo, at the owner's explicit
+  direction — deviates from the original subject brief.** The hero now uses
+  `/images/blocks-egyptian-DalalAkoury-Homecoming.jpg` (a hieroglyphic wall
+  relief) as a CSS `background-image` on `.hero-bg`, not the "modern Cairo
+  skyline, no monuments, no pyramids" brief this file originally specified.
+  That original brief existed specifically because `QA-REPORT.md` §7 and this
+  page's own restrained-Egyptian-identity design intent called out avoiding
+  pharaonic/monument imagery so the page reads as a modern, presidential
+  proposal rather than a tourism piece for the minister/investor/physician
+  audience it's written for. Flagging this here rather than silently updating
+  the brief, since it's a deliberate reversal of that stated design intent —
+  worth a second look before this link goes out widely. The pending-slot
+  markup and its `CONFIG.ASSETS.hero` entry were removed since the hero no
+  longer uses the JS-driven `.plate` asset-slot mechanism the other two
+  photo slots (`vision`, `portrait`) still use.
