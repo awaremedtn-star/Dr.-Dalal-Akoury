@@ -318,28 +318,30 @@
 </aside>
 
 <!-- ==================== 3 · EXECUTIVE VISION STATEMENT ==================== -->
-<section class="block bg-cream" id="vision" aria-labelledby="vision-h">
-  <div class="container">
-    <div class="split top">
-      <div class="reveal">
-        <div class="section-label" data-i18n="vision.eyebrow">The Vision</div>
-        <h2 class="sh" id="vision-h" data-i18n="vision.h2">Egypt already has the assets. The opportunity is to <em>unite them.</em></h2>
-        <p class="body-p" data-i18n="vision.p1">Across the world, the fastest-growing area of health is no longer the single procedure. It is the whole arc of a person's care — how they are assessed, guided, treated, recovered, and followed for years afterwards. Countries that organise that arc well will define the next generation of international healthcare.</p>
-        <p class="body-p" data-i18n="vision.p2">Egypt is unusually well placed to do exactly that. It has the physicians. It has the hospitals and the pipeline of new clinical infrastructure. It has the coastlines, the climate, the hospitality industry, the construction capacity and the investment appetite. It has a location within a short flight of Africa, the Middle East, Europe and much of Asia, and a diaspora that spans the world's leading medical institutions.</p>
-        <p class="body-p" data-i18n="vision.p3"><strong>What Egypt has not yet done is connect these strengths into a single, governed, internationally legible offer.</strong> That is the opportunity this proposal exists to discuss.</p>
-        <a href="#why-egypt" class="btn btn-dark" style="margin-top:14px" data-i18n="vision.cta">Read the strategic case <span class="ar" aria-hidden="true">→</span></a>
-      </div>
-
-      <div class="split-media reveal">
-        <figure class="fig">
-          <!-- ASSET SLOT: vision — empty on purpose; CONFIG.ASSETS.vision in
-               script.js still wires this up automatically once a path is set. -->
-          <div class="plate" data-asset="vision"></div>
-          <figcaption data-i18n="vision.cap">A country building at scale — and now able to build in health.</figcaption>
-        </figure>
+<section id="vision" aria-labelledby="vision-h">
+  <!-- Cinematic editorial band: background photo lives behind the text as a
+       plain <img> (see .vision-cine-img in styles.css) with a scroll-linked
+       parallax translateY, the same technique/pattern as .chapter .bg img in
+       assets/app.js + assets/style.css (used on coming-home.html) — reused
+       here as page-specific code rather than touching that shared file. -->
+  <div class="vision-cine bg-navy">
+    <div class="vision-cine-bg" aria-hidden="true">
+      <img class="vision-cine-img" src="/images/airplane-medical-tourism.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1672" height="941">
+    </div>
+    <div class="container">
+      <div class="vision-cine-content">
+        <div class="section-label vc-eyebrow" data-i18n="vision.eyebrow">The Vision</div>
+        <h2 class="sh vc-h" id="vision-h" data-i18n="vision.h2">Egypt already has the assets. The opportunity is to <em>unite them.</em></h2>
+        <p class="body-p vc-p vc-p1" data-i18n="vision.p1">Across the world, the fastest-growing area of health is no longer the single procedure. It is the whole arc of a person's care — how they are assessed, guided, treated, recovered, and followed for years afterwards. Countries that organise that arc well will define the next generation of international healthcare.</p>
+        <p class="body-p vc-p vc-p2" data-i18n="vision.p2">Egypt is unusually well placed to do exactly that. It has the physicians. It has the hospitals and the pipeline of new clinical infrastructure. It has the coastlines, the climate, the hospitality industry, the construction capacity and the investment appetite. It has a location within a short flight of Africa, the Middle East, Europe and much of Asia, and a diaspora that spans the world's leading medical institutions.</p>
+        <p class="body-p vc-p vc-p3" data-i18n="vision.p3"><strong>What Egypt has not yet done is connect these strengths into a single, governed, internationally legible offer.</strong> That is the opportunity this proposal exists to discuss.</p>
+        <a href="#why-egypt" class="btn btn-ghost vc-cta" data-i18n="vision.cta">Read the strategic case <span class="ar" aria-hidden="true">→</span></a>
       </div>
     </div>
+  </div>
 
+  <section class="block bg-cream">
+    <div class="container">
     <ol class="assetgrid" aria-label="Egypt's existing advantages">
       <li class="asset-card reveal"><div class="an">i.</div><h3 data-i18n="asset.1.h">Position</h3><p data-i18n="asset.1.p">A single geography within convenient reach of Africa, the Middle East, Europe and much of Asia — the natural meeting point for patients, clinicians and capital from four continents.</p></li>
       <li class="asset-card reveal"><div class="an">ii.</div><h3 data-i18n="asset.2.h">Physicians</h3><p data-i18n="asset.2.p">A deep and internationally respected medical profession, with Egyptian surgeons, specialists and researchers holding senior positions in leading institutions worldwide.</p></li>
@@ -351,7 +353,8 @@
       <li class="asset-card reveal"><div class="an">viii.</div><h3 data-i18n="asset.8.h">Diaspora</h3><p data-i18n="asset.8.p">An international Egyptian community in medicine, science, business and media — a ready bridge to patients, partners and professional networks abroad.</p></li>
       <li class="asset-card reveal"><div class="an">ix.</div><h3 data-i18n="asset.9.h">Global Demand</h3><p data-i18n="asset.9.p">Worldwide, sustained growth in demand for prevention, early detection, longevity, recovery and personalised medicine — the exact areas where Egypt can lead rather than follow.</p></li>
     </ol>
-  </div>
+    </div>
+  </section>
 </section>
 
 <!-- =============== PULL QUOTE =============== -->

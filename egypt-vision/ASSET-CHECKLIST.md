@@ -13,7 +13,7 @@ what turns a complete draft into a document ready to send to a minister.
 | Slot | Subject brief | Ratio | Pixels | File name to use | Status |
 |---|---|---|---|---|---|
 | `hero` | ~~Modern Cairo at dusk — the Nile corniche or the New Administrative Capital. Cinematic, wide, contemporary. No monuments, no pyramids.~~ Superseded at the owner's explicit direction: wired to an existing repo photo of hieroglyphic wall relief instead (see note below). | 16:9 | 1672 × 941 | wired to `/images/blocks-egyptian-DalalAkoury-Homecoming.jpg` | ✅ Live — see deviation note |
-| `vision` | Contemporary Egyptian architecture or new urban development. Vertical, restrained, human-scale. | 4:5 | 1200 × 1500, ≤220 KB | `assets/images/egypt/new-capital-architecture.jpg` | ⚠️ Pending — needs licence |
+| `vision` | ~~Contemporary Egyptian architecture or new urban development. Vertical, restrained, human-scale.~~ Superseded at the owner's explicit direction: the Vision section was rebuilt as a full-bleed cinematic photo band rather than a 4:5 side panel — wired to an existing repo photo of an aircraft on an airport apron instead (see note below). | 16:9 | 1672 × 941 | wired to `/images/airplane-medical-tourism.jpg` | ✅ Live — see deviation note |
 | `portrait` | Authentic professional photograph of Dr. Dalal Akoury. **An AI-generated or stock substitute for her face is not permitted under any circumstance.** | 4:5 | 1200 × 1500, ≤220 KB | wired to `/images/Dr_Dalal_Akoury_johnsoncity_TN_USA_Integrative_Medicine_Board-Certified_Physician.jpg` | ✅ **Verified rendering** — the file exists in the repo (1122 × 1402) and was confirmed loading in the built page |
 | `og:image` | Social/share card. Wordmark and initiative name over a modern Egypt image or the navy/gold field. Legible at thumbnail size. | 1.91:1 | 1200 × 630, ≤200 KB | `assets/og/egypt-vision-share-1200x630.jpg` | ⚠️ Pending |
 
@@ -181,5 +181,36 @@ repository, not part of the original delivery package:
   the brief, since it's a deliberate reversal of that stated design intent —
   worth a second look before this link goes out widely. The pending-slot
   markup and its `CONFIG.ASSETS.hero` entry were removed since the hero no
-  longer uses the JS-driven `.plate` asset-slot mechanism the other two
-  photo slots (`vision`, `portrait`) still use.
+  longer uses the JS-driven `.plate` asset-slot mechanism the `portrait`
+  slot still uses (the `vision` slot no longer exists either — see below).
+- **Vision section rebuilt as a full-bleed cinematic photo band, at the
+  owner's explicit direction.** Previously a two-column layout (text +
+  a 4:5 pending-image side panel). It's now a `min-height:clamp(680px,92vh,980px)`
+  section with `/images/airplane-medical-tourism.jpg` as a plain `<img>`
+  background layer, a two-axis navy overlay (strong on the text side,
+  lighter over the photo), a left-aligned ~620px editorial text column, a
+  staggered reveal (gold rule draw → eyebrow → headline → each paragraph →
+  CTA, via CSS `transition-delay`, triggered once by IntersectionObserver),
+  and a restrained scroll-linked parallax on the image (`transform:
+  translateY()` driven by a passive scroll listener, clamped to ±64px) —
+  the same technique as the site's own `.chapter` parallax in
+  `assets/app.js`/`assets/style.css` (used on `coming-home.html`), ported
+  into `egypt-vision/script.js`/`styles.css` as page-specific code rather
+  than editing that shared file. No `background-attachment:fixed`
+  anywhere; parallax and the reveal's transform/transition are skipped
+  entirely under `prefers-reduced-motion:reduce` (content shows immediately,
+  fully opaque, no motion). All existing copy (all three paragraphs and
+  the "Read the strategic case" CTA) was preserved verbatim — only the
+  CTA's button class changed, from `btn-dark` (styled for light
+  backgrounds — its gold-ink text would be unreadable on navy) to
+  `btn-ghost` (this stylesheet's existing dark-background button variant).
+  The nine-item asset grid immediately below is unchanged, just now
+  wrapped in its own `<section class="block bg-cream">` so it keeps the
+  page's standard section padding independently of the cinematic band
+  above it.
+  Like the hero photo, this is a repo photo chosen for its composition
+  (an aerial airport-apron shot), not literal Egypt imagery — flagged
+  the same way for the same reason. An earlier candidate for this section,
+  `Airplane-Egypt-Tourism.jpg`, was rejected before being wired in anywhere
+  because it visibly showed United Airlines' wordmark and tail livery; this
+  file is the same photograph with that branding removed.

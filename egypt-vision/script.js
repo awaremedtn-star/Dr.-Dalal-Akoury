@@ -48,14 +48,11 @@ const CONFIG = {
      Fill in a path to go live. Below-the-fold images lazy-load.
      Full subject briefs and licensing status: ASSET-CHECKLIST.md
 
-     The hero background is no longer one of these slots — it's a plain CSS
-     background-image on .hero-bg in styles.css (see the file for the path),
-     not a JS-loaded <img>, so there is nothing to configure here for it.   */
+     The hero background and the Vision section's cinematic photo are no
+     longer slots here — they're plain CSS/HTML <img>s (.hero-bg and
+     .vision-cine-img in styles.css/index.html), not JS-loaded, so there is
+     nothing to configure here for either of them.                         */
   ASSETS: {
-    vision: {
-      src: "",                      // 1200 × 1500 · 4:5 · JPG, ≤220 KB
-      alt: "Contemporary Egyptian architecture and new urban development"
-    },
     portrait: {
       /* An authentic, owned photograph of Dr. Akoury that already exists in
          the site repository. Confirm it is live on the server before launch;
@@ -365,6 +362,49 @@ const CONFIG = {
     }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
     targets.forEach(function (t) { spy.observe(t.el); });
   }
+
+  /* ------------------------------------------- 5b. VISION CINEMATIC BAND
+     Reveal (staggered via CSS transition-delay, see .vc-* rules) plus a
+     restrained scroll-linked parallax on the background photo. Same
+     technique as the site's own .chapter parallax in assets/app.js —
+     a passive scroll listener writing a CSS custom property that a
+     transform: translateY() reads — kept here as page-specific code
+     rather than editing that shared file. Skipped entirely under
+     prefers-reduced-motion, per CONFIG-less site convention. */
+  (function initVisionCinematic() {
+    const section = $(".vision-cine");
+    if (!section) return;
+
+    if ("IntersectionObserver" in window) {
+      const revealIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          section.classList.add("in");
+          revealIO.unobserve(entry.target);
+        });
+      }, { threshold: .2 });
+      revealIO.observe(section);
+    } else {
+      section.classList.add("in");
+    }
+
+    if (reduceMotion) return;
+    const img = $(".vision-cine-img", section);
+    if (!img) return;
+    let queued = false;
+    const update = function () {
+      queued = false;
+      const r = section.getBoundingClientRect();
+      const offset = Math.max(-64, Math.min(64, r.top * 0.05));
+      img.style.setProperty("--vc-parallax", offset + "px");
+    };
+    addEventListener("scroll", function () {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(update);
+    }, { passive: true });
+    update();
+  })();
 
   /* ------------------------------------------------ 6. STAKEHOLDER TABS
      Full ARIA tab pattern with arrow-key / Home / End navigation. */

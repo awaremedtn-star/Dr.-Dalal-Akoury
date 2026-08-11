@@ -195,6 +195,54 @@ h3.sh3{font-family:var(--display);font-weight:500;font-size:clamp(1.45rem,2.4vw,
 .bg-navy .body-p strong{color:var(--white)}
 .bg-navy .section-label{color:var(--gold-light)}
 
+/* --------------------------------------------- 5b. VISION — CINEMATIC BAND
+   Full-bleed editorial photo section. Reuses .bg-navy (above) for all text
+   colour, .btn-ghost for the CTA, and the site's established .chapter
+   parallax technique (transform: translateY(var(--x)), set from a passive
+   scroll listener, see script.js) — new markup/rules, no shared file touched. */
+.vision-cine{position:relative;overflow:hidden;display:flex;align-items:center;min-height:clamp(680px,92vh,980px);padding:96px 0}
+.vision-cine-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.vision-cine-img{width:100%;height:100%;object-fit:cover;object-position:center 42%;transform:translateY(var(--vc-parallax,0px));transition:transform .1s linear;will-change:transform;display:block}
+/* Text-side (left) reads strongly against the photo; image-side (right)
+   stays photographic. A soft vertical pass blends the band into the
+   cream sections above/below it. */
+.vision-cine::after{content:'';position:absolute;inset:0;z-index:1;background:
+  linear-gradient(90deg,rgba(10,20,37,.92) 0%,rgba(10,20,37,.82) 32%,rgba(10,20,37,.5) 60%,rgba(10,20,37,.22) 100%),
+  linear-gradient(180deg,rgba(10,20,37,.32) 0%,transparent 18%,transparent 82%,rgba(10,20,37,.4) 100%)}
+.vision-cine .container{position:relative;z-index:2}
+.vision-cine-content{max-width:620px;margin-top:-2%}
+.vision-cine-content .section-label{margin-bottom:22px}
+.vc-eyebrow::before{transform-origin:left;transform:scaleX(0);transition:transform .6s var(--ease)}
+.vision-cine.in .vc-eyebrow::before{transform:scaleX(1)}
+.vc-eyebrow,.vc-h,.vc-p,.vc-cta{opacity:0;transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.vc-eyebrow{transform:translateY(8px);transition-delay:.15s}
+.vc-h{transform:translateY(24px);transition-delay:.28s}
+.vc-p1{transform:translateY(18px);transition-delay:.42s}
+.vc-p2{transform:translateY(18px);transition-delay:.52s}
+.vc-p3{transform:translateY(18px);transition-delay:.62s}
+.vc-cta{transform:translateY(14px);transition-delay:.72s}
+.vision-cine.in .vc-eyebrow,.vision-cine.in .vc-h,.vision-cine.in .vc-p,.vision-cine.in .vc-cta{opacity:1;transform:none}
+.vision-cine .vc-h{max-width:14ch}
+.vision-cine .vc-p{max-width:none}
+.vision-cine .vc-cta{margin-top:10px}
+@media(hover:hover) and (pointer:fine){.vision-cine .vc-cta:hover{background:rgba(240,228,196,.1);border-color:var(--gold)}}
+.vision-cine .vc-cta:active{transform:scale(.97)}
+@media(max-width:900px){
+  .vision-cine{min-height:0;padding:88px 0 76px}
+  .vision-cine-content{margin-top:0}
+  .vision-cine .vc-h{max-width:none}
+  .vision-cine-img{object-position:62% center}
+}
+@media(max-width:480px){
+  .vision-cine{padding:72px 0 64px}
+}
+@media(prefers-reduced-motion:reduce){
+  .vc-eyebrow::before,.vc-eyebrow,.vc-h,.vc-p,.vc-cta{transition:opacity .3s linear!important;transform:none!important;transition-delay:0s!important}
+  .vc-eyebrow,.vc-h,.vc-p,.vc-cta{opacity:1}
+  .vc-eyebrow::before{transform:scaleX(1)!important}
+  .vision-cine-img{transform:none!important;transition:none!important}
+}
+
 /* Stats band — verbatim */
 .stats-band{background:var(--navy-deep);border-top:1px solid rgba(201,165,92,.2);border-bottom:1px solid rgba(201,165,92,.2)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);max-width:var(--maxw);margin:0 auto}
