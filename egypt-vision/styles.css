@@ -251,6 +251,10 @@ h3.sh3{font-family:var(--display);font-weight:500;font-size:clamp(1.45rem,2.4vw,
 .stat:hover{background:rgba(201,165,92,.05)}
 .stat-num{font-family:var(--display);font-size:2.1rem;font-weight:300;color:var(--gold);line-height:1.2}
 .stat-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);margin-top:10px;line-height:1.7}
+/* Flagged metric — same size/weight/layout as the other three, red instead
+   of gold. #ff5c5c on --navy-deep measures ~6:1, clearing AA at both the
+   large stat-num size and the small stat-label size. */
+.stat-flag .stat-num,.stat-flag .stat-label{color:#ff5c5c}
 @media(max-width:820px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat{border-bottom:1px solid rgba(201,165,92,.14)}}
 
 /* Footer — verbatim */
