@@ -315,7 +315,9 @@ figure.fig figcaption{margin-top:14px;font-family:var(--display);font-style:ital
 .split.top{align-items:start}
 .split.rev .split-media{order:2}
 .split-media{position:relative}
-.split-media .plate{aspect-ratio:4/5}
+/* Empty on purpose — no pending-image styling here. Same aspect-ratio/position
+   as before so a real photo can be dropped in later with no layout change. */
+.split-media .plate{aspect-ratio:4/5;background:var(--cream);border:0}
 .split-media::after{content:'';position:absolute;inset:auto -16px -16px auto;width:58%;height:58%;border:1px solid var(--gold);border-radius:4px;z-index:-1}
 .split.rev .split-media::after{inset:auto auto -16px -16px}
 @media(max-width:880px){
