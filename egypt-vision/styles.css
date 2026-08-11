@@ -479,23 +479,29 @@ figure.fig figcaption{margin-top:14px;font-family:var(--display);font-style:ital
    the pattern — DOM/paint order puts the real content on top of the ::before
    pseudo-element at equal z-index, exactly as it already did pre-video).
 
-   Scrim is navy-tinted, not black, and its alpha stops were raised from an
-   initial (.86/.74/.90) proposal after compositing them against the
-   brightest sampled frames of both clips (dense per-pixel sweep across the
-   last 40% of each 14s loop — the Giza/Luxor daylight beats). Worst-case
-   contrast for the gold italic accent (#d4af7a) against the composited
-   background: 5.14:1 desktop / 6.12:1 mobile — both clear WCAG AA's 4.5:1
-   floor for that text with margin. Mobile's stops sit ~.06 above desktop's,
-   per spec, since its tighter 9:16 crop puts more copy over open sky. */
+   Scrim is navy-tinted, not black. The footage (hospital corridors, sunlit
+   temple courtyards) turned out to be brightly lit throughout, not just at
+   an occasional peak — an initial pass tuned to guarantee AA contrast at
+   the single brightest sampled pixel (.90/.80/.94) ended up hiding the
+   video almost entirely in normal viewing, per feedback. These lighter
+   stops were chosen by rendering several candidates against both a typical
+   mid-loop frame and the brightest sampled frame and picking for visible,
+   recognisable footage: worst-case contrast at the single brightest pixel
+   in either clip is 2.25:1 (desktop) / 2.66:1 (mobile) for the small gold
+   italic accent — below WCAG AA there, a deliberate trade for visibility —
+   while the white blockquote text, which carries the actual sentence,
+   still clears AA everywhere: 4.63:1 desktop / 5.48:1 mobile worst-case.
+   Mobile's stops sit ~.06 above desktop's, per spec, since its tighter
+   9:16 crop puts more copy over open sky. */
 .quoteband-video{isolation:isolate}
 .quoteband-video::before{z-index:2}
 .quoteband-video-el{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none}
 .quoteband-scrim{
   position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(11,22,40,.90) 0%,rgba(11,22,40,.80) 45%,rgba(11,22,40,.94) 100%);
+  background:linear-gradient(180deg,rgba(11,22,40,.65) 0%,rgba(11,22,40,.55) 45%,rgba(11,22,40,.69) 100%);
 }
 @media(max-width:768px){
-  .quoteband-scrim{background:linear-gradient(180deg,rgba(11,22,40,.96) 0%,rgba(11,22,40,.86) 45%,rgba(11,22,40,1) 100%)}
+  .quoteband-scrim{background:linear-gradient(180deg,rgba(11,22,40,.71) 0%,rgba(11,22,40,.61) 45%,rgba(11,22,40,.75) 100%)}
 }
 @media(prefers-reduced-motion:reduce){
   /* No video at all under reduced motion — the aside's existing navy
