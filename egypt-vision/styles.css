@@ -276,6 +276,85 @@ h3.sh3{font-family:var(--display);font-weight:500;font-size:clamp(1.45rem,2.4vw,
 .hero-attr .role{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);line-height:1.8}
 @media(max-width:900px){.hero{min-height:0}.hero-inner{padding:72px 28px 80px}}
 
+/* ---------------------------------------- 5b. SPHINX GATE HERO INTRO
+   A temporary ceremonial intro layer inside the hero only. Two guardian
+   Sphinx illustrations face each other, then part like curtains to reveal
+   the hero copy beneath — motion only, no new colors/artwork/copy.
+   `html.sg-js` gates every hidden/initial state so the page degrades to a
+   fully visible, unanimated hero if JS never runs. See script.js for the
+   choreography (SPHINX GATE INTRO block) and index.html for the safety-net
+   inline script that adds/removes the `sg-js` class.                     */
+:root{
+  --sg-out:cubic-bezier(.16,1,.3,1);
+  --sg-inout:cubic-bezier(.65,0,.35,1);
+  --sg-in:cubic-bezier(.55,0,1,.45);
+  --sg-gap-rest:clamp(40px,4vw,90px);
+}
+
+.sphinx-gate{position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none}
+.sphinx-gate.sg-done{visibility:hidden}
+
+.sphinx-gate-fig{
+  position:absolute;top:50%;width:clamp(220px,40vw,560px);height:auto;
+  object-fit:contain;opacity:0;pointer-events:none;user-select:none;
+  scale:1.05;
+  transition:translate .55s var(--sg-out),scale .55s var(--sg-out),opacity .55s var(--sg-out);
+}
+.sphinx-gate-left{left:50%;translate:calc(-100% - var(--sg-gap-rest)) -50%}
+.sphinx-gate-right{right:50%;translate:calc(100% + var(--sg-gap-rest)) -50%}
+
+/* stage 1 — the guardians arrive; the gate is still closed */
+.sphinx-gate-fig.sg-visible{opacity:1;scale:1}
+
+/* stage 2 — the gate opens; headline reveal overlaps this motion */
+.sphinx-gate-fig.sg-open{transition:translate 1.3s var(--sg-inout),scale 1.3s var(--sg-inout),opacity 1.3s var(--sg-inout)}
+.sphinx-gate-left.sg-open{translate:calc(-100% - 27vw) calc(-50% - 10px);scale:.97}
+.sphinx-gate-right.sg-open{translate:calc(100% + 27vw) calc(-50% + 8px);scale:.97}
+
+/* stage 3 — the guardians recede beyond the edges and dissolve */
+.sphinx-gate-fig.sg-exit{opacity:0;transition:translate .75s var(--sg-in),scale .75s var(--sg-in),opacity .75s var(--sg-in)}
+.sphinx-gate-left.sg-exit{translate:calc(-100% - 62vw) calc(-50% - 14px);scale:.94}
+.sphinx-gate-right.sg-exit{translate:calc(100% + 62vw) calc(-50% + 14px);scale:.94}
+
+@media(max-width:640px){
+  :root{--sg-gap-rest:clamp(20px,5vw,40px)}
+  .sphinx-gate-fig{width:clamp(150px,52vw,260px)}
+  .sphinx-gate-left.sg-open{translate:calc(-100% - 22vw) calc(-50% - 6px)}
+  .sphinx-gate-right.sg-open{translate:calc(100% + 22vw) calc(-50% + 6px)}
+  .sphinx-gate-left.sg-exit{translate:calc(-100% - 58vw) calc(-50% - 8px)}
+  .sphinx-gate-right.sg-exit{translate:calc(100% + 58vw) calc(-50% + 8px)}
+}
+
+/* hero copy — hidden only while html.sg-js is present, i.e. only once the
+   intro script has confirmed it will run the reveal itself */
+html.sg-js .hero-eyebrow{opacity:0;translate:0 8px;transition:opacity .5s var(--sg-out),translate .5s var(--sg-out)}
+html.sg-js .hero-eyebrow::before{transform:scaleX(0);transform-origin:left center;transition:transform .45s var(--sg-out) .05s}
+html.sg-js .hero-eyebrow.sg-in{opacity:1;translate:0 0}
+html.sg-js .hero-eyebrow.sg-in::before{transform:scaleX(1)}
+
+html.sg-js #hero-h .sg-line-mask{display:inline-block;overflow:hidden;vertical-align:top}
+html.sg-js #hero-h .sg-line{display:inline-block;translate:0 105%;opacity:0;filter:blur(4px);transition:translate .8s var(--sg-out),opacity .8s var(--sg-out),filter .8s var(--sg-out)}
+html.sg-js #hero-h .sg-line-mask:nth-of-type(2) .sg-line{transition-delay:.09s}
+html.sg-js #hero-h.sg-in .sg-line{translate:0 0;opacity:1;filter:blur(0)}
+
+html.sg-js .hero-lead{opacity:0;translate:0 14px;transition:opacity .65s var(--sg-out),translate .65s var(--sg-out)}
+html.sg-js .hero-lead.sg-in{opacity:1;translate:0 0}
+
+html.sg-js .hero-attr{opacity:0;translate:0 14px;transition:opacity .65s var(--sg-out),translate .65s var(--sg-out)}
+html.sg-js .hero-attr.sg-in{opacity:1;translate:0 0}
+
+@media(prefers-reduced-motion:reduce){
+  .sphinx-gate-fig,
+  .sphinx-gate-fig.sg-open,
+  .sphinx-gate-fig.sg-exit,
+  html.sg-js .hero-eyebrow,
+  html.sg-js .hero-eyebrow::before,
+  html.sg-js #hero-h .sg-line,
+  html.sg-js .hero-lead,
+  html.sg-js .hero-attr{transition-duration:.28s!important;transition-delay:0s!important}
+  html.sg-js #hero-h .sg-line{filter:none}
+}
+
 /* ------------------------------------------- 6. ASSET PLATES (pending state)
    Every photographic slot renders a labelled placeholder until the licensed
    file is supplied. Pending slots issue NO network request — no 404s ever. */
