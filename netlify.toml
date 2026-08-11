@@ -1,0 +1,7 @@
+# Static site, no build step (see package.json) — this file exists only to
+# set response headers. Netlify serves the repo root as-is.
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

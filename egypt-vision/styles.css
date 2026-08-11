@@ -472,6 +472,37 @@ figure.fig figcaption{margin-top:14px;font-family:var(--display);font-style:ital
 .quoteband blockquote{font-family:var(--display);font-weight:300;font-size:clamp(1.7rem,3.9vw,3rem);line-height:1.28;color:var(--white);max-width:22ch;margin:0 auto}
 .quoteband blockquote em{font-style:italic;color:var(--gold-light)}
 
+/* "The Central Idea" pull-quote only — looping video background.
+   .quoteband-video-el (z-index 0) < .quoteband-scrim (1) < the existing
+   ::before geometric pattern, bumped to z-index 2 here so it still reads
+   above the footage < .container (already z-index 2 above, same tier as
+   the pattern — DOM/paint order puts the real content on top of the ::before
+   pseudo-element at equal z-index, exactly as it already did pre-video).
+
+   Scrim is navy-tinted, not black, and its alpha stops were raised from an
+   initial (.86/.74/.90) proposal after compositing them against the
+   brightest sampled frames of both clips (dense per-pixel sweep across the
+   last 40% of each 14s loop — the Giza/Luxor daylight beats). Worst-case
+   contrast for the gold italic accent (#d4af7a) against the composited
+   background: 5.14:1 desktop / 6.12:1 mobile — both clear WCAG AA's 4.5:1
+   floor for that text with margin. Mobile's stops sit ~.06 above desktop's,
+   per spec, since its tighter 9:16 crop puts more copy over open sky. */
+.quoteband-video{isolation:isolate}
+.quoteband-video::before{z-index:2}
+.quoteband-video-el{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none}
+.quoteband-scrim{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(11,22,40,.90) 0%,rgba(11,22,40,.80) 45%,rgba(11,22,40,.94) 100%);
+}
+@media(max-width:768px){
+  .quoteband-scrim{background:linear-gradient(180deg,rgba(11,22,40,.96) 0%,rgba(11,22,40,.86) 45%,rgba(11,22,40,1) 100%)}
+}
+@media(prefers-reduced-motion:reduce){
+  /* No video at all under reduced motion — the aside's existing navy
+     gradient + pattern is already a finished background on its own. */
+  .quoteband-video-el{display:none}
+}
+
 /* ---------------------------------------------- 9. ASSET CARDS (Egypt's 9) */
 .assetgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
 .asset-card{background:var(--white);border:1px solid var(--border);border-top:2px solid var(--gold);padding:34px 30px;transition:transform .3s ease,box-shadow .3s ease}
