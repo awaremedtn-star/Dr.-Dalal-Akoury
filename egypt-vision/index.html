@@ -125,6 +125,13 @@
      after 4.5s no matter what, so a blocked/erroring script.js can never
      leave the hero permanently hidden. -->
 <script>(function(h){h.classList.add('sg-js');setTimeout(function(){h.classList.remove('sg-js')},4500)})(document.documentElement)</script>
+<!-- Asset-grid cascade — same FOUC-guard/failure-safety pattern as the
+     Sphinx Gate guard above. Adds `ac-js` so the cards' pre-reveal hidden
+     state (styles.css §9) only ever applies once this script has actually
+     run; without it (or after this 4.5s safety window, if script.js never
+     initialises the cascade) the cards render at their plain CSS default —
+     fully visible, no JS required to read them. -->
+<script>(function(h){h.classList.add('ac-js');setTimeout(function(){h.classList.remove('ac-js')},4500)})(document.documentElement)</script>
 
 <a class="skip" href="#main">Skip to main content</a>
 
