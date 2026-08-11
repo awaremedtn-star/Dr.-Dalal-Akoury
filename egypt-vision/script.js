@@ -188,6 +188,88 @@ const CONFIG = {
   const yr = $("#yr");
   if (yr) yr.textContent = String(new Date().getFullYear());
 
+  /* --------------------------------------------- 1b. SPHINX GATE INTRO
+     Two guardian Sphinx illustrations, positioned facing each other inside
+     the hero, part like ceremonial curtains as the existing hero eyebrow /
+     headline / lead / attribution reveal through the opening. Everything
+     they animate is class-toggling only — the actual hidden/open/exit
+     states live in styles.css §5b, gated behind `html.sg-js` so a page with
+     JS disabled (no class ever added) just shows the finished hero as-is.
+
+     Timings below implement the "EXACT IMPLEMENTATION FOR THIS HERO"
+     choreography: ~2.8–3.4s full motion, or a single short fade under
+     prefers-reduced-motion (well under 600ms, never a trap). */
+  (function sphinxGateIntro() {
+    const hero = $(".hero");
+    const gate = hero && $(".sphinx-gate", hero);
+    if (!hero || !gate) return;
+
+    const left = $(".sphinx-gate-left", gate);
+    const right = $(".sphinx-gate-right", gate);
+    const eyebrow = $(".hero-eyebrow", hero);
+    const headline = $("#hero-h", hero);
+    const lead = $(".hero-lead", hero);
+    const attr = $(".hero-attr", hero);
+
+    function at(el, cls, delay) {
+      if (!el) return;
+      window.setTimeout(function () { el.classList.add(cls); }, delay);
+    }
+
+    function finish() {
+      gate.classList.add("sg-done");
+      [left, right].forEach(function (fig) { if (fig) fig.style.willChange = "auto"; });
+    }
+
+    function choreograph(t) {
+      at(left, "sg-visible", t.visible);
+      at(right, "sg-visible", t.visible + 40);
+      at(left, "sg-open", t.open);
+      at(right, "sg-open", t.open + 30);
+      at(eyebrow, "sg-in", t.eyebrow);
+      at(headline, "sg-in", t.headline);
+      at(lead, "sg-in", t.lead);
+      at(attr, "sg-in", t.attr);
+      at(left, "sg-exit", t.exit);
+      at(right, "sg-exit", t.exit + 40);
+      window.setTimeout(finish, t.done);
+    }
+
+    function begin() {
+      if (reduceMotion) {
+        choreograph({ visible: 0, open: 60, eyebrow: 110, headline: 170, lead: 250, attr: 320, exit: 340, done: 620 });
+      } else {
+        choreograph({ visible: 150, open: 650, eyebrow: 1050, headline: 1250, lead: 1950, attr: 2150, exit: 2350, done: 3150 });
+      }
+    }
+
+    // Don't open the gate on half-loaded artwork — wait for both Sphinx
+    // images (or a short safety timeout, so a slow/broken image never
+    // leaves the hero copy hidden).
+    const figs = [left, right].filter(Boolean);
+    let pending = figs.filter(function (img) { return !img.complete; }).length;
+    if (pending === 0) {
+      begin();
+    } else {
+      let started = false;
+      const safety = window.setTimeout(function () {
+        if (!started) { started = true; begin(); }
+      }, 900);
+      function check() {
+        pending -= 1;
+        if (pending <= 0 && !started) {
+          started = true;
+          window.clearTimeout(safety);
+          begin();
+        }
+      }
+      figs.forEach(function (img) {
+        img.addEventListener("load", check);
+        img.addEventListener("error", check);
+      });
+    }
+  })();
+
   /* ------------------------------------------------------- 2. ASSET SLOTS
      Renders an <img> only for slots with a real path. Pending slots keep the
      labelled placeholder and issue no network request — no 404s, ever. */
