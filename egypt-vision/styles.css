@@ -182,6 +182,21 @@ h3.sh3{font-family:var(--display);font-weight:500;font-size:clamp(1.45rem,2.4vw,
 .body-p{font-size:14.5px;line-height:1.95;color:var(--text);margin-bottom:18px;max-width:62ch}
 .body-p:last-child{margin-bottom:0}
 .body-p strong{color:var(--ink);font-weight:600}
+
+/* "Why Egypt · Why Now" — intro paragraph + two-column body copy only.
+   The base .lead-p/.body-p treatment (14.5-15px, weight 300 inherited
+   from body, --text #4a5563) reads too light/thin here. Scoped override:
+   darker slate, regular weight, modestly larger, tightened line-height —
+   readability fix only, no layout/heading/eyebrow change. */
+#why-egypt > .container > .center > .lead-p,
+#why-egypt .split.top .body-p{
+  color:#33404f;
+  font-weight:400;
+  line-height:1.75;
+}
+#why-egypt > .container > .center > .lead-p{font-size:17px}
+#why-egypt .split.top .body-p{font-size:16.5px}
+
 .center{text-align:center}
 .center .section-label{justify-content:center}
 .center .lead-p{margin:0 auto}
