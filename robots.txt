@@ -1,2 +1,4 @@
 User-agent: *
-Disallow: /egypt-vision/
+Allow: /
+
+Sitemap: https://drdalalakoury.com/sitemap.xml

@@ -1,7 +1,13 @@
-# Add to the site's /robots.txt while circulation is private:
+# STATUS: publicly launched (2026-08-12).
+# The Disallow rule that lived here has been removed from /robots.txt,
+# and the robots meta tag on index.html + the 5 recipient variants has
+# been swapped to PUBLIC LAUNCH MODE. All 6 pages are now listed in
+# /sitemap.xml. This file is kept only for history.
+#
+# To take the section private again: restore the block below to
+# /robots.txt and swap the robots meta tag back to PRIVATE REVIEW MODE
+# in index.html (re-run: node build-pathways.js), then remove the 6
+# egypt-vision URLs from /sitemap.xml.
 
 User-agent: *
 Disallow: /egypt-vision/
-
-# Remove these two lines at public launch, and swap the robots meta tag
-# in index.html (and re-run: node build-pathways.js).
