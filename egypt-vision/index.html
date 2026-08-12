@@ -352,17 +352,36 @@
 
 </section>
 
-<!-- ==================== 3b · THE OPPORTUNITY (stats) ==================== -->
+<!-- ==================== 3b · THE OPPORTUNITY (editorial) ====================
+     Four statistics told as one continuous editorial sequence — People →
+     Infrastructure → Expertise → Global Opportunity — rather than a four-up
+     stat grid. Alternating large photograph / narrow copy column, a single
+     pull quote at the midpoint, and a decorative outsized chapter numeral
+     behind each image. Reuses .section-label (eyebrow + gold rule), h3.sh3
+     (headline) and .body-p (narrative) as-is; only .opp-* is new, scoped
+     entirely to this section. See styles.css §"THE OPPORTUNITY". -->
 <section class="block bg-white" id="opportunity" aria-labelledby="opp-h">
   <div class="container">
     <div class="center">
       <div class="section-label" data-i18n="opp.eyebrow">Egypt's Healthcare Advantage</div>
       <h2 class="sh" id="opp-h" data-i18n="opp.h2">A Healthcare Ecosystem Built for Global Impact</h2>
+      <p class="lead-p" data-i18n="opp.lead">Egypt already possesses many of the individual capabilities a major international healthcare and medical-tourism destination requires. What follows is not four isolated figures, but one continuous story — people, infrastructure, expertise and global demand — already in place, waiting to be connected.</p>
     </div>
 
-    <div class="opportunity-grid reveal">
-      <article class="opportunity-card">
-        <div class="opportunity-media">
+    <div class="opp-stories">
+
+      <!-- 01 · People — image left / copy right. Four flat children (head,
+           media, narrative, caption) in the DOM order they read on mobile;
+           grid-template-areas repositions them into two columns on desktop
+           without duplicating any markup — see styles.css. -->
+      <article class="opp-story reveal">
+        <div class="opp-story-head">
+          <div class="section-label" data-i18n="opp.1.eyebrow">The People Behind the System</div>
+          <span class="opp-story-stat stat-num" data-i18n="opp.1.num">440,000+</span>
+          <h3 class="sh3" data-i18n="opp.1.h">Healthcare Professionals</h3>
+        </div>
+        <div class="opp-story-media">
+          <span class="opp-story-num" aria-hidden="true">01</span>
           <!-- ASSET SLOT: healthcare professionals — 4:5 portrait. Add
                <img src="…" alt="…" loading="lazy"> above .plate-note once
                licensed, then drop the is-pending class; .plate-note hides
@@ -375,63 +394,81 @@
             </div>
           </div>
         </div>
-        <span class="opportunity-index">01 / 04</span>
-        <span class="opportunity-rule" aria-hidden="true"></span>
-        <div class="stat-num">440,000+</div>
-        <h3 class="opportunity-topic" data-i18n="opp.1.h">Healthcare Professionals</h3>
-        <p class="body-p" data-i18n="opp.1.p">Egypt's extensive healthcare workforce provides the human foundation for a nationally scaled medical ecosystem, supporting care delivery across hospitals, specialist centers, universities, research institutions, and an expanding private healthcare sector.</p>
+        <p class="opp-story-narrative body-p" data-i18n="opp.1.p">Egypt's healthcare strength begins with its people — physicians, specialists, nurses, pharmacists, researchers, technicians, educators and allied healthcare professionals forming one of the region's largest clinical workforces.</p>
+        <p class="opp-story-caption" data-i18n="opp.1.cap">Egypt's clinical workforce provides the human foundation for a globally connected healthcare ecosystem.</p>
       </article>
 
-      <article class="opportunity-card">
-        <div class="opportunity-media">
+      <span class="opp-divider" aria-hidden="true"></span>
+
+      <!-- 02 · Infrastructure — copy left / image right -->
+      <article class="opp-story opp-story--reverse reveal">
+        <div class="opp-story-head">
+          <div class="section-label" data-i18n="opp.2.eyebrow">Infrastructure at Scale</div>
+          <span class="opp-story-stat stat-num" data-i18n="opp.2.num">1,850+</span>
+          <h3 class="sh3" data-i18n="opp.2.h">Hospitals Across Egypt</h3>
+        </div>
+        <div class="opp-story-media">
+          <span class="opp-story-num" aria-hidden="true">02</span>
           <div class="plate is-pending" data-asset="opportunity-hospitals">
             <div class="plate-note">
               <span class="pk">Image pending</span>
               <span class="pt" data-i18n="opp.2.img">1,850+ Hospitals</span>
-              <span class="pd">4:5 &nbsp;·&nbsp; owned</span>
+              <span class="pd">4:3 &nbsp;·&nbsp; owned</span>
             </div>
           </div>
         </div>
-        <span class="opportunity-index">02 / 04</span>
-        <span class="opportunity-rule" aria-hidden="true"></span>
-        <div class="stat-num">1,850+</div>
-        <h3 class="opportunity-topic" data-i18n="opp.2.h">Hospitals Across Egypt</h3>
-        <p class="body-p" data-i18n="opp.2.p">A broad network of public, university, military, specialized, and private hospitals gives Egypt significant healthcare infrastructure across major cities and regional centers, creating a strong foundation for advanced care and international patient services.</p>
+        <p class="opp-story-narrative body-p" data-i18n="opp.2.p">Across Cairo, Alexandria, the New Administrative Capital and Egypt's major regional centers, an extensive network of public, university, military, private and specialized hospitals creates the physical foundation for national healthcare delivery and international patient care.</p>
+        <p class="opp-story-caption" data-i18n="opp.2.cap">A national network of advanced facilities forms the physical backbone of Egyptian healthcare delivery.</p>
       </article>
 
-      <article class="opportunity-card">
-        <div class="opportunity-media">
+      <blockquote class="opp-pullquote reveal" data-i18n="opp.quote">Egypt does not need to build a healthcare ecosystem from nothing. <em>The opportunity is to connect what already exists.</em></blockquote>
+
+      <span class="opp-divider" aria-hidden="true"></span>
+
+      <!-- 03 · Expertise — image left / copy right -->
+      <article class="opp-story reveal">
+        <div class="opp-story-head">
+          <div class="section-label" data-i18n="opp.3.eyebrow">Depth of Medical Expertise</div>
+          <span class="opp-story-stat stat-num" data-i18n="opp.3.num">50+</span>
+          <h3 class="sh3" data-i18n="opp.3.h">Medical Specialties</h3>
+        </div>
+        <div class="opp-story-media">
+          <span class="opp-story-num" aria-hidden="true">03</span>
           <div class="plate is-pending" data-asset="opportunity-specialties">
             <div class="plate-note">
               <span class="pk">Image pending</span>
               <span class="pt" data-i18n="opp.3.img">50+ Specialties</span>
-              <span class="pd">4:5 &nbsp;·&nbsp; owned</span>
+              <span class="pd">5:4 &nbsp;·&nbsp; owned</span>
             </div>
           </div>
         </div>
-        <span class="opportunity-index">03 / 04</span>
-        <span class="opportunity-rule" aria-hidden="true"></span>
-        <div class="stat-num">50+</div>
-        <h3 class="opportunity-topic" data-i18n="opp.3.h">Medical Specialties</h3>
-        <p class="body-p" data-i18n="opp.3.p">Egypt's healthcare system spans a wide range of medical and surgical disciplines, supported by specialist physicians, teaching institutions, and centers of excellence capable of serving increasingly complex domestic and international healthcare needs.</p>
+        <p class="opp-story-narrative body-p" data-i18n="opp.3.p">Egypt already possesses deep expertise across oncology, cardiology, orthopedics, fertility, dentistry, ophthalmology, transplantation, rehabilitation, longevity and integrative medicine. The opportunity is not to create more specialties — it is to connect existing expertise into one coordinated international patient ecosystem.</p>
+        <p class="opp-story-caption" data-i18n="opp.3.cap">Specialist expertise already spans the full spectrum of modern clinical and surgical care.</p>
       </article>
 
-      <article class="opportunity-card stat-flag">
-        <div class="opportunity-media">
+      <span class="opp-divider" aria-hidden="true"></span>
+
+      <!-- 04 · Global opportunity — copy left / image right -->
+      <article class="opp-story opp-story--reverse stat-flag reveal">
+        <div class="opp-story-head">
+          <div class="section-label" data-i18n="opp.4.eyebrow">A Global Opportunity</div>
+          <span class="opp-story-stat stat-num" data-i18n="opp.4.num">35,000</span>
+          <h3 class="sh3" data-i18n="opp.4.h">Medical Tourists</h3>
+        </div>
+        <div class="opp-story-media">
+          <span class="opp-story-num" aria-hidden="true">04</span>
           <div class="plate is-pending" data-asset="opportunity-tourists">
             <div class="plate-note">
               <span class="pk">Image pending</span>
               <span class="pt" data-i18n="opp.4.img">35,000 Medical Tourists</span>
-              <span class="pd">4:5 &nbsp;·&nbsp; owned</span>
+              <span class="pd">3:2 &nbsp;·&nbsp; owned</span>
             </div>
           </div>
         </div>
-        <span class="opportunity-index">04 / 04</span>
-        <span class="opportunity-rule" aria-hidden="true"></span>
-        <div class="stat-num">35,000</div>
-        <h3 class="opportunity-topic" data-i18n="opp.4.h">Medical Tourists in 2025</h3>
-        <p class="body-p" data-i18n="opp.4.p">Egypt continues to strengthen its position as a destination for international healthcare, combining clinical expertise, competitive treatment economics, historic global accessibility, hospitality infrastructure, and significant potential for coordinated medical tourism growth.</p>
+        <p class="opp-story-narrative body-p" data-i18n="opp.4.p">International patients are already travelling to Egypt for healthcare. The larger opportunity is to transform isolated medical visits into a coordinated premium international experience — connecting diagnosis, specialist matching, treatment, travel, hospitality, recovery and long-term follow-up.</p>
+        <p class="opp-story-caption" data-i18n="opp.4.cap">International patients already choose Egypt — the opportunity is to govern their journey end to end.</p>
       </article>
+
     </div>
   </div>
 </section>
