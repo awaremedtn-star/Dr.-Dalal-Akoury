@@ -307,7 +307,7 @@ h3.sh3{font-family:var(--display);font-weight:500;font-size:clamp(1.45rem,2.4vw,
 
 .opp-story{
   display:grid;
-  grid-template-columns:56fr 44fr;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
   grid-template-areas:
     "media head"
     "media narrative"
@@ -318,26 +318,29 @@ h3.sh3{font-family:var(--display);font-weight:500;font-size:clamp(1.45rem,2.4vw,
   text-align:left;
 }
 .opp-story--reverse{
-  grid-template-columns:44fr 56fr;
+  grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);
   grid-template-areas:
     "head  media"
     "narrative media"
     ".     capt";
 }
 .opp-story > *{min-width:0}
-.opp-story-head{grid-area:head;align-self:end}
-.opp-story-media{grid-area:media;position:relative;align-self:start}
-.opp-story-narrative{grid-area:narrative;align-self:start}
+.opp-story-head{grid-area:head;align-self:center}
+.opp-story-media{grid-area:media;position:relative;align-self:center}
+.opp-story-narrative{grid-area:narrative;align-self:center}
 .opp-story-caption{grid-area:capt}
 
 .opp-story:nth-of-type(1) .opp-story-media{margin-left:clamp(-28px,-2.2vw,0px)}
 .opp-story:nth-of-type(2) .opp-story-media{margin-right:clamp(-28px,-2.2vw,0px)}
 
-.opp-story .plate{aspect-ratio:4/5;margin:0;position:relative;z-index:1}
-.opp-story:nth-of-type(2) .plate{aspect-ratio:4/3}
-.opp-story:nth-of-type(3) .plate{aspect-ratio:5/4}
-.opp-story:nth-of-type(4) .plate{aspect-ratio:3/2}
-.opp-story .plate img{transition:transform 1.1s var(--ease)}
+/* Uniform 4:3 landscape editorial photograph — same box on every chapter,
+   regardless of how much copy sits beside it. aspect-ratio + width:100%
+   sizes the box; height is never forced to match the text column (no
+   height:100%/min-height/stretch anywhere in this rule set), so the two
+   columns are free to end at different heights — that asymmetry is the
+   intended editorial look, not a bug. */
+.opp-story .plate{aspect-ratio:4/3;width:100%;height:auto;margin:0;overflow:hidden;position:relative;z-index:1}
+.opp-story .plate img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.1s var(--ease)}
 @media(hover:hover){.opp-story:hover .plate:not(.is-pending) img{transform:scale(1.025)}}
 
 /* Decorative chapter numeral — sits partially behind the image, toward
