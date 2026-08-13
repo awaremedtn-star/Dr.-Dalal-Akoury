@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>JT Foxx Egypt 2026 — Private Executive Coordination</title>
+<!--
+JT FOXX EGYPT 2026 — PRIVATE EXECUTIVE COORDINATION
+PREMIUM BUILD
+
+STATUS:
+Frontend is connected to a Netlify Function (netlify/functions/submit-vip-form.js),
+which upserts submissions into GHL server-side. No private API keys are
+present in this file, by design — the token only lives in Netlify's
+environment variables, read at request time by the function.
+Before launch: confirm GHL_API_TOKEN / GHL_LOCATION_ID are set in Netlify,
+deploy the matching Netlify Function, and complete one test submission
+to verify the GHL contact fields, custom fields, tag, and scheduling redirect.
+-->
+
+<style>
+:root {
+  --vip-navy-950:#040E1A;
+  --vip-navy-900:#07182D;
+  --vip-navy-850:#091C34;
+  --vip-navy-800:#0B2347;
+  --vip-gold-deep:#A97830;
+  --vip-gold:#D8B35E;
+  --vip-gold-light:#F1D68C;
+  --vip-ivory:#F7F2E8;
+  --vip-paper:#FFFDF9;
+  --vip-white:#FFFDF8;
+  --vip-mist:#DEE5EC;
+  --vip-muted:#706A61;
+  --vip-line:#E4DAC5;
+  --vip-shadow:0 28px 72px rgba(7,24,45,.14);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--vip-ivory);
+  color:#172232;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+
+.vip-master-hero__portrait{
+  background:var(--vip-navy-900);
+}
+.vip-master-hero__portrait img{
+  color:transparent;
+}
+
+/* ==========================================================
+   HERO
+   ========================================================== */
+.vip-master-hero{
+  position:relative;
+  width:100%;
+  min-height:505px;
+  overflow:hidden;
+  isolation:isolate;
+  background:var(--vip-navy-900);
+  border-bottom:2px solid var(--vip-gold-deep);
+}
+
+.vip-master-hero__portrait{
+  position:absolute;
+  inset:0 auto 0 0;
+  z-index:-2;
+  width:36%;
+  height:100%;
+  margin:0;
+  overflow:hidden;
+}
+
+.vip-master-hero__portrait img{
+  width:auto;
+  height:100%;
+  max-width:none;
+  display:block;
+  object-fit:unset;
+  object-position:left center;
+}
+
+.vip-master-hero__portrait::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,
+      rgba(4,14,26,.01) 0%,
+      transparent 70%,
+      rgba(7,24,45,.50) 86%,
+      rgba(7,24,45,.98) 100%);
+}
+
+.vip-master-hero__egypt{
+  position:absolute;
+  inset:0 0 0 auto;
+  z-index:-3;
+  width:66%;
+  background:url("https://assets.cdn.filesafe.space/zmC4rvxOEoJIVEDPerXu/media/6a7ba04f746f53c63d7cdec6.png") 62% 50% / cover no-repeat;
+}
+
+.vip-master-hero__egypt::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 72% 40%,
+      rgba(216,179,94,.08) 0%,
+      rgba(216,179,94,.025) 28%,
+      transparent 52%),
+    linear-gradient(90deg,
+      var(--vip-navy-900) 0%,
+      rgba(7,24,45,.93) 9%,
+      rgba(7,24,45,.68) 23%,
+      rgba(7,24,45,.34) 40%,
+      rgba(7,24,45,.10) 60%,
+      rgba(4,14,26,.015) 100%),
+    linear-gradient(180deg,
+      rgba(4,14,26,.015) 0%,
+      rgba(4,14,26,.04) 55%,
+      rgba(4,14,26,.10) 100%);
+}
+
+.vip-master-hero__inner{
+  position:relative;
+  z-index:3;
+  width:min(1440px,100%);
+  min-height:505px;
+  margin:0 auto;
+  padding:0 34px;
+  display:flex;
+  align-items:center;
+}
+
+.vip-master-hero__copy{
+  width:min(565px,39vw);
+  margin-left:36%;
+  padding:38px 0 42px 24px;
+}
+
+.vip-master-hero__brand{
+  display:flex;
+  align-items:center;
+  gap:17px;
+  margin-bottom:20px;
+}
+
+.vip-master-hero__logo{
+  width:150px;
+  height:auto;
+  display:block;
+  border:1px solid rgba(241,214,140,.36);
+  box-shadow:0 10px 26px rgba(0,0,0,.17);
+}
+
+.vip-master-hero__initiative{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#E7CA82;
+  font-size:9.6px;
+  line-height:1.3;
+  font-weight:700;
+  letter-spacing:.20em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.vip-master-hero__initiative::after{
+  content:"";
+  display:block;
+  width:48px;
+  height:1px;
+  background:linear-gradient(90deg,var(--vip-gold),rgba(216,179,94,.08));
+}
+
+.vip-master-hero__eyebrow{
+  margin:0 0 9px;
+  color:#E7CA82;
+  font-size:9.8px;
+  font-weight:700;
+  letter-spacing:.23em;
+  text-transform:uppercase;
+}
+
+.vip-master-hero h1{
+  margin:0;
+  max-width:565px;
+  font:500 clamp(46px,3.3vw,55px)/.99 Georgia,"Times New Roman",serif;
+  letter-spacing:.004em;
+  background:linear-gradient(180deg,#F5E2A5 0%,#E8C875 32%,#D1A64C 68%,#A97830 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 4px 22px rgba(0,0,0,.14);
+}
+
+.vip-master-hero__tagline{
+  max-width:535px;
+  margin:16px 0 13px;
+  color:var(--vip-white);
+  font:italic 18px/1.45 Georgia,"Times New Roman",serif;
+}
+
+.vip-master-hero__intro{
+  max-width:520px;
+  margin:0;
+  color:var(--vip-mist);
+  font-size:12.8px;
+  line-height:1.72;
+}
+
+.vip-master-hero__privacy{
+  display:grid;
+  grid-template-columns:13px 1fr;
+  gap:10px;
+  width:min(445px,100%);
+  margin-top:18px;
+  padding:10px 12px;
+  border:1px solid rgba(181,138,69,.52);
+  border-radius:4px;
+  background:rgba(4,14,26,.46);
+  box-shadow:0 10px 26px rgba(0,0,0,.07);
+}
+
+.vip-master-hero__privacy-mark{
+  margin-top:2px;
+  color:var(--vip-gold-light);
+  font-size:8px;
+}
+
+.vip-master-hero__privacy strong{
+  display:block;
+  margin-bottom:1px;
+  color:#EBCF83;
+  font-size:10.2px;
+  line-height:1.4;
+}
+
+.vip-master-hero__privacy small{
+  display:block;
+  color:#D8CFBA;
+  font-size:9.6px;
+  line-height:1.45;
+}
+
+.vip-master-hero__top-line{
+  position:absolute;
+  z-index:8;
+  top:14px;
+  left:18px;
+  right:18px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(216,179,94,.62) 10%,rgba(241,214,140,.44) 50%,rgba(216,179,94,.62) 90%,transparent);
+}
+
+.vip-master-hero__corner{
+  position:absolute;
+  z-index:9;
+  top:14px;
+  right:18px;
+  width:23px;
+  height:23px;
+  border-top:1px solid rgba(216,179,94,.76);
+  border-right:1px solid rgba(216,179,94,.76);
+}
+
+.vip-master-hero__transition{
+  height:28px;
+  background:linear-gradient(180deg,rgba(247,242,232,0),rgba(247,242,232,.72) 76%,var(--vip-ivory));
+}
+
+/* ==========================================================
+   FORM WRAPPER
+   ========================================================== */
+.vip-form-stage{
+  position:relative;
+  isolation:isolate;
+  padding:56px 20px 74px;
+  background:var(--vip-ivory);
+  overflow:hidden;
+}
+
+.vip-form-stage::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background:
+    linear-gradient(rgba(247,242,232,.89),rgba(247,242,232,.94)),
+    url("https://assets.cdn.filesafe.space/zmC4rvxOEoJIVEDPerXu/media/6a7bcdee601971973646ec22.jpg")
+      center 22% / cover no-repeat;
+  filter:saturate(.72);
+}
+
+.vip-form-stage::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(216,179,94,.10),transparent 34%),
+    linear-gradient(90deg,rgba(7,24,45,.035),transparent 18%,transparent 82%,rgba(7,24,45,.035));
+}
+
+.vip-form-card{
+  width:min(900px,100%);
+  margin:0 auto;
+  overflow:hidden;
+  border:1px solid rgba(181,138,69,.42);
+  border-radius:14px;
+  background:var(--vip-paper);
+  box-shadow:0 22px 58px rgba(7,24,45,.11);
+}
+
+.vip-form-card__goldbar{
+  height:4px;
+  background:linear-gradient(90deg,#8D6530,#E0C375,#B7893C,#E0C375,#8D6530);
+}
+
+.vip-form-card__inner{
+  padding:42px 48px 38px;
+}
+
+.vip-form-intro{
+  max-width:720px;
+  margin:0 auto 34px;
+  text-align:center;
+}
+
+.vip-form-intro__eyebrow{
+  color:#987139;
+  font-size:9.7px;
+  font-weight:700;
+  letter-spacing:.20em;
+  text-transform:uppercase;
+}
+
+.vip-form-intro h2{
+  margin:9px 0 8px;
+  color:var(--vip-navy-900);
+  font:500 34px/1.15 Georgia,"Times New Roman",serif;
+}
+
+.vip-form-intro p{
+  margin:0 auto;
+  max-width:660px;
+  color:#535D69;
+  font:14px/1.68 Georgia,"Times New Roman",serif;
+}
+
+.vip-form-intro__rule{
+  width:62px;
+  height:1px;
+  margin:17px auto;
+  background:var(--vip-gold);
+}
+
+.vip-section{
+  margin-top:34px;
+  padding-top:31px;
+  border-top:1px solid var(--vip-line);
+}
+
+.vip-section:first-of-type{
+  margin-top:0;
+  padding-top:0;
+  border-top:0;
+}
+
+.vip-section__head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:19px;
+}
+
+.vip-section__num{
+  width:32px;
+  height:32px;
+  flex:0 0 auto;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  border:1px solid var(--vip-gold);
+  background:var(--vip-navy-900);
+  color:var(--vip-gold-light);
+  font:700 15px Georgia,serif;
+}
+
+.vip-section__head h3{
+  margin:0;
+  color:var(--vip-navy-900);
+  font:500 22px/1.25 Georgia,"Times New Roman",serif;
+}
+
+.vip-section__head::after{
+  content:"";
+  height:1px;
+  flex:1;
+  background:linear-gradient(90deg,var(--vip-gold),transparent);
+}
+
+.vip-grid-3{
+  display:grid;
+  grid-template-columns:1.15fr 1fr 1fr;
+  gap:14px;
+}
+
+.vip-field{
+  margin-bottom:16px;
+}
+
+.vip-label{
+  display:block;
+  margin:0 0 7px;
+  color:var(--vip-navy-900);
+  font-size:10.6px;
+  line-height:1.35;
+  font-weight:700;
+  letter-spacing:.035em;
+  text-transform:uppercase;
+}
+
+.vip-help{
+  display:block;
+  margin:-2px 0 10px;
+  color:#797A78;
+  font-size:10.5px;
+  line-height:1.48;
+}
+
+.vip-required{
+  color:#9A7137;
+}
+
+.vip-form-card input[type="text"],
+.vip-form-card input[type="email"],
+.vip-form-card input[type="tel"],
+.vip-form-card textarea{
+  width:100%;
+  min-height:44px;
+  padding:12px 13px;
+  border:1px solid #D8D0C3;
+  border-radius:6px;
+  outline:none;
+  background:#fff;
+  color:#172232;
+  font:13.5px/1.4 Arial,Helvetica,sans-serif;
+  transition:border-color .15s ease,box-shadow .15s ease,background .15s ease;
+}
+
+.vip-form-card textarea{
+  min-height:106px;
+  resize:vertical;
+}
+
+.vip-form-card input:focus,
+.vip-form-card textarea:focus{
+  border-color:var(--vip-gold);
+  box-shadow:0 0 0 3px rgba(181,138,69,.10);
+  background:#FFFEFB;
+}
+
+.vip-form-card input::placeholder,
+.vip-form-card textarea::placeholder{
+  color:#989A9D;
+}
+
+.vip-check-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px 16px;
+}
+
+.vip-check{
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+  padding:8px 9px;
+  border-radius:5px;
+  color:#394554;
+  font-size:12px;
+  line-height:1.45;
+  cursor:pointer;
+  transition:background .15s ease;
+}
+
+.vip-check:hover{
+  background:#FBF8F1;
+}
+
+.vip-check input{
+  margin-top:2px;
+  accent-color:var(--vip-navy-900);
+}
+
+.vip-conversation-grid{
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:28px;
+}
+
+.vip-option-list{
+  display:grid;
+  gap:9px;
+}
+
+.vip-option{
+  position:relative;
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  min-height:48px;
+  padding:11px 12px;
+  border:1px solid #DDD4C4;
+  border-radius:7px;
+  background:#fff;
+  cursor:pointer;
+  transition:border-color .15s ease,background .15s ease,box-shadow .15s ease,transform .15s ease;
+}
+
+.vip-option:hover{
+  border-color:#C8AE75;
+  background:#FFFDF8;
+}
+
+.vip-option.is-selected{
+  border-color:var(--vip-gold);
+  background:#FFFDF8;
+  box-shadow:0 0 0 2px rgba(181,138,69,.08);
+}
+
+.vip-option input{
+  margin-top:2px;
+  accent-color:var(--vip-navy-900);
+}
+
+.vip-option strong{
+  display:block;
+  color:var(--vip-navy-900);
+  font-size:12.4px;
+  line-height:1.38;
+}
+
+.vip-option span{
+  display:block;
+  margin-top:2px;
+  color:#73777D;
+  font-size:10.4px;
+  line-height:1.42;
+}
+
+.vip-other-wrap{
+  display:none;
+  margin-top:10px;
+}
+
+.vip-other-wrap.is-visible{
+  display:block;
+}
+
+
+.vip-office-contact{
+  display:none;
+  margin-top:16px;
+  padding:18px 18px 4px;
+  border:1px solid rgba(181,138,69,.34);
+  border-radius:8px;
+  background:linear-gradient(180deg,#FFFDF9 0%,#FBF8F1 100%);
+}
+
+.vip-office-contact.is-visible{
+  display:block;
+}
+
+.vip-office-contact__intro{
+  margin:0 0 15px;
+}
+
+.vip-office-contact__intro strong{
+  display:block;
+  margin-bottom:4px;
+  color:var(--vip-navy-900);
+  font:500 15px/1.35 Georgia,"Times New Roman",serif;
+}
+
+.vip-office-contact__intro span{
+  display:block;
+  color:#73777D;
+  font-size:10.5px;
+  line-height:1.48;
+}
+
+.vip-office-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+@media(max-width:650px){
+  .vip-office-grid{
+    grid-template-columns:1fr;
+    gap:0;
+  }
+}
+
+.vip-submit-area{
+  margin-top:34px;
+  padding-top:29px;
+  border-top:1px solid var(--vip-line);
+  text-align:center;
+}
+
+.vip-submit-area--closing{
+  padding-bottom:3px;
+}
+
+.vip-submit{
+  min-width:320px;
+  padding:15px 28px;
+  border:1px solid #C6973C;
+  border-radius:5px;
+  background:linear-gradient(180deg,#15345D 0%,#0B2347 100%);
+  color:#FFFDF8;
+  font-size:11.2px;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:.105em;
+  text-transform:uppercase;
+  cursor:pointer;
+  box-shadow:0 9px 24px rgba(11,35,71,.16);
+  transition:transform .15s ease,box-shadow .15s ease,background .15s ease;
+}
+
+.vip-submit:hover{
+  transform:translateY(-1px);
+  box-shadow:0 12px 28px rgba(11,35,71,.20);
+  background:linear-gradient(180deg,#183B68 0%,#0B2347 100%);
+}
+
+.vip-submit-note{
+  max-width:600px;
+  margin:11px auto 0;
+  color:#77736B;
+  font-size:10.4px;
+  line-height:1.5;
+}
+
+
+/* preview success message */
+.vip-success{
+  display:none;
+  max-width:680px;
+  margin:0 auto;
+  padding:54px 28px 58px;
+  text-align:center;
+}
+
+.vip-success.is-visible{
+  display:block;
+}
+
+.vip-success h3{
+  margin:0 0 8px;
+  color:var(--vip-navy-900);
+  font:500 28px/1.2 Georgia,"Times New Roman",serif;
+}
+
+.vip-success p{
+  margin:0;
+  color:#5F6872;
+  font-size:13px;
+  line-height:1.65;
+}
+
+
+.vip-fieldset{
+  min-width:0;
+  margin:0;
+  padding:0;
+  border:0;
+}
+
+.vip-option-list--next-step{
+  grid-template-columns:1fr;
+  max-width:760px;
+}
+
+.vip-option-list--next-step .vip-option{
+  min-height:66px;
+  padding:14px 15px;
+  border-radius:8px;
+}
+
+.vip-option-list--next-step .vip-option strong{
+  font-size:13px;
+}
+
+.vip-option-list--next-step .vip-option span{
+  max-width:650px;
+  margin-top:4px;
+  font-size:10.8px;
+  line-height:1.5;
+}
+
+.vip-option:focus-within{
+  border-color:var(--vip-gold);
+  box-shadow:0 0 0 3px rgba(181,138,69,.12);
+}
+
+.vip-submit-meta{
+  max-width:620px;
+  margin:13px auto 0;
+  color:#77736B;
+  font-size:10.4px;
+  line-height:1.55;
+}
+
+.vip-submit-meta strong{
+  color:#5E594F;
+  font-weight:600;
+}
+
+
+@media (prefers-reduced-motion: reduce){
+  .vip-form-card *,
+  .vip-form-card *::before,
+  .vip-form-card *::after{
+    scroll-behavior:auto !important;
+    transition:none !important;
+  }
+}
+
+
+/* ==========================================================
+   EXECUTIVE FOOTER / FINAL CTA
+   ========================================================== */
+.vip-executive-footer{
+  position:relative;
+  overflow:hidden;
+  border-top:1px solid rgba(181,138,69,.34);
+  background:var(--vip-navy-900);
+}
+
+.vip-executive-footer__art{
+  position:relative;
+  min-height:184px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  isolation:isolate;
+  background:var(--vip-navy-900);
+}
+
+.vip-executive-footer__image{
+  position:absolute;
+  inset:0;
+  z-index:-3;
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center 54%;
+}
+
+.vip-executive-footer__shade{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 48%,
+      rgba(7,24,45,.04) 0%,
+      rgba(7,24,45,.12) 38%,
+      rgba(4,14,26,.32) 100%),
+    linear-gradient(180deg,
+      rgba(4,14,26,.08) 0%,
+      rgba(4,14,26,.18) 100%);
+}
+
+.vip-executive-footer__action{
+  position:relative;
+  z-index:2;
+  width:min(390px,calc(100% - 40px));
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+}
+
+
+.vip-footer-calendar-cue{
+  color:rgba(255,253,248,.74);
+  font-size:9.7px;
+  line-height:1.4;
+  letter-spacing:.02em;
+  text-align:center;
+  text-shadow:0 1px 2px rgba(0,0,0,.34);
+}
+
+.vip-footer-submit{
+  width:100%;
+  min-height:51px;
+  padding:16px 28px;
+  border:1px solid #E9CB78;
+  border-radius:5px;
+  outline:none;
+  background:linear-gradient(180deg,#E4C66E 0%,#C89B42 100%);
+  color:#07182D;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:11.2px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  cursor:pointer;
+  box-shadow:
+    0 13px 30px rgba(0,0,0,.26),
+    inset 0 1px 0 rgba(255,255,255,.38);
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    background .18s ease,
+    border-color .18s ease;
+}
+
+
+.vip-footer-submit--attention{
+  box-shadow:
+    0 0 0 4px rgba(241,214,140,.20),
+    0 16px 36px rgba(0,0,0,.32),
+    inset 0 1px 0 rgba(255,255,255,.42);
+}
+
+.vip-footer-submit:hover{
+  transform:translateY(-1px);
+  border-color:#F1D98F;
+  background:linear-gradient(180deg,#EED583 0%,#D2A64D 100%);
+  box-shadow:
+    0 16px 34px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.42);
+}
+
+.vip-footer-submit:focus-visible{
+  box-shadow:
+    0 0 0 3px rgba(241,214,140,.32),
+    0 16px 34px rgba(0,0,0,.30);
+}
+
+.vip-executive-footer__contacts{
+  position:relative;
+  z-index:3;
+  min-height:62px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  padding:16px 24px;
+  border-top:1px solid rgba(216,179,94,.24);
+  background:rgba(4,14,26,.985);
+}
+
+.vip-footer-contact{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#EEE5D3;
+  font-size:10.8px;
+  line-height:1.4;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:color .16s ease;
+}
+
+.vip-footer-contact:hover{
+  color:#FFFFFF;
+}
+
+.vip-footer-contact:focus-visible{
+  color:#FFFFFF;
+  outline:1px solid rgba(241,214,140,.68);
+  outline-offset:4px;
+  border-radius:2px;
+}
+
+.vip-footer-contact__icon{
+  width:15px;
+  height:15px;
+  flex:0 0 auto;
+  fill:none;
+  stroke:#D8B35E;
+  stroke-width:1.45;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.vip-footer-contact__divider{
+  width:1px;
+  height:18px;
+  background:rgba(216,179,94,.26);
+}
+
+@media(max-width:650px){
+  .vip-executive-footer__art{
+    min-height:142px;
+  }
+
+  .vip-executive-footer__image{
+    object-position:center center;
+  }
+
+  .vip-executive-footer__action{
+    width:calc(100% - 34px);
+  }
+
+  .vip-footer-submit{
+    min-height:48px;
+    padding:15px 18px;
+    font-size:10.3px;
+    letter-spacing:.085em;
+  }
+
+  .vip-executive-footer__contacts{
+    flex-direction:column;
+    gap:9px;
+    min-height:auto;
+    padding:15px 16px 17px;
+  }
+
+  .vip-footer-contact{
+    justify-content:center;
+    white-space:normal;
+    text-align:center;
+  }
+
+  .vip-footer-contact__divider{
+    display:none;
+  }
+}
+
+/* ==========================================================
+   LAPTOP
+   ========================================================== */
+@media(max-width:1180px){
+  .vip-master-hero__portrait{width:38%}
+  .vip-master-hero__egypt{width:61%;background-position:63% 50%}
+  .vip-master-hero__copy{margin-left:38%;width:min(535px,48vw);padding-left:20px}
+  .vip-master-hero h1{font-size:47px}
+}
+
+/* ==========================================================
+   TABLET
+   ========================================================== */
+@media(max-width:900px){
+  .vip-master-hero{min-height:auto}
+  .vip-master-hero__portrait{
+    position:relative;
+    inset:auto;
+    z-index:1;
+    width:100%;
+    height:390px;
+    overflow:hidden;
+    background:var(--vip-navy-900);
+  }
+  .vip-master-hero__portrait img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:center 25%;
+  }
+  .vip-master-hero__portrait::after{
+    background:linear-gradient(180deg,transparent 55%,rgba(7,24,45,.97) 100%);
+  }
+  .vip-master-hero__egypt{
+    top:auto;
+    width:100%;
+    height:55%;
+    opacity:.36;
+    background-position:60% 50%;
+  }
+  .vip-master-hero__inner{
+    display:block;
+    min-height:auto;
+    padding:0;
+  }
+  .vip-master-hero__copy{
+    width:auto;
+    margin:0;
+    padding:25px 24px 36px;
+    text-align:center;
+    background:rgba(7,24,45,.97);
+  }
+  .vip-master-hero__brand{justify-content:center}
+  .vip-master-hero__initiative::after{display:none}
+  .vip-master-hero h1{font-size:40px}
+  .vip-master-hero__tagline,
+  .vip-master-hero__intro,
+  .vip-master-hero__privacy{margin-left:auto;margin-right:auto}
+  .vip-master-hero__privacy{text-align:left}
+  .vip-form-card__inner{padding:36px 32px}
+  .vip-grid-3{grid-template-columns:1fr 1fr}
+  .vip-grid-3 .vip-field:first-child{grid-column:1 / -1}
+  .vip-conversation-grid{grid-template-columns:1fr}
+}
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+@media(max-width:650px){
+  .vip-master-hero__portrait{height:330px}
+  .vip-master-hero__copy{padding:24px 19px 32px}
+  .vip-master-hero__logo{width:122px}
+  .vip-master-hero__initiative{font-size:8.2px;letter-spacing:.15em}
+  .vip-master-hero h1{font-size:34px}
+  .vip-master-hero__tagline{font-size:16px}
+  .vip-form-stage{padding:30px 12px 50px}
+  .vip-form-card{border-radius:10px}
+  .vip-form-card__inner{padding:29px 18px 28px}
+  .vip-form-intro h2{font-size:28px}
+  .vip-grid-3,
+  .vip-check-grid{grid-template-columns:1fr}
+  .vip-grid-3 .vip-field:first-child{grid-column:auto}
+  .vip-section__head h3{font-size:20px}
+  .vip-submit{width:100%;min-width:0}
+  .vip-option-list--next-step .vip-option{padding:13px 12px}
+}
+
+/* ==========================================================
+   PRODUCTION — JT FOXX FEATURE + CONDITIONALS + STATUS
+   ========================================================== */
+.vip-jt-feature{
+  position:relative;
+  display:grid;
+  grid-template-columns:142px 1fr;
+  gap:24px;
+  align-items:center;
+  margin:4px 0 25px;
+  padding:18px 20px;
+  overflow:hidden;
+  border:1px solid rgba(181,138,69,.38);
+  border-radius:9px;
+  background:linear-gradient(115deg,rgba(7,24,45,.985) 0%,rgba(11,35,71,.96) 100%);
+}
+.vip-jt-feature::after{
+  content:"";
+  position:absolute;
+  top:0; right:0;
+  width:120px; height:1px;
+  background:linear-gradient(90deg,transparent,var(--vip-gold-light));
+  opacity:.65;
+}
+.vip-jt-feature__portrait{
+  position:relative;
+  width:142px;
+  aspect-ratio:1/1;
+  overflow:hidden;
+  border:1px solid rgba(241,214,140,.52);
+  border-radius:7px;
+  background:#fff;
+  box-shadow:0 10px 24px rgba(0,0,0,.19);
+}
+.vip-jt-feature__portrait img{
+  width:100%; height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center 20%;
+}
+.vip-jt-feature__content{position:relative;z-index:1}
+.vip-jt-feature__eyebrow{
+  margin-bottom:6px;
+  color:#DDBE70;
+  font-size:9.2px;
+  line-height:1.3;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.vip-jt-feature h4{
+  margin:0;
+  color:#F3D987;
+  font:500 24px/1.15 Georgia,"Times New Roman",serif;
+}
+.vip-jt-feature p{
+  max-width:490px;
+  margin:8px 0 0;
+  color:#E6E8EC;
+  font-size:11.5px;
+  line-height:1.58;
+}
+.vip-jt-feature__note{
+  margin-top:9px;
+  color:#C8BFAE;
+  font-size:9.8px;
+  line-height:1.45;
+}
+.vip-form-status{
+  min-height:20px;
+  margin-top:9px;
+  text-align:center;
+  font-size:10.5px;
+  line-height:1.45;
+  color:#e5d2a1;
+}
+.vip-form-status.is-error{color:#ffd1d1}
+.vip-footer-submit[disabled]{
+  cursor:wait;
+  opacity:.72;
+  transform:none!important;
+}
+.vip-hp{
+  position:absolute!important;
+  width:1px!important;
+  height:1px!important;
+  padding:0!important;
+  margin:-1px!important;
+  overflow:hidden!important;
+  clip:rect(0,0,0,0)!important;
+  white-space:nowrap!important;
+  border:0!important;
+}
+@media(max-width:650px){
+  .vip-jt-feature{grid-template-columns:92px 1fr;gap:14px;padding:14px}
+  .vip-jt-feature__portrait{width:92px}
+  .vip-jt-feature h4{font-size:19px}
+  .vip-jt-feature p{font-size:10.4px}
+  .vip-jt-feature__note{display:none}
+}
+@media(max-width:420px){
+  .vip-jt-feature{grid-template-columns:78px 1fr;gap:12px}
+  .vip-jt-feature__portrait{width:78px}
+  .vip-jt-feature__eyebrow{font-size:8px}
+  .vip-jt-feature h4{font-size:17px}
+}
+
+</style>
+</head>
+<body>
+
+<section class="vip-master-hero" aria-label="Private Strategic Introduction">
+  <picture class="vip-master-hero__portrait">
+    <source
+      media="(max-width: 900px)"
+      srcset="https://assets.cdn.filesafe.space/zmC4rvxOEoJIVEDPerXu/media/6a7b8d8e746f53c63d5f5e1d.png"
+    >
+    <img
+      src="https://assets.cdn.filesafe.space/zmC4rvxOEoJIVEDPerXu/media/6a7bae08db3b0b261537fe0c.png"
+      alt="Dalal Akoury, MD"
+      fetchpriority="high"
+      decoding="async"
+    >
+  </picture>
+  <div class="vip-master-hero__egypt" aria-hidden="true"></div>
+  <div class="vip-master-hero__top-line" aria-hidden="true"></div>
+  <div class="vip-master-hero__corner" aria-hidden="true"></div>
+
+  <div class="vip-master-hero__inner">
+    <div class="vip-master-hero__copy">
+
+      <div class="vip-master-hero__brand">
+        <img
+          class="vip-master-hero__logo"
+          src="https://assets.cdn.filesafe.space/zmC4rvxOEoJIVEDPerXu/media/6a7b8cf94e002388f4e35543.jpg"
+          alt="Dalal Akoury MD"
+        >
+        <div class="vip-master-hero__initiative">Egypt 360° Initiative</div>
+      </div>
+
+      <div class="vip-master-hero__eyebrow">Private &amp; Confidential</div>
+
+      <h1>Private Strategic<br>Introduction</h1>
+
+      <p class="vip-master-hero__tagline">
+        Where global visionaries meet Egypt’s greatest opportunities.
+      </p>
+
+      <p class="vip-master-hero__intro">
+        A discreet executive channel for leaders whose perspective may contribute
+        meaningfully to Egypt’s future in health, investment, innovation, education,
+        and global visibility.
+      </p>
+
+      <div class="vip-master-hero__privacy">
+        <span class="vip-master-hero__privacy-mark" aria-hidden="true">◆</span>
+        <div>
+          <strong>Your information will be handled with discretion.</strong>
+          <small>Dr. Akoury’s Executive VIP Office will personally review your response.</small>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="vip-master-hero__transition"></div>
+</section>
+
+<main class="vip-form-stage">
+  <section class="vip-form-card">
+    <div class="vip-form-card__goldbar"></div>
+
+    <div class="vip-form-card__inner">
+
+      <header class="vip-form-intro">
+        <div class="vip-form-intro__eyebrow">Private Executive Correspondence</div>
+        <h2>A Brief Private Response</h2>
+        <div class="vip-form-intro__rule"></div>
+        <p>
+          We have intentionally kept this brief. Please share only what is helpful
+          for thoughtful executive coordination.
+        </p>
+      </header>
+
+      <form id="drAkouryVipForm" autocomplete="on">
+        <div class="vip-hp" aria-hidden="true">
+          <label for="vip_company">Company</label>
+          <input id="vip_company" name="company" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <input type="hidden" name="form_context" value="Egypt VIP - Private Strategic Introduction">
+
+        <section class="vip-section">
+          <div class="vip-section__head">
+            <div class="vip-section__num">1</div>
+            <h3>Your Details</h3>
+          </div>
+
+          <div class="vip-grid-3">
+            <div class="vip-field">
+              <label class="vip-label" for="vip_full_name">
+                Full Name <span class="vip-required">*</span>
+              </label>
+              <input
+                id="vip_full_name"
+                name="full_name"
+                type="text"
+                autocomplete="name"
+                placeholder="Your full name"
+                required
+              >
+            </div>
+
+            <div class="vip-field">
+              <label class="vip-label" for="vip_email">
+                Email <span class="vip-required">*</span>
+              </label>
+              <input
+                id="vip_email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="Your preferred email"
+                required
+              >
+            </div>
+
+            <div class="vip-field">
+              <label class="vip-label" for="vip_whatsapp">WhatsApp <span class="vip-required">*</span></label>
+              <input
+                id="vip_whatsapp"
+                name="vip_whatsapp_number"
+                type="tel"
+                autocomplete="tel"
+                placeholder="+20 ..."
+                required
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="vip-section">
+          <div class="vip-section__head">
+            <div class="vip-section__num">2</div>
+            <h3>Strategic Context</h3>
+          </div>
+
+          <div class="vip-field">
+            <label class="vip-label">
+              Which areas are most relevant to your interest?
+            </label>
+            <span class="vip-help">Optional — select any that apply.</span>
+
+            <div class="vip-check-grid">
+              <label class="vip-check">
+                <input type="checkbox" name="vip_strategic_areas[]" value="Healthcare Transformation & Medical Tourism">
+                <span>Healthcare Transformation &amp; Medical Tourism</span>
+              </label>
+
+              <label class="vip-check">
+                <input type="checkbox" name="vip_strategic_areas[]" value="Investment, Development & Tourism">
+                <span>Investment, Development &amp; Tourism</span>
+              </label>
+
+              <label class="vip-check">
+                <input type="checkbox" name="vip_strategic_areas[]" value="Government / Public-Private Collaboration">
+                <span>Government / Public-Private Collaboration</span>
+              </label>
+
+              <label class="vip-check">
+                <input type="checkbox" name="vip_strategic_areas[]" value="Longevity & Precision Medicine">
+                <span>Longevity &amp; Precision Medicine</span>
+              </label>
+
+              <label class="vip-check">
+                <input type="checkbox" name="vip_strategic_areas[]" value="Education, Leadership & Physician Training">
+                <span>Education, Leadership &amp; Physician Training</span>
+              </label>
+
+              <label class="vip-check">
+                <input type="checkbox" name="vip_strategic_areas[]" value="AI, Technology & Innovation">
+                <span>AI, Technology &amp; Innovation</span>
+              </label>
+
+              <label class="vip-check">
+                <input type="checkbox" name="vip_strategic_areas[]" value="Media & International Visibility">
+                <span>Media &amp; International Visibility</span>
+              </label>
+
+              <label class="vip-check">
+                <input type="checkbox" name="vip_strategic_areas[]" value="Philanthropy / Humanitarian Initiatives">
+                <span>Philanthropy / Humanitarian Initiatives</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="vip-field" style="margin-top:22px">
+            <label class="vip-label" for="vip_conversation_value">
+              Is there anything you would like us to consider in advance?
+            </label>
+            <span class="vip-help">Optional — a brief note is sufficient.</span>
+            <textarea
+              id="vip_conversation_value"
+              name="vip_conversation_value"
+              placeholder="A brief note about an opportunity, initiative, introduction, or consideration you would like the Executive Office to understand."
+            ></textarea>
+          </div>
+        </section>
+
+        <section class="vip-section">
+          <div class="vip-section__head">
+            <div class="vip-section__num">3</div>
+            <h3>How would you prefer us to proceed?</h3>
+          </div>
+
+          <div class="vip-jt-feature">
+            <div class="vip-jt-feature__portrait">
+              <img src="https://assets.cdn.filesafe.space/zmC4rvxOEoJIVEDPerXu/media/6a7c781bd826ff58299a9169.jpg" alt="JT Foxx" loading="lazy" decoding="async">
+            </div>
+            <div class="vip-jt-feature__content">
+              <div class="vip-jt-feature__eyebrow">Private Strategic Access</div>
+              <h4>Strategic Meeting with JT Foxx</h4>
+              <p>
+                Request private coordination for a strategic conversation with
+                JT Foxx regarding JT Foxx Egypt 2026.
+              </p>
+              <div class="vip-jt-feature__note">
+                Meeting coordination is subject to availability and confirmation by the Executive Office.
+              </div>
+            </div>
+          </div>
+
+          <fieldset class="vip-fieldset">
+            <legend class="vip-label">Preferred Next Step</legend>
+            <span class="vip-help">Please choose the option that best reflects your preference.</span>
+
+            <div class="vip-option-list vip-option-list--next-step">
+
+              <label class="vip-option">
+                <input type="radio" name="vip_preferred_meeting_format" value="Schedule a Private Conversation" required>
+                <div>
+                  <strong>Schedule a Private Conversation</strong>
+                  <span>Select a convenient time for a brief private conversation with Dr. Akoury.</span>
+                </div>
+              </label>
+
+              <label class="vip-option">
+                <input type="radio" name="vip_preferred_meeting_format" value="Request a Strategic Meeting with JT Foxx">
+                <div>
+                  <strong>Request a Strategic Meeting with JT Foxx</strong>
+                  <span>Request private coordination for a strategic conversation regarding JT Foxx Egypt 2026.</span>
+                </div>
+              </label>
+
+              <label class="vip-option">
+                <input type="radio" name="vip_preferred_meeting_format" value="Communicate with Me Directly">
+                <div>
+                  <strong>Communicate with Me Directly</strong>
+                  <span>Choose WhatsApp or email, whichever is most convenient.</span>
+                </div>
+              </label>
+
+              <label class="vip-option">
+                <input type="radio" name="vip_preferred_meeting_format" value="Please Coordinate Through My Office">
+                <div>
+                  <strong>Please Coordinate Through My Office</strong>
+                  <span>Dr. Akoury’s Executive Office may communicate directly with your designated representative.</span>
+                </div>
+              </label>
+
+              <label class="vip-option">
+                <input type="radio" name="vip_preferred_meeting_format" value="Send Me the Executive Brief First">
+                <div>
+                  <strong>Send Me the Executive Brief First</strong>
+                  <span>Receive concise additional context before deciding on a conversation.</span>
+                </div>
+              </label>
+
+              <label class="vip-option">
+                <input type="radio" name="vip_preferred_meeting_format" value="Not at This Time">
+                <div>
+                  <strong>Not at This Time</strong>
+                  <span>No further action is necessary.</span>
+                </div>
+              </label>
+
+            </div>
+          </fieldset>
+
+          <div class="vip-office-contact" id="vipDirectCommunication" aria-hidden="true">
+            <div class="vip-office-contact__intro">
+              <strong>Preferred Communication</strong>
+              <span>Please let us know the most convenient way for Dr. Akoury’s Executive Office to contact you.</span>
+            </div>
+            <div class="vip-option-list">
+              <label class="vip-option">
+                <input type="radio" name="vip_preferred_communication" value="WhatsApp">
+                <div><strong>WhatsApp</strong><span>Use the WhatsApp number provided above.</span></div>
+              </label>
+              <label class="vip-option">
+                <input type="radio" name="vip_preferred_communication" value="Email">
+                <div><strong>Email</strong><span>Use the email address provided above.</span></div>
+              </label>
+              <label class="vip-option">
+                <input type="radio" name="vip_preferred_communication" value="Either is convenient">
+                <div><strong>Either is convenient</strong><span>WhatsApp or email is equally suitable.</span></div>
+              </label>
+            </div>
+          </div>
+
+          <div class="vip-office-contact" id="vipOfficeContact" aria-hidden="true">
+            <div class="vip-office-contact__intro">
+              <strong>Office Coordination Details</strong>
+              <span>Please share only the contact details most appropriate for coordination with your office.</span>
+            </div>
+
+            <div class="vip-office-grid">
+              <div class="vip-field">
+                <label class="vip-label" for="vip_office_contact_name">Designated Contact Person</label>
+                <input
+                  id="vip_office_contact_name"
+                  name="vip_office_contact_name"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="Name of executive assistant, chief of staff, private secretary, or designated representative"
+                >
+              </div>
+
+              <div class="vip-field">
+                <label class="vip-label" for="vip_office_contact_role">Role / Title</label>
+                <input
+                  id="vip_office_contact_role"
+                  name="vip_office_contact_role"
+                  type="text"
+                  placeholder="Executive Assistant, Chief of Staff, Private Secretary..."
+                >
+              </div>
+
+              <div class="vip-field">
+                <label class="vip-label" for="vip_office_contact_email">Direct Email</label>
+                <input
+                  id="vip_office_contact_email"
+                  name="vip_office_contact_email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="Preferred office email"
+                >
+              </div>
+
+              <div class="vip-field">
+                <label class="vip-label" for="vip_office_contact_phone">Direct Phone / WhatsApp</label>
+                <input
+                  id="vip_office_contact_phone"
+                  name="vip_office_contact_phone"
+                  type="tel"
+                  autocomplete="tel"
+                  placeholder="+20 ... / +1 ..."
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="vip-submit-area vip-submit-area--closing">
+          <div class="vip-submit-note">
+            Dr. Akoury’s Executive VIP Office will personally review your response
+            and coordinate the appropriate next step.
+          </div>
+
+          <div class="vip-submit-meta">
+            <strong>Private &amp; Confidential.</strong>
+            Information shared here is used solely for private coordination by Dr. Akoury’s Executive Office.
+          </div>
+        </div>
+      </form>
+
+      <div class="vip-success" id="vipSuccess">
+        <div class="vip-form-intro__eyebrow">Private Executive Coordination</div>
+        <h3>Thank You</h3>
+        <div class="vip-form-intro__rule"></div>
+        <p>
+          Your private response has been received. Dr. Akoury’s Executive Office will coordinate the appropriate next step based on your preference.
+        </p>
+      </div>
+
+    </div>
+
+    <footer class="vip-executive-footer">
+      <div class="vip-executive-footer__art">
+        <img
+          class="vip-executive-footer__image"
+          src="https://assets.cdn.filesafe.space/zmC4rvxOEoJIVEDPerXu/media/6a7bdd17d9513ac7304174ea.png"
+          alt=""
+          aria-hidden="true"
+        >
+        <div class="vip-executive-footer__shade" aria-hidden="true"></div>
+
+        <div class="vip-executive-footer__action">
+          <button
+            class="vip-footer-submit"
+            id="vipSubmitButton"
+            type="submit"
+            form="drAkouryVipForm"
+          >
+            Send Private Response →
+          </button>
+          <div class="vip-footer-calendar-cue" id="vipCalendarCue" aria-live="polite">
+            Private scheduling is available when selected above.
+          </div>
+          <div class="vip-form-status" id="vipFormStatus" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="vip-executive-footer__contacts" aria-label="Executive VIP Office contact information">
+        <a class="vip-footer-contact" href="mailto:VIP@drdalalakoury.com">
+          <svg class="vip-footer-contact__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3.5" y="5.5" width="17" height="13" rx="1.25"></rect>
+            <path d="m4.5 7 7.5 5.75L19.5 7"></path>
+          </svg>
+          <span>VIP@drdalalakoury.com</span>
+        </a>
+
+        <span class="vip-footer-contact__divider" aria-hidden="true"></span>
+
+        <a class="vip-footer-contact" href="tel:+18338473001">
+          <svg class="vip-footer-contact__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7.2 3.7 4.7 6.2c-.7.7-.75 1.75-.17 2.53 2.72 3.72 6.98 7.98 10.7 10.7.78.58 1.83.53 2.53-.17l2.54-2.54-4.1-4.1-2.17 2.17a15.8 15.8 0 0 1-4.84-4.84l2.17-2.17z"></path>
+          </svg>
+          <span>+1 (833) 847-3001</span>
+        </a>
+
+        <span class="vip-footer-contact__divider" aria-hidden="true"></span>
+
+        <a class="vip-footer-contact" href="https://drdalalakoury.com" target="_blank" rel="noopener noreferrer">
+          <svg class="vip-footer-contact__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="8.25"></circle>
+            <path d="M3.9 12h16.2M12 3.75c2.2 2.25 3.25 5 3.25 8.25S14.2 18 12 20.25C9.8 18 8.75 15.25 8.75 12S9.8 6 12 3.75z"></path>
+          </svg>
+          <span>drdalalakoury.com</span>
+        </a>
+      </div>
+    </footer>
+  </section>
+</main>
+
+
+<script>
+(function(){
+  const CONFIG = {
+    SUBMIT_ENDPOINT: "/.netlify/functions/submit-vip-form",
+    GHL_PUBLIC_BOOKING_URL: "https://api.leadconnectorhq.com/widget/booking/dKu53s2VPILieU2XQX2e"
+  };
+
+  const form = document.getElementById("drAkouryVipForm");
+  const submitButton = document.getElementById("vipSubmitButton");
+  const success = document.getElementById("vipSuccess");
+  const footerAction = document.querySelector(".vip-executive-footer__action");
+  const formIntro = document.querySelector(".vip-form-intro");
+  const officeContact = document.getElementById("vipOfficeContact");
+  const directCommunication = document.getElementById("vipDirectCommunication");
+  const status = document.getElementById("vipFormStatus");
+
+  if (!form || !submitButton) return;
+
+  const SCHEDULING_VALUE = "Schedule a Private Conversation";
+  const JT_MEETING_VALUE = "Request a Strategic Meeting with JT Foxx";
+  const OFFICE_VALUE = "Please Coordinate Through My Office";
+  const DIRECT_VALUE = "Communicate with Me Directly";
+
+  function reduceMotion(){
+    return !!(window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }
+
+  function syncSelectedStates(groupName){
+    form.querySelectorAll('.vip-option input[name="' + groupName + '"]').forEach(function(input){
+      const card = input.closest(".vip-option");
+      if (card) card.classList.toggle("is-selected", input.checked);
+    });
+  }
+
+  function setPanel(panel, show){
+    if (!panel) return;
+    panel.classList.toggle("is-visible", show);
+    panel.setAttribute("aria-hidden", show ? "false" : "true");
+  }
+
+  function setStatus(message, isError){
+    if (!status) return;
+    status.textContent = message || "";
+    status.classList.toggle("is-error", !!isError);
+  }
+
+  function splitName(fullName){
+    const parts = String(fullName || "").trim().split(/\s+/).filter(Boolean);
+    return {
+      firstName: parts.shift() || "",
+      lastName: parts.join(" ")
+    };
+  }
+
+  function selectedStrategicAreas(){
+    return Array.from(
+      form.querySelectorAll('input[name="vip_strategic_areas[]"]:checked')
+    ).map(function(input){ return input.value; });
+  }
+
+  function currentPayload(){
+    const fullName = form.elements.full_name.value.trim();
+    const names = splitName(fullName);
+    const nextStep = form.querySelector(
+      'input[name="vip_preferred_meeting_format"]:checked'
+    );
+    const preferredCommunication = form.querySelector(
+      'input[name="vip_preferred_communication"]:checked'
+    );
+
+    return {
+      formContext: "Egypt VIP - Private Strategic Introduction",
+      company: form.elements.company ? form.elements.company.value : "",
+      fullName: fullName,
+      firstName: names.firstName,
+      lastName: names.lastName,
+      email: form.elements.email.value.trim(),
+      whatsapp: form.elements.vip_whatsapp_number.value.trim(),
+      strategicAreas: selectedStrategicAreas(),
+      privateNote: form.elements.vip_conversation_value.value.trim(),
+      preferredNextStep: nextStep ? nextStep.value : "",
+      preferredCommunication: preferredCommunication ? preferredCommunication.value : "",
+      officeContactName: form.elements.vip_office_contact_name.value.trim(),
+      officeContactTitle: form.elements.vip_office_contact_role.value.trim(),
+      officeContactEmail: form.elements.vip_office_contact_email.value.trim(),
+      officeContactPhone: form.elements.vip_office_contact_phone.value.trim()
+    };
+  }
+
+  function buildBookingUrl(payload){
+    const url = new URL(CONFIG.GHL_PUBLIC_BOOKING_URL);
+    if (payload.firstName) url.searchParams.set("first_name", payload.firstName);
+    if (payload.lastName) url.searchParams.set("last_name", payload.lastName);
+    if (payload.email) url.searchParams.set("email", payload.email);
+    if (payload.whatsapp) url.searchParams.set("phone", payload.whatsapp);
+    return url.toString();
+  }
+
+  form.querySelectorAll('.vip-option input[type="radio"]').forEach(function(input){
+    input.addEventListener("change", function(){
+      syncSelectedStates(this.name);
+
+      if (this.name !== "vip_preferred_meeting_format") return;
+
+      const isScheduling = this.value === SCHEDULING_VALUE;
+      const isJTMeeting = this.value === JT_MEETING_VALUE;
+      const isOffice = this.value === OFFICE_VALUE;
+      const isDirect = this.value === DIRECT_VALUE;
+
+      setPanel(officeContact, isOffice);
+      setPanel(directCommunication, isDirect);
+
+      submitButton.textContent =
+        isScheduling ? "Continue to Private Scheduling →" :
+        isJTMeeting ? "Send Strategic Meeting Request →" :
+        "Send Private Response →";
+
+      const calendarCue = document.getElementById("vipCalendarCue");
+      if (calendarCue) {
+        calendarCue.textContent =
+          isScheduling
+            ? "Your response will be saved securely before you continue to Dr. Akoury’s private scheduling calendar."
+            : isJTMeeting
+              ? "Your strategic meeting request will be reviewed for private coordination."
+              : "Your response will be reviewed by Dr. Akoury’s Executive VIP Office.";
+      }
+
+      if (isOffice && officeContact) {
+        window.setTimeout(function(){
+          officeContact.scrollIntoView({
+            behavior: reduceMotion() ? "auto" : "smooth",
+            block: "center"
+          });
+        }, 100);
+      }
+
+      if (isScheduling || isJTMeeting) {
+        window.setTimeout(function(){
+          submitButton.scrollIntoView({
+            behavior: reduceMotion() ? "auto" : "smooth",
+            block: "center"
+          });
+          submitButton.classList.add("vip-footer-submit--attention");
+          window.setTimeout(function(){
+            submitButton.classList.remove("vip-footer-submit--attention");
+          }, 1200);
+        }, 120);
+      }
+    });
+  });
+
+  form.addEventListener("submit", async function(e){
+    e.preventDefault();
+    setStatus("", false);
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const payload = currentPayload();
+
+    if (!payload.preferredNextStep) {
+      setStatus("Please select how you would prefer us to proceed.", true);
+      return;
+    }
+
+    if (payload.preferredNextStep === DIRECT_VALUE && !payload.preferredCommunication) {
+      setStatus("Please select your preferred communication method.", true);
+      if (directCommunication) {
+        directCommunication.scrollIntoView({
+          behavior: reduceMotion() ? "auto" : "smooth",
+          block: "center"
+        });
+      }
+      return;
+    }
+
+    const originalText = submitButton.textContent;
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending Securely…";
+    setStatus("Securely sending your private response…", false);
+
+    try {
+      const response = await fetch(CONFIG.SUBMIT_ENDPOINT, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json().catch(function(){ return {}; });
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || "Submission could not be completed.");
+      }
+
+      if (payload.preferredNextStep === SCHEDULING_VALUE) {
+        setStatus("Response received. Opening private scheduling…", false);
+        window.location.assign(buildBookingUrl(payload));
+        return;
+      }
+
+      form.style.display = "none";
+      if (formIntro) formIntro.style.display = "none";
+      if (footerAction) footerAction.style.display = "none";
+
+      if (success) {
+        const p = success.querySelector("p");
+        if (p) {
+          p.textContent =
+            payload.preferredNextStep === JT_MEETING_VALUE
+              ? "Your request for a strategic meeting with JT Foxx has been received. Dr. Akoury’s Executive Office will review the request and coordinate the appropriate next step."
+              : "Your private response has been received. Dr. Akoury’s Executive Office will coordinate the appropriate next step based on your preference.";
+        }
+        success.classList.add("is-visible");
+        success.scrollIntoView({
+          behavior: reduceMotion() ? "auto" : "smooth",
+          block: "center"
+        });
+      }
+    } catch (error) {
+      console.error("VIP form submission failed:", error);
+      submitButton.disabled = false;
+      submitButton.textContent = originalText;
+      setStatus(
+        "We were unable to send your response. Your information is still here. Please try again, or contact VIP@drdalalakoury.com / +1 (833) 847-3001.",
+        true
+      );
+      if (status) {
+        status.scrollIntoView({
+          behavior: reduceMotion() ? "auto" : "smooth",
+          block: "center"
+        });
+      }
+    }
+  });
+})();
+</script>
+</body>
+
+</html>
