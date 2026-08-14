@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Egypt Global Health & Human Potential Initiative — four language versions.
+     hreflang is fully reciprocal: every URL lists all four plus x-default.
+     Every file listed here exists in this delivery. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://drdalalakoury.com/egypt-global-health/</loc>
+      <xhtml:link rel="alternate" hreflang="en" href="https://drdalalakoury.com/egypt-global-health/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://drdalalakoury.com/ar/egypt-global-health/"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://drdalalakoury.com/fr/egypt-global-health/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://drdalalakoury.com/es/egypt-global-health/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://drdalalakoury.com/egypt-global-health/"/>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://drdalalakoury.com/ar/egypt-global-health/</loc>
+      <xhtml:link rel="alternate" hreflang="en" href="https://drdalalakoury.com/egypt-global-health/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://drdalalakoury.com/ar/egypt-global-health/"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://drdalalakoury.com/fr/egypt-global-health/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://drdalalakoury.com/es/egypt-global-health/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://drdalalakoury.com/egypt-global-health/"/>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://drdalalakoury.com/fr/egypt-global-health/</loc>
+      <xhtml:link rel="alternate" hreflang="en" href="https://drdalalakoury.com/egypt-global-health/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://drdalalakoury.com/ar/egypt-global-health/"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://drdalalakoury.com/fr/egypt-global-health/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://drdalalakoury.com/es/egypt-global-health/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://drdalalakoury.com/egypt-global-health/"/>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://drdalalakoury.com/es/egypt-global-health/</loc>
+      <xhtml:link rel="alternate" hreflang="en" href="https://drdalalakoury.com/egypt-global-health/"/>
+      <xhtml:link rel="alternate" hreflang="ar" href="https://drdalalakoury.com/ar/egypt-global-health/"/>
+      <xhtml:link rel="alternate" hreflang="fr" href="https://drdalalakoury.com/fr/egypt-global-health/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://drdalalakoury.com/es/egypt-global-health/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://drdalalakoury.com/egypt-global-health/"/>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
