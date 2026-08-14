@@ -594,6 +594,73 @@ figure.fig figcaption{margin-top:14px;font-family:var(--display);font-style:ital
   .split-media::after{display:none}
 }
 
+/* --------------------------------------------- 7b. WHY EGYPT · WHY NOW
+   Egyptian relief background + restrained parallax, scoped entirely to
+   #why-egypt. Same "::before as a decorative background layer on a
+   position:relative;overflow:hidden section" technique already used by
+   .quoteband::before above — nothing here is a new pattern for this file.
+
+   The photo (images/blocks-egyptian-DalalAkoury-Homecoming.jpg, a near-
+   seamless carved hieroglyph relief texture) is tiled via background-
+   repeat, never background-size:cover, so it is never cropped or zoomed —
+   see initWhyEgyptParallax() in script.js §5d, which only ever writes a
+   translateY() offset, never a scale.
+
+   The photo layer (::before) and the readability/edge-blend gradient
+   (::after) are two separate pseudo-elements on purpose: ::before needs a
+   40px overhang on top/bottom so the parallax translateY() has travel
+   room without ever exposing a gap, but that overhang would also drag
+   the gradient's "0 = solid ivory" stop 40px away from the section's
+   actual visible edge, making the fade start late and look like an
+   abrupt cut instead of a blend. ::after sits flush at inset:0 with no
+   offset and no transform, so its fade genuinely starts at the real top/
+   bottom edge — a graceful "ivory -> transparent -> ivory" (~76-82%
+   opacity in the middle, comfortably inside the 65-85% readability
+   range) into the bg-cream sections on either side (#advantages above,
+   #medical-vision below). */
+#why-egypt{position:relative;overflow:hidden}
+#why-egypt::before{
+  content:'';
+  position:absolute;
+  top:-40px;right:0;bottom:-40px;left:0;
+  z-index:0;
+  background-image:url('/images/blocks-egyptian-DalalAkoury-Homecoming.jpg');
+  background-repeat:repeat;
+  background-size:640px auto;
+  background-position:center top;
+  transform:translateY(var(--why-parallax,0px));
+  transition:transform .1s linear;
+  will-change:transform;
+}
+#why-egypt::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:linear-gradient(180deg,
+    var(--cream) 0,
+    rgba(247,243,234,.82) 150px,
+    rgba(247,243,234,.76) 50%,
+    rgba(247,243,234,.82) calc(100% - 150px),
+    var(--cream) 100%);
+}
+#why-egypt > .container{position:relative;z-index:1}
+
+/* Extra readability insurance on the densest copy in the section — a
+   restrained, barely-there panel, not a dashboard card: a soft fill and a
+   hairline gold border, no blur/glassmorphism. */
+#why-egypt .split.top{background:rgba(250,247,240,.62);border:1px solid rgba(201,165,92,.16);border-radius:4px;padding:clamp(30px,4vw,46px)}
+
+@media(max-width:880px){
+  #why-egypt::before{background-size:460px auto}
+}
+@media(max-width:520px){
+  #why-egypt::before{background-size:340px auto}
+}
+@media(prefers-reduced-motion:reduce){
+  #why-egypt::before{transform:none!important;transition:none!important}
+}
+
 /* --------------------------------------------------- 8. PULL-QUOTE BAND */
 .quoteband{background:linear-gradient(135deg,#0a1425,#0f1b33);color:var(--white);text-align:center;padding:clamp(84px,10vw,132px) 0;position:relative;overflow:hidden}
 .quoteband::before{

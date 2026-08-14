@@ -486,6 +486,32 @@ const CONFIG = {
     cards.forEach(function (c) { io.observe(c); });
   })();
 
+  /* ------------------------------------------- 5d. WHY EGYPT — RELIEF PARALLAX
+     Same technique as 5b's vision-cine parallax: a passive scroll listener
+     writing a CSS custom property (--why-parallax) that #why-egypt::before's
+     transform: translateY() reads. The background itself is never scaled —
+     only translated — so the artwork is never zoomed to fake depth. Skipped
+     entirely under prefers-reduced-motion; the background stays put, fully
+     visible, just without motion. */
+  (function initWhyEgyptParallax() {
+    if (reduceMotion) return;
+    const section = $("#why-egypt");
+    if (!section) return;
+    let queued = false;
+    const update = function () {
+      queued = false;
+      const r = section.getBoundingClientRect();
+      const offset = Math.max(-30, Math.min(30, r.top * 0.04));
+      section.style.setProperty("--why-parallax", offset + "px");
+    };
+    addEventListener("scroll", function () {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(update);
+    }, { passive: true });
+    update();
+  })();
+
   /* ------------------------------------------------ 6. STAKEHOLDER TABS
      Full ARIA tab pattern with arrow-key / Home / End navigation. */
   const tabs   = $$(".stake-tab");
