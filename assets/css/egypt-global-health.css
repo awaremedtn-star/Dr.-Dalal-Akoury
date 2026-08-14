@@ -197,6 +197,24 @@ h3.sh3{font-family:var(--display);font-weight:500;font-size:clamp(1.45rem,2.4vw,
 #why-egypt > .container > .center > .lead-p{font-size:17px}
 #why-egypt .split.top .body-p{font-size:16.5px}
 
+/* #why-egypt background photograph — same carved-relief image the hero on
+   this page already uses (a separate, re-optimized local copy so the two
+   can be swapped independently), with a warm ivory scrim in the same
+   linear-gradient()+url() layering the hero/quoteband use elsewhere on
+   the site for text-over-image sections. The scrim uses the site's own
+   --cream token (not a new color) at high opacity because this section's
+   text was designed for a plain white ground (dark navy heading, slate
+   body copy) — a dark scrim like the hero's would fail that text, so a
+   light one keeps every existing color exactly as readable as before.
+   .evi-cell keeps its own solid white background, so the evidence cards
+   stay crisp regardless of the photo behind them. */
+#why-egypt{
+  background:linear-gradient(rgba(247,243,234,.88),rgba(247,243,234,.88)),url('/images/egypt-global-health-why-egypt-bg.jpg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
 .center{text-align:center}
 .center .section-label{justify-content:center}
 .center .lead-p{margin:0 auto}
