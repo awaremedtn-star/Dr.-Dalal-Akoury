@@ -1,3 +1,29 @@
+# ── Egypt Global Health & Human Potential Initiative ──────────────────────
+# The initiative page moved from /egypt-vision/ to /egypt-global-health/.
+# Both the trailing-slash and no-slash forms are handled, plus the five
+# recipient-pathway sub-pages that used to live under /egypt-vision/.
+# All are permanent (301). None of them targets a path that itself redirects,
+# so there is no loop.
+
+/egypt-vision              /egypt-global-health/   301!
+/egypt-vision/             /egypt-global-health/   301!
+/egypt-vision/index.html   /egypt-global-health/   301!
+/egypt-vision/health       /egypt-global-health/   301!
+/egypt-vision/health/      /egypt-global-health/   301!
+/egypt-vision/tourism      /egypt-global-health/   301!
+/egypt-vision/tourism/     /egypt-global-health/   301!
+/egypt-vision/government   /egypt-global-health/   301!
+/egypt-vision/government/  /egypt-global-health/   301!
+/egypt-vision/investment   /egypt-global-health/   301!
+/egypt-vision/investment/  /egypt-global-health/   301!
+/egypt-vision/media        /egypt-global-health/   301!
+/egypt-vision/media/       /egypt-global-health/   301!
+
+# The page's own assets keep working from their old location.
+/egypt-vision/styles.css   /assets/css/egypt-global-health.css   301
+/egypt-vision/script.js    /assets/js/egypt-global-health.js     301
+
+# ── Existing site redirects — preserved verbatim ──────────────────────────
 /jt-foxx-bio      /   301
 /jt-foxx-bio.html /   301
 

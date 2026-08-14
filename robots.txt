@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
 
+# The four language versions of the Egypt Global Health & Human Potential
+# Initiative are all crawlable. Nothing below is disallowed.
+Allow: /egypt-global-health/
+Allow: /ar/egypt-global-health/
+Allow: /fr/egypt-global-health/
+Allow: /es/egypt-global-health/
+
 Sitemap: https://drdalalakoury.com/sitemap.xml
+Sitemap: https://drdalalakoury.com/sitemap-egypt-global-health.xml
