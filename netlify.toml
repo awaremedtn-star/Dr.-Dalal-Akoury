@@ -5,3 +5,23 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# CSS/JS under /assets/ (app.js, style.css, and everything under assets/css/
+# and assets/js/) are NOT immutable — they get edited in place, same URL,
+# same as any other page on this site. The broad rule above wrongly marked
+# them "immutable" for a year, so an edit could deploy correctly to the
+# origin and still be invisible to any browser (or the CDN edge) that had
+# already cached the old bytes at that URL — no revalidation ever happens
+# under `immutable`. This more specific rule (Netlify applies the later
+# matching rule's value for headers set by more than one block) overrides
+# just the Cache-Control for .css/.js so edits are visible within seconds,
+# while images/video under /assets/ keep the long cache above.
+[[headers]]
+  for = "/assets/*.css"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/assets/*.js"
+  [headers.values]
+    Cache-Control = "no-cache"
