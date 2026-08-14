@@ -801,6 +801,91 @@ html.ac-js .asset-card:not(.in) p{opacity:0;transform:translateY(12px)}
 .bg-navy .notice p{color:rgba(232,224,213,.88)}
 .bg-navy .notice p strong{color:var(--white)}
 
+/* ------------------------------------------ 15b. NATIONAL MOMENTUM — RING
+   ORNAMENTS. Scoped entirely to #already; nothing here can leak into any
+   other section. images/Egypt-Rings.jpg is a 736×735 JPG — a circular
+   Egyptian lotus/geometric medallion on a solid white square canvas, with
+   a white hollow center. Because the section background is also white,
+   mix-blend-mode:multiply on the <img> makes the JPG's white canvas and
+   white center vanish into the backdrop (white × white = white) while the
+   ink/red/gold/green ring itself paints normally — no visible square edge,
+   no separate cutout asset needed.
+
+   Stacking: #already gets position:relative + overflow:hidden (the
+   30–50%-cropped bleed happens here); .already-ornaments is an absolutely
+   positioned, zero-height decorative layer at z-index:0, pointer-events:
+   none, so it can never intercept clicks or get announced to a screen
+   reader; #already .container is explicitly promoted to z-index:1 so
+   every existing heading/paragraph/card keeps painting above it. */
+#already{position:relative;overflow:hidden}
+#already .container{position:relative;z-index:1}
+
+.already-ornaments{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+
+.already-ring{
+  position:absolute;
+  overflow:hidden;
+  border-radius:50%;
+  /* Soft edge-fade toward the section's centerline, so the ring stays
+     strongest near the far edge it's entering from and softens before it
+     could ever compete with the headline or card text. Applied to this
+     non-rotating wrapper (not the spinning <img>) so the fade direction
+     stays fixed to the viewport instead of sweeping around as it spins. */
+  -webkit-mask-image:linear-gradient(var(--ring-fade-dir),#000 0%,#000 58%,transparent 90%);
+  mask-image:linear-gradient(var(--ring-fade-dir),#000 0%,#000 58%,transparent 90%);
+}
+.already-ring img{
+  display:block;
+  width:100%;
+  height:100%;
+  mix-blend-mode:multiply;
+  animation:already-ring-spin var(--ring-duration,120s) linear infinite;
+  animation-direction:var(--ring-direction,normal);
+}
+@keyframes already-ring-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+.already-ring--large{
+  --ring-fade-dir:to right;
+  --ring-duration:120s;
+  width:950px;height:950px;
+  left:-500px;top:120px;
+  opacity:.15;
+}
+.already-ring--small{
+  --ring-fade-dir:to left;
+  --ring-duration:150s;
+  --ring-direction:reverse;
+  width:620px;height:620px;
+  right:-330px;top:480px;
+  opacity:.12;
+}
+
+@media(max-width:1439px){
+  .already-ring--large{width:820px;height:820px;left:-420px;top:100px}
+  .already-ring--small{width:540px;height:540px;right:-280px;top:440px}
+}
+@media(max-width:1199px){
+  .already-ring--large{width:680px;height:680px;left:-350px;top:70px}
+  .already-ring--small{width:440px;height:440px;right:-225px;top:400px}
+}
+@media(max-width:980px){
+  .already-ring--large{width:520px;height:520px;left:-260px;top:40px;opacity:.12}
+  .already-ring--small{width:340px;height:340px;right:-175px;top:520px;opacity:.1}
+}
+@media(max-width:767px){
+  /* A deliberate mobile composition rather than a scaled-down desktop one:
+     one ring enters softly from the upper-right behind the eyebrow/heading
+     only, well clear of the card grid; the second is dropped rather than
+     competing for the same narrow column — two overlapping rings read as
+     clutter at this width, and mobile readability wins. */
+  .already-ring--large{width:340px;height:340px;left:auto;right:-140px;top:-40px;opacity:.1}
+  .already-ring--small{display:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .already-ring img{animation:none}
+}
+
 /* ------------------------------------------------------- 16. GOVERNANCE */
 .gov{margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,165,92,.22);border:1px solid rgba(201,165,92,.28);border-radius:4px;overflow:hidden}
 .gov-cell{background:rgba(10,20,37,.8);padding:30px 28px}
