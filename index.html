@@ -72,7 +72,14 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .langsw button:hover,.langsw button.on{background:var(--gold);color:var(--lapis-deep);border-color:var(--gold)}
 .nav{position:sticky;top:0;z-index:100;background:rgba(12,27,51,.92);backdrop-filter:blur(10px);transition:background .3s var(--ease),box-shadow .3s var(--ease);padding:18px 0;box-shadow:0 2px 20px rgba(10,24,48,.18)}
 .nav.solid{background:var(--lapis-deep);box-shadow:0 2px 30px rgba(10,24,48,.4)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px}
+/* gap tightened 14px→8px, and .nav-phone below carries a small
+   negative margin, to reclaim just enough width for the new phone
+   link at >=1760px (CTA + full tabs + phone all visible at once) —
+   the specific tier investment.html's long CTA text already made
+   the tightest (see §"responsive nav collapse" below). Verified this
+   does not reintroduce that CTA overflow, and does not wrap any
+   nav-links label, at 1280/1440/1920px on every page. */
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .nav-logo{display:flex;align-items:center}
 .nav-logo img{height:88px;width:auto;display:block}
 @media(max-width:760px){.nav-logo img{height:56px}}
@@ -86,11 +93,15 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .nav-cta:active{transform:scale(.97)}
 html[dir="rtl"] .nav-links a{letter-spacing:0;font-family:var(--font-ar)}
 html[dir="rtl"] .nav-cta{font-family:var(--font-ar)}
+.nav-phone{font-size:var(--fs-caption);font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.8);padding:9px 6px;margin:0 -9px;white-space:nowrap;transition:color .15s var(--ease)}
+.nav-phone:hover{color:var(--gold-light)}
+html[dir="rtl"] .nav-phone{letter-spacing:0;font-family:var(--font-ar)}
 .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
 .burger span{width:23px;height:2px;background:#fff;border-radius:2px}
 .mnav{display:none;background:var(--lapis-deep);padding:8px 32px 26px}
 .mnav.open{display:block}
 .mnav a{display:block;color:rgba(255,255,255,.85);padding:13px 0;font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.08)}
+.mnav a.mnav-phone{color:var(--gold-light);font-weight:700}
 .nav-drop{position:relative}
 .nav-drop-trigger{display:inline-flex;align-items:center;gap:2px;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8);transition:color .15s var(--ease)}
 button.nav-drop-trigger{background:none;border:none;cursor:pointer;font:inherit;padding:9px 13px}
@@ -125,6 +136,7 @@ html[dir="rtl"] .mnav-submenu{padding-left:0;padding-right:16px}
 html[dir="rtl"] .mnav-group-label,html[dir="rtl"] .mnav-group-caret{letter-spacing:0}
 @media(max-width:1760px){.nav-cta.desk{display:none}}
 @media(max-width:1300px){.nav-links{display:none}.burger{display:flex}}
+@media(max-width:479px){.nav-phone{display:none}}
 
 /* ---- Buttons ---- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 34px;border-radius:2px;font-family:var(--body);font-weight:500;font-size:12px;letter-spacing:.18em;text-transform:uppercase;transition:all .3s;white-space:nowrap;cursor:pointer}
@@ -1158,9 +1170,11 @@ html[dir="rtl"] .qframe{padding:64px 52px}
     <li><a href="legacy.html" data-i18n="nav.legacy">Legacy</a></li>
   </ul>
   <a href="#connect" class="nav-cta desk" data-i18n="nav.connect">Connect</a>
+  <a href="tel:+18338473001" class="nav-phone" aria-label="Call us at 833-847-3001">(833) 847-3001</a>
   <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div>
 <div class="mnav" id="mnav">
+  <a href="tel:+18338473001" class="mnav-phone" aria-label="Call us at 833-847-3001">(833) 847-3001</a>
   <div class="mnav-group">
     <span class="mnav-group-trigger">
       <a href="index.html" class="mnav-group-label current" data-i18n="nav.home.group">Home</a>
