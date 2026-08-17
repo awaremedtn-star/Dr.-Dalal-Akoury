@@ -115,7 +115,14 @@ html[dir="rtl"] .btn{letter-spacing:0;font-family:var(--font-ar);font-weight:700
 /* ---------- primary nav ---------- */
 .nav{position:sticky;top:0;z-index:100;background:rgba(12,27,51,.92);backdrop-filter:blur(10px);transition:background .3s var(--ease),box-shadow .3s var(--ease);padding:18px 0;box-shadow:0 2px 20px rgba(10,24,48,.18)}
 .nav.solid{background:var(--lapis-deep);box-shadow:0 2px 30px rgba(10,24,48,.4)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px}
+/* gap tightened 14px→8px, and .nav-phone below carries a small
+   negative margin, to reclaim just enough width for the new phone
+   link at >=1760px (CTA + full tabs + phone all visible at once) —
+   the specific tier investment.html's long CTA text already made
+   the tightest (see §"responsive nav collapse" below). Verified this
+   does not reintroduce that CTA overflow, and does not wrap any
+   nav-links label, at 1280/1440/1920px on every page. */
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .nav-logo{display:flex;align-items:center}
 .nav-logo img{height:88px;width:auto;display:block}
 @media(max-width:760px){.nav-logo img{height:56px}}
@@ -130,11 +137,25 @@ html[dir="rtl"] .nav-links a{letter-spacing:0;font-family:var(--font-ar)}
 .nav-cta:hover{background:var(--gold-lt)}
 .nav-cta:active{transform:scale(.97)}
 html[dir="rtl"] .nav-cta{font-family:var(--font-ar)}
+/* Persistent nav phone number — deliberately its own class, not .nav-cta,
+   so it is never caught by the .nav-cta.desk{display:none} breakpoint
+   below: this must stay visible whenever the CTA button is hidden.
+   Typography matches .nav-links a (the nav's existing secondary-link
+   pattern) rather than the filled-button CTA style, so it reads as a
+   utility item and never competes with the CTA for attention. */
+.nav-phone{font-size:var(--fs-caption);font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.8);padding:9px 6px;margin:0 -9px;white-space:nowrap;transition:color .15s var(--ease)}
+.nav-phone:hover{color:var(--gold-lt)}
+html[dir="rtl"] .nav-phone{letter-spacing:0;font-family:var(--font-ar)}
 .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
 .burger span{width:23px;height:2px;background:#fff;border-radius:2px}
 .mnav{display:none;background:var(--lapis-deep);padding:8px 32px 26px}
 .mnav.open{display:block}
 .mnav a{display:block;color:rgba(255,255,255,.85);padding:13px 0;font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.08)}
+/* First item in the mobile menu — gold, bold, matches the existing
+   "Connect" link's gold-override treatment at the bottom of .mnav, so
+   the phone number reads as the most prominent entry rather than an
+   ordinary nav link. */
+.mnav a.mnav-phone{color:var(--gold-lt);font-weight:700}
 
 /* ---------- nav dropdown (desktop "Media" merges Interviews + Press & Photos) ---------- */
 .nav-drop{position:relative}
@@ -329,6 +350,14 @@ html[dir="rtl"] .m-row{padding:36px 0 36px 32px}
 @media(max-width:1300px){
   .nav-links{display:none}
   .burger{display:flex}
+}
+/* Below this, the collapsed bar only has room for the logo and the
+   burger (nav-links/nav-cta are already hidden above); dropping
+   .nav-phone here avoids crowding rather than wrapping it. It reappears
+   as the first, gold, bold item in .mnav the instant the menu opens, so
+   it's never actually unreachable — see .mnav a.mnav-phone above. */
+@media(max-width:479px){
+  .nav-phone{display:none}
 }
 
 /* ============================================================
