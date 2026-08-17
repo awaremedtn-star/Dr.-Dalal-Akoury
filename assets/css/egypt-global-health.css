@@ -331,8 +331,17 @@ html[dir="rtl"] .vision-cine::after{background:
 .vision-cine .vc-p{color:rgba(255,255,255,.93)}
 .vision-cine .vc-p strong,.vision-cine .vc-p3{color:#fff}
 @media(max-width:900px){
-  /* stacked: the photo is behind the whole column, so darken evenly */
+  /* stacked: the photo is behind the whole column, so darken evenly.
+     Needs an explicit html[dir="rtl"] variant here too — the RTL rule
+     above (line ~318) carries higher specificity than a bare
+     .vision-cine::after, so without this override it kept winning at
+     mobile widths and left the horizontal (unstacked) gradient showing,
+     letting bright sky/facade bleed through behind the text on Arabic
+     mobile. Same stacked values, just matched in specificity so this
+     media query actually takes effect for both directions. */
   .vision-cine::after{background:
+    linear-gradient(180deg,rgba(10,20,37,.90) 0%,rgba(10,20,37,.93) 45%,rgba(10,20,37,.95) 100%)}
+  html[dir="rtl"] .vision-cine::after{background:
     linear-gradient(180deg,rgba(10,20,37,.90) 0%,rgba(10,20,37,.93) 45%,rgba(10,20,37,.95) 100%)}
 }
 
@@ -1220,6 +1229,16 @@ html.sg-js .hero-cta.sg-in{opacity:1;transform:none;transition:opacity .9s var(-
 .band-fig figcaption{text-align:center;max-width:70ch;margin-inline:auto}
 .bg-navy .band-fig figcaption{color:rgba(232,224,213,.85)}
 @media(max-width:640px){.band-fig .plate{aspect-ratio:4/3}}
+
+/* Journey-section video embed (Egypt Global Health: The Concise Journey).
+   .plate already gives the rounded-corner/shadow/aspect-ratio box the
+   photo used; only the fill technique changes, from object-fit:cover img
+   to an absolutely-positioned iframe. Pinned to 16:9 at every width,
+   overriding the 4:3 mobile crop above — a video's ratio shouldn't be
+   squeezed the way a photo crop can be. */
+.band-fig--video .plate{aspect-ratio:16/9}
+.band-fig--video .plate iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+@media(max-width:640px){.band-fig--video .plate{aspect-ratio:16/9}}
 
 
 /* ── Platform layer chips + note (inside the existing .stake tab component) ─ */
