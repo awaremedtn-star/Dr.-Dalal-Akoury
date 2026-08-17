@@ -107,7 +107,7 @@ The form is **fully built and fully validating**, but it is not yet posting anyw
 This is deliberate and visible, not an oversight.
 
 **Right now (SAFE MODE):** the form validates every field, then opens the visitor's mail
-client with the whole inquiry pre-composed to `awaremed@gmail.com`, and shows the success
+client with the whole inquiry pre-composed to `vip@drdalalakoury.com`, and shows the success
 state. Nothing is silently swallowed and nothing pretends to reach a server that does not
 exist.
 
@@ -117,7 +117,7 @@ exist.
 FORM: {
   endpoint: "https://services.leadconnectorhq.com/hooks/XXXXXXXX",   // ← paste here
   method: "POST",
-  fallbackEmail: "awaremed@gmail.com",
+  fallbackEmail: "vip@drdalalakoury.com",
 },
 ```
 
@@ -153,7 +153,7 @@ not in the page:
 2. **Trichia** — ⚠️ address to be confirmed
 
 Until those two addresses are confirmed, leave `endpoint` empty so the form stays in
-safe mode and everything routes to `awaremed@gmail.com`.
+safe mode and everything routes to `vip@drdalalakoury.com`.
 
 ---
 

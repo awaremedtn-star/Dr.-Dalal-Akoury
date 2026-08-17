@@ -35,7 +35,7 @@ const CONFIG = {
   FORM: {
     endpoint: "",                          // e.g. "https://services.leadconnectorhq.com/hooks/XXXX"
     method: "POST",
-    fallbackEmail: "info@awaremed.com",   // VERIFY before launch
+    fallbackEmail: "vip@drdalalakoury.com",   // VERIFY before launch
     // Notification recipients are configured on the ENDPOINT side, not here:
     //   1. Dr. Akoury's designated office recipient  — ADDRESS PENDING
     //   2. Trichia                                    — ADDRESS PENDING

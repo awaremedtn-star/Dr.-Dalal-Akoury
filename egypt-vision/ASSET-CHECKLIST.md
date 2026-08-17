@@ -54,7 +54,7 @@ Suggested download filename (already configured):
 
 | Item | Currently on the page | Action |
 |---|---|---|
-| Office email | `awaremed@gmail.com` | ⚠️ Confirm this is the right address for correspondence with Egyptian ministers, hospital leadership and investors — a dedicated address may be more appropriate for a document of this standing |
+| Office email | `vip@drdalalakoury.com` | ⚠️ Confirm this is the right address for correspondence with Egyptian ministers, hospital leadership and investors — a dedicated address may be more appropriate for a document of this standing |
 | Telephone | `+1 (423) 430-6170` | ⚠️ Confirm this is the right number for Egypt-facing correspondence; consider adding an Egypt number or WhatsApp line |
 | Form notification recipient 1 | not set | ⚠️ Dr. Akoury's designated office recipient |
 | Form notification recipient 2 | not set | ⚠️ Trichia |
