@@ -276,6 +276,89 @@ h3.sh3{font-family:var(--display);font-weight:500;font-size:clamp(1.45rem,2.4vw,
   .vision-cine-img{transform:none!important;transition:none!important}
 }
 
+/* ── CINEMATIC BAND — measured legibility fix ────────────────────────────────
+   The inherited scrim fades from .92 to .22 across the width, but the text
+   column runs to 72% of the viewport, so the last third of every line sat on
+   a brightly lit façade. Measured against the rendered photograph, the body
+   paragraphs came out at 2.24:1 and 2.87:1 — well under the 4.5:1 minimum,
+   and visibly hard to read. Two changes: hold the scrim dark across the full
+   width of the text column before letting it fall away, and drop the 0.85
+   alpha on the body copy, which was washing light text toward the bright
+   background behind it. The right-hand third stays photographic. ────────── */
+.vision-cine::after{background:
+  linear-gradient(90deg,
+    rgba(10,20,37,.95) 0%,
+    rgba(10,20,37,.93) 34%,
+    rgba(10,20,37,.86) 47%,
+    rgba(10,20,37,.52) 60%,
+    rgba(10,20,37,.16) 76%,
+    rgba(10,20,37,.04) 100%),
+  linear-gradient(180deg,rgba(10,20,37,.30) 0%,transparent 20%,transparent 84%,rgba(10,20,37,.38) 100%)}
+/* RTL: the copy column already sits on the right without any override here
+   (block layout follows dir automatically), but this scrim's horizontal
+   gradient is a fixed 90deg (dark-left/light-right) with no direction
+   awareness of its own, so on the Arabic page the text ended up sitting
+   over the bright two-thirds of the photo instead of the dark third —
+   this override was not present in the build-G source and was added here
+   to close that gap. Same stops, same technique already used for
+   .vc-question below (270deg instead of 90deg mirrors the gradient line
+   without touching a single opacity value). */
+html[dir="rtl"] .vision-cine::after{background:
+  linear-gradient(270deg,
+    rgba(10,20,37,.95) 0%,
+    rgba(10,20,37,.93) 34%,
+    rgba(10,20,37,.86) 47%,
+    rgba(10,20,37,.52) 60%,
+    rgba(10,20,37,.16) 76%,
+    rgba(10,20,37,.04) 100%),
+  linear-gradient(180deg,rgba(10,20,37,.30) 0%,transparent 20%,transparent 84%,rgba(10,20,37,.38) 100%)}
+/* Copy column narrowed so it ends where the gradient releases — the bright
+   architecture and blue sky stay bright across the right 40%. */
+.vision-cine-content{max-width:600px}
+.vision-cine .vc-p,.vc-question{max-width:560px}
+.vision-cine .vc-p{color:rgba(255,255,255,.93)}
+.vision-cine .vc-p strong,.vision-cine .vc-p3{color:#fff}
+@media(max-width:900px){
+  /* stacked: the photo is behind the whole column, so darken evenly */
+  .vision-cine::after{background:
+    linear-gradient(180deg,rgba(10,20,37,.90) 0%,rgba(10,20,37,.93) 45%,rgba(10,20,37,.95) 100%)}
+}
+
+/* ── THE STRATEGIC QUESTION ──────────────────────────────────────────────────
+   The band was three paragraphs of equal weight, and the idea the reader is
+   meant to leave with was the third of them. Giving the question a gold rule
+   and a translucent ground creates the hierarchy the section always needed:
+   fact, then principle, then the one question worth remembering. ────────── */
+.vc-question{margin-top:30px;padding:24px 0 24px 26px;border-left:2px solid var(--gold);
+  background:linear-gradient(90deg,rgba(201,165,92,.10),rgba(201,165,92,0) 82%);
+  border-radius:0 4px 4px 0;max-width:680px}
+.vc-qk{font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;
+  color:var(--gold-light);margin-bottom:12px}
+.vc-q{font-family:var(--display);font-weight:400;font-size:clamp(1.18rem,1.9vw,1.5rem);
+  line-height:1.55;color:#fff}
+.vision-cine .vc-cta{margin-top:26px}
+html[dir="rtl"] .vc-question{border-left:0;border-right:2px solid var(--gold);
+  padding:24px 26px 24px 0;border-radius:4px 0 0 4px;
+  background:linear-gradient(270deg,rgba(201,165,92,.10),rgba(201,165,92,0) 82%)}
+html[dir="rtl"] .vc-qk{letter-spacing:.04em}
+@media(max-width:560px){.vc-question{padding-left:18px}html[dir="rtl"] .vc-question{padding-right:18px;padding-left:0}}
+
+/* Body copy in the band: shorter measure, brighter, so the eye is not asked
+   to track a long line across a photograph. */
+.vision-cine .vc-p{max-width:660px}
+
+
+/* ── CINEMATIC BAND — the copy column was never actually on the left ────────
+   .vision-cine is display:flex and .container is a flex item, so `max-width`
+   without `width` let it shrink-wrap around the 600px copy column. The block
+   then centred itself: at 1440px the copy sat from x=420 to x=1020 — 29% to
+   71% of the viewport — straddling the middle of the photograph, which is
+   why it needed such a heavy scrim to stay readable.
+   Giving the container its real width puts the copy where the design always
+   intended it: hard left, inside the dark third, leaving the architecture
+   and the sky bright across the right of the frame. ────────────────────── */
+.vision-cine .container{width:100%}
+
 /* Stats band — verbatim */
 .stats-band{background:var(--navy-deep);border-top:1px solid rgba(201,165,92,.2);border-bottom:1px solid rgba(201,165,92,.2)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);max-width:var(--maxw);margin:0 auto}
