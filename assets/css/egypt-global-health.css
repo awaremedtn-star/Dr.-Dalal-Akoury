@@ -1230,6 +1230,16 @@ html.sg-js .hero-cta.sg-in{opacity:1;transform:none;transition:opacity .9s var(-
 .bg-navy .band-fig figcaption{color:rgba(232,224,213,.85)}
 @media(max-width:640px){.band-fig .plate{aspect-ratio:4/3}}
 
+/* Journey-section video embed (Egypt Global Health: The Concise Journey).
+   .plate already gives the rounded-corner/shadow/aspect-ratio box the
+   photo used; only the fill technique changes, from object-fit:cover img
+   to an absolutely-positioned iframe. Pinned to 16:9 at every width,
+   overriding the 4:3 mobile crop above — a video's ratio shouldn't be
+   squeezed the way a photo crop can be. */
+.band-fig--video .plate{aspect-ratio:16/9}
+.band-fig--video .plate iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+@media(max-width:640px){.band-fig--video .plate{aspect-ratio:16/9}}
+
 
 /* ── Platform layer chips + note (inside the existing .stake tab component) ─ */
 .layer-chip{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.2em;
