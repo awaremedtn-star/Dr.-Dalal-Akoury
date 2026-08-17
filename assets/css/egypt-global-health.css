@@ -1189,9 +1189,9 @@ html.sg-js .hero-cta.sg-in{opacity:1;transform:none;transition:opacity .9s var(-
 /* ── Source attribution inside a card, and inline source references ──────── */
 .src-line{margin-top:14px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--gold-ink);font-weight:600}
-.bio-facts li a,.evi-src a{color:var(--gold-ink);font-weight:600;font-size:11px;
+.bio-facts li a,.evi-src a,.src-line a{color:var(--gold-ink);font-weight:600;font-size:11px;
   letter-spacing:.08em;border-bottom:1px solid rgba(201,165,92,.45);white-space:nowrap}
-.bio-facts li a:hover,.evi-src a:hover{color:var(--navy);border-bottom-color:var(--navy)}
+.bio-facts li a:hover,.evi-src a:hover,.src-line a:hover{color:var(--navy);border-bottom-color:var(--navy)}
 
 
 /* ── Evidence cells: published national figures, each carrying its source ── */
