@@ -620,3 +620,152 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
 .legacy-feature{padding:0;border-top:none;background:var(--lapis-deep)}
 .legacy-feature figure{position:relative;max-width:1400px;margin:0 auto;padding:0 clamp(20px,6vw,80px)}
 .legacy-feature img{width:100%;height:auto;display:block;border:1px solid rgba(191,154,84,.35);border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+
+/* ============================================================
+   EGYPTIAN ORNAMENT SYSTEM — reusable rotating-ring background
+   motif for light-background sections, sitewide.
+
+   Same technique already proven on the Egypt Global Health page's
+   .already-ring: a non-rotating wrapper carries a soft edge-fade
+   mask (so the ring reads strongest at the edge it enters from and
+   softens toward the section's own content, rather than sweeping
+   around as it spins), while the spinning <img> inside it uses
+   mix-blend-mode:multiply against the section's light fill --
+   Egypt-Rings.jpg's white background then vanishes (white x white
+   = white) and only the ink/red/gold/green linework paints, with
+   no visible rectangular image boundary and no separate cutout
+   asset needed. Generalized here into named composition variants
+   (--eo-* custom properties driving one shared ruleset) instead of
+   bespoke per-section CSS, so any light section on any page that
+   loads this stylesheet can opt in with one host class on the
+   <section>, one .egypt-ornament wrapper, and 1-2 <img> tags --
+   never a new copy of the animation/masking rules.
+
+   Markup contract:
+     <section class="... eo-host">
+       <div class="egypt-ornament eo-<variant>" aria-hidden="true">
+         <div class="eo-ring eo-ring--a"><img src="/images/Egypt-Rings.jpg" alt="" loading="lazy" decoding="async"></div>
+         <div class="eo-ring eo-ring--b">...</div>  (two-ring variants only)
+       </div>
+       <div class="wrap">...existing section content...</div>
+     </section>
+
+   Stacking: .eo-host gets position:relative + overflow:hidden (the
+   large-percentage-cropped bleed happens here, and this is also
+   what guarantees no horizontal scroll -- a ring positioned outside
+   the section's own box is clipped by this section, never the
+   page); .egypt-ornament is an absolutely positioned, zero-height
+   decorative layer at z-index:0, pointer-events:none and
+   user-select:none, so it can never intercept clicks/selection or
+   get announced to a screen reader (aria-hidden + alt=""); the
+   .wrap immediately after it is promoted to z-index:1 so all
+   existing content, cards and links keep painting above it
+   unchanged -- scoped to `.egypt-ornament + .wrap` specifically,
+   not a blanket rule on every .wrap sitewide. */
+.eo-host{position:relative;overflow:hidden}
+.egypt-ornament{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;user-select:none}
+.egypt-ornament + .wrap{position:relative;z-index:1}
+
+.eo-ring{
+  position:absolute;
+  overflow:hidden;
+  border-radius:50%;
+  -webkit-mask-image:linear-gradient(var(--eo-fade-dir,to right),#000 0%,#000 55%,transparent 88%);
+  mask-image:linear-gradient(var(--eo-fade-dir,to right),#000 0%,#000 55%,transparent 88%);
+}
+.eo-ring img{
+  display:block;
+  width:100%;
+  height:100%;
+  mix-blend-mode:multiply;
+  animation:eo-spin var(--eo-duration,140s) linear infinite;
+  animation-direction:var(--eo-direction,normal);
+}
+@keyframes eo-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.eo-ring img{animation:none}}
+
+/* ---- Variant: Left Monumental — one huge ring, left edge ---- */
+.eo-left-monumental .eo-ring--a{
+  --eo-fade-dir:to right; --eo-duration:139s;
+  width:980px;height:980px;left:-620px;top:-80px;opacity:.13;
+}
+html[dir="rtl"] .eo-left-monumental .eo-ring--a{--eo-fade-dir:to left;left:auto;right:-620px}
+
+/* ---- Variant: Right Monumental — one huge ring, right edge ---- */
+.eo-right-monumental .eo-ring--a{
+  --eo-fade-dir:to left; --eo-duration:151s; --eo-direction:reverse;
+  width:1020px;height:1020px;right:-640px;bottom:-100px;opacity:.12;
+}
+html[dir="rtl"] .eo-right-monumental .eo-ring--a{--eo-fade-dir:to right;right:auto;left:-640px}
+
+/* ---- Variant: Diagonal Reverse — large upper-right + smaller
+   lower-left, deliberately asymmetric (not mirrored pair) ---- */
+.eo-diagonal-rev .eo-ring--a{ /* large, upper-right */
+  --eo-fade-dir:to left; --eo-duration:147s;
+  width:860px;height:860px;right:-500px;top:-140px;opacity:.12;
+}
+.eo-diagonal-rev .eo-ring--b{ /* smaller, lower-left */
+  --eo-fade-dir:to right; --eo-duration:126s; --eo-direction:reverse;
+  width:480px;height:480px;left:-260px;bottom:-180px;opacity:.08;
+}
+html[dir="rtl"] .eo-diagonal-rev .eo-ring--a{--eo-fade-dir:to right;right:auto;left:-500px}
+html[dir="rtl"] .eo-diagonal-rev .eo-ring--b{--eo-fade-dir:to left;left:auto;right:-260px}
+
+/* ---- Variant: Whisper — single arc, mostly outside the viewport,
+   for dense/long sections where a full circle would compete with
+   content. Vertically centered so it reads as an edge accent for
+   the section's whole scroll length rather than only its top. ---- */
+.eo-whisper .eo-ring--a{
+  --eo-fade-dir:to left; --eo-duration:172s;
+  width:780px;height:780px;right:-560px;top:50%;margin-top:-390px;opacity:.07;
+}
+html[dir="rtl"] .eo-whisper .eo-ring--a{--eo-fade-dir:to right;right:auto;left:-560px}
+
+/* ---- Variant: Quiet — a single small partial ring in one corner,
+   for sections (e.g. legal/disclosure text) that should read as
+   almost undecorated. ---- */
+.eo-quiet .eo-ring--a{
+  --eo-fade-dir:to bottom right; --eo-duration:181s;
+  width:420px;height:420px;left:-300px;top:-260px;opacity:.05;
+}
+html[dir="rtl"] .eo-quiet .eo-ring--a{--eo-fade-dir:to bottom left;left:auto;right:-300px}
+
+@media(max-width:1199px){
+  .eo-left-monumental .eo-ring--a{width:820px;height:820px;left:-500px}
+  html[dir="rtl"] .eo-left-monumental .eo-ring--a{right:-500px}
+  .eo-right-monumental .eo-ring--a{width:860px;height:860px;right:-520px}
+  html[dir="rtl"] .eo-right-monumental .eo-ring--a{left:-520px}
+  .eo-diagonal-rev .eo-ring--a{width:720px;height:720px;right:-410px}
+  html[dir="rtl"] .eo-diagonal-rev .eo-ring--a{left:-410px}
+  .eo-diagonal-rev .eo-ring--b{width:400px;height:400px;left:-210px}
+  html[dir="rtl"] .eo-diagonal-rev .eo-ring--b{right:-210px}
+  .eo-whisper .eo-ring--a{width:640px;height:640px;right:-450px;margin-top:-320px}
+  html[dir="rtl"] .eo-whisper .eo-ring--a{left:-450px}
+}
+@media(max-width:899px){
+  .eo-left-monumental .eo-ring--a{width:620px;height:620px;left:-380px;top:-60px;opacity:.11}
+  html[dir="rtl"] .eo-left-monumental .eo-ring--a{right:-380px}
+  .eo-right-monumental .eo-ring--a{width:640px;height:640px;right:-390px;bottom:-70px;opacity:.1}
+  html[dir="rtl"] .eo-right-monumental .eo-ring--a{left:-390px}
+  /* dual becomes single: drop the smaller supporting ring, keep the
+     large one, so a tablet viewport doesn't juggle two crops */
+  .eo-diagonal-rev .eo-ring--b{display:none}
+  .eo-diagonal-rev .eo-ring--a{width:560px;height:560px;right:-330px;top:-100px;opacity:.1}
+  html[dir="rtl"] .eo-diagonal-rev .eo-ring--a{left:-330px}
+  .eo-whisper .eo-ring--a{width:480px;height:480px;right:-340px;margin-top:-240px;opacity:.06}
+  html[dir="rtl"] .eo-whisper .eo-ring--a{left:-340px}
+  .eo-quiet .eo-ring--a{width:320px;height:320px;left:-220px;top:-190px}
+  html[dir="rtl"] .eo-quiet .eo-ring--a{right:-220px}
+}
+@media(max-width:640px){
+  .eo-left-monumental .eo-ring--a{width:420px;height:420px;left:-270px;top:-40px;opacity:.09}
+  html[dir="rtl"] .eo-left-monumental .eo-ring--a{right:-270px}
+  .eo-right-monumental .eo-ring--a{width:440px;height:440px;right:-280px;bottom:-50px;opacity:.09}
+  html[dir="rtl"] .eo-right-monumental .eo-ring--a{left:-280px}
+  .eo-diagonal-rev .eo-ring--a{width:400px;height:400px;right:-250px;top:-70px;opacity:.09}
+  html[dir="rtl"] .eo-diagonal-rev .eo-ring--a{left:-250px}
+  .eo-whisper .eo-ring--a{width:340px;height:340px;right:-250px;margin-top:-170px;opacity:.055}
+  html[dir="rtl"] .eo-whisper .eo-ring--a{left:-250px}
+  .eo-quiet .eo-ring--a{width:240px;height:240px;left:-170px;top:-140px;opacity:.045}
+  html[dir="rtl"] .eo-quiet .eo-ring--a{right:-170px}
+}
